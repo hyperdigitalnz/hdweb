@@ -1,0 +1,256 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import Placeholder from "../components/Placeholder.astro";
+import AutomationFlow from "../components/AutomationFlow.astro";
+import { SITE } from "../consts";
+
+const title = "AI Automation for Tradies | Never Lose a Lead or Review | Hyper Digital";
+const description =
+  "We automate your follow-ups, review requests and repeat-work reminders so no lead goes cold and happy customers actually leave reviews. Runs itself. Free audit.";
+
+const leaks = [
+  { icon: "phone", title: "Leads you never followed up", body: "The quote you meant to chase. The missed call you never returned. Quietly costing you jobs every week." },
+  { icon: "star", title: "Happy customers who never reviewed", body: "Every five-star review you didn't ask for is a ranking boost, and a future customer, you left on the table." },
+];
+
+const automate = [
+  { icon: "chat", title: "Instant & scheduled follow-ups", body: "Chases every lead until they book or say no, so nothing slips." },
+  { icon: "phone", title: "Missed-call text-back", body: "A call you couldn't take fires off a text instantly, so it doesn't turn into a lost job." },
+  { icon: "star", title: "Automatic review requests", body: "Sent after every completed job, at the moment the customer is happiest." },
+  { icon: "trend", title: "Reactivation messages", body: "Nudges past customers to book you again, bringing in work from people who already trust you." },
+];
+
+const proof = {
+  name: "Bermuda Lifestyle",
+  stat: "Booked months ahead",
+  statLabel: "what keeping it running looks like",
+  quote:
+    "Month after month, year after year Ryan, Matt and their team at Hyper Digital have allowed us the very fortunate position of having new customers booked months in advance.",
+  who: "Denise Howell, Bermuda Lifestyle",
+};
+
+const faqs = [
+  { q: "What is the AI lead system?", a: "It's the part of your smart website that handles the instant reply. When a lead comes in, it answers in about 30 seconds, qualifies the job and books it, so no enquiry ever sits waiting. You and your team take it from there." },
+  { q: "Does it work after hours?", a: "Yes, around the clock. Most enquiries come in when you're on a job or knocked off for the day. That's exactly when it earns its keep." },
+  { q: "How does it get me more reviews?", a: "After a job is marked complete, it automatically asks that customer for a review at the right moment, when they're happiest, so you steadily build the reviews that win you the next job." },
+  { q: "Will I have to manage it?", a: "No. We set it up and it runs in the background. You just keep doing the work." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO (split — automation flow) ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal>
+          <span class="eyebrow">Keep it running</span>
+        </Reveal>
+        <Reveal delay={0.05} class="mt-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            Never lose a lead or a <span class="marker">review</span> again.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            The work doesn't stop at the first reply. We automate your follow-ups, your review
+            requests and your repeat-work reminders, so good leads don't go cold, and happy
+            customers actually leave you a review.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+      <Reveal delay={0.15}>
+        <AutomationFlow />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHERE JOBS LEAK ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Where jobs leak</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Most tradies lose money in two places.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          Both are costing you jobs right now. And both are fixable, automatically.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {leaks.map((l, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card h-full border border-error/30 bg-error/5">
+              <div class="card-body">
+                <span class="icon-chip border-error/30 bg-error/10 text-error"><Icon name={l.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{l.title}</h3>
+                <p class="mt-1 text-base-content/70">{l.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE AUTOMATE (icon cards) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What we automate</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Set it up once. It runs in the background.</h2>
+      </Reveal>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {automate.map((a, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={a.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{a.title}</h3>
+                <p class="mt-1 text-base-content/70">{a.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MORE REVIEWS = MORE LEADS (feature row) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">It compounds</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">More reviews mean more leads, automatically.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Every new five-star review lifts your Google ranking and makes the next customer more
+          likely to choose you. So the automation doesn't just save you time, it feeds straight back
+          into getting found and getting booked. The whole system compounds.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="/lead-generation" class="btn btn-ghost text-primary">How we find the work →</a>
+          <a href="/websites" class="btn btn-ghost text-primary">Your smart website →</a>
+        </div>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <Placeholder ratio="aspect-[4/3]" label="Reviews climbing on Google" hint="mockup: 5-star reviews and rising local ranking" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== IT RUNS ITSELF ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="bolt" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl sm:text-4xl">You keep doing the work. The system does the rest.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          No apps to check, no follow-ups to remember. It runs quietly in the background and just
+          keeps your pipeline full, so you can focus on the job in front of you.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== PROOF ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">What "keeping it running" looks like.</h2>
+      </Reveal>
+      <Reveal class="mt-10">
+        <div class="card card-glow border border-base-300 bg-base-100 shadow-sm">
+          <div class="card-body gap-4 md:flex-row md:items-center">
+            <div class="md:w-44 md:shrink-0 md:border-r md:border-base-300 md:pr-6">
+              <div class="font-display text-2xl text-primary">{proof.stat}</div>
+              <div class="text-sm uppercase tracking-wide text-base-content/60">{proof.statLabel}</div>
+            </div>
+            <div>
+              <div class="text-primary">★★★★★</div>
+              <p class="mt-1 text-base-content/70 italic">"{proof.quote}"</p>
+              <p class="mt-2 font-display text-lg">{proof.who}</p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+      <Reveal class="mt-8 text-center">
+        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="text-primary">free</span> until you do.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
+          we keep working and waive our management fee until we do. You still cover your ad spend,
+          but you won't pay us another cent until we deliver.
+        </p>
+        <a href="#audit" class="btn btn-primary mt-7 font-display text-lg tracking-wide">Get my free audit</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + AUDIT FORM ===== -->
+  <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+              <input type="checkbox" />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal delay={0.1} class="lg:sticky lg:top-24">
+        <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you where you're leaking jobs, and how to plug it." />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to stop letting leads slip through?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free, no-obligation audit. We'll show you where you're leaking jobs and how to plug it.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</Layout>

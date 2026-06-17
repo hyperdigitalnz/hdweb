@@ -1,0 +1,185 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import { SITE, STATS } from "../consts";
+
+const title = "About Hyper Digital | Marketing Run by Two Kiwis Who Get the Trades";
+const description =
+  "Hyper Digital is Matt and Ryan, two Kiwis helping NZ tradies and local businesses grow since 2019. Straight-talking, results-first, on the hook for what we promise.";
+
+const values = [
+  { icon: "trophy", title: "Results, not vanity metrics", body: "We measure calls and booked jobs, not clicks and likes." },
+  { icon: "eye", title: "Honest reporting", body: "Every number we show you, you can check in your own account." },
+  { icon: "check", title: "No lock-in", body: "You stay because the work keeps coming, not because a contract traps you." },
+  { icon: "dollar", title: "Your budget is our money", body: "We spend it like it's our own, because that's how you earn trust." },
+  { icon: "shield", title: "We're on the hook", body: "That's what the 60-day lead guarantee is about." },
+];
+
+const founders = [
+  { name: "Matt McAuliffe", role: "Co-founder", photo: "/img/Matt-McAuliffe-Profile.jpg" },
+  { name: "Ryan Ewart", role: "Co-founder", photo: "/img/Ryan-Ewart-Profile.jpg" },
+];
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Hyper Digital",
+  url: "https://hyperdigital.nz",
+  telephone: "+64276661973",
+  areaServed: "NZ",
+  foundingDate: "2019",
+  description:
+    "Hyper Digital helps New Zealand tradies and local businesses grow with Google Ads, smart websites and AI automation.",
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO (split — founder photo) ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal>
+          <span class="eyebrow">About us</span>
+        </Reveal>
+        <Reveal delay={0.05} class="mt-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            Two Kiwi blokes who <span class="marker">get the trades</span>.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            Hyper Digital helps New Zealand tradies and local businesses grow: more leads, more
+            booked jobs, less mucking around. Here's who we are and why we do it.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+      <Reveal delay={0.15}>
+        <img src="/img/MattRyan-working.jpg" alt="Matt and Ryan from Hyper Digital working together" loading="lazy" class="aspect-[4/5] w-full rounded-box object-cover object-top shadow-2xl" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== THE STORY ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-[1.2fr_0.8fr]">
+      <Reveal>
+        <span class="eyebrow">Where it started</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Built by people who were sick of dodgy marketing.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Matt and Ryan started Hyper Digital in 2019, with decades of industry experience between
+          them and one simple frustration: too many good local businesses were getting dudded by
+          marketing that promised the world and delivered nothing they could actually measure.
+        </p>
+        <p class="mt-4 text-lg text-base-content/70">
+          So we built the kind of agency we'd want to hire ourselves: straight-talking,
+          results-first, and on the hook for what we promise.
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div class="card border border-base-300 bg-base-200 text-center shadow-sm">
+          <div class="card-body items-center">
+            <span class="icon-chip"><Icon name="calendar" class="h-6 w-6" /></span>
+            <div class="mt-2 font-display text-6xl text-primary">2019</div>
+            <p class="text-base-content/70">Helping Kiwi tradies and local businesses grow ever since.</p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE STAND FOR (value icon cards) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">How we do things</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">What we stand for.</h2>
+      </Reveal>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {values.map((v, i) => (
+          <Reveal delay={i * 0.07} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={v.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{v.title}</h3>
+                <p class="mt-1 text-base-content/70">{v.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATT & RYAN ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">The team</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">You get the owners, not a call centre.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          We're not a faceless agency or a fly-by-night startup. We've spent years working alongside
+          tradies and local businesses, so we get your world: the early starts, quoting from the
+          van, and the phone that either never stops or doesn't ring enough. When you call Hyper
+          Digital, you get one of us.
+        </p>
+      </Reveal>
+      <div class="mx-auto mt-10 grid max-w-xl gap-6 sm:grid-cols-2">
+        {founders.map((f, i) => (
+          <Reveal delay={i * 0.08}>
+            <div class="card border border-base-300 bg-base-100 text-center shadow-sm">
+              <div class="card-body items-center">
+                <img src={f.photo} alt={f.name} loading="lazy" class="h-32 w-32 rounded-full object-cover" />
+                <div class="mt-3 font-display text-2xl">{f.name}</div>
+                <div class="text-sm uppercase tracking-wide text-base-content/60">{f.role}</div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROOF STRIP ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-14">
+      <Reveal>
+        <div class="grid grid-cols-2 gap-6 text-center md:grid-cols-5">
+          {STATS.map((s) => (
+            <div>
+              <div class="font-display text-3xl text-primary sm:text-4xl">{s.value}</div>
+              <div class="mt-1 text-sm text-neutral-content/70">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA + FORM ===== -->
+  <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <h2 class="text-3xl sm:text-4xl">Want to see what we can do for your business?</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Get your free, no-obligation audit. We'll show you exactly where your next jobs are coming
+          from. No jargon, no obligation, no pressure.
+        </p>
+        <a href={SITE.phoneHref} class="btn btn-ghost mt-5 text-primary">Or call {SITE.phone} →</a>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <AuditForm title="Get your free audit" lead="Tell us about your business and we'll show you where your next jobs are coming from." />
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
+</Layout>

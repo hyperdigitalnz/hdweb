@@ -1,0 +1,41 @@
+---
+// Live-feed phone mockup (stalkr-inspired): an auto-scrolling stack of incoming lead/booking
+// cards. Illustrative example, not real data — labelled as such to stay honest.
+import Icon from "./Icon.astro";
+
+// `chip` maps to a daisyUI colour role so each category reads as a distinct chip.
+const feed = [
+  { icon: "search", tag: "New quote request", chip: "primary", text: "Kitchen re-pipe, Napier", meta: "Replied in 28 seconds" },
+  { icon: "check", tag: "Job booked", chip: "success", text: "Tuesday 9:00am", meta: "Added to your calendar" },
+  { icon: "phone", tag: "Missed call saved", chip: "info", text: "Followed up by text instantly", meta: "11:42pm" },
+  { icon: "megaphone", tag: "Review request sent", chip: "warning", text: "After the job was marked done", meta: "Automatic" },
+  { icon: "pin", tag: "Found on Google", chip: "accent", text: "Top of the local map pack", meta: "Plumber near me" },
+];
+---
+<div class="mx-auto w-full max-w-sm">
+  <div class="rounded-[2rem] border border-white/10 surface-2 p-3 shadow-2xl">
+    <!-- top bar -->
+    <div class="flex items-center justify-between px-3 py-2">
+      <span class="text-xs font-bold uppercase tracking-wide text-neutral-content/60">Your phone, today</span>
+      <span class="flex items-center gap-1.5 text-xs text-primary">
+        <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-primary"></span> Live
+      </span>
+    </div>
+
+    <div class="vmarquee-wrap h-[360px] rounded-2xl bg-black/30 p-3">
+      <div class="vmarquee gap-3">
+        {[...feed, ...feed].map((f) => (
+          <div class="flex items-start gap-3 rounded-xl border border-white/10 surface-3 p-3" style={`--chip: var(--color-${f.chip})`}>
+            <span class="icon-chip cat-ico h-9 w-9 shrink-0"><Icon name={f.icon} class="h-4 w-4" /></span>
+            <div class="min-w-0">
+              <span class="cat-chip">{f.tag}</span>
+              <p class="mt-1 truncate font-semibold text-neutral-content">{f.text}</p>
+              <p class="text-xs text-neutral-content/50">{f.meta}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <p class="mt-3 text-center text-xs text-neutral-content/50">Example of a working day. Not live data.</p>
+</div>

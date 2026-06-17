@@ -1,0 +1,32 @@
+---
+import { SITE, NAV } from "../consts";
+---
+<footer class="bg-neutral text-neutral-content/70">
+  <div class="mx-auto max-w-[1160px] px-5 py-12">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div class="max-w-sm">
+        <div class="logo text-2xl text-neutral-content">HYPER<span class="text-primary">DIGITAL</span></div>
+        <p class="mt-3 text-sm">{SITE.tagline}</p>
+        <p class="mt-2 text-sm">{SITE.location}</p>
+      </div>
+
+      <nav class="flex flex-col gap-2 text-sm">
+        {NAV.map((item) => <a href={item.href} class="transition-colors hover:text-primary">{item.label}</a>)}
+        <a href="/contact" class="transition-colors hover:text-primary">Contact</a>
+      </nav>
+
+      <div class="text-sm">
+        <a href={SITE.phoneHref} class="font-display text-2xl text-neutral-content transition-colors hover:text-primary">{SITE.phone}</a>
+        <p class="mt-2">{SITE.hours}</p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <span>© {new Date().getFullYear()} {SITE.name}</span>
+      <div class="flex gap-4">
+        <a href="/privacy" class="transition-colors hover:text-primary">Privacy</a>
+        <a href="/terms" class="transition-colors hover:text-primary">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

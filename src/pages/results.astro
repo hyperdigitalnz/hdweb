@@ -1,0 +1,253 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import { SITE, STATS } from "../consts";
+
+const title = "Real Results for Kiwi Tradies | Case Studies | Hyper Digital";
+const description =
+  "Real, traceable results for NZ trade and local businesses: more leads, lower cost per lead, more booked jobs. See the numbers our clients can check themselves.";
+
+// ── Case studies ──────────────────────────────────────────────────────────
+// To add a new one: copy a block below and fill it in. `featured: true` gives the
+// full-width treatment with a before/after image slot; the rest render as cards.
+const caseStudies = [
+  {
+    name: "Bermuda Lifestyle",
+    trade: "Pools & Spas",
+    featured: true,
+    headline: "2,500% more enquiries and 500% revenue growth in their first year.",
+    body: "They came to us with a basic 5-page website that barely ranked and brought in next to no leads. We rebuilt their site and have run Google Ads, Facebook and Instagram ever since. Now they've got customers booked months in advance.",
+    metrics: [
+      { stat: "+2,500%", label: "enquiries in year one" },
+      { stat: "+500%", label: "revenue growth" },
+      { stat: "Months", label: "booked in advance" },
+    ],
+    quote:
+      "Month after month, year after year Ryan, Matt and their team at Hyper Digital have allowed us the very fortunate position of having new customers booked months in advance for our Pools and Spas. They built us an amazing website and deliver the exact customers we require via Google Ads, Facebook Ads and Instagram.",
+    who: "Denise Howell, Bermuda Lifestyle",
+    image: "/img/bermuda-card.jpg",
+  },
+  {
+    name: "Tableau Towbars",
+    trade: "Automotive / Towing",
+    featured: false,
+    headline: "Phone enquiries up 69% year-on-year, on the same budget.",
+    body: "From a one-page HTML brochure to a fast, search-ready site built around their services, getting found on Google NZ-wide. A 4½-year partnership and counting.",
+    metrics: [
+      { stat: "+69%", label: "phone enquiries YoY" },
+      { stat: "+12%", label: "enquiries on flat spend" },
+      { stat: "7% → 14%", label: "click-through rate" },
+    ],
+    quote:
+      "Ryan from Hyper Digital walked through the door and sat with me. He had already taken time to learn all about us and what we do. Since then they have got us found on Google with Ads to showcase our products all over NZ.",
+    who: "Donna Godfrey, Tableau Towbars",
+    image: null,
+  },
+  {
+    name: "Harris Pumps & Filtration",
+    trade: "Trade supply / Pumps",
+    featured: false,
+    headline: "Cost per lead cut from $31 to around $17, and 29% more leads.",
+    body: "One of our very first clients. Year after year we've grown their online advertising and made it more efficient. 2026 is their most efficient year yet.",
+    metrics: [
+      { stat: "$31 → $17", label: "cost per lead" },
+      { stat: "+29%", label: "more tracked leads" },
+      { stat: "+35%", label: "phone enquiries YoY" },
+    ],
+    quote:
+      "Harris Pumps and Filtration have been a client of Hyper Digital from the very beginning. A great company that has helped grow our online advertising with real results. They offer customised solutions that work.",
+    who: "Stephen Harris, Harris Pumps & Filtration",
+    image: null,
+  },
+  {
+    name: "Houses On The Move",
+    trade: "House Relocations",
+    featured: false,
+    slug: "/results/houses-on-the-move",
+    headline: "Enquiries more than doubled year-on-year, and cost per lead cut by more than half.",
+    body: "A 4.5-year partnership and growing. We run Google Ads Search campaigns across their key regions, putting them in front of homeowners, developers and builders at the exact moment they're searching for house relocation.",
+    metrics: [
+      { stat: "+122%", label: "tracked leads YoY" },
+      { stat: "$32 → $16", label: "cost per lead" },
+      { stat: "43,000+", label: "clicks all-time" },
+    ],
+    quote: null,
+    who: null,
+    image: null,
+  },
+  {
+    name: "Continuous Spouting",
+    trade: "Spouting & Guttering",
+    featured: false,
+    slug: "/results/continuous-spouting",
+    headline: "Nearly 3,000 enquiries at under $6 each. A 4.5-year partnership and counting.",
+    body: "One tightly managed Google Ads Search campaign, targeting Hawke's Bay homeowners and builders searching for spouting and guttering. No complicated setup. Just consistent, efficient results month after month.",
+    metrics: [
+      { stat: "2,945", label: "tracked leads all-time" },
+      { stat: "$5.87", label: "cost per lead" },
+      { stat: "15.5%", label: "click-through rate" },
+    ],
+    quote: null,
+    who: null,
+    image: null,
+  },
+];
+
+const featured = caseStudies.filter((c) => c.featured);
+const rest = caseStudies.filter((c) => !c.featured);
+
+// Trades we want a case study for next — placeholder tiles show room to grow.
+const upcoming = ["Plumbing", "Electrical", "Roofing", "Building"];
+
+const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: { "@type": "Organization", name: "Hyper Digital" },
+  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+  author: { "@type": "Person", name: c.who },
+  reviewBody: c.quote,
+}));
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO + STATS ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-24">
+      <Reveal><span class="eyebrow">Results</span></Reveal>
+      <Reveal delay={0.05} class="mt-3">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl">Real Kiwi businesses. <span class="marker">Real results</span>.</h1>
+      </Reveal>
+      <Reveal delay={0.1} class="mx-auto mt-6 max-w-2xl">
+        <p class="text-lg text-neutral-content/80">
+          We only report numbers our clients can check in their own accounts. No vanity metrics, no
+          spin. Here's what working with us actually looks like.
+        </p>
+      </Reveal>
+      <Reveal delay={0.18} class="mt-10">
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-5">
+          {STATS.map((s) => (
+            <div>
+              <div class="font-display text-3xl text-primary sm:text-4xl">{s.value}</div>
+              <div class="mt-1 text-sm text-neutral-content/70">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED CASE STUDIES ===== -->
+  {featured.map((c) => (
+    <section class="py-16 sm:py-20">
+      <div class="mx-auto max-w-[1160px] px-5">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <span class="badge badge-primary font-display">Featured · {c.trade}</span>
+            <h2 class="mt-3 font-display text-3xl text-primary sm:text-4xl">{c.name}</h2>
+            <p class="mt-2 text-2xl font-bold">{c.headline}</p>
+            <p class="mt-3 text-base-content/70">{c.body}</p>
+            <div class="mt-6 grid grid-cols-3 gap-4">
+              {c.metrics.map((m) => (
+                <div class="rounded-box border border-base-300 bg-base-100 p-3 text-center">
+                  <div class="font-display text-xl text-primary">{m.stat}</div>
+                  <div class="text-xs text-base-content/60">{m.label}</div>
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 border-l-4 border-primary pl-4">
+              <div class="text-primary">★★★★★</div>
+              <blockquote class="mt-2 text-base-content/70 italic">"{c.quote}"</blockquote>
+              <div class="mt-2 font-display">{c.who}</div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <img src={c.image} alt={`${c.name} website built by Hyper Digital`} loading="lazy" class="w-full rounded-box border border-base-300 shadow-xl" />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ===== MORE CASE STUDIES ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">More wins</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">More results worth talking about.</h2>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {rest.map((c, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="badge badge-outline border-primary/40 self-start text-primary">{c.trade}</span>
+                <h3 class="mt-2 font-display text-2xl text-primary">{c.name}</h3>
+                <p class="text-lg font-bold">{c.headline}</p>
+                <p class="mt-1 text-base-content/70">{c.body}</p>
+                <div class="mt-4 grid grid-cols-3 gap-3">
+                  {c.metrics.map((m) => (
+                    <div class="rounded-box border border-base-300 bg-base-200 p-3 text-center">
+                      <div class="font-display text-lg text-primary">{m.stat}</div>
+                      <div class="text-xs text-base-content/60">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+                {c.quote && (
+                  <div class="mt-4 border-l-4 border-primary pl-4">
+                    <div class="text-primary">★★★★★</div>
+                    <blockquote class="mt-2 text-base-content/70 italic">"{c.quote}"</blockquote>
+                    <div class="mt-2 font-display">{c.who}</div>
+                  </div>
+                )}
+                {c.slug && (
+                  <a href={c.slug} class="mt-4 inline-flex items-center gap-1 self-start font-display text-primary transition-colors hover:text-secondary">
+                    Read the full case study
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <!-- Room to grow: placeholder tiles for case studies we'll add -->
+      <Reveal class="mt-10">
+        <p class="text-center text-sm uppercase tracking-wide text-base-content/50">More case studies on the way</p>
+      </Reveal>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {upcoming.map((t, i) => (
+          <Reveal delay={i * 0.06}>
+            <div class="flex h-full min-h-[120px] flex-col items-center justify-center rounded-box border-2 border-dashed border-base-300 bg-base-100/50 p-5 text-center">
+              <span class="icon-chip"><Icon name="trophy" class="h-5 w-5" /></span>
+              <div class="mt-2 font-display text-lg">{t}</div>
+              <div class="text-xs text-base-content/50">Case study coming soon</div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE + CTA ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">Want results like these for your business?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          We're so sure it works we guarantee it: hit your agreed lead goal in 60 days, or we work
+          for free until you do.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <Reveal delay={0.1} class="mt-9"><SocialProof /></Reveal>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(reviewSchema)} />
+</Layout>

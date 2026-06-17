@@ -1,0 +1,516 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Reveal from "../../components/Reveal.astro";
+import SocialProof from "../../components/SocialProof.astro";
+import Icon from "../../components/Icon.astro";
+import { SITE } from "../../consts";
+
+const title = "Houses On The Move Case Study | House Relocation Leads | Hyper Digital";
+const description =
+  "How Hyper Digital cut cost per lead by more than half for Houses On The Move, generating leads on both sides of the business: houses to buy and relocate, and buyers ready to renovate.";
+
+const client = "Houses On The Move";
+const trade = "House Relocations";
+const region = "Auckland · Bay of Plenty · Waikato · Hawke's Bay";
+
+// ── At-a-glance (rates and relative change only — no volumes) ────────────────
+const glance = [
+  { value: "52", suffix: "%", prefix: "↓ ", decimals: 0, label: "cost per lead, more than halved" },
+  { value: "10", suffix: "%+", prefix: "", decimals: 0, label: "click-through rate, ~3x the average" },
+  { value: "2", suffix: "x", prefix: "", decimals: 0, label: "growth in monthly investment" },
+  { value: "4.5", suffix: " yrs", prefix: "", decimals: 1, label: "partnership and counting" },
+];
+
+// ── The two-sided marketplace (interactive tabs) ────────────────────────────
+const audiences = [
+  {
+    id: "buy",
+    tab: "Houses to buy",
+    icon: "pin",
+    heading: "Leads for houses they can buy and move",
+    body: "On one side, the business needs a steady supply of houses to relocate. We reach homeowners, developers and builders who need a house shifted off a site, so there's always stock coming in.",
+    points: [
+      "Searchers looking to sell or remove a house from their land",
+      "Site owners and developers clearing a section to build",
+      "Reached the moment they start looking for a mover",
+    ],
+    ad: {
+      query: "demolish or relocate my house",
+      displayUrl: "housesonthemove.co.nz/buying-houses",
+      headline: "Don't Demolish Sell To Us | Call Us Before You Demolish",
+      desc: "Don't Pay For Demolition When We Buy Quality Relocatable Homes. Get Your Offer Today.",
+    },
+  },
+  {
+    id: "sell",
+    tab: "Buyers who renovate",
+    icon: "trophy",
+    heading: "Leads for buyers who want to renovate",
+    body: "On the other side, they need buyers for the homes they've relocated. We put their available houses in front of people hunting for an affordable character home to move onto their land and do up.",
+    points: [
+      "Buyers searching for a relocatable or character home",
+      "People wanting to renovate rather than build new",
+      "A different customer, a different search, a different campaign",
+    ],
+    ad: {
+      query: "relocatable homes for sale nz",
+      displayUrl: "housesonthemove.co.nz/houses-for-sale",
+      headline: "House for Relocation | We Buy, Sell & Relocate Homes",
+      desc: "Relocatable Houses For Sale & Transportation. View Our Listing On Our Website.",
+    },
+  },
+];
+
+// ── How we work together (interactive timeline) ─────────────────────────────
+const steps = [
+  { id: "listen", short: "Listen", icon: "chat", title: "We start by listening", body: "Before a dollar is spent, we get to know the business and what the owner wants more of right now. The campaigns are built around her goals, not a template." },
+  { id: "launch", short: "Launch", icon: "megaphone", title: "Launch around what matters", body: "We point the budget where the business needs it, with ads written for the exact customer she wants to reach across Auckland and the central North Island." },
+  { id: "refine", short: "Refine", icon: "search", title: "Refine every single month", body: "No set and forget. Every month we cut wasted spend, tighten the targeting and sharpen the ads. Small, steady improvements are what take cost per lead down over time." },
+  { id: "adapt", short: "Adapt", icon: "trend", title: "Adapt as the focus shifts", body: "When the business changes what it's chasing, the ads change with it. As sourcing more houses to buy became a priority, we built and balanced campaigns to match." },
+  { id: "grow", short: "Grow", icon: "trophy", title: "Keep growing what works", body: "Years on, we keep tuning to whatever comes next. The partnership has lasted because the results keep improving and the budget keeps backing what performs." },
+];
+
+// ── What stands out (rates and relative change only) ────────────────────────
+const standout = [
+  "Click-through rate consistently above 10%, well clear of the 3 to 5% industry average for Search ads.",
+  "Cost per click low enough that winning a high-value relocation job costs only a few dollars in ads.",
+  "By refining the campaigns with the owner month after month, cost per lead has been driven down by more than half.",
+  "The client has more than doubled their monthly investment, because the leads keep turning into jobs.",
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results" },
+    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/houses-on-the-move" },
+  ],
+};
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `${client} case study: cost per lead cut by more than half`,
+  about: trade,
+  author: { "@type": "Organization", name: "Hyper Digital" },
+  publisher: { "@type": "Organization", name: "Hyper Digital" },
+  description,
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
+      <Reveal>
+        <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
+          <a href="/results" class="transition-colors hover:text-primary">Results</a>
+          <span class="px-2">/</span>
+          <span class="text-neutral-content/90">{client}</span>
+        </nav>
+      </Reveal>
+      <div class="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="text-center lg:text-left">
+          <Reveal>
+            <span class="badge badge-primary font-display">Case study · {trade}</span>
+          </Reveal>
+          <Reveal delay={0.05} class="mt-4">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+              Two kinds of leads. <span class="marker">Half the cost</span>.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1} class="mt-5">
+            <p class="text-sm uppercase tracking-wider text-primary">{region}</p>
+          </Reveal>
+          <Reveal delay={0.14} class="mt-5">
+            <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+              Houses On The Move runs a two-sided business: they need houses they can buy and relocate,
+              and buyers for the homes they've moved. We run the Google Ads for both sides, and over a
+              4.5-year partnership we've cut their cost per lead by more than half.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+            <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+          </Reveal>
+          <Reveal delay={0.26} class="mt-9"><SocialProof /></Reveal>
+        </div>
+
+        <!-- Hero media — client logo / hero shot goes here -->
+        <Reveal delay={0.15}>
+          <div class="media-ph is-dark aspect-[4/3] w-full">
+            <div class="text-center">
+              <span class="icon-chip mx-auto h-14 w-14"><Icon name="image" class="h-7 w-7" /></span>
+              <p class="mt-3 px-6 text-sm text-neutral-content/60">Client logo / hero image</p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AT A GLANCE (count-up) ===== -->
+  <section class="border-b border-base-300 bg-base-100 py-10 sm:py-12">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        {glance.map((g) => (
+          <div class="text-center">
+            <div
+              class="font-display text-3xl text-primary sm:text-4xl"
+              data-countup={g.value}
+              data-prefix={g.prefix}
+              data-suffix={g.suffix}
+              data-decimals={g.decimals}
+            >{g.prefix}{g.value}{g.suffix}</div>
+            <div class="mt-1 text-sm text-base-content/60">{g.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE CHALLENGE (two-sided framing) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="target" class="h-7 w-7" /></span>
+        <span class="eyebrow mt-5 block">The challenge</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A business with two completely different customers.</h2>
+      </Reveal>
+      <Reveal delay={0.08} class="mt-5">
+        <p class="text-lg text-base-content/70">
+          Most trades chase one kind of lead. Houses On The Move need two. On one side, a steady
+          supply of houses they can buy and relocate. On the other, buyers ready to purchase a moved
+          home, put it on their land and renovate it. Two different people, searching for two different
+          things, at two different moments. The marketing has to win both, and do it without wasting budget.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== TWO-SIDED MARKETPLACE (interactive tabs) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1080px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">What we did</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">We generate leads for both sides of the deal.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          Two separate, tightly managed campaigns, each built for a completely different searcher.
+          Tap between them to see how.
+        </p>
+      </Reveal>
+
+      <div data-tabs class="mt-10">
+        <!-- toggle -->
+        <Reveal class="flex justify-center">
+          <div class="inline-flex gap-1 rounded-box border border-base-300 bg-base-100 p-1 shadow-sm" role="tablist" aria-label="Lead types">
+            {audiences.map((a, i) => (
+              <button type="button" role="tab" class:list={["tab-btn", i === 0 && "is-active"]} data-tab={a.id} aria-selected={i === 0 ? "true" : "false"}>
+                <Icon name={a.icon} class="h-5 w-5" />
+                {a.tab}
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        <!-- panels -->
+        <div class="mt-8">
+          {audiences.map((a, i) => (
+            <div class="tab-panel" data-panel={a.id} hidden={i !== 0}>
+              <div class="grid items-center gap-10 lg:grid-cols-2">
+                <div>
+                  <span class="icon-chip"><Icon name={a.icon} class="h-6 w-6" /></span>
+                  <h3 class="mt-4 font-display text-2xl sm:text-3xl">{a.heading}</h3>
+                  <p class="mt-3 text-base-content/70">{a.body}</p>
+                  <ul class="mt-5 space-y-2">
+                    {a.points.map((p) => (
+                      <li class="flex items-start gap-3">
+                        <span class="icon-chip h-8 w-8 shrink-0"><Icon name="check" class="h-4 w-4" /></span>
+                        <span class="text-base-content/80">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <!-- Google search ad mockup -->
+                  <div class="overflow-hidden rounded-box border border-base-300 bg-white shadow-xl">
+                    <div class="flex items-center gap-3 border-b border-neutral-200 px-4 py-3">
+                      <div class="flex gap-1" aria-hidden="true">
+                        <span class="h-2.5 w-2.5 rounded-full" style="background:#4285F4"></span>
+                        <span class="h-2.5 w-2.5 rounded-full" style="background:#EA4335"></span>
+                        <span class="h-2.5 w-2.5 rounded-full" style="background:#FBBC05"></span>
+                        <span class="h-2.5 w-2.5 rounded-full" style="background:#34A853"></span>
+                      </div>
+                      <div class="flex flex-1 items-center justify-between rounded-full border border-neutral-200 px-4 py-1.5">
+                        <span class="text-sm text-neutral-700">{a.ad.query}</span>
+                        <span class="text-neutral-400"><Icon name="search" class="h-4 w-4" /></span>
+                      </div>
+                    </div>
+                    <div class="px-4 py-4 text-left">
+                      <div class="text-[13px] font-semibold text-neutral-800">Sponsored</div>
+                      <div class="mt-1.5 flex items-center gap-2">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-base-200 font-display text-sm text-primary">H</span>
+                        <div class="leading-tight">
+                          <div class="text-[13px] font-medium text-neutral-900">Houses On The Move</div>
+                          <div class="text-xs text-neutral-600">{a.ad.displayUrl}</div>
+                        </div>
+                      </div>
+                      <span class="mt-2 block text-[20px] leading-snug text-[#1a0dab]">{a.ad.headline}</span>
+                      <p class="mt-1 text-sm leading-snug text-neutral-700">{a.ad.desc}</p>
+                    </div>
+                  </div>
+                  <p class="mt-2 text-center text-xs text-base-content/50">Their live ad, as it appears on Google.</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE RESULTS (animated CPL chart + bullets) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The results</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Cost per lead, cut by more than half.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          More than four years of working hand in hand with the owner, continually refining the
+          campaigns around whatever the business is focused on at the time. That close, ongoing work
+          shows up in the number that matters most: a cost per lead that keeps coming down.
+        </p>
+      </Reveal>
+
+      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+        <!-- Animated cost-per-lead line chart -->
+        <Reveal>
+          <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">
+            <div class="flex items-center justify-between">
+              <span class="eyebrow">Cost per lead, over time</span>
+              <span class="badge badge-primary font-display">↓ 52%</span>
+            </div>
+            <svg viewBox="0 0 320 170" class="mt-4 w-full" role="img" aria-label="Cost per lead more than halving over time">
+              <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+                <line x1="10" y1="20" x2="310" y2="20" />
+                <line x1="10" y1="65" x2="310" y2="65" />
+                <line x1="10" y1="110" x2="310" y2="110" />
+                <line x1="10" y1="150" x2="310" y2="150" />
+              </g>
+              <path class="draw-line" style="--len: 320" d="M26 40 L120 58 L210 104 L300 132" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="26" cy="40" r="4" fill="var(--color-primary)" />
+              <circle class="fade-in-late" cx="300" cy="132" r="5" fill="var(--color-primary)" />
+              <text x="20" y="30" fill="#faf8f5" font-size="14" font-weight="800" font-family="Source Sans 3">Then</text>
+              <text class="fade-in-late" x="252" y="122" fill="var(--color-primary)" font-size="14" font-weight="800" font-family="Source Sans 3">Now (↓52%)</text>
+            </svg>
+            <p class="mt-3 text-sm text-neutral-content/60">Direction of tracked cost per lead across the partnership. Illustrative.</p>
+          </div>
+        </Reveal>
+
+        <!-- What stands out -->
+        <div>
+          <Reveal><h3 class="font-display text-2xl">What stands out</h3></Reveal>
+          <ul class="mt-5 space-y-3">
+            {standout.map((s, i) => (
+              <Reveal delay={i * 0.06}>
+                <li class="flex items-start gap-3 rounded-box border border-base-300 bg-base-100 p-4">
+                  <span class="icon-chip shrink-0 h-10 w-10"><Icon name="check" class="h-5 w-5" /></span>
+                  <span class="text-base-content/80">{s}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK TOGETHER (interactive animated timeline) ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1080px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">How we do it</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">We work alongside you, and never stop refining.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          The results come from a real partnership, not a one-off setup. Tap through how we've worked
+          with Houses On The Move over the years.
+        </p>
+      </Reveal>
+
+      <div data-tabs data-autoplay="5000" class="mt-12">
+        <!-- step rail with animated flowing connector -->
+        <div class="relative">
+          <span class="flow-line absolute left-4 right-4 top-1/2 hidden h-[3px] -translate-y-1/2 rounded-full md:block" aria-hidden="true"></span>
+          <div role="tablist" aria-label="How we work together" class="relative flex flex-wrap justify-center gap-2 md:justify-between">
+            {steps.map((s, i) => (
+              <button type="button" role="tab" class:list={["tab-btn border border-base-300 bg-base-100", i === 0 && "is-active"]} data-tab={s.id} aria-selected={i === 0 ? "true" : "false"}>
+                <span class="step-num inline-flex h-6 w-6 items-center justify-center rounded-full text-sm">{i + 1}</span>
+                {s.short}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- step detail panels -->
+        <div class="mt-8">
+          {steps.map((s, i) => (
+            <div class="tab-panel" data-panel={s.id} hidden={i !== 0}>
+              <div class="flex flex-col items-start gap-6 rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:flex-row sm:p-8">
+                <span class="icon-chip h-14 w-14 shrink-0"><Icon name={s.icon} class="h-7 w-7" /></span>
+                <div>
+                  <span class="eyebrow">Step {i + 1} of {steps.length}</span>
+                  <h3 class="mt-1 font-display text-2xl sm:text-3xl">{s.title}</h3>
+                  <p class="mt-2 text-base-content/70">{s.body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCREENSHOT / GALLERY (placeholders) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">See it for yourself</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Results the client can check themselves.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-base-content/70">Everything we report is something they can open in their own account.</p>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <Reveal class="md:col-span-2">
+          <div class="media-ph aspect-[16/10] w-full">
+            <div class="text-center">
+              <span class="icon-chip mx-auto h-14 w-14"><Icon name="trend" class="h-7 w-7" /></span>
+              <p class="mt-3 px-6 text-sm text-base-content/60">Cost-per-lead trend screenshot</p>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div class="media-ph aspect-[16/10] w-full md:aspect-auto md:h-full">
+            <div class="text-center">
+              <span class="icon-chip mx-auto h-14 w-14"><Icon name="image" class="h-7 w-7" /></span>
+              <p class="mt-3 px-6 text-sm text-base-content/60">Relocated house photo</p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL (slot ready — add a verified quote here) ===== -->
+  <!--
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <div class="text-2xl text-primary">★★★★★</div>
+      <blockquote class="mt-4 font-display text-2xl leading-snug sm:text-3xl">"[Add a verified Google review or client quote here.]"</blockquote>
+      <div class="mt-4 font-display text-base-content/70">Owner name, Houses On The Move</div>
+    </div>
+  </section>
+  -->
+
+  <!-- ===== CTA ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">Want results like these for your business?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Hit your agreed lead goal in 60 days, or we work for free until you do. Get a free, no-obligation
+          audit and we'll show you what your leads should cost.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify([breadcrumbSchema, articleSchema])} />
+
+  <!-- Interactive behaviour: tabs + count-up -->
+  <script>
+    import { inView } from "motion";
+
+    function setupTabs() {
+      document.querySelectorAll<HTMLElement>("[data-tabs]").forEach((group) => {
+        if (group.dataset.bound) return;
+        group.dataset.bound = "1";
+        const buttons = Array.from(group.querySelectorAll<HTMLButtonElement>(".tab-btn"));
+        const panels = Array.from(group.querySelectorAll<HTMLElement>(".tab-panel"));
+        if (!buttons.length) return;
+
+        const activate = (i: number) => {
+          const id = buttons[i].dataset.tab;
+          buttons.forEach((b, bi) => {
+            const active = bi === i;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+        };
+
+        const interval = parseInt(group.dataset.autoplay || "0", 10);
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let current = buttons.findIndex((b) => b.classList.contains("is-active"));
+        if (current < 0) current = 0;
+        let timer: number | undefined;
+
+        const stop = () => { if (timer) { clearInterval(timer); timer = undefined; } };
+        const start = () => {
+          if (!interval || reduce) return;
+          stop();
+          timer = window.setInterval(() => {
+            current = (current + 1) % buttons.length;
+            activate(current);
+          }, interval);
+        };
+
+        buttons.forEach((btn, i) => {
+          btn.addEventListener("click", () => {
+            current = i;
+            activate(i);
+            start(); // restart the loop timer after a manual pick
+          });
+        });
+
+        // Pause the loop while the visitor is interacting, resume when they leave
+        if (interval && !reduce) {
+          group.addEventListener("mouseenter", stop);
+          group.addEventListener("mouseleave", start);
+          group.addEventListener("focusin", stop);
+          group.addEventListener("focusout", start);
+          document.addEventListener("astro:before-swap", stop, { once: true });
+        }
+
+        start();
+      });
+    }
+
+    function setupCountUp() {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelectorAll<HTMLElement>("[data-countup]").forEach((el) => {
+        if (el.dataset.counted) return;
+        const target = parseFloat(el.dataset.countup || "0");
+        const decimals = parseInt(el.dataset.decimals || "0", 10);
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const render = (v: number) => { el.textContent = prefix + v.toFixed(decimals) + suffix; };
+        if (reduce) { el.dataset.counted = "1"; render(target); return; }
+        inView(el, () => {
+          el.dataset.counted = "1";
+          const dur = 1100;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min(1, (now - start) / dur);
+            render(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }, { amount: 0.6 });
+      });
+    }
+
+    document.addEventListener("astro:page-load", () => { setupTabs(); setupCountUp(); });
+  </script>
+</Layout>

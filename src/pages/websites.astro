@@ -1,0 +1,349 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import Placeholder from "../components/Placeholder.astro";
+import LeadFeed from "../components/LeadFeed.astro";
+import { SITE } from "../consts";
+
+const portfolio = [
+  { src: "/img/lukopainting-card.jpg", name: "Luko Painting", trade: "Painters & Decorators" },
+  { src: "/img/chesterhope-card.jpg", name: "Chesterhope Kennels", trade: "Boarding & Day Care" },
+  { src: "/img/adrenalinr-card.jpg", name: "Adrenalin R", trade: "Automotive / Performance" },
+];
+
+const title = "Smart Websites for Tradies | Book Jobs 24/7 | Hyper Digital";
+const description =
+  "We build tradies smart websites that reply in 30 seconds, qualify the job and book it in, 24/7. Local SEO built in. From $1,497 + $197/mo. Free audit.";
+
+const doesSteps = [
+  { n: "01", icon: "bolt", title: "Replies in about 30 seconds", body: "Every call and form gets an instant response, day or night, so the lead never goes cold." },
+  { n: "02", icon: "chat", title: "Qualifies the job", body: "It asks the right questions up front, so you're not wasting time on tyre-kickers." },
+  { n: "03", icon: "calendar", title: "Books it straight in", body: "The job lands in your calendar and texts you the details, no back-and-forth." },
+  { n: "04", icon: "star", title: "Wins you the job", body: "Puts your services, reviews and real results front and centre, so choosing you is the easy decision." },
+];
+
+const trust = [
+  { icon: "mobile", title: "Fast and mobile-first", body: "Your customer is on their phone, in a hurry, comparing you to two other tradies. Your site loads fast and looks sharp." },
+  { icon: "star", title: "Reviews and results up front", body: "Your ratings, guarantee and real results sit front and centre, so choosing you is the easy decision." },
+  { icon: "pin", title: "Found on Google and AI answers", body: "Built to rank in local search, the map pack and the AI answers more customers now use to find a tradie." },
+];
+
+const packages = [
+  {
+    name: "Basic smart website",
+    price: "197",
+    blurb: "A fast, mobile, search-ready site that captures leads and books them in.",
+    features: ["Fast, mobile-first build", "Local SEO & AEO foundation", "Lead capture and booking", "Reviews and trust built in"],
+    popular: false,
+  },
+  {
+    name: "Full-featured smart website",
+    price: "297",
+    blurb: "Everything in Basic, plus the full AI lead system working around the clock.",
+    features: ["Everything in Basic", "Instant 30-second replies", "Job qualifying", "Automated follow-up", "Texts you every new job"],
+    popular: true,
+  },
+];
+
+const proof = [
+  { name: "Bermuda Lifestyle", stat: "+2,500%", statLabel: "enquiries in year one", body: "From a basic 5-page site that barely ranked to a fast, search-ready website, with 500% revenue growth in their first year." },
+  { name: "Tableau Towbars", stat: "+69%", statLabel: "phone enquiries YoY", body: "From a one-page HTML brochure to a fast, search-ready site built around their services, getting found on Google and turning visits into calls." },
+];
+
+const faqs = [
+  { q: "What's the difference between the two packages?", a: "Basic gives you a fast, search-ready site that captures and books leads. Full-featured adds the AI lead system on top: instant replies, job qualifying and automated follow-up that work around the clock." },
+  { q: "How long does it take to build?", a: "Most smart sites are live within a couple of weeks of your audit, depending on your content and how much you've got ready to go. We'll give you a clear timeline up front." },
+  { q: "Will it work on mobile?", a: "Always. Most of your customers find you on their phone, so every site is built mobile-first and to load fast." },
+  { q: "Do I have to pay upfront?", a: "Yes. We take the build before we start, then it's a simple monthly fee. We back it with the 60-day guarantee so the risk is on us, not you." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO (split — live lead feed) ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal>
+          <span class="eyebrow">Book the work</span>
+        </Reveal>
+        <Reveal delay={0.05} class="mt-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            A website that <span class="marker">books the job</span> while you're on the tools.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            Most tradie websites just sit there looking pretty. Yours will answer every enquiry in
+            about 30 seconds, qualify the job, and book it straight into your calendar. 24/7, even
+            when you're up a ladder.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+      <Reveal delay={0.15}>
+        <LeadFeed />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== THE PROBLEM ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">The problem with normal sites</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A pretty website that doesn't ring the phone is a waste of money.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          You paid for a website. It looks alright. But it just sits there. It doesn't follow up, it
+          doesn't answer after hours, and it doesn't book jobs. Meanwhile the customer who couldn't
+          reach you has already rung the next tradie on the list. The job goes to whoever replies
+          first, and that's usually not the bloke up a ladder.
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <Placeholder ratio="aspect-[4/3]" label="A site that just sits there" hint="browser mockup: tidy homepage, zero enquiries" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHAT YOUR SMART SITE DOES (numbered steps) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What your smart site does</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Your website should be your hardest-working salesperson.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          It's the difference between a brochure and a booking machine.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {doesSteps.map((s, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <div class="flex items-center justify-between">
+                  <span class="icon-chip"><Icon name={s.icon} class="h-6 w-6" /></span>
+                  <span class="font-display text-3xl text-base-300">{s.n}</span>
+                </div>
+                <h3 class="mt-3 font-display text-xl">{s.title}</h3>
+                <p class="mt-1 text-base-content/70">{s.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUILT TO BE FOUND (feature row) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">Built to be found</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Found on Google and in AI answers, from day one.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Every site we build is set up to rank in local Google searches, the map pack, and the AI
+          answers more and more of your customers now use to find a tradie. That means free leads
+          coming in over time, on top of whatever ads you're running. A fast, well-built site is the
+          foundation everything else stands on.
+        </p>
+        <a href="/lead-generation" class="btn btn-ghost mt-5 text-primary">See how we drive traffic to it →</a>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <Placeholder ratio="aspect-[4/3]" label="Local search result" hint="e.g. Google map pack / 'plumber near me' result mockup" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAST, MOBILE, TRUST ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Built to win the job</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Fast, mobile, and built to win trust.</h2>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {trust.map((t, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={t.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{t.title}</h3>
+                <p class="mt-1 text-base-content/70">{t.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RECENT BUILDS (portfolio gallery) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Recent builds</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Smart websites we've built for Kiwi businesses.</h2>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {portfolio.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full overflow-hidden border border-base-300 bg-base-100 shadow-sm">
+              <img src={p.src} alt={`${p.name} website built by Hyper Digital`} loading="lazy" class="aspect-[3/4] w-full object-cover object-top" />
+              <div class="card-body py-4">
+                <div class="font-display text-lg">{p.name}</div>
+                <div class="text-sm text-base-content/60">{p.trade}</div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING (two packages) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Smart website packages.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">$1,497 +GST</span> build, then a simple
+          monthly fee. We take the build before we start and back it with the 60-day guarantee, so
+          the risk is on us, not you.
+        </p>
+      </Reveal>
+
+      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-2">
+        {packages.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class={`card h-full border bg-base-100 shadow-sm ${p.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>
+              <div class="card-body">
+                {p.popular && <span class="badge badge-primary self-start font-display">Most popular</span>}
+                <h3 class="font-display text-2xl">{p.name}</h3>
+                <div class="mt-1">
+                  <span class="font-display text-4xl text-primary">${p.price}</span>
+                  <span class="text-base-content/60">/mo +GST</span>
+                </div>
+                <p class="mt-1 text-sm text-base-content/60">+ $1,497 +GST one-off build</p>
+                <p class="mt-3 text-base-content/70">{p.blurb}</p>
+                <ul class="mt-4 space-y-2">
+                  {p.features.map((f) => (
+                    <li class="flex items-center gap-2 text-base-content/80">
+                      <Icon name="check" class="h-4 w-4 shrink-0 text-primary" /> {f}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#audit" class={`btn mt-6 font-display tracking-wide ${p.popular ? "btn-primary" : "btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content"}`}>Get my free audit</a>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROOF ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Websites that actually grew the business.</h2>
+      </Reveal>
+      <Reveal class="mt-10">
+        <img src="/img/bermuda-card.jpg" alt="Bermuda Lifestyle website built by Hyper Digital" loading="lazy" class="mx-auto w-full max-w-2xl rounded-box border border-base-300 shadow-xl" />
+      </Reveal>
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        {proof.map((p, i) => (
+          <Reveal delay={i * 0.08}>
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <div class="font-display text-3xl text-primary">{p.stat}</div>
+                <div class="text-sm uppercase tracking-wide text-base-content/60">{p.statLabel}</div>
+                <div class="mt-3 font-display text-xl">{p.name}</div>
+                <p class="mt-1 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal class="mt-8 text-center">
+        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="text-primary">free</span> until you do.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
+          we keep working and waive our management fee until we do. You still cover your ad spend,
+          but you won't pay us another cent until we deliver.
+        </p>
+        <a href="#audit" class="btn btn-primary mt-7 font-display text-lg tracking-wide">Get my free audit</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + AUDIT FORM ===== -->
+  <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+              <input type="checkbox" />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal delay={0.1} class="lg:sticky lg:top-24">
+        <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you what a smart website could do for your trade, and what it should cost." />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Ready for a website that actually books jobs?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free, no-obligation audit. We'll show you what a smart website could do for your trade.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</Layout>

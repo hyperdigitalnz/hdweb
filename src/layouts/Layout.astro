@@ -1,0 +1,148 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import StickyCall from "../components/StickyCall.astro";
+import { SITE } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = `${SITE.name} | ${SITE.tagline}`,
+  description = "The complete job booking system for modern Tradies. We find you the work, book it 24/7, and keep your calendar full. Free leads audit.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en-NZ" data-theme="hyper">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/hd-favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Brand fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+
+    <!-- Google Ads global tag (conversion id from runlog) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-703611224"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "AW-703611224");
+    </script>
+
+    <!-- mark JS available so reveal elements can hide pre-animation (no FOUC for no-JS) -->
+    <script is:inline>document.documentElement.classList.add("js");</script>
+
+    <!-- TEMP (A/B): apply the saved/queried colour scheme before first paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get("theme");
+          if (q) localStorage.setItem("hd-theme", q === "alt" ? "hyper-alt" : q);
+          var t = localStorage.getItem("hd-theme");
+          if (t) document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-base-100 pb-[60px] text-base-content sm:pb-0">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <StickyCall />
+
+    <!-- TEMP (A/B): colour-scheme picker. Remove this block + the head bootstrap once a scheme is chosen. -->
+    <div class="fixed bottom-[72px] left-4 z-[60] flex items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-2 shadow-lg sm:bottom-4">
+      <label for="theme-select" class="font-display text-xs uppercase tracking-wide text-base-content/70">Theme</label>
+      <select id="theme-select" class="select select-sm select-bordered max-w-[11rem] font-display text-sm" aria-label="Preview colour scheme"></select>
+    </div>
+    <script>
+      // Our custom schemes first, then daisyUI's built-in themes.
+      const CUSTOM_THEMES = ["hyper", "hyper-alt"];
+      const DAISY_THEMES = [
+        "light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave",
+        "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua",
+        "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk",
+        "autumn", "business", "acid", "lemonade", "night", "coffee", "winter", "dim",
+        "nord", "sunset", "caramellatte", "abyss", "silk",
+      ];
+
+      function setupThemePicker() {
+        const root = document.documentElement;
+        let stored = "hyper";
+        try { stored = localStorage.getItem("hd-theme") || "hyper"; } catch (e) {}
+        root.setAttribute("data-theme", stored);
+
+        const select = document.getElementById("theme-select");
+        if (!select) return;
+
+        if (!select.options.length) {
+          const add = (val, text, group) => {
+            const o = document.createElement("option");
+            o.value = val; o.textContent = text;
+            (group || select).appendChild(o);
+          };
+          const ours = document.createElement("optgroup"); ours.label = "Hyper";
+          select.appendChild(ours);
+          add("hyper", "Hyper (gold/black)", ours);
+          add("hyper-alt", "Hi-Vis (navy/orange)", ours);
+          const daisy = document.createElement("optgroup"); daisy.label = "daisyUI built-in";
+          select.appendChild(daisy);
+          DAISY_THEMES.forEach((t) => add(t, t, daisy));
+        }
+        select.value = stored;
+
+        if (select.dataset.bound) return;
+        select.dataset.bound = "1";
+        select.addEventListener("change", () => {
+          root.setAttribute("data-theme", select.value);
+          try { localStorage.setItem("hd-theme", select.value); } catch (e) {}
+        });
+      }
+      document.addEventListener("astro:page-load", setupThemePicker);
+    </script>
+
+    <!-- Scroll-reveal animations via Motion (re-runs after view transitions) -->
+    <script>
+      import { animate, inView } from "motion";
+
+      function setupReveal() {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+          if (el.dataset.revealed) return;
+          el.dataset.revealed = "1";
+          if (reduce) { el.style.opacity = "1"; el.style.transform = "none"; return; }
+          const delay = parseFloat(el.dataset.revealDelay || "0");
+          inView(
+            el,
+            () => {
+              animate(
+                el,
+                { opacity: [0, 1], transform: ["translateY(16px)", "translateY(0px)"] },
+                { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }
+              );
+            },
+            { amount: 0.2 }
+          );
+        });
+      }
+      document.addEventListener("astro:page-load", setupReveal);
+    </script>
+  </body>
+</html>

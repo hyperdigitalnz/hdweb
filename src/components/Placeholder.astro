@@ -1,0 +1,26 @@
+---
+// Branded media slot. Drop a real <img>/graphic in later — replace this whole component, or pass
+// the final asset path and swap. Keeps layouts looking finished while assets are produced.
+import Icon from "./Icon.astro";
+interface Props {
+  label?: string;
+  hint?: string;
+  ratio?: string; // tailwind aspect ratio, e.g. "aspect-[4/3]"
+  dark?: boolean;
+  class?: string;
+}
+const {
+  label = "Image / graphic",
+  hint = "",
+  ratio = "aspect-[4/3]",
+  dark = false,
+  class: cls = "",
+} = Astro.props;
+---
+<div class={`media-ph ${dark ? "is-dark" : ""} ${ratio} ${cls}`}>
+  <div class="px-6 text-center">
+    <Icon name="image" class="mx-auto h-9 w-9 text-primary" />
+    <div class="mt-2 font-display text-sm uppercase tracking-wide opacity-80">{label}</div>
+    {hint && <div class="mt-1 text-xs opacity-60">{hint}</div>}
+  </div>
+</div>

@@ -1,0 +1,42 @@
+---
+import { SITE, NAV } from "../consts";
+---
+<header class="sticky top-0 z-50 border-b border-white/10 bg-neutral/95 text-neutral-content backdrop-blur">
+  <div class="mx-auto flex h-[70px] max-w-[1160px] items-center justify-between px-5">
+    <a href="/" class="logo text-2xl transition-transform hover:scale-[1.03]">
+      HYPER<span class="text-primary">DIGITAL</span>
+    </a>
+
+    <!-- desktop nav -->
+    <nav class="hidden items-center gap-7 lg:flex">
+      {NAV.map((item) => (
+        <a
+          href={item.href}
+          class="relative text-sm font-semibold text-neutral-content/80 transition-colors hover:text-primary
+                 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary
+                 after:transition-all hover:after:w-full"
+        >{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href={SITE.phoneHref} class="hidden font-display text-xl tracking-wide sm:block">{SITE.phone}</a>
+      <a href="/contact" class="btn btn-primary btn-sm font-display text-base tracking-wide">
+        <span class="sm:hidden">Free audit</span><span class="hidden sm:inline">Get my free audit</span>
+      </a>
+
+      <!-- mobile menu -->
+      <div class="dropdown dropdown-end lg:hidden">
+        <button tabindex="0" class="btn btn-ghost btn-sm btn-square" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <ul tabindex="0" class="dropdown-content menu z-[60] mt-3 w-56 rounded-box bg-neutral p-2 shadow-xl">
+          {NAV.map((item) => <li><a href={item.href} class="text-neutral-content">{item.label}</a></li>)}
+          <li><a href={SITE.phoneHref} class="text-primary font-semibold">Call {SITE.phone}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
