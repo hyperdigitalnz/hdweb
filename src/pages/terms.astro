@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../consts";
+
+const title = "Terms & Conditions | Hyper Digital";
+const description =
+  "The terms and conditions that apply to services provided by McAuliffe Holdings Limited trading as Hyper Digital.";
+---
+<Layout title={title} description={description}>
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <span class="eyebrow">Legal</span>
+      <h1 class="mt-3 text-4xl sm:text-5xl">Terms &amp; <span class="marker">conditions</span>.</h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-neutral-content/80">
+        The terms that apply when you engage Hyper Digital for work.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[760px] px-5">
+      <p class="text-base-content/80">
+        These terms and conditions apply to all services provided by McAuliffe Holdings Limited
+        trading as Hyper Digital ("Hyper Digital", "we", "us" or "our"), a New Zealand company. By
+        accepting a proposal or order, you ("the Client") agree to these terms.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Acceptance and proposals</h2>
+      <p class="mt-2 text-base-content/80">
+        These terms become binding once an order is accepted. Proposals are valid for 30 days from
+        the date they are issued. Any changes to an accepted proposal require our written consent.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Payment</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-base-content/80">
+        <li>Invoices are due by the 20th of the month following the invoice date.</li>
+        <li>Overdue balances may incur a fee of 2% per month, with a minimum of $25.</li>
+        <li>Work may be paused if payment lapses.</li>
+        <li>No intellectual property transfers to the Client until payment is made in full.</li>
+      </ul>
+
+      <h2 class="mt-10 font-display text-2xl">Changes and scheduling</h2>
+      <p class="mt-2 text-base-content/80">
+        Additional changes outside the agreed scope are billed at our hourly rate. Substantive
+        changes that increase the scope of work by 15% or more require a new proposal.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Intellectual property</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-base-content/80">
+        <li>The Client retains ownership of any content they provide to us.</li>
+        <li>Copyright in the final delivered work is assigned to the Client once payment is made in full.</li>
+        <li>Preliminary works, drafts and concepts remain the property of Hyper Digital.</li>
+        <li>Tools and licences used to create the work are licensed to the Client but are not transferable.</li>
+      </ul>
+
+      <h2 class="mt-10 font-display text-2xl">Liability and warranties</h2>
+      <p class="mt-2 text-base-content/80">
+        We provide limited warranties and exclude liability for consequential damages to the extent
+        permitted by law. The Client indemnifies Hyper Digital against third-party claims arising
+        from the Client's content or use of the work. Nothing in these terms limits rights under the
+        Consumer Guarantees Act or other New Zealand law that cannot be excluded.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Termination</h2>
+      <p class="mt-2 text-base-content/80">
+        Either party may terminate the engagement. On termination, the Client is responsible for
+        compensation covering the services rendered to that point, plus any expenses incurred.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Dispute resolution and governing law</h2>
+      <p class="mt-2 text-base-content/80">
+        These terms are governed by New Zealand law. Disputes are to be worked through by
+        negotiation, then mediation, and then arbitration where required.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Privacy</h2>
+      <p class="mt-2 text-base-content/80">
+        How we handle the information you share with us is set out in our
+        <a class="font-semibold text-primary" href="/privacy">privacy policy</a>.
+      </p>
+
+      <h2 class="mt-10 font-display text-2xl">Contact us</h2>
+      <div class="mt-2 rounded-box border border-base-300 bg-base-200 p-6">
+        <p class="font-display text-lg">McAuliffe Holdings Limited t/a Hyper Digital</p>
+        <p class="text-base-content/80">Napier, Hawke's Bay</p>
+        <p class="mt-2 text-base-content/80">
+          Phone: <a class="font-semibold text-primary" href={SITE.phoneHref}>{SITE.phone}</a>
+        </p>
+        {SITE.email && (
+          <p class="text-base-content/80">
+            Email: <a class="font-semibold text-primary" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+</Layout>

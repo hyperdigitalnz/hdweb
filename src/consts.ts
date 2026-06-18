@@ -4,8 +4,8 @@ export const SITE = {
   tagline: "The complete job booking system for modern Tradies.",
   phone: "027 666 1973",
   phoneHref: "tel:+64276661973",
-  hours: "Mon–Fri 8:30am–5pm", // [CONFIRM]
-  email: "", // [CONFIRM] public contact email
+  hours: "Mon–Fri 7am–9pm, Sat–Sun 9am–7pm",
+  email: "sales@hyperdigital.nz",
   location: "Hawke's Bay, NZ. Working with tradies NZ-wide",
 };
 

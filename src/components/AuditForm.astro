@@ -21,6 +21,11 @@ const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Pai
   <p class="mt-2 text-sm text-base-content/70">{lead}</p>
 
   <form class="audit-form mt-5 grid gap-3" method="post" action="/api/lead">
+    <!-- Honeypot: hidden from real users, catches bots. Keep it unlabelled and out of the tab order. -->
+    <div class="hidden" aria-hidden="true">
+      <label for="af-company">Company (leave blank)</label>
+      <input id="af-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-name">Your name</label>
       <input id="af-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full" />

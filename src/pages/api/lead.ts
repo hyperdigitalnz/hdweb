@@ -3,6 +3,12 @@ import type { APIRoute } from "astro";
 // On-demand endpoint (not prerendered): verifies Cloudflare Turnstile, then forwards to GHL webhook.
 export const prerender = false;
 
+// Only these fields are ever forwarded to GHL. Anything else a bot tries to
+// inject is dropped. Values are capped to keep the payload sane.
+const ALLOWED_FIELDS = ["name", "phone", "trade", "region", "goal", "email", "message"] as const;
+const REQUIRED_FIELDS = ["name", "phone"] as const;
+const MAX_FIELD_LEN = 500;
+
 export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   try {
     const form = await request.formData();
@@ -12,7 +18,12 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     const secret = env.TURNSTILE_SECRET_KEY ?? import.meta.env.TURNSTILE_SECRET_KEY;
     const webhook = env.GHL_WEBHOOK_URL ?? import.meta.env.GHL_WEBHOOK_URL;
 
-    // 1. Bot check (skipped if no secret configured yet)
+    // 1. Honeypot — a hidden field real users never fill. Bots do. Pretend success.
+    if (String(form.get("company") ?? "").trim() !== "") {
+      return json({ ok: true });
+    }
+
+    // 2. Bot check (skipped if no secret configured yet)
     if (secret) {
       const token = String(form.get("cf-turnstile-response") ?? "");
       const body = new URLSearchParams({ secret, response: token });
@@ -27,16 +38,24 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       }
     }
 
-    // 2. Build the lead payload (drop the Turnstile token)
+    // 3. Build the lead payload from the allow-list only, capping each value.
     const lead: Record<string, string> = {};
-    for (const [k, v] of form.entries()) {
-      if (k === "cf-turnstile-response") continue;
-      lead[k] = String(v);
+    for (const key of ALLOWED_FIELDS) {
+      const raw = form.get(key);
+      if (raw == null) continue;
+      const value = String(raw).trim().slice(0, MAX_FIELD_LEN);
+      if (value) lead[key] = value;
     }
+
+    // 4. Reject obviously incomplete submissions.
+    for (const key of REQUIRED_FIELDS) {
+      if (!lead[key]) return json({ ok: false, error: "missing" }, 400);
+    }
+
     lead.source = "website";
     lead.submittedAt = new Date().toISOString();
 
-    // 3. Forward to GoHighLevel (skipped if no webhook configured yet)
+    // 5. Forward to GoHighLevel (skipped if no webhook configured yet)
     if (webhook) {
       await fetch(webhook, {
         method: "POST",
