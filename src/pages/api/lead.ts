@@ -1,4 +1,6 @@
 import type { APIRoute } from "astro";
+// Astro 6 removed Astro.locals.runtime.env — Worker secrets/vars now come from cloudflare:workers.
+import { env as cfEnv } from "cloudflare:workers";
 
 // On-demand endpoint (not prerendered): verifies Cloudflare Turnstile, then forwards to GHL webhook.
 export const prerender = false;
@@ -9,12 +11,12 @@ const ALLOWED_FIELDS = ["name", "phone", "trade", "region", "goal", "email", "me
 const REQUIRED_FIELDS = ["name", "phone"] as const;
 const MAX_FIELD_LEN = 500;
 
-export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const form = await request.formData();
 
-    // Env: in Cloudflare these live on locals.runtime.env; locally on import.meta.env.
-    const env = (locals as any)?.runtime?.env ?? {};
+    // Env: Worker secrets come from cloudflare:workers; fall back to import.meta.env for `astro dev`.
+    const env = cfEnv as Record<string, string | undefined>;
     const secret = env.TURNSTILE_SECRET_KEY ?? import.meta.env.TURNSTILE_SECRET_KEY;
     const webhook = env.GHL_WEBHOOK_URL ?? import.meta.env.GHL_WEBHOOK_URL;
 
