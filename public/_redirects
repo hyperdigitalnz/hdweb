@@ -1,10 +1,8 @@
 # 301 redirects from the old hyperdigital.nz site to the new pages.
 # Format: <old path>  <new path>  <status>. First match wins.
 # Cloudflare serves these from the static-assets dir (same as _headers).
-
-# Canonical host: send www → non-www (apex). The authoritative enforcement is a
-# Cloudflare Redirect Rule; this is a best-effort fallback at the assets layer.
-https://www.hyperdigital.nz/*  https://hyperdigital.nz/:splat  301!
+# Note: only relative URLs are allowed here. www → apex is handled by a
+# Cloudflare Redirect Rule in the dashboard, not this file.
 
 # Service pages → closest new equivalent
 /google-ads               /lead-generation   301
