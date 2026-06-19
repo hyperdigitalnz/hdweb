@@ -1,0 +1,428 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { SITE } from "../../consts";
+
+const title = "Bermuda Lifestyle Case Study | Pools & Spas Marketing | Hyper Digital";
+const description =
+  "How a new website plus Google, Facebook and Instagram working together grew enquiries 2,500% and revenue 500% in year one for Bermuda Lifestyle Pools & Spas, with customers booked months in advance.";
+
+const client = "Bermuda Lifestyle";
+const trade = "Pools & Spas";
+const channels = "Website · Google Ads · Facebook · Instagram";
+
+// ── At-a-glance (count-up; figures from the client's own first-year results) ──
+const glance = [
+  { value: "2500", prefix: "+", suffix: "%", decimals: 0, label: "more enquiries in year one" },
+  { value: "500", prefix: "+", suffix: "%", decimals: 0, label: "revenue growth in year one" },
+  { value: "3", prefix: "", suffix: "", decimals: 0, label: "channels working as one" },
+  { value: "5", prefix: "", suffix: " ★", decimals: 0, label: "rated by the owner" },
+];
+
+// ── The three channels (interactive tabs) ───────────────────────────────────
+const stack = [
+  {
+    id: "web",
+    tab: "The website",
+    icon: "layout",
+    heading: "A website built to be found, and to convert",
+    body: "They came to us with a basic 5-page site that barely ranked and brought in next to no leads. We rebuilt it into a fast, search-ready website that gets found on Google and turns visitors into enquiries.",
+    points: [
+      "Fast, mobile-first and built around what buyers actually search for",
+      "Structured so Google can read it and rank it",
+      "Every page pointed at one thing: getting the enquiry",
+    ],
+  },
+  {
+    id: "google",
+    tab: "Google Ads",
+    icon: "search",
+    heading: "Google Ads that capture ready buyers",
+    body: "When someone is searching for a pool or a spa, we make sure Bermuda Lifestyle is the name they see. We run and refine the campaigns every month so the budget goes to the searches that book.",
+    points: [
+      "In front of people actively shopping for pools and spas",
+      "Tightly managed, with wasted spend trimmed each month",
+      "Enquiries arriving at a cost the business can plan around",
+    ],
+  },
+  {
+    id: "social",
+    tab: "Facebook & Instagram",
+    icon: "megaphone",
+    heading: "Facebook and Instagram that build the brand",
+    body: "Not everyone is searching yet. On social we put eye-catching pools and spas in front of the right local audience, keeping Bermuda Lifestyle front of mind and creating new demand as well as capturing it.",
+    points: [
+      "Scroll-stopping creative that shows off the product",
+      "Targeted to the right buyers in the right area",
+      "Builds demand, so there is always more to capture",
+    ],
+  },
+];
+
+// ── What stands out (figures from the client's own results) ──────────────────
+const standout = [
+  "Enquiries up 2,500% in the first year, from a website that barely brought any in.",
+  "Revenue up 500% across that same first year.",
+  "Booked months in advance, the kind of problem most businesses would love to have.",
+  "A partnership that has lasted year after year, because the results keep coming.",
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results" },
+    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/bermuda-lifestyle" },
+  ],
+};
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `${client} case study: 2,500% more enquiries in year one`,
+  about: trade,
+  author: { "@type": "Organization", name: "Hyper Digital" },
+  publisher: { "@type": "Organization", name: "Hyper Digital" },
+  description,
+};
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: { "@type": "Organization", name: "Hyper Digital" },
+  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+  author: { "@type": "Person", name: "Denise Howell" },
+  reviewBody:
+    "Month after month, year after year Ryan, Matt and their team at Hyper Digital have allowed us the very fortunate position of having new customers booked months in advance for our Pools and Spas. They built us an amazing website and deliver the exact customers we require via Google Ads, Facebook Ads and Instagram.",
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
+      <Reveal>
+        <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
+          <a href="/results" class="transition-colors hover:text-primary">Results</a>
+          <span class="px-2">/</span>
+          <span class="text-neutral-content/90">{client}</span>
+        </nav>
+      </Reveal>
+      <div class="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="text-center lg:text-left">
+          <Reveal>
+            <span class="badge badge-primary font-display">Case study · {trade}</span>
+          </Reveal>
+          <Reveal delay={0.05} class="mt-4">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+              <span class="marker">2,500% more enquiries</span> in year one.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1} class="mt-5">
+            <p class="text-sm uppercase tracking-wider text-primary">{channels}</p>
+          </Reveal>
+          <Reveal delay={0.14} class="mt-5">
+            <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+              Bermuda Lifestyle came to us with a basic website that barely ranked and brought in
+              next to no leads. We rebuilt it, then put Google Ads, Facebook and Instagram to work
+              together. In their first year, enquiries were up 2,500% and revenue up 500%. Today
+              they have customers booked months in advance.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+            <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+          </Reveal>
+        </div>
+
+        <!-- Hero media — client website -->
+        <Reveal delay={0.15}>
+          <img
+            src="/img/case-studies/bermuda-lifestyle/bermuda-lifestyle-case-study-hero.jpg"
+            alt="Bermuda Lifestyle Pools & Spas website built by Hyper Digital"
+            loading="eager"
+            class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover object-top shadow-xl"
+          />
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AT A GLANCE (count-up) ===== -->
+  <section class="border-b border-base-300 bg-base-100 py-10 sm:py-12">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        {glance.map((g) => (
+          <div class="text-center">
+            <div
+              class="font-display text-3xl text-primary sm:text-4xl"
+              data-countup={g.value}
+              data-prefix={g.prefix}
+              data-suffix={g.suffix}
+              data-decimals={g.decimals}
+            >{g.prefix}{g.value}{g.suffix}</div>
+            <div class="mt-1 text-sm text-base-content/60">{g.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE CHALLENGE ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="target" class="h-7 w-7" /></span>
+        <span class="eyebrow mt-5 block">The challenge</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A great product almost nobody could find.</h2>
+      </Reveal>
+      <Reveal delay={0.08} class="mt-5">
+        <p class="text-lg text-base-content/70">
+          Bermuda Lifestyle sells pools and spas people love. The problem was being found. Their old
+          5-page website barely ranked on Google and brought in next to no enquiries, so a strong
+          product was sitting hidden while competitors picked up the searches. They needed to be seen
+          by the right buyers, and they needed those buyers to actually get in touch.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE DID (interactive channel tabs) ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1080px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">What we did</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Three channels, working as one system.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          A new website to convert, Google Ads to capture demand, and social to create it. Tap
+          through to see how each part pulls its weight.
+        </p>
+      </Reveal>
+
+      <div data-tabs class="mt-10">
+        <!-- toggle -->
+        <Reveal class="flex justify-center">
+          <div class="inline-flex flex-wrap justify-center gap-1 rounded-box border border-base-300 bg-base-100 p-1 shadow-sm" role="tablist" aria-label="Marketing channels">
+            {stack.map((s, i) => (
+              <button type="button" role="tab" class:list={["tab-btn", i === 0 && "is-active"]} data-tab={s.id} aria-selected={i === 0 ? "true" : "false"}>
+                <Icon name={s.icon} class="h-5 w-5" />
+                {s.tab}
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        <!-- panels -->
+        <div class="mt-8">
+          {stack.map((s, i) => (
+            <div class="tab-panel" data-panel={s.id} hidden={i !== 0}>
+              <div class="grid items-center gap-10 lg:grid-cols-2">
+                <div>
+                  <span class="icon-chip"><Icon name={s.icon} class="h-6 w-6" /></span>
+                  <h3 class="mt-4 font-display text-2xl sm:text-3xl">{s.heading}</h3>
+                  <p class="mt-3 text-base-content/70">{s.body}</p>
+                  <ul class="mt-5 space-y-2">
+                    {s.points.map((p) => (
+                      <li class="flex items-start gap-3">
+                        <span class="icon-chip h-8 w-8 shrink-0"><Icon name="check" class="h-4 w-4" /></span>
+                        <span class="text-base-content/80">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="flex items-center justify-center rounded-box border border-base-300 bg-base-100 p-10 shadow-sm">
+                  <div class="text-center">
+                    <span class="icon-chip mx-auto h-20 w-20"><Icon name={s.icon} class="h-10 w-10" /></span>
+                    <p class="mt-4 font-display text-xl">{s.tab}</p>
+                    <p class="mt-1 text-sm text-base-content/55">Part of one connected system</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE RESULTS (animated growth line + bullets) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The results</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From barely any enquiries to booked months ahead.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          With the website, Google Ads and social all pulling together, the first year changed the
+          business. These are the client's own figures, the kind they can see in their own results.
+        </p>
+      </Reveal>
+
+      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+        <!-- Animated enquiries growth line chart -->
+        <Reveal>
+          <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">
+            <div class="flex items-center justify-between">
+              <span class="eyebrow">Enquiries, year one</span>
+              <span class="badge badge-primary font-display">+2,500%</span>
+            </div>
+            <svg viewBox="0 0 320 170" class="mt-4 w-full" role="img" aria-label="Enquiries climbing sharply over the first year">
+              <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+                <line x1="10" y1="20" x2="310" y2="20" />
+                <line x1="10" y1="65" x2="310" y2="65" />
+                <line x1="10" y1="110" x2="310" y2="110" />
+                <line x1="10" y1="150" x2="310" y2="150" />
+              </g>
+              <path class="draw-line" style="--len: 360" d="M26 138 L120 126 L210 92 L300 30" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="26" cy="138" r="4" fill="var(--color-primary)" />
+              <circle class="fade-in-late" cx="300" cy="30" r="5" fill="var(--color-primary)" />
+              <text x="20" y="128" fill="#faf8f5" font-size="14" font-weight="800" font-family="Source Sans 3">Before</text>
+              <text class="fade-in-late" x="232" y="22" fill="var(--color-primary)" font-size="14" font-weight="800" font-family="Source Sans 3">Year one (+2,500%)</text>
+            </svg>
+            <p class="mt-3 text-sm text-neutral-content/60">Direction of enquiries across the first year. Illustrative.</p>
+          </div>
+        </Reveal>
+
+        <!-- What stands out -->
+        <div>
+          <Reveal><h3 class="font-display text-2xl">What stands out</h3></Reveal>
+          <ul class="mt-5 space-y-3">
+            {standout.map((s, i) => (
+              <Reveal delay={i * 0.06}>
+                <li class="flex items-start gap-3 rounded-box border border-base-300 bg-base-100 p-4">
+                  <span class="icon-chip shrink-0 h-10 w-10"><Icon name="check" class="h-5 w-5" /></span>
+                  <span class="text-base-content/80">{s}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE NUMBER THAT MATTERS ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1000px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="eyebrow">The number that matters</span>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Revenue up 500%, and booked months in advance.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-neutral-content/80">
+          Enquiries only count if they turn into sales. For Bermuda Lifestyle they did. Revenue grew
+          500% in the first year, and the business now runs with customers booked months ahead.
+          That is what happens when the right people find you, and the whole system is built to convert them.
+        </p>
+      </Reveal>
+      <Reveal class="mt-10">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div class="rounded-box border border-white/10 bg-white/5 p-6">
+            <div class="font-display text-4xl text-primary">+500%</div>
+            <div class="mt-1 text-sm text-neutral-content/70">revenue, year one</div>
+          </div>
+          <div class="rounded-box border border-white/10 bg-white/5 p-6">
+            <div class="font-display text-4xl text-primary">+2,500%</div>
+            <div class="mt-1 text-sm text-neutral-content/70">enquiries, year one</div>
+          </div>
+          <div class="rounded-box border border-white/10 bg-white/5 p-6">
+            <div class="font-display text-4xl text-primary">Months</div>
+            <div class="mt-1 text-sm text-neutral-content/70">booked in advance</div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <div class="text-2xl text-primary">★★★★★</div>
+      <blockquote class="mt-4 font-display text-2xl leading-snug sm:text-3xl">
+        "Month after month, year after year Ryan, Matt and their team at Hyper Digital have allowed
+        us the very fortunate position of having new customers booked months in advance for our Pools
+        and Spas. They built us an amazing website and deliver the exact customers we require via
+        Google Ads, Facebook Ads and Instagram."
+      </blockquote>
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <img
+          src="/img/denise-bermuda-lifestyle-avatar.jpg"
+          alt="Denise Howell, Bermuda Lifestyle"
+          loading="lazy"
+          class="h-12 w-12 rounded-full border border-base-300 object-cover"
+        />
+        <div class="text-left font-display text-base-content/70">Denise Howell, Bermuda Lifestyle</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">Want results like these for your business?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Hit your agreed lead goal in 60 days, or we work for free until you do. Get a free, no-obligation
+          audit and we'll show you what your leads should cost.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify([breadcrumbSchema, articleSchema, reviewSchema])} />
+
+  <!-- Interactive behaviour: tabs + count-up -->
+  <script>
+    import { inView } from "motion";
+
+    function setupTabs() {
+      document.querySelectorAll<HTMLElement>("[data-tabs]").forEach((group) => {
+        if (group.dataset.bound) return;
+        group.dataset.bound = "1";
+        const buttons = Array.from(group.querySelectorAll<HTMLButtonElement>(".tab-btn"));
+        const panels = Array.from(group.querySelectorAll<HTMLElement>(".tab-panel"));
+        if (!buttons.length) return;
+
+        const activate = (i: number) => {
+          const id = buttons[i].dataset.tab;
+          buttons.forEach((b, bi) => {
+            const active = bi === i;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+        };
+
+        buttons.forEach((btn, i) => {
+          btn.addEventListener("click", () => activate(i));
+        });
+      });
+    }
+
+    function setupCountUp() {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelectorAll<HTMLElement>("[data-countup]").forEach((el) => {
+        if (el.dataset.counted) return;
+        const target = parseFloat(el.dataset.countup || "0");
+        const decimals = parseInt(el.dataset.decimals || "0", 10);
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const render = (v: number) => { el.textContent = prefix + v.toFixed(decimals) + suffix; };
+        if (reduce) { el.dataset.counted = "1"; render(target); return; }
+        inView(el, () => {
+          el.dataset.counted = "1";
+          const dur = 1100;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min(1, (now - start) / dur);
+            render(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }, { amount: 0.6 });
+      });
+    }
+
+    document.addEventListener("astro:page-load", () => { setupTabs(); setupCountUp(); });
+  </script>
+</Layout>

@@ -17,6 +17,7 @@ const caseStudies = [
     name: "Bermuda Lifestyle",
     trade: "Pools & Spas",
     featured: true,
+    slug: "/results/bermuda-lifestyle",
     headline: "2,500% more enquiries and 500% revenue growth in their first year.",
     body: "They came to us with a basic 5-page website that barely ranked and brought in next to no leads. We rebuilt their site and have run Google Ads, Facebook and Instagram ever since. Now they've got customers booked months in advance.",
     metrics: [
@@ -27,7 +28,7 @@ const caseStudies = [
     quote:
       "Month after month, year after year Ryan, Matt and their team at Hyper Digital have allowed us the very fortunate position of having new customers booked months in advance for our Pools and Spas. They built us an amazing website and deliver the exact customers we require via Google Ads, Facebook Ads and Instagram.",
     who: "Denise Howell, Bermuda Lifestyle",
-    image: "/img/bermuda-card.jpg",
+    image: "/img/case-studies/bermuda-lifestyle/bl-case-study.jpg",
   },
   {
     name: "Tableau Towbars",
@@ -78,6 +79,22 @@ const caseStudies = [
     image: null,
   },
   {
+    name: "No Drips",
+    trade: "Plumbing & Gas",
+    featured: false,
+    slug: "/results/no-drips",
+    headline: "Plumbing leads from as little as $14, well under their $45 target.",
+    body: "Hawke's Bay plumbers and gasfitters. We took over their Google Ads from another agency, cut close to $3,000 of wasted spend, and restructured the account around the work that books, with click-through rates around double the industry average.",
+    metrics: [
+      { stat: "$14", label: "cost per lead, best keywords" },
+      { stat: "~9%", label: "CTR, ~2x average" },
+      { stat: "$3k", label: "wasted spend cut" },
+    ],
+    quote: null,
+    who: null,
+    image: null,
+  },
+  {
     name: "Continuous Spouting",
     trade: "Spouting & Guttering",
     featured: false,
@@ -99,7 +116,7 @@ const featured = caseStudies.filter((c) => c.featured);
 const rest = caseStudies.filter((c) => !c.featured);
 
 // Trades we want a case study for next — placeholder tiles show room to grow.
-const upcoming = ["Plumbing", "Electrical", "Roofing", "Building"];
+const upcoming = ["Electrical", "Roofing", "Building", "Landscaping"];
 
 const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
   "@context": "https://schema.org",
@@ -160,6 +177,12 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
               <blockquote class="mt-2 text-base-content/70 italic">"{c.quote}"</blockquote>
               <div class="mt-2 font-display">{c.who}</div>
             </div>
+            {c.slug && (
+              <a href={c.slug} class="mt-6 inline-flex items-center gap-1 font-display text-primary transition-colors hover:text-secondary">
+                Read the full case study
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
           </Reveal>
           <Reveal delay={0.1}>
             <img src={c.image} alt={`${c.name} website built by Hyper Digital`} loading="lazy" class="w-full rounded-box border border-base-300 shadow-xl" />

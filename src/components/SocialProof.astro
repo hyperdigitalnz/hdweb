@@ -1,6 +1,5 @@
 ---
 // Avatar stack + stars + count (fa.st-style social proof row).
-// [NEED] swap initials for real client photos when available.
 interface Props {
   tone?: "dark" | "light";
 }
@@ -10,19 +9,23 @@ const sub = tone === "dark" ? "text-neutral-content/80" : "text-base-content/70"
 const strong = tone === "dark" ? "text-neutral-content" : "text-base-content";
 
 const avatars = [
-  { i: "BL", c: "from-amber-400 to-amber-600" },
-  { i: "TT", c: "from-stone-500 to-stone-700" },
-  { i: "HP", c: "from-amber-500 to-amber-700" },
-  { i: "JS", c: "from-yellow-500 to-amber-700" },
-  { i: "MK", c: "from-amber-600 to-yellow-800" },
+  { src: "/img/denise-bermuda-lifestyle-avatar.jpg", alt: "Denise, Bermuda Lifestyle" },
+  { src: "/img/tableau-towbars-avatar.png", alt: "Tableau Towbars" },
+  { src: "/img/harris-pumps-avatar.png", alt: "Harris Pumps" },
+  { src: "/img/continous-spouting-avatar.png", alt: "Continuous Spouting" },
+  { src: "/img/wade-motordrome-avatar.png", alt: "Wade, Motordrome" },
 ];
 ---
 <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
   <div class="flex -space-x-3">
     {avatars.map((a) => (
-      <div class={`grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br ${a.c} text-xs font-bold text-white ring-2 ${ring}`}>
-        {a.i}
-      </div>
+      <img
+        src={a.src}
+        alt={a.alt}
+        loading="lazy"
+        decoding="async"
+        class={`h-10 w-10 rounded-full object-cover object-center bg-neutral ring-2 ${ring}`}
+      />
     ))}
   </div>
   <div class="text-left">

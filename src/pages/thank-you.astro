@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import { SITE } from "../consts";
+
+const title = "Thank you | Hyper Digital";
+const description = "Your request is in. We'll be in touch within one business day with your free audit.";
+---
+<Layout title={title} description={description} noindex={true}>
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[820px] px-5 py-24 text-center sm:py-32">
+      <Reveal>
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary text-3xl text-primary-content">✓</div>
+        <span class="eyebrow mt-6 block">Request received</span>
+        <h1 class="mt-3 text-4xl sm:text-5xl lg:text-6xl">You're <span class="marker">booked in</span>.</h1>
+      </Reveal>
+      <Reveal delay={0.08} class="mt-5">
+        <p class="mx-auto max-w-xl text-lg text-neutral-content/80">
+          Thanks for reaching out. We'll be in touch within one business day with your free audit.
+          If it's urgent, give us a call and we'll sort you out faster.
+        </p>
+      </Reveal>
+      <Reveal delay={0.14} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+        <a href={SITE.phoneHref} class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Call {SITE.phone}</a>
+        <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See our results</a>
+      </Reveal>
+      <Reveal delay={0.2} class="mt-8">
+        <a href="/" class="text-sm uppercase tracking-wider text-neutral-content/50 transition-colors hover:text-primary">← Back to home</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Fire the Google Ads conversion once the lead lands here (verified server-side before redirect). -->
+  <script is:inline>
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", { send_to: "AW-703611224/KEGlCPfXyr4cENiCwc8C" });
+    }
+  </script>
+</Layout>

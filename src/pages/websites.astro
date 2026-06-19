@@ -4,14 +4,16 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
-import Placeholder from "../components/Placeholder.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import { SITE } from "../consts";
 
 const portfolio = [
-  { src: "/img/lukopainting-card.jpg", name: "Luko Painting", trade: "Painters & Decorators" },
-  { src: "/img/chesterhope-card.jpg", name: "Chesterhope Kennels", trade: "Boarding & Day Care" },
-  { src: "/img/adrenalinr-card.jpg", name: "Adrenalin R", trade: "Automotive / Performance" },
+  { src: "/img/websites/bermuda-lifestyle-website(1).png", name: "Bermuda Lifestyle", trade: "Pools & Spas", url: "https://bermuda.co.nz", display: "bermuda.co.nz" },
+  { src: "/img/websites/continous-spouting-website.png", name: "Continuous Spouting", trade: "Spouting & Guttering", url: "https://www.continuous-spouting.co.nz", display: "continuous-spouting.co.nz" },
+  { src: "/img/websites/stichbury-automotive-website(1).png", name: "Stichbury Automotive", trade: "Mechanical & Servicing", url: "https://stichautos.co.nz", display: "stichautos.co.nz" },
+  { src: "/img/websites/luko-painting-website.png", name: "Luko Painting", trade: "Painters & Decorators", url: "https://lukopainting.nz", display: "lukopainting.nz" },
+  { src: "/img/websites/chesterhope-kennels-website.png", name: "Chesterhope Kennels", trade: "Boarding & Day Care", url: "https://chesterhopekennels.co.nz", display: "chesterhopekennels.co.nz" },
+  { src: "/img/websites/adrenalinr-website.png", name: "Adrenalin R", trade: "Automotive / Performance", url: "https://adrenalinr.com", display: "adrenalinr.com" },
 ];
 
 const title = "Smart Websites for Tradies | Book Jobs 24/7 | Hyper Digital";
@@ -118,7 +120,7 @@ const faqSchema = {
         </p>
       </Reveal>
       <Reveal delay={0.1}>
-        <Placeholder ratio="aspect-[4/3]" label="A site that just sits there" hint="browser mockup: tidy homepage, zero enquiries" />
+        <img src="/img/tidy-homepage-no-enquiries.jpg" alt="A tidy trade website getting no enquiries" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
       </Reveal>
     </div>
   </section>
@@ -167,7 +169,7 @@ const faqSchema = {
         <a href="/lead-generation" class="btn btn-ghost mt-5 text-primary">See how we drive traffic to it →</a>
       </Reveal>
       <Reveal delay={0.1}>
-        <Placeholder ratio="aspect-[4/3]" label="Local search result" hint="e.g. Google map pack / 'plumber near me' result mockup" />
+        <img src="/img/plumbers-serp.jpg" alt="A customer searching for a local plumber on Google" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
       </Reveal>
     </div>
   </section>
@@ -196,20 +198,26 @@ const faqSchema = {
   </section>
 
   <!-- ===== RECENT BUILDS (portfolio gallery) ===== -->
-  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+  <section class="bg-brand-dark text-neutral-content py-16 sm:py-20">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">Recent builds</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Smart websites we've built for Kiwi businesses.</h2>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Smart websites we've built for Kiwi businesses.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
         {portfolio.map((p, i) => (
           <Reveal delay={i * 0.08} class="h-full">
-            <div class="card card-glow h-full overflow-hidden border border-base-300 bg-base-100 shadow-sm">
-              <img src={p.src} alt={`${p.name} website built by Hyper Digital`} loading="lazy" class="aspect-[3/4] w-full object-cover object-top" />
-              <div class="card-body py-4">
-                <div class="font-display text-lg">{p.name}</div>
+            <div class="flex h-full flex-col">
+              <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="block" aria-label={`Visit the ${p.name} website (opens in a new tab)`}>
+                <img src={p.src} alt={`${p.name} website built by Hyper Digital`} loading="lazy" class="aspect-[16/10] w-full object-contain object-top transition-transform duration-300 hover:scale-[1.03]" />
+              </a>
+              <div class="mt-4 rounded-box bg-base-100 p-4 text-center shadow-sm">
+                <div class="font-display text-lg text-base-content">{p.name}</div>
                 <div class="text-sm text-base-content/60">{p.trade}</div>
+                <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="mt-1 inline-flex items-center justify-center gap-1 text-sm text-primary transition-colors hover:text-secondary">
+                  {p.display}
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </div>
           </Reveal>
@@ -267,10 +275,7 @@ const faqSchema = {
         <span class="eyebrow">Proof</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Websites that actually grew the business.</h2>
       </Reveal>
-      <Reveal class="mt-10">
-        <img src="/img/bermuda-card.jpg" alt="Bermuda Lifestyle website built by Hyper Digital" loading="lazy" class="mx-auto w-full max-w-2xl rounded-box border border-base-300 shadow-xl" />
-      </Reveal>
-      <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
         {proof.map((p, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">

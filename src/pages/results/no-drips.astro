@@ -4,50 +4,58 @@ import Reveal from "../../components/Reveal.astro";
 import Icon from "../../components/Icon.astro";
 import { SITE } from "../../consts";
 
-const title = "Continuous Spouting Case Study | Spouting & Guttering Leads | Hyper Digital";
+const title = "No Drips Case Study | Hawke's Bay Plumbing Leads | Hyper Digital";
 const description =
-  "How one tightly managed Google Ads campaign delivers leads at under $6 each for Continuous Spouting in Hawke's Bay, with a click-through rate three to five times the industry average.";
+  "How Hyper Digital took over No Drips' Google Ads, cut close to $3,000 of wasted spend left by the previous agency, and now drives Hawke's Bay plumbing leads from as little as $14, well under their $45 target, at click-through rates around double the industry average.";
 
-const client = "Continuous Spouting";
-const trade = "Spouting & Guttering";
-const region = "Hawke's Bay";
+const client = "No Drips";
+const trade = "Plumbing & Gas";
+const region = "Napier · Hastings · Havelock North · Central Hawke's Bay";
 
-// ── At-a-glance (rates and unit cost only — no volumes) ─────────────────────
+// ── At-a-glance (rates and unit cost only — no lead volumes) ─────────────────
 const glance = [
-  { value: "5.87", prefix: "$", suffix: "", decimals: 2, label: "average cost per lead" },
-  { value: "15.5", prefix: "", suffix: "%", decimals: 1, label: "click-through rate" },
-  { value: "5", prefix: "", suffix: "x", decimals: 0, label: "up to, vs the industry average" },
-  { value: "4.5", prefix: "", suffix: " yrs", decimals: 1, label: "partnership and counting" },
+  { value: "14", prefix: "$", suffix: "", decimals: 0, label: "cost per lead on our best keywords" },
+  { value: "45", prefix: "$", suffix: "", decimals: 0, label: "their cost-per-lead target" },
+  { value: "9.4", prefix: "", suffix: "%", decimals: 1, label: "click-through rate, about double the average" },
+  { value: "3", prefix: "$", suffix: "k", decimals: 0, label: "wasted spend cut from the previous agency" },
 ];
 
 // ── What we did ─────────────────────────────────────────────────────────────
 const work = [
-  { icon: "search", title: "One focused Search campaign", body: "A single, tightly managed Google Ads campaign for Hawke's Bay. No sprawling setup to maintain, just one campaign kept razor sharp." },
-  { icon: "target", title: "Ongoing keyword refinement", body: "We keep the keywords matched to real buyer searches for spouting, fascia and downpipe work, and prune anything that drifts off intent." },
-  { icon: "megaphone", title: "Ad copy that matches intent", body: "Ads written to speak directly to what the searcher needs, which is exactly why the click-through rate sits so far above average." },
-  { icon: "trend", title: "Consistency, month after month", body: "Leads arrive at a predictable cost, giving the business a pipeline it can actually plan around." },
+  { icon: "search", title: "Structured the account around real jobs", body: "We took over an account from another agency and rebuilt it. Separate, tightly managed Search campaigns for the work that matters: general plumbing, hot water, drainage, emergencies and gas, each aimed at how Hawke's Bay people actually search." },
+  { icon: "target", title: "Cut the inherited waste", body: "A full search-terms audit found close to $3,000 the previous agency had spent on clicks that never turned into work: heat-pump shoppers, manufacturer brand searches, out-of-area clicks and DIY price research. We added them as negatives so budget goes to people ready to book a plumber." },
+  { icon: "trend", title: "Scaled the winners", body: "We lean budget into the keywords that turn into booked jobs and pull back on the ones that don't. The best now bring in leads for as little as $14, well under their $45 target." },
+  { icon: "megaphone", title: "Tracking that proves it", body: "Phone clicks, email clicks and form submissions are all tracked through Google Tag Manager into Analytics, so every reported lead is a real call or enquiry the client can verify." },
 ];
 
 // ── What stands out (rates and unit cost only) ──────────────────────────────
 const standout = [
-  "Cost per lead under $6, for jobs often worth well over a thousand dollars.",
-  "Click-through rate peaked above 32% in a single month and regularly sits between 15% and 25%.",
-  "Cost per lead has held steady at around $6 for three years running.",
-  "One campaign, done well. The client keeps growing their investment as leads convert to jobs.",
+  "Click-through rate of around 9%, roughly double the 3 to 5% industry average for Search ads.",
+  "Our best-performing keywords bring in leads for as little as $14, well under the $45 target.",
+  "Close to $3,000 of wasted spend left by the previous agency, found in the search terms and cut.",
+  "An average cost of about $5 a click, so winning a plumbing job costs only a few dollars in ads.",
 ];
+
+// ── Google search ad mockup (illustrative of high-intent local search) ───────
+const ad = {
+  query: "emergency plumber hastings",
+  displayUrl: "nodrips.nz/plumbing",
+  headline: "No Drips Plumbing | Fast Hawke's Bay Plumbers",
+  desc: "Blocked drains, leaks, hot water and gas. Local Napier and Hastings plumbers. Call today.",
+};
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results" },
-    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/continuous-spouting" },
+    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/no-drips" },
   ],
 };
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: `${client} case study: leads at under $6 each`,
+  headline: `${client} case study: plumbing leads under the $100 target`,
   about: trade,
   author: { "@type": "Organization", name: "Hyper Digital" },
   publisher: { "@type": "Organization", name: "Hyper Digital" },
@@ -72,7 +80,7 @@ const articleSchema = {
           </Reveal>
           <Reveal delay={0.05} class="mt-4">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl">
-              Quality leads at <span class="marker">under $6 each</span>.
+              Plumbing leads from <span class="marker">as little as $14</span>.
             </h1>
           </Reveal>
           <Reveal delay={0.1} class="mt-5">
@@ -80,9 +88,10 @@ const articleSchema = {
           </Reveal>
           <Reveal delay={0.14} class="mt-5">
             <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
-              A 4.5-year partnership built on a single, tightly managed Google Ads Search campaign.
-              We put Continuous Spouting in front of Hawke's Bay homeowners and builders the moment
-              they search for spouting and guttering. No complicated setup. Just consistent, efficient leads.
+              No Drips are Hawke's Bay plumbers and gasfitters who need the phone ringing for
+              emergencies, hot water, drainage and new-build work. Their target is $45 a lead. We took
+              over their Google Ads from another agency, cut the wasted spend, and now the best
+              keywords bring in leads for as little as $14.
             </p>
           </Reveal>
           <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
@@ -94,8 +103,8 @@ const articleSchema = {
         <!-- Hero media — client website -->
         <Reveal delay={0.15}>
           <img
-            src="/img/case-studies/continuous-spouting/bevelled-rakes-continuous-spouting.webp"
-            alt="Bevelled rakes continuous spouting on a Hawke's Bay home"
+            src="/img/case-studies/no-drips/no-drips-main-hero-shot.jpg"
+            alt="No Drips, Hawke's Bay plumbers and gasfitters"
             loading="eager"
             class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl"
           />
@@ -130,14 +139,15 @@ const articleSchema = {
       <Reveal>
         <span class="icon-chip mx-auto h-14 w-14"><Icon name="target" class="h-7 w-7" /></span>
         <span class="eyebrow mt-5 block">The challenge</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Keep the phone ringing in a busy local trade.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Win the high-intent jobs without burning budget.</h2>
       </Reveal>
       <Reveal delay={0.08} class="mt-5">
         <p class="text-lg text-base-content/70">
-          Continuous Spouting needed a reliable way to keep homeowners and builders calling for
-          spouting, fascia and downpipe work in Hawke's Bay. Like most trades, the battle is being
-          found at the right moment in a competitive local market, without burning budget on the
-          wrong searches. They needed a pipeline they could count on, not a lucky month here and there.
+          Plumbing demand is some of the highest intent there is. When a pipe bursts or the hot water
+          dies, people search and call within minutes. The trouble is that the same searches pull in
+          plenty of non-buyers: people shopping for heat-pump cylinders, comparing manufacturer prices,
+          looking up DIY fixes, or sitting well outside Hawke's Bay. No Drips needed to be first in
+          front of the ready-to-book locals, and stop paying for everyone else.
         </p>
       </Reveal>
     </div>
@@ -148,10 +158,10 @@ const articleSchema = {
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="mx-auto max-w-2xl text-center">
         <span class="eyebrow">What we did</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Find: one campaign, done exceptionally well.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A tighter account, aimed at people ready to book.</h2>
         <p class="mt-4 text-lg text-base-content/70">
-          No complex machine to maintain. Just a single Search campaign, kept sharp every month,
-          aimed squarely at people in Hawke's Bay ready to book.
+          Structure the campaigns around the real jobs, cut the spend that never converts, and pour
+          budget into the keywords that turn into booked work.
         </p>
       </Reveal>
       <div class="mt-10 grid gap-6 sm:grid-cols-2">
@@ -169,34 +179,67 @@ const articleSchema = {
           </Reveal>
         ))}
       </div>
+
+      <!-- Google search ad mockup -->
+      <div class="mx-auto mt-12 max-w-[520px]">
+        <Reveal>
+          <div class="overflow-hidden rounded-box border border-base-300 bg-white shadow-xl">
+            <div class="flex items-center gap-3 border-b border-neutral-200 px-4 py-3">
+              <div class="flex gap-1" aria-hidden="true">
+                <span class="h-2.5 w-2.5 rounded-full" style="background:#4285F4"></span>
+                <span class="h-2.5 w-2.5 rounded-full" style="background:#EA4335"></span>
+                <span class="h-2.5 w-2.5 rounded-full" style="background:#FBBC05"></span>
+                <span class="h-2.5 w-2.5 rounded-full" style="background:#34A853"></span>
+              </div>
+              <div class="flex flex-1 items-center justify-between rounded-full border border-neutral-200 px-4 py-1.5">
+                <span class="text-sm text-neutral-700">{ad.query}</span>
+                <span class="text-neutral-400"><Icon name="search" class="h-4 w-4" /></span>
+              </div>
+            </div>
+            <div class="px-4 py-4 text-left">
+              <div class="text-[13px] font-semibold text-neutral-800">Sponsored</div>
+              <div class="mt-1.5 flex items-center gap-2">
+                <span class="flex h-7 w-7 items-center justify-center rounded-full bg-base-200 font-display text-sm text-primary">N</span>
+                <div class="leading-tight">
+                  <div class="text-[13px] font-medium text-neutral-900">No Drips</div>
+                  <div class="text-xs text-neutral-600">{ad.displayUrl}</div>
+                </div>
+              </div>
+              <span class="mt-2 block text-[20px] leading-snug text-[#1a0dab]">{ad.headline}</span>
+              <p class="mt-1 text-sm leading-snug text-neutral-700">{ad.desc}</p>
+            </div>
+          </div>
+          <p class="mt-2 text-center text-xs text-base-content/50">Illustrative of how No Drips shows up for high-intent local searches.</p>
+        </Reveal>
+      </div>
     </div>
   </section>
 
-  <!-- ===== THE RESULTS (interactive CTR comparison + bullets) ===== -->
+  <!-- ===== THE RESULTS (interactive CPA-vs-target comparison + bullets) ===== -->
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="mx-auto max-w-2xl text-center">
         <span class="eyebrow">The results</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Ads people actually click, leads that actually cost less.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Real calls and quote requests, under target.</h2>
       </Reveal>
 
       <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
-        <!-- Interactive CTR comparison -->
+        <!-- Interactive target vs best-keyword comparison -->
         <Reveal>
-          <div data-cmp data-max="18" class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+          <div data-cmp data-max="45" class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
             <div class="flex items-center justify-between">
-              <span class="eyebrow">Click-through rate</span>
-              <span data-cmp-value class="badge badge-primary font-display">15.5%</span>
+              <span class="eyebrow">Cost per lead</span>
+              <span data-cmp-value class="badge badge-primary font-display">$14</span>
             </div>
             <div class="mt-5 h-9 w-full overflow-hidden rounded-full bg-base-200">
               <div class="cmp-fill"></div>
             </div>
-            <div class="mt-6 flex flex-wrap gap-1 rounded-box border border-base-300 bg-base-100 p-1" role="tablist" aria-label="Compare click-through rate">
-              <button type="button" role="tab" class="tab-btn" data-val="4" data-display="3-5%" aria-selected="false">Typical Search ad</button>
-              <button type="button" role="tab" class="tab-btn is-active" data-val="15.5" data-display="15.5%" aria-selected="true">Continuous Spouting</button>
+            <div class="mt-6 flex flex-wrap gap-1 rounded-box border border-base-300 bg-base-100 p-1" role="tablist" aria-label="Compare cost per lead to target">
+              <button type="button" role="tab" class="tab-btn" data-val="45" data-display="$45" aria-selected="false">Their target</button>
+              <button type="button" role="tab" class="tab-btn is-active" data-val="14" data-display="$14" aria-selected="true">Best keywords</button>
             </div>
             <p class="mt-3 text-sm text-base-content/55">
-              Industry average for Search ads is 3 to 5%. Tap to compare. The higher the click-through rate, the more relevant the ad and the lower the cost per lead.
+              Their target is $45 a lead. Tap to compare. Lower is better, and our best-performing keywords bring leads in at just $14, for plumbing jobs often worth hundreds of dollars.
             </p>
           </div>
         </Reveal>
@@ -219,33 +262,34 @@ const articleSchema = {
     </div>
   </section>
 
-  <!-- ===== COST PER LEAD, STEADY (animated near-flat line) ===== -->
+  <!-- ===== CUT THE WASTE (dark feature) ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[1000px] px-5 py-16 text-center sm:py-20">
       <Reveal>
         <span class="eyebrow">The number that matters</span>
-        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Cost per lead, around $6, year after year.</h2>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Close to $3,000 of inherited waste, found and cut.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-neutral-content/80">
-          What tracks as a conversion has changed over the years, so we don't lean on lead counts.
-          The figure we stand behind is the cost of each lead, and it has barely moved.
+          When we took the account over from the previous agency, we read the search terms one by one
+          to see exactly what people typed before they clicked. The non-buyers stood out fast. We
+          turned each theme into a negative keyword so the budget stops chasing them and goes back into
+          work that books.
         </p>
       </Reveal>
       <Reveal class="mt-10">
-        <svg viewBox="0 0 600 150" class="w-full" role="img" aria-label="Cost per lead holding steady at around six dollars over several years">
-          <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
-            <line x1="10" y1="40" x2="590" y2="40" />
-            <line x1="10" y1="80" x2="590" y2="80" />
-            <line x1="10" y1="120" x2="590" y2="120" />
-          </g>
-          <path class="draw-line" style="--len: 600" d="M20 86 L160 80 L300 84 L440 79 L580 82" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="20" cy="86" r="4" fill="var(--color-primary)" />
-          <circle cx="160" cy="80" r="4" fill="var(--color-primary)" />
-          <circle cx="300" cy="84" r="4" fill="var(--color-primary)" />
-          <circle cx="440" cy="79" r="4" fill="var(--color-primary)" />
-          <circle class="fade-in-late" cx="580" cy="82" r="5" fill="var(--color-primary)" />
-          <text class="fade-in-late" x="500" y="68" fill="var(--color-primary)" font-size="16" font-weight="800" font-family="Source Sans 3">~ $6 / lead</text>
-        </svg>
-        <p class="mt-3 text-sm text-neutral-content/55">Direction of tracked cost per lead across the partnership. Illustrative.</p>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "search", label: "Heat-pump shoppers" },
+            { icon: "trophy", label: "Manufacturer brand searches" },
+            { icon: "pin", label: "Out-of-area clicks" },
+            { icon: "target", label: "DIY and price research" },
+          ].map((t) => (
+            <div class="rounded-box border border-white/10 bg-white/5 p-5 text-center">
+              <span class="icon-chip mx-auto h-12 w-12"><Icon name={t.icon} class="h-6 w-6" /></span>
+              <p class="mt-3 text-sm text-neutral-content/80">{t.label}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-neutral-content/55">Spend on terms with zero conversions, identified across the account's search-terms history and excluded.</p>
       </Reveal>
     </div>
   </section>
@@ -256,7 +300,7 @@ const articleSchema = {
     <div class="mx-auto max-w-[820px] px-5 text-center">
       <div class="text-2xl text-primary">★★★★★</div>
       <blockquote class="mt-4 font-display text-2xl leading-snug sm:text-3xl">"[Add a verified Google review or client quote here.]"</blockquote>
-      <div class="mt-4 font-display text-base-content/70">Owner name, Continuous Spouting</div>
+      <div class="mt-4 font-display text-base-content/70">Owner name, No Drips</div>
     </div>
   </section>
   -->
@@ -291,7 +335,7 @@ const articleSchema = {
         c.dataset.bound = "1";
         const fill = c.querySelector<HTMLElement>(".cmp-fill");
         const out = c.querySelector<HTMLElement>("[data-cmp-value]");
-        const max = parseFloat(c.dataset.max || "18");
+        const max = parseFloat(c.dataset.max || "100");
         const buttons = c.querySelectorAll<HTMLButtonElement>(".tab-btn");
         const apply = (btn: HTMLButtonElement) => {
           const val = parseFloat(btn.dataset.val || "0");

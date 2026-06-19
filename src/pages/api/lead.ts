@@ -18,9 +18,12 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     const secret = env.TURNSTILE_SECRET_KEY ?? import.meta.env.TURNSTILE_SECRET_KEY;
     const webhook = env.GHL_WEBHOOK_URL ?? import.meta.env.GHL_WEBHOOK_URL;
 
+    // The JS path uses fetch and reads JSON; a no-JS form POST wants an HTML redirect.
+    const wantsHtml = (request.headers.get("accept") ?? "").includes("text/html");
+
     // 1. Honeypot — a hidden field real users never fill. Bots do. Pretend success.
     if (String(form.get("company") ?? "").trim() !== "") {
-      return json({ ok: true });
+      return wantsHtml ? redirect("/thank-you") : json({ ok: true });
     }
 
     // 2. Bot check (skipped if no secret configured yet)
@@ -34,7 +37,7 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       });
       const outcome = (await verify.json()) as { success: boolean };
       if (!outcome.success) {
-        return json({ ok: false, error: "bot" }, 400);
+        return wantsHtml ? redirect("/contact") : json({ ok: false, error: "bot" }, 400);
       }
     }
 
@@ -49,7 +52,7 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
 
     // 4. Reject obviously incomplete submissions.
     for (const key of REQUIRED_FIELDS) {
-      if (!lead[key]) return json({ ok: false, error: "missing" }, 400);
+      if (!lead[key]) return wantsHtml ? redirect("/contact") : json({ ok: false, error: "missing" }, 400);
     }
 
     lead.source = "website";
@@ -66,7 +69,7 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       console.log("[lead] no GHL_WEBHOOK_URL set — would forward:", lead);
     }
 
-    return json({ ok: true });
+    return wantsHtml ? redirect("/thank-you") : json({ ok: true });
   } catch (err) {
     console.error("[lead] error", err);
     return json({ ok: false, error: "server" }, 500);
@@ -78,4 +81,9 @@ function json(data: unknown, status = 200) {
     status,
     headers: { "content-type": "application/json" },
   });
+}
+
+// 303 so the browser follows with a GET (no form re-submission on refresh).
+function redirect(location: string) {
+  return new Response(null, { status: 303, headers: { location } });
 }

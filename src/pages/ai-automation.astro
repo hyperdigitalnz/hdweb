@@ -4,7 +4,6 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
-import Placeholder from "../components/Placeholder.astro";
 import AutomationFlow from "../components/AutomationFlow.astro";
 import { SITE } from "../consts";
 
@@ -150,7 +149,7 @@ const faqSchema = {
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <Placeholder ratio="aspect-[4/3]" label="Reviews climbing on Google" hint="mockup: 5-star reviews and rising local ranking" />
+        <img src="/img/reviews-ratings.jpg" alt="Five-star Google reviews on a phone for a local trade business" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
       </Reveal>
     </div>
   </section>
