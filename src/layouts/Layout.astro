@@ -74,18 +74,6 @@ const ogImage = new URL(image, Astro.site).href;
 
     <!-- mark JS available so reveal elements can hide pre-animation (no FOUC for no-JS) -->
     <script is:inline>document.documentElement.classList.add("js");</script>
-
-    <!-- TEMP (A/B): apply the saved/queried colour scheme before first paint -->
-    <script is:inline>
-      (function () {
-        try {
-          var q = new URLSearchParams(location.search).get("theme");
-          if (q) localStorage.setItem("hd-theme", q === "alt" ? "hyper-alt" : q);
-          var t = localStorage.getItem("hd-theme");
-          if (t) document.documentElement.setAttribute("data-theme", t);
-        } catch (e) {}
-      })();
-    </script>
   </head>
   <body class="bg-base-100 pb-[60px] text-base-content sm:pb-0">
     <Header />
@@ -94,57 +82,6 @@ const ogImage = new URL(image, Astro.site).href;
     </main>
     <Footer />
     <StickyCall />
-
-    <!-- TEMP (A/B): colour-scheme picker. Remove this block + the head bootstrap once a scheme is chosen. -->
-    <div class="fixed bottom-[72px] left-4 z-[60] flex items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-2 shadow-lg sm:bottom-4">
-      <label for="theme-select" class="font-display text-xs uppercase tracking-wide text-base-content/70">Theme</label>
-      <select id="theme-select" class="select select-sm select-bordered max-w-[11rem] font-display text-sm" aria-label="Preview colour scheme"></select>
-    </div>
-    <script>
-      // Our custom schemes first, then daisyUI's built-in themes.
-      const CUSTOM_THEMES = ["hyper", "hyper-alt"];
-      const DAISY_THEMES = [
-        "light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave",
-        "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua",
-        "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk",
-        "autumn", "business", "acid", "lemonade", "night", "coffee", "winter", "dim",
-        "nord", "sunset", "caramellatte", "abyss", "silk",
-      ];
-
-      function setupThemePicker() {
-        const root = document.documentElement;
-        let stored = "hyper";
-        try { stored = localStorage.getItem("hd-theme") || "hyper"; } catch (e) {}
-        root.setAttribute("data-theme", stored);
-
-        const select = document.getElementById("theme-select");
-        if (!select) return;
-
-        if (!select.options.length) {
-          const add = (val, text, group) => {
-            const o = document.createElement("option");
-            o.value = val; o.textContent = text;
-            (group || select).appendChild(o);
-          };
-          const ours = document.createElement("optgroup"); ours.label = "Hyper";
-          select.appendChild(ours);
-          add("hyper", "Hyper (gold/black)", ours);
-          add("hyper-alt", "Hi-Vis (navy/orange)", ours);
-          const daisy = document.createElement("optgroup"); daisy.label = "daisyUI built-in";
-          select.appendChild(daisy);
-          DAISY_THEMES.forEach((t) => add(t, t, daisy));
-        }
-        select.value = stored;
-
-        if (select.dataset.bound) return;
-        select.dataset.bound = "1";
-        select.addEventListener("change", () => {
-          root.setAttribute("data-theme", select.value);
-          try { localStorage.setItem("hd-theme", select.value); } catch (e) {}
-        });
-      }
-      document.addEventListener("astro:page-load", setupThemePicker);
-    </script>
 
     <!-- Scroll-reveal animations via Motion (re-runs after view transitions) -->
     <script>
