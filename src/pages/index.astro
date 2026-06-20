@@ -66,7 +66,7 @@ const faqs = [
       </Reveal>
       <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
         <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
-        <a href="#how" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See how it works</a>
+        <a href="#how" class="btn btn-outline btn-lg w-full border-white text-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">See how it works</a>
       </Reveal>
       <Reveal delay={0.22} class="mt-9">
         <SocialProof />
@@ -102,12 +102,14 @@ const faqs = [
   <!-- ===== PAIN HOOK ===== -->
   <section class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
     <Reveal>
-      <h2 class="text-3xl sm:text-4xl">Every missed call is a booked job going to the other guy.</h2>
-      <p class="mt-4 text-lg text-base-content/70">
-        You can't quote from the top of a roof or from under a sink. By the time you call back,
-        they've already rung the next name on Google and booked him in. It's not your fault. You're
-        flat out doing the work. But it's quietly costing you real jobs every week.
-      </p>
+      <h2 class="text-3xl sm:text-4xl">Every missed call is a booked job going to the <span class="highlight">other guy</span>.</h2>
+      <div class="mt-4 space-y-2 text-base-content/70">
+        <p class="text-xl">You can't quote from the top of a roof or from under a sink.</p>
+        <p class="text-lg">By the time you call back, they've already rung the next name on Google and booked him in.</p>
+        <p class="text-lg">It's not your fault.</p>
+        <p class="text-lg">You're flat out doing the work.</p>
+        <p class="text-lg font-bold text-base-content">But it's quietly costing you real jobs every week.</p>
+      </div>
     </Reveal>
   </section>
 
@@ -134,7 +136,7 @@ const faqs = [
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <div class="card card-glow h-full border-2 border-success/40 bg-success/5">
+          <div class="card card-glow card-glow-success h-full border-2 border-success/40 bg-success/5">
             <div class="card-body">
               <h3 class="text-2xl text-success">🚀 With Hyper Digital</h3>
               <ul class="mt-2 space-y-2.5 text-base-content/80">

@@ -1,0 +1,376 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { SITE } from "../../consts";
+
+const title = "Tableau Towbars Case Study | Towbar Leads & Google Ads | Hyper Digital";
+const description =
+  "How we got Tableau Towbars found on Google, built an instant towbar quote funnel, and have run profitable Google Ads since 2021. A lean online channel that beats its target every year.";
+
+const client = "Tableau Towbars";
+const trade = "Automotive / Towing";
+const region = "Hawke's Bay, serving all of NZ";
+
+// ── At-a-glance (verified rates only — no dollar amounts) ───────────────────
+const glance: any[] = [
+  { value: 12, prefix: "", suffix: "%", decimals: 0, label: "conversion rate, up from 9% in 2021" },
+  { value: 5, prefix: "", suffix: " yrs", decimals: 0, label: "profitable, since 2021" },
+  { value: 7, prefix: "~", suffix: "x", decimals: 0, label: "return on ad spend" },
+];
+
+// ── What we did ─────────────────────────────────────────────────────────────
+const work = [
+  { icon: "search", title: "A site built to be found", body: "Donna had a great business that hardly anyone could find online. We built a fast, search-ready website around what Tableau Towbars actually does, so customers find them and can enquire the usual way, by phone, email or form." },
+  { icon: "calendar", title: "The instant towbar quote funnel", body: "The standout piece. A custom form where someone enters their car details and gets an accurate towbar and towball quote almost straight away. It turned a service Donna had never really pushed into a steady stream of ready-to-book enquiries." },
+  { icon: "pin", title: "Google Business Profile, ranking locally", body: "We set up and optimised their Google Business Profile so Tableau Towbars ranks well in the local map results, putting them in front of Hawke's Bay customers searching nearby." },
+  { icon: "megaphone", title: "Google Ads, profitable since 2021", body: "We have run Google Ads for Tableau Towbars since 2021. It has been profitable from the start and showcases their products right across New Zealand, all on a lean, efficient budget." },
+];
+
+// ── What stands out ─────────────────────────────────────────────────────────
+const standout = [
+  "A low, steady cost per conversion that has held consistent for years.",
+  "Conversion rate up from 9% in 2021 to 12% in 2026.",
+  "Roughly 7x return on ad spend, all from a lean budget.",
+  "The instant towbar quote funnel turns curious visitors into accurate quotes in moments.",
+  "Beats its target every year, dependable extra revenue alongside the main business.",
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results" },
+    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/tableau-towbars" },
+  ],
+};
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `${client} case study: found on Google, with an instant towbar quote funnel`,
+  about: trade,
+  author: { "@type": "Organization", name: "Hyper Digital" },
+  publisher: { "@type": "Organization", name: "Hyper Digital" },
+  description,
+};
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: { "@type": "Organization", name: "Hyper Digital" },
+  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+  author: { "@type": "Person", name: "Donna Godfrey" },
+  reviewBody:
+    "Ryan from Hyper Digital walked through the door and sat with me. He had already taken time to learn all about us and what we do. Since then they have got us found on Google with Ads to showcase our products all over NZ.",
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
+      <Reveal>
+        <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
+          <a href="/results" class="transition-colors hover:text-primary">Results</a>
+          <span class="px-2">/</span>
+          <span class="text-neutral-content/90">{client}</span>
+        </nav>
+      </Reveal>
+      <div class="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="text-center lg:text-left">
+          <Reveal>
+            <span class="badge badge-primary font-display">Case study · {trade}</span>
+          </Reveal>
+          <Reveal delay={0.05} class="mt-4">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+              A lean online channel that <span class="marker">beats its target every year</span>.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1} class="mt-5">
+            <p class="text-sm uppercase tracking-wider text-primary">{region}</p>
+          </Reveal>
+          <Reveal delay={0.14} class="mt-5">
+            <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+              Ryan walked in and sat down with Donna. She had a great business but wasn't sure where to
+              start online. We got Tableau Towbars found on Google, built an instant towbar quote funnel,
+              set up their Google Business Profile, and have run profitable Google Ads since 2021. Today
+              they serve local towbar work and customers right across New Zealand.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+            <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+          </Reveal>
+        </div>
+
+        <!-- Hero media — client website -->
+        <Reveal delay={0.15}>
+          <img
+            src="/img/case-studies/tableau-towbars.jpg"
+            alt="Tableau Towbars work in Hawke's Bay"
+            loading="eager"
+            class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl"
+          />
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AT A GLANCE (count-up) ===== -->
+  <section class="border-b border-base-300 bg-base-100 py-10 sm:py-12">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {glance.map((g) => (
+          <div class="text-center">
+            {g.static ? (
+              <div class="font-display text-3xl text-primary sm:text-4xl">{g.static}</div>
+            ) : (
+              <div
+                class="font-display text-3xl text-primary sm:text-4xl"
+                data-countup={g.value}
+                data-prefix={g.prefix}
+                data-suffix={g.suffix}
+                data-decimals={g.decimals}
+              >{g.prefix}{g.value}{g.suffix}</div>
+            )}
+            <div class="mt-1 text-sm text-base-content/60">{g.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE CHALLENGE ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="target" class="h-7 w-7" /></span>
+        <span class="eyebrow mt-5 block">The challenge</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A great business, hard to find online.</h2>
+      </Reveal>
+      <Reveal delay={0.08} class="mt-5">
+        <p class="text-lg text-base-content/70">
+          Donna had built something special: quality towbars and towball installs, plus custom trailers,
+          e-bike racks and other light engineering. The problem was that almost nobody could find it
+          online, and the towbar side, one of the easiest wins, had never really been pushed. She needed
+          a way to get found, quote fast, and turn searches into booked work.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE DID ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What we did</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Get found, quote fast, stay profitable.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          One joined-up system: a search-ready website, an instant towbar quote funnel, a strong local
+          Google presence, and Google Ads that have paid their way since 2021.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {work.map((w, i) => (
+          <Reveal delay={i * 0.07} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body flex-row gap-4">
+                <span class="icon-chip shrink-0"><Icon name={w.icon} class="h-6 w-6" /></span>
+                <div>
+                  <h3 class="font-display text-xl">{w.title}</h3>
+                  <p class="mt-1 text-base-content/70">{w.body}</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE RESULTS (interactive conversion-rate comparison + bullets) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The results</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Better conversion, a strong return, year after year.</h2>
+      </Reveal>
+
+      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+        <!-- Interactive conversion-rate comparison -->
+        <Reveal>
+          <div data-cmp data-max="16" class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+            <div class="flex items-center justify-between">
+              <span class="eyebrow">Conversion rate</span>
+              <span data-cmp-value class="badge badge-primary font-display">12%</span>
+            </div>
+            <div class="mt-5 h-9 w-full overflow-hidden rounded-full bg-base-200">
+              <div class="cmp-fill"></div>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-1 rounded-box border border-base-300 bg-base-100 p-1" role="tablist" aria-label="Compare conversion rate over time">
+              <button type="button" role="tab" class="tab-btn" data-val="9" data-display="9%" aria-selected="false">2021, when we started</button>
+              <button type="button" role="tab" class="tab-btn is-active" data-val="12" data-display="12%" aria-selected="true">2026, today</button>
+            </div>
+            <p class="mt-3 text-sm text-base-content/55">
+              Conversion rate is the share of ad clicks that turn into an enquiry or sale. Tap to compare. Higher is better, and theirs has climbed steadily since day one.
+            </p>
+          </div>
+        </Reveal>
+
+        <!-- What stands out -->
+        <div>
+          <Reveal><h3 class="font-display text-2xl">What stands out</h3></Reveal>
+          <ul class="mt-5 space-y-3">
+            {standout.map((s, i) => (
+              <Reveal delay={i * 0.06}>
+                <li class="flex items-start gap-3 rounded-box border border-base-300 bg-base-100 p-4">
+                  <span class="icon-chip shrink-0 h-10 w-10"><Icon name="check" class="h-5 w-5" /></span>
+                  <span class="text-base-content/80">{s}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TWO KINDS OF CUSTOMER ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">One business, two audiences</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Local installs and a nationwide audience.</h2>
+      </Reveal>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        <Reveal class="h-full">
+          <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <span class="icon-chip"><Icon name="pin" class="h-6 w-6" /></span>
+              <h3 class="mt-3 font-display text-xl">Local, in Hawke's Bay</h3>
+              <p class="mt-1 text-base-content/70">
+                Towbar and towball installs for nearby drivers, booked through the instant quote funnel,
+                the phone, and a Google Business Profile that ranks well in local search.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08} class="h-full">
+          <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <span class="icon-chip"><Icon name="trend" class="h-6 w-6" /></span>
+              <h3 class="mt-3 font-display text-xl">Nationwide, across NZ</h3>
+              <p class="mt-1 text-base-content/70">
+                Custom trailers, e-bike racks and light engineering that customers all over the country
+                come looking for, with Google Ads putting their products in front of the whole of NZ.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ICING ON THE CAKE ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1000px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="star" class="h-7 w-7" /></span>
+        <span class="eyebrow mt-5 block">The icing on the cake</span>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Not their main channel. Still worth every cent.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-neutral-content/80">
+          Online isn't where Tableau Towbars earns the bulk of its income. That comes from commercial
+          work and routine B2C jobs that have to be done onsite, like fitting towbars. But the online
+          channel has exceeded its goals every single year, and on a small budget it has become an
+          integral part of their total annual revenue. Icing on the cake, and it keeps getting better.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <div class="text-2xl text-primary">★★★★★</div>
+      <blockquote class="mt-4 font-display text-2xl leading-snug sm:text-3xl">
+        "Ryan from Hyper Digital walked through the door and sat with me. He had already taken time to
+        learn all about us and what we do. Since then they have got us found on Google with Ads to
+        showcase our products all over NZ."
+      </blockquote>
+      <div class="mt-4 font-display text-base-content/70">Donna Godfrey, Tableau Towbars</div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">Want results like these for your business?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Hit your agreed lead goal in 60 days, or we work for free until you do. Get a free, no-obligation
+          audit and we'll show you what your leads should cost.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify([breadcrumbSchema, articleSchema, reviewSchema])} />
+
+  <!-- Interactive behaviour: comparison toggle + count-up -->
+  <script>
+    import { inView } from "motion";
+
+    function setupCompare() {
+      document.querySelectorAll<HTMLElement>("[data-cmp]").forEach((c) => {
+        if (c.dataset.bound) return;
+        c.dataset.bound = "1";
+        const fill = c.querySelector<HTMLElement>(".cmp-fill");
+        const out = c.querySelector<HTMLElement>("[data-cmp-value]");
+        const max = parseFloat(c.dataset.max || "18");
+        const buttons = c.querySelectorAll<HTMLButtonElement>(".tab-btn");
+        const apply = (btn: HTMLButtonElement) => {
+          const val = parseFloat(btn.dataset.val || "0");
+          buttons.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          if (fill) fill.style.width = Math.min(100, (val / max) * 100) + "%";
+          if (out) out.textContent = btn.dataset.display || "";
+        };
+        buttons.forEach((b) => b.addEventListener("click", () => apply(b)));
+        const init = c.querySelector<HTMLButtonElement>(".tab-btn.is-active") || buttons[0];
+        if (init) apply(init);
+      });
+    }
+
+    function setupCountUp() {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelectorAll<HTMLElement>("[data-countup]").forEach((el) => {
+        if (el.dataset.counted) return;
+        const target = parseFloat(el.dataset.countup || "0");
+        const decimals = parseInt(el.dataset.decimals || "0", 10);
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const render = (v: number) => { el.textContent = prefix + v.toFixed(decimals) + suffix; };
+        if (reduce) { el.dataset.counted = "1"; render(target); return; }
+        inView(el, () => {
+          el.dataset.counted = "1";
+          const dur = 1100;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min(1, (now - start) / dur);
+            render(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }, { amount: 0.6 });
+      });
+    }
+
+    document.addEventListener("astro:page-load", () => { setupCompare(); setupCountUp(); });
+  </script>
+</Layout>
