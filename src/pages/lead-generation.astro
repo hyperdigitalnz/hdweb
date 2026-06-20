@@ -6,15 +6,6 @@ import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
 
-const clientLogos = [
-  { src: "/img/toplineLogoBW.png", alt: "Topline" },
-  { src: "/img/continuousGroupLogoBW.png", alt: "Continuous Group" },
-  { src: "/img/harcourtsLogoBW.png", alt: "Harcourts" },
-  { src: "/img/hawksBayCombinedTaxisLogoBW.png", alt: "Hawke's Bay Combined Taxis" },
-  { src: "/img/portaSkipLogoBW.png", alt: "Porta Skip" },
-  { src: "/img/boulevardServicesLogoBW.png", alt: "Boulevard Services" },
-];
-
 const title = "Lead Generation for Tradies | More Calls & Booked Jobs | Hyper Digital";
 const description =
   "We get Kiwi tradies more calls and quote requests: Google Ads for fast results, local SEO built in, Meta when it's worth it. More leads on the same budget. Free audit.";
@@ -258,14 +249,7 @@ const faqSchema = {
           </Reveal>
         ))}
       </div>
-      <Reveal class="mt-10">
-        <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-80">
-          {clientLogos.map((l) => (
-            <img src={l.src} alt={l.alt} loading="lazy" class="h-8 w-auto object-contain sm:h-9" />
-          ))}
-        </div>
-      </Reveal>
-      <Reveal class="mt-8 text-center">
+      <Reveal class="mt-10 text-center">
         <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
       </Reveal>
     </div>

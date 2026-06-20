@@ -1,0 +1,535 @@
+---
+// Reusable long-form, trade-specific lead-gen landing page.
+// Driven entirely by a TradeLP token object (src/data/tradeLeadGen.ts);
+// all shared copy/markup lives here so adding a trade is a small data entry.
+import Layout from "../layouts/Layout.astro";
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+import SocialProof from "./SocialProof.astro";
+import AuditForm from "./AuditForm.astro";
+import Vsl from "./Vsl.astro";
+import { SITE, STATS } from "../consts";
+import type { TradeLP } from "../data/tradeLeadGen";
+
+interface Props {
+  trade: TradeLP;
+}
+const { trade } = Astro.props;
+
+const VSL_SRC =
+  "https://assets.cdn.filesafe.space/GSVK9f66TXEj40ejsIV0/media/69e1ba1950b9a3263a793b97.mp4";
+
+// ---- Shared content (same for every trade) -------------------------------
+
+const compare = [
+  {
+    label: "The Auckland agency",
+    result: "Money torched",
+    body: "Six weeks of waiting, then a report full of impressions and engagement. Plenty of clicks to a slow website, zero extra jobs.",
+    tone: "bad",
+  },
+  {
+    label: "The DIY hero",
+    result: "Billboard in a desert",
+    body: "A tidy site you built yourself that nobody ever finds. A handful of enquiries a year, mostly from mates.",
+    tone: "bad",
+  },
+  {
+    label: "Hyper Digital",
+    result: "Booked work",
+    body: "Site, ads, follow-up and reviews built to work together. Live fast, leads coming in, and backed by our guarantee in writing.",
+    tone: "good",
+  },
+];
+
+const system = [
+  {
+    icon: "layout",
+    n: "1",
+    title: "A website that converts",
+    sub: "The foundation",
+    body: "Fast, search-ready and built to turn visitors into quote requests, with local SEO baked in from day one.",
+  },
+  {
+    icon: "search",
+    n: "2",
+    title: "Google Ads that drive the right traffic",
+    sub: "Ready-to-buy locals",
+    body: "We put you in front of people searching for your trade in your area, right when they need you. No wasted spend on junk clicks.",
+  },
+  {
+    icon: "megaphone",
+    n: "3",
+    title: "Meta retargeting",
+    sub: "Catches the ones who didn't call",
+    body: "Follows up across Facebook and Instagram with the people who looked but didn't book, until they're ready.",
+  },
+  {
+    icon: "bolt",
+    n: "4",
+    title: "Instant lead response",
+    sub: "The biggest lever",
+    body: "Every enquiry gets a reply in about 30 seconds, day or night. The fastest reply almost always wins the job.",
+  },
+  {
+    icon: "chat",
+    n: "5",
+    title: "AI chat and booking",
+    sub: "A 24/7 receptionist",
+    body: "Answers questions, qualifies the job and books it straight into your calendar, even at 11pm while you sleep.",
+  },
+  {
+    icon: "star",
+    n: "6",
+    title: "5-star review engine",
+    sub: "Compounds month on month",
+    body: "Asks happy customers for a Google review after every job, so your ranking and your reputation keep climbing.",
+  },
+];
+
+const valueStack = [
+  { item: "Professional website", value: "$3,500" },
+  { item: "AI chat and voice responder", value: "$2,000" },
+  { item: "Content management system", value: "$1,500" },
+  { item: "Email automation sequences", value: "$1,000" },
+  { item: "Automated booking system", value: "$800" },
+  { item: "Email follow-up & nurture system", value: "$600" },
+  { item: "Google review engine", value: "$600" },
+  { item: "Live analytics dashboard", value: "$600" },
+];
+const valueTotal = "$10,600";
+
+const forYou = [
+  "You run your business in New Zealand and want more booked jobs.",
+  "You can handle a steady lift in quote requests and work.",
+  "You or your team reply to leads within the hour.",
+  "You're ready to invest properly in growth, not cheap experiments.",
+];
+const notForYou = [
+  "You want overnight magic with no follow-up.",
+  "You won't reply to leads within a day.",
+  "You're not ready to commit to an ad budget that makes the numbers work.",
+  "You don't have the capacity to take on more jobs right now.",
+];
+
+const steps = [
+  { n: "1", title: "Free audit call", time: "20 minutes", body: "We review your current setup and show you where your next jobs are coming from. You leave with a clear plan either way." },
+  { n: "2", title: "We build it for you", time: "7 to 10 days", body: "Website, ads, instant response, booking and reviews. All done for you, nothing for you to stitch together." },
+  { n: "3", title: "Training and launch", time: "1 hour", body: "A quick walkthrough so you know how it works, then we flick it live and the leads start coming in." },
+  { n: "4", title: "It runs, we sharpen it", time: "Ongoing", body: "We manage and improve it every month, and report on real results: leads and cost per lead, not vanity metrics." },
+];
+
+const defaultProof = [
+  { name: "Tableau Towbars", stat: "+69%", statLabel: "phone enquiries YoY", body: "Tracked enquiries up on flat ad spend with cost per lead down. A 4½-year partnership and counting." },
+  { name: "Harris Pumps & Filtration", stat: "$31 → $17", statLabel: "cost per lead", body: "29% more leads in 2025 than 2024 while cutting cost per lead by nearly a quarter." },
+  { name: "Bermuda Lifestyle", stat: "+2,500%", statLabel: "enquiries in year one", body: "A brand-new website plus Google, Facebook and Instagram working together." },
+];
+const proof = trade.proof ?? defaultProof;
+
+const defaultChart = {
+  badge: "↓ 45%",
+  topLabel: "$31",
+  bottomLabel: "$17",
+  caption: "Real client trend, Harris Pumps & Filtration. Illustrative chart.",
+};
+const chart = trade.chart ?? defaultChart;
+
+const sharedFaqs = [
+  { q: "How soon will I see leads?", a: "Most Google Ads campaigns are live within days of your audit, with leads coming in shortly after. SEO and reviews build on top of that over the following months." },
+  { q: "How is this different from a normal Google Ads agency?", a: "Most agencies sell you one piece and leave the rest to you. We run the whole pipeline, from ads to website to follow-up, so the leads actually turn into booked jobs. And we back it with a 60-day lead guarantee." },
+  { q: "What counts as a lead?", a: "A real phone call or quote request from a potential customer in your area, not clicks or impressions. We agree on what counts before we start." },
+  { q: "How much is the ad budget on top of the monthly fee?", a: "Your ad spend is separate and paid straight to Google or Meta, never marked up by us. We recommend the right budget for your trade and area on your free audit." },
+  { q: "Will you lock me into a contract?", a: "No. You stay because the work keeps coming, not because a contract traps you." },
+  { q: "Do you work with my competitors?", a: "No. We give you regional exclusivity, so we won't run ads for a competing business in your patch." },
+];
+const faqs = [...sharedFaqs, ...(trade.faqExtra ?? [])];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const Tp = trade.tradePlural;
+const Ts = trade.tradeSingular;
+---
+<Layout title={trade.seoTitle} description={trade.seoDescription}>
+  <!-- ===== 1. HERO + VSL ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-24">
+      <Reveal><span class="eyebrow">{trade.heroEyebrow}</span></Reveal>
+      <Reveal delay={0.05} class="mt-3">
+        <h1 class="text-balance text-4xl sm:text-5xl lg:text-6xl">
+          {trade.heroHeadlineLead} <span class="marker">{trade.heroHeadlineMark}</span>
+        </h1>
+      </Reveal>
+      <Reveal delay={0.1} class="mt-6">
+        <p class="mx-auto max-w-xl text-lg text-neutral-content/80">{trade.heroSub}</p>
+      </Reveal>
+      <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+        <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+        <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+      </Reveal>
+      <Reveal delay={0.22} class="mt-9 flex justify-center"><SocialProof /></Reveal>
+      <Reveal delay={0.28} class="mt-12">
+        <Vsl src={VSL_SRC} caption="Watch: how the system books you more jobs (2 min)" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 2. TRUST BAR ===== -->
+  <section class="border-b border-base-300 bg-base-200 py-8">
+    <div class="mx-auto flex max-w-[1160px] flex-wrap items-center justify-center gap-x-10 gap-y-4 px-5 text-center">
+      {STATS.map((s) => (
+        <div>
+          <div class="font-display text-3xl text-primary">{s.value}</div>
+          <div class="text-xs uppercase tracking-wide text-base-content/60">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== 3. PROBLEM (3 mistakes) ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">The leak</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Stop losing money to these 3 mistakes.</h2>
+        <p class="mt-4 text-lg text-base-content/70">{trade.painLine}</p>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {trade.mistakes.map((m, i) => (
+          <Reveal delay={i * 0.08}>
+            <div class="card h-full border border-error/30 bg-error/5">
+              <div class="card-body">
+                <div class="font-display text-3xl text-error">#{i + 1}</div>
+                <h3 class="mt-1 font-display text-xl">{m.title}</h3>
+                <p class="mt-2 text-base-content/70">{m.body}</p>
+                <p class="mt-3 text-sm font-bold text-base-content">{m.stat}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. WHY POINT-SOLUTIONS FAIL ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">The real reason</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A flash website on its own won't ring your phone.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Ads with no follow-up. A pretty site with no traffic. Reviews left to chance. On their own,
+          each piece leaks. The jobs slip through the gaps between them. That's why we build the whole
+          chain, from the first click to the booked job, so nothing falls through the cracks.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 5. THREE-OPTION COMPARISON ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1100px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Your options</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Three ways to chase more work. Only one books jobs.</h2>
+      </Reveal>
+      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-3">
+        {compare.map((c, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class={`card h-full border-2 ${c.tone === "good" ? "card-glow card-glow-success border-success/40 bg-success/5" : "border-base-300 bg-base-100"}`}>
+              <div class="card-body">
+                <span class={`badge self-start font-display ${c.tone === "good" ? "badge-success" : "badge-outline"}`}>{c.label}</span>
+                <h3 class={`mt-2 font-display text-2xl ${c.tone === "good" ? "text-success" : "text-base-content"}`}>{c.result}</h3>
+                <p class="mt-2 text-base-content/70">{c.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal class="mt-8 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          Most agencies fix one piece and blame the others for the result. We build the whole system.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 6. THE 6-PART SYSTEM ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-20">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The system</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">The {Ts}'s lead system. Six parts, built to work together.</h2>
+        <p class="mt-4 text-lg text-neutral-content/80">
+          Not just a website. A complete lead-to-job system, all done for you and managed in-house.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {system.map((c, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card h-full border border-white/10 surface-2 shadow-lg">
+              <div class="card-body">
+                <div class="flex items-center gap-3">
+                  <span class="icon-chip"><Icon name={c.icon} class="h-6 w-6" /></span>
+                  <span class="font-display text-2xl text-primary">{c.n}</span>
+                </div>
+                <h3 class="mt-3 font-display text-xl">{c.title}</h3>
+                <div class="text-sm uppercase tracking-wide text-primary/80">{c.sub}</div>
+                <p class="mt-2 text-neutral-content/70">{c.body}</p>
+                {c.icon === "search" && (
+                  <ul class="mt-3 space-y-1 text-sm text-neutral-content/60">
+                    {trade.searchTerms.map((t) => (<li>"{t}"</li>))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. REAL RESULTS + CPL CHART ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A track record of real results.</h2>
+        {trade.resultsSub && <p class="mx-auto mt-3 max-w-2xl text-base-content/70">{trade.resultsSub}</p>}
+      </Reveal>
+
+      <div class="mt-10 grid items-center gap-10 lg:grid-cols-2">
+        <Reveal>
+          <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">
+            <div class="flex items-center justify-between">
+              <span class="eyebrow">Cost per lead</span>
+              <span class="badge badge-primary font-display">{chart.badge}</span>
+            </div>
+            <svg viewBox="0 0 320 170" class="mt-4 w-full" role="img" aria-label={`Cost per lead falling from ${chart.topLabel} to ${chart.bottomLabel}`}>
+              <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+                <line x1="10" y1="20" x2="310" y2="20" />
+                <line x1="10" y1="60" x2="310" y2="60" />
+                <line x1="10" y1="100" x2="310" y2="100" />
+                <line x1="10" y1="140" x2="310" y2="140" />
+              </g>
+              <path class="draw-line" style="--len: 360" d="M14 34 L74 58 L134 50 L194 92 L254 112 L306 130" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="14" cy="34" r="4" fill="var(--color-primary)" />
+              <circle class="fade-in-late" cx="306" cy="130" r="5" fill="var(--color-primary)" />
+              <text x="14" y="24" fill="#faf8f5" font-size="15" font-weight="800" font-family="Source Sans 3">{chart.topLabel}</text>
+              <text class="fade-in-late" x="280" y="124" fill="var(--color-primary)" font-size="15" font-weight="800" font-family="Source Sans 3">{chart.bottomLabel}</text>
+            </svg>
+            <p class="mt-3 text-sm text-neutral-content/60">{chart.caption}</p>
+          </div>
+        </Reveal>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          {proof.map((p, i) => (
+            <Reveal delay={i * 0.07} class="h-full">
+              <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+                <div class="card-body">
+                  <div class="font-display text-3xl text-primary">{p.stat}</div>
+                  <div class="text-xs uppercase tracking-wide text-base-content/60">{p.statLabel}</div>
+                  {p.name && <div class="mt-2 font-display text-lg">{p.name}</div>}
+                  <p class="mt-1 text-sm text-base-content/70">{p.body}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <Reveal class="mt-8">
+        <p class="mx-auto max-w-2xl text-center text-sm text-base-content/60">
+          These are real client results. Leads are what we deliver, not closed sales. Your numbers
+          vary by trade, area and how fast you reply.
+        </p>
+      </Reveal>
+      <Reveal class="mt-8 text-center">
+        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 8. PRICING + VALUE STACK ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">What you get</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Everything you need to capture and convert more leads.</h2>
+      </Reveal>
+
+      <div class="mt-10 grid items-start gap-8 lg:grid-cols-2">
+        <Reveal>
+          <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+            {valueStack.map((v) => (
+              <div class="flex items-center justify-between border-b border-base-300 py-2.5">
+                <span class="flex items-center gap-2 text-base-content/80"><span class="text-success">✓</span> {v.item}</span>
+                <span class="font-display text-base-content/60">{v.value}</span>
+              </div>
+            ))}
+            <div class="flex items-center justify-between pt-3">
+              <span class="font-display text-lg">Total value</span>
+              <span class="font-display text-2xl text-base-content/50 line-through">{valueTotal}</span>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <div class="grid gap-6">
+            <div class="card border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name="bolt" class="h-6 w-6" /></span>
+                <div class="mt-3 text-sm uppercase tracking-wide text-base-content/60">One-off setup</div>
+                <div class="font-display text-4xl text-primary">$1,497 <span class="text-2xl text-base-content/60">+GST</span></div>
+                <p class="mt-2 text-base-content/70">Your whole system built and live, ready to start bringing in leads.</p>
+              </div>
+            </div>
+            <div class="card card-glow border border-primary bg-base-100 shadow-md">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name="calendar" class="h-6 w-6" /></span>
+                <div class="mt-3 text-sm uppercase tracking-wide text-base-content/60">Then, monthly</div>
+                <div class="font-display text-4xl text-primary">From $497 <span class="text-2xl text-base-content/60">/mo +GST</span></div>
+                <p class="mt-2 text-base-content/70">Website, ad management and automation. Your ad budget is separate and set to suit your goals.</p>
+              </div>
+            </div>
+            <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free audit</a>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal class="mt-6">
+        <p class="mx-auto max-w-2xl text-center text-base-content/70">
+          Your free audit sets the right plan and ad budget for your trade and area. No guesswork, no
+          hidden extras.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 9. GUARANTEE ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
+        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="text-primary">free</span> until you do.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Before we start, we agree a monthly lead target with you, based on your trade, your area and
+          your budget. If we don't hit it in the first 60 days, we keep working and waive our
+          management fee until we do. You still cover your ad spend, but you won't pay us another cent
+          until we deliver.
+        </p>
+        <a href="#audit" class="btn btn-primary mt-7 font-display text-lg tracking-wide">Get my free audit</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 10. WHO IT'S FOR / NOT FOR ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Honest fit</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Who this works for. And who it doesn't.</h2>
+      </Reveal>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <Reveal>
+          <div class="card h-full border-2 border-success/40 bg-success/5">
+            <div class="card-body">
+              <h3 class="font-display text-2xl text-success">This is for you if</h3>
+              <ul class="mt-3 space-y-2.5 text-base-content/80">
+                {forYou.map((f) => (<li class="flex gap-2"><span class="text-success">✓</span> {f}</li>))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div class="card h-full border border-error/30 bg-error/5">
+            <div class="card-body">
+              <h3 class="font-display text-2xl text-error">This isn't for you if</h3>
+              <ul class="mt-3 space-y-2.5 text-base-content/80">
+                {notForYou.map((f) => (<li class="flex gap-2"><span class="text-error">✗</span> {f}</li>))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal class="mt-8 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          We give you regional exclusivity, so we'll only run ads for one {Ts} in your patch. We'd
+          rather say no upfront than waste your money.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 11. HOW IT WORKS ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">How it works</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From "yes" to leads, with no mucking around.</h2>
+      </Reveal>
+      <div class="mt-12 grid gap-6 md:grid-cols-4">
+        {steps.map((s, i) => (
+          <Reveal delay={i * 0.07} class="h-full">
+            <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <div class="flex h-12 w-12 items-center justify-center rounded-box bg-neutral font-display text-2xl text-primary">{s.n}</div>
+                <h3 class="mt-3 font-display text-xl">{s.title}</h3>
+                <div class="text-sm uppercase tracking-wide text-base-content/60">{s.time}</div>
+                <p class="mt-2 text-base-content/70">{s.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 12. FAQ + AUDIT FORM ===== -->
+  <section id="audit" class="scroll-mt-24 bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <h2 class="text-3xl sm:text-4xl">Questions {Tp} ask before they sign up.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+              <input type="checkbox" />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal delay={0.1} class="lg:sticky lg:top-24">
+        <AuditForm title="Get your free audit" lead={`In 20 minutes we'll show you where your next ${trade.trade} jobs are coming from, and what your leads should cost.`} />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== 13. FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Want more booked {trade.trade} jobs from the same budget?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free, no-obligation audit. We'll show you which channels will work best for your
+          trade and what your leads should cost.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">Get my free audit</a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+</Layout>
