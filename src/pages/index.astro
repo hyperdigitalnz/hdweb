@@ -4,6 +4,8 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import PricingTiers from "../components/PricingTiers.astro";
+import SpeedBadge from "../components/SpeedBadge.astro";
+import LeadFeed from "../components/LeadFeed.astro";
 import { SITE, STATS, STATS_NOTE } from "../consts";
 
 const system = [
@@ -15,7 +17,7 @@ const system = [
   {
     n: "2",
     title: "Book the work",
-    body: "Every call and enquiry gets answered, qualified and booked in about 30 seconds, day or night. Your new smart website and AI assistant handle it for you, even when you're flat out on a job with your phone in the van.",
+    body: "Every call and enquiry gets answered, qualified and booked in 30 seconds, day or night. Your new smart website and AI assistant handle it for you, even when you're flat out on a job with your phone in the van.",
   },
   {
     n: "3",
@@ -63,7 +65,10 @@ const faqs = [
         <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
         <a href="#how" class="btn btn-outline btn-lg w-full border-white text-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">See how it works</a>
       </Reveal>
-      <Reveal delay={0.22} class="mt-9">
+      <Reveal delay={0.2} class="mt-6 flex justify-center">
+        <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+      </Reveal>
+      <Reveal delay={0.26} class="mt-9">
         <SocialProof />
       </Reveal>
     </div>
@@ -136,7 +141,7 @@ const faqs = [
             <div class="card-body">
               <h3 class="text-2xl text-success">🚀 With Hyper Digital</h3>
               <ul class="mt-2 space-y-2.5 text-base-content/80">
-                <li class="flex gap-2"><span class="text-success">✓</span> Every enquiry answered in ~30 seconds, 24/7.</li>
+                <li class="flex gap-2"><span class="text-success">✓</span> Every enquiry answered in 30 seconds, 24/7.</li>
                 <li class="flex gap-2"><span class="text-success">✓</span> Leads chased automatically until they book.</li>
                 <li class="flex gap-2"><span class="text-success">✓</span> Honest reporting on every dollar you spend.</li>
                 <li class="flex gap-2"><span class="text-success">✓</span> Reviews requested after every job, on autopilot.</li>
@@ -172,6 +177,32 @@ const faqs = [
             </div>
           </Reveal>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPEED SHOWCASE ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-20">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <Reveal>
+          <SpeedBadge tone="dark" />
+          <h2 class="mt-5 text-3xl text-neutral-content sm:text-4xl">
+            Every enquiry answered in <span class="marker">30 seconds</span>. Day or night.
+          </h2>
+          <p class="mt-4 text-lg text-neutral-content/80">
+            The fastest reply almost always wins the job. While most enquiries sit unanswered for
+            hours, your system replies, qualifies and books them in within 30 seconds, even when
+            you're flat out on the tools. It's the same system working on this page right now.
+          </p>
+          <div class="mt-7 flex flex-col flex-wrap gap-3 sm:flex-row">
+            <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free audit</a>
+            <a href="/ai-automation" class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide">See how it works</a>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <LeadFeed />
+        </Reveal>
       </div>
     </div>
   </section>

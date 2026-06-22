@@ -1,0 +1,21 @@
+---
+// Small "live speed" proof pill. One source of truth for the 30-second reply signal
+// shown across the site. When the GHL chatbot goes live this can trigger/open it.
+interface Props {
+  tone?: "dark" | "light";
+  label?: string;
+  class?: string;
+}
+const { tone = "dark", label = "Replies in 30 seconds", class: cls = "" } = Astro.props;
+const skin =
+  tone === "dark"
+    ? "border-primary/40 bg-primary/15 text-primary"
+    : "border-primary/40 bg-primary/10 text-primary";
+---
+<span class={`inline-flex items-center gap-2 rounded-full border ${skin} px-3.5 py-1.5 text-sm font-semibold ${cls}`}>
+  <span class="relative flex h-2 w-2" aria-hidden="true">
+    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+    <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+  </span>
+  {label}
+</span>

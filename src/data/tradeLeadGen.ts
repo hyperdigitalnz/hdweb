@@ -90,7 +90,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more plumbing jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't answer the phone with your hands full under a sink.",
 
@@ -154,7 +154,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more electrical jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't stop and quote a job with live wires in your hands.",
 
@@ -204,7 +204,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more roofing jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't take a call when you're two storeys up on a roof.",
 
@@ -254,7 +254,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more building jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't price a new job when you're flat out running the current one.",
 
@@ -304,7 +304,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more painting jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't answer the phone with a brush in one hand and a wall half done.",
 
@@ -354,7 +354,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more heat pump jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't return calls when you're up a ladder mounting a unit.",
 

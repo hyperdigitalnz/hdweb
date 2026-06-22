@@ -13,12 +13,14 @@ const {
   compact = false,
   goal = false,
 } = Astro.props;
+import SpeedBadge from "./SpeedBadge.astro";
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Painter / Decorator","Auto / Mechanic","Other trade"];
 ---
 <div class="rounded-box border-t-4 border-primary bg-base-100 p-6 text-base-content shadow-xl sm:p-7">
   <h2 class="text-2xl text-base-content">{title}</h2>
   <p class="mt-2 text-sm text-base-content/70">{lead}</p>
+  <div class="mt-3"><SpeedBadge tone="light" /></div>
 
   <form class="audit-form mt-5 grid gap-3" method="post" action="/api/lead">
     <!-- Honeypot: hidden from real users, catches bots. Keep it unlabelled and out of the tab order. -->
@@ -64,7 +66,7 @@ const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Pai
 
     <button type="submit" class="btn btn-primary btn-block font-display text-lg tracking-wide">Get my free audit →</button>
     <p class="form-msg text-center text-xs text-base-content/60" aria-live="polite">
-      ⚡ We reply within one business day. We only take on a handful of new clients a month.
+      We reply day or night, and only take on a handful of new clients a month.
     </p>
   </form>
 </div>
