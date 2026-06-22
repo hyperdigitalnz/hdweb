@@ -11,12 +11,16 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  /** Hide the site nav header. Used on paid-traffic landing pages to remove
+   *  exit links and keep focus on the form. */
+  hideHeader?: boolean;
 }
 const {
   title = `${SITE.name} | ${SITE.tagline}`,
   description = "The complete job booking system for modern Tradies. We find you the work, book it 24/7, and keep your calendar full. Free leads audit.",
   image = "/img/digital-marketing.png",
   noindex = false,
+  hideHeader = false,
 } = Astro.props;
 
 // Absolute URLs for canonical + social cards (needs `site` in astro.config).
@@ -76,7 +80,7 @@ const ogImage = new URL(image, Astro.site).href;
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body class="bg-base-100 pb-[60px] text-base-content sm:pb-0">
-    <Header />
+    {!hideHeader && <Header />}
     <main>
       <slot />
     </main>

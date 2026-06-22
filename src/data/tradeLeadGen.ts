@@ -139,4 +139,254 @@ export const tradeLeadGen: Record<string, TradeLP> = {
       },
     ],
   },
+
+  electricians: {
+    slug: "electricians-lead-generation",
+    trade: "electrical",
+    tradePlural: "electricians",
+    tradeSingular: "electrician",
+
+    seoTitle: "Electrician Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "More booked electrical jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+
+    heroEyebrow: "For electrical businesses in NZ",
+    heroHeadlineLead: "We get you",
+    heroHeadlineMark: "more electrical jobs.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "You can't stop and quote a job with live wires in your hands.",
+
+    mistakes: [
+      {
+        title: "Every slow reply is a job booked by someone else.",
+        body: "By the time you're down off the ladder and ring back, they've already called the next sparky on Google and booked them in. The fastest reply usually wins the work.",
+        stat: "Most tradies lose 6 to 8 jobs a week to slow callbacks.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out, the customer goes quiet, and you're too flat out to chase it. The job quietly disappears, even though they were keen.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most electricians stop after one.",
+      },
+      {
+        title: "No reviews, so you slip down Google.",
+        body: "Happy customers never get asked, so the reviews never come. Fewer reviews means a lower ranking, which means fewer of these calls next month.",
+        stat: "Reviews are one of the biggest local ranking factors on Google.",
+      },
+    ],
+
+    searchTerms: [
+      "emergency electrician near me",
+      "switchboard upgrade [your town]",
+      "electrician for new build",
+    ],
+
+    faqExtra: [
+      {
+        q: "Do you only work with electricians?",
+        a: "No. We work with trades right across New Zealand. This page is built for electricians because the searches, the jobs and the customers are specific to your trade, so the system is tuned for how people look for a sparky.",
+      },
+    ],
+  },
+
+  roofers: {
+    slug: "roofers-lead-generation",
+    trade: "roofing",
+    tradePlural: "roofers",
+    tradeSingular: "roofer",
+
+    seoTitle: "Roofing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "More booked roofing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+
+    heroEyebrow: "For roofing businesses in NZ",
+    heroHeadlineLead: "We get you",
+    heroHeadlineMark: "more roofing jobs.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "You can't take a call when you're two storeys up on a roof.",
+
+    mistakes: [
+      {
+        title: "Every slow reply is a job booked by someone else.",
+        body: "By the time you've climbed down and rung back, they've already called the next roofer on Google and booked the job in. The fastest reply usually wins the work.",
+        stat: "Most tradies lose 6 to 8 jobs a week to slow callbacks.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out, the customer goes quiet, and you're too flat out to chase it. The job quietly disappears, even though they were keen. Roofing jobs are big tickets to let slip.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most roofers stop after one.",
+      },
+      {
+        title: "No reviews, so you slip down Google.",
+        body: "Happy customers never get asked, so the reviews never come. Fewer reviews means a lower ranking, which means fewer of these calls next month.",
+        stat: "Reviews are one of the biggest local ranking factors on Google.",
+      },
+    ],
+
+    searchTerms: [
+      "roof repairs near me",
+      "reroofing cost [your town]",
+      "roof leak repair",
+    ],
+
+    faqExtra: [
+      {
+        q: "Do you only work with roofers?",
+        a: "No. We work with trades right across New Zealand. This page is built for roofers because the searches, the jobs and the customers are specific to your trade, so the system is tuned for how people look for a roofer.",
+      },
+    ],
+  },
+
+  builders: {
+    slug: "builders-lead-generation",
+    trade: "building",
+    tradePlural: "builders",
+    tradeSingular: "builder",
+
+    seoTitle: "Building Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "More booked building jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+
+    heroEyebrow: "For building businesses in NZ",
+    heroHeadlineLead: "We get you",
+    heroHeadlineMark: "more building jobs.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "You can't price a new job when you're flat out running the current one.",
+
+    mistakes: [
+      {
+        title: "Every slow reply is a job booked by someone else.",
+        body: "By the time you get a quiet moment to call back, they've moved on to the next builder who picked up. With jobs this size, one slow reply is real money out the door.",
+        stat: "Most tradies lose 6 to 8 jobs a week to slow callbacks.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out, the customer goes quiet, and you're too flat out on site to chase it. The job quietly disappears, even though they were keen.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most builders stop after one.",
+      },
+      {
+        title: "No reviews, so you slip down Google.",
+        body: "Happy customers never get asked, so the reviews never come. Fewer reviews means a lower ranking, which means fewer of these calls next month.",
+        stat: "Reviews are one of the biggest local ranking factors on Google.",
+      },
+    ],
+
+    searchTerms: [
+      "builder near me",
+      "home renovation builder [your town]",
+      "new build quote",
+    ],
+
+    faqExtra: [
+      {
+        q: "Do you only work with builders?",
+        a: "No. We work with trades right across New Zealand. This page is built for builders because the searches, the jobs and the customers are specific to your trade, so the system is tuned for how people look for a builder.",
+      },
+    ],
+  },
+
+  painters: {
+    slug: "painters-lead-generation",
+    trade: "painting",
+    tradePlural: "painters",
+    tradeSingular: "painter",
+
+    seoTitle: "Painting Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "More booked painting jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+
+    heroEyebrow: "For painting businesses in NZ",
+    heroHeadlineLead: "We get you",
+    heroHeadlineMark: "more painting jobs.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "You can't answer the phone with a brush in one hand and a wall half done.",
+
+    mistakes: [
+      {
+        title: "Every slow reply is a job booked by someone else.",
+        body: "By the time you've cleaned up and rung back, they've already booked the next painter who answered. The fastest reply usually wins the work.",
+        stat: "Most tradies lose 6 to 8 jobs a week to slow callbacks.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out, the customer goes quiet, and you're too flat out on the tools to chase it. The job quietly disappears, even though they were keen.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most painters stop after one.",
+      },
+      {
+        title: "No reviews, so you slip down Google.",
+        body: "Happy customers never get asked, so the reviews never come. Fewer reviews means a lower ranking, which means fewer of these calls next month.",
+        stat: "Reviews are one of the biggest local ranking factors on Google.",
+      },
+    ],
+
+    searchTerms: [
+      "house painters near me",
+      "interior house painting [your town]",
+      "exterior repaint quote",
+    ],
+
+    faqExtra: [
+      {
+        q: "Do you only work with painters?",
+        a: "No. We work with trades right across New Zealand. This page is built for painters because the searches, the jobs and the customers are specific to your trade, so the system is tuned for how people look for a painter.",
+      },
+    ],
+  },
+
+  "heat-pumps": {
+    slug: "heat-pump-lead-generation",
+    trade: "heat pump",
+    tradePlural: "heat pump installers",
+    tradeSingular: "heat pump installer",
+
+    seoTitle: "Heat Pump & HVAC Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "More booked heat pump and HVAC jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+
+    heroEyebrow: "For heat pump and HVAC businesses in NZ",
+    heroHeadlineLead: "We get you",
+    heroHeadlineMark: "more heat pump jobs.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in about 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "You can't return calls when you're up a ladder mounting a unit.",
+
+    mistakes: [
+      {
+        title: "Every slow reply is a job booked by someone else.",
+        body: "By the time you call back from the install you're on, they've booked the next installer on Google. The fastest reply usually wins the work.",
+        stat: "Most tradies lose 6 to 8 jobs a week to slow callbacks.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out, the customer goes quiet, and you're too flat out to chase it. The job quietly disappears, even though they were keen.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most installers stop after one.",
+      },
+      {
+        title: "No reviews, so you slip down Google.",
+        body: "Happy customers never get asked, so the reviews never come. Fewer reviews means a lower ranking, which means fewer of these calls next month.",
+        stat: "Reviews are one of the biggest local ranking factors on Google.",
+      },
+    ],
+
+    searchTerms: [
+      "heat pump installation near me",
+      "heat pump servicing [your town]",
+      "ducted heat pump quote",
+    ],
+
+    faqExtra: [
+      {
+        q: "Do you only work with heat pump installers?",
+        a: "No. We work with trades right across New Zealand. This page is built for heat pump and HVAC installers because the searches, the jobs and the customers are specific to your trade, so the system is tuned for how people look for an installer.",
+      },
+    ],
+  },
 };

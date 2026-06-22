@@ -5,6 +5,13 @@ import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
+import { tradeLeadGen } from "../data/tradeLeadGen";
+
+// Trade-specific landing pages, linked from the "by trade" row below.
+const tradePages = Object.values(tradeLeadGen).map((t) => ({
+  href: `/${t.slug}`,
+  label: t.tradePlural.replace(/^./, (c) => c.toUpperCase()),
+}));
 
 const title = "Lead Generation for Tradies | More Calls & Booked Jobs | Hyper Digital";
 const description =
@@ -331,6 +338,29 @@ const faqSchema = {
       </Reveal>
       <Reveal delay={0.1} class="lg:sticky lg:top-24">
         <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you which channels will work best for your trade, and what your leads should cost." />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== LEAD GENERATION BY TRADE ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1000px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">By trade</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Built for your trade.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          Every trade gets found differently. See how the system works for yours, with the searches,
+          jobs and numbers specific to your work.
+        </p>
+      </Reveal>
+      <Reveal class="mt-8">
+        <div class="flex flex-wrap justify-center gap-3">
+          {tradePages.map((t) => (
+            <a href={t.href} class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content font-display">
+              {t.label} →
+            </a>
+          ))}
+        </div>
       </Reveal>
     </div>
   </section>

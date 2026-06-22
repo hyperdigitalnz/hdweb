@@ -111,6 +111,76 @@ Flow: `AuditForm.astro` → POST `/api/lead` → Turnstile verify → forward to
 
 ## Work log
 
+### 2026-06-22 — Trade landing pages rollout (5 more trades)
+- Built out the remaining trades on the existing template (see the template log below). Added 5
+  data entries to `src/data/tradeLeadGen.ts` + thin page files:
+  - **electricians** → `/electricians-lead-generation`
+  - **roofers** → `/roofers-lead-generation`
+  - **builders** → `/builders-lead-generation`
+  - **painters** → `/painters-lead-generation`
+  - **heat-pumps** (covers the "HVAC" item) → `/heat-pump-lead-generation`. Copy framed around
+    heat pump installers (the dominant NZ search); data key is `"heat-pumps"`, SEO/FAQ name HVAC
+    too. Slug is `heat-pump-...`, not `hvac-...`, for NZ search intent.
+- Each entry tailors hero, `painLine`, the 3 mistakes (mistake #1 + stats trade-specific; #2/#3
+  reworded with the trade noun), `searchTerms`, and one `faqExtra`. **No per-trade `proof`/`chart`
+  supplied**, so all 5 fall back to the shared default results (Tableau / Harris / Bermuda), which
+  are real and client-verifiable. (Plumbers keeps its No Drips-only override.)
+- **Linked from `lead-generation.astro`**: new "By trade" section before the final CTA, built by
+  mapping `Object.values(tradeLeadGen)` (DRY — new trades appear automatically). Labels are the
+  capitalised `tradePlural`.
+- Verified via the running dev server (port 4321): all 6 trade pages + `/lead-generation` return
+  200 with no Astro/Vite error overlay, correct H1s, 0 em dashes. Did **not** run `npm run build`
+  (dev server was live; building invalidates its Vite cache per the rule above).
+- **Footer not touched** — 6 trade links would clutter it; the `lead-generation.astro` "By trade"
+  row is the hub. Add to Footer later if Matt wants it.
+- **No top nav on the trade LPs** (CRO for paid traffic): added a `hideHeader?: boolean` prop to
+  `Layout.astro` (`{!hideHeader && <Header />}`), and `TradeLandingPage.astro` passes `hideHeader`.
+  So every trade page renders with no header (no nav links / menu / exit paths); the rest of the
+  site is unchanged. Footer kept in full (Matt's call: visitor has scrolled the whole page by
+  then, low exit risk; keeps Privacy/Terms + partner badges). Mobile `StickyCall` tap-to-call bar
+  still shows. `/lead-generation` itself keeps its header (it's a hub page that links out by
+  design) — give it `hideHeader` too if it becomes a direct paid destination. Nothing
+  committed/pushed.
+
+### 2026-06-22 — Trade landing pages (template + plumbers) + copy de-roofing
+- **De-roofed generic copy**: reframed roofer-specific imagery (on the roof / up a ladder /
+  under a sink) into generic tradie lines across `index.astro` and `websites.astro` (e.g. "flat
+  out on a job", "finished the job in front of you"). "On the tools" left as-is (generic NZ).
+- **Trade landing pages — data-driven template.** New top-level URL pattern
+  `/[trade]-lead-generation` (NOT `/lp/[trade]`). Built one reusable template + a per-trade data
+  map + thin page files (Astro can't do partial-segment dynamic routes, and a `[slug]` catch-all
+  would shadow other routes, so each trade page is a real file):
+  - `src/data/tradeLeadGen.ts` — `TradeLP` type + `tradeLeadGen` record. Per-trade tokens only:
+    slug, trade/tradePlural/tradeSingular, SEO title/desc, hero (`heroEyebrow`,
+    `heroHeadlineLead`, `heroHeadlineMark`, `heroSub`), `painLine`, `mistakes[3]`,
+    `searchTerms[3]`, optional `proof[]` / `chart` / `resultsSub` / `faqExtra`.
+  - `src/components/TradeLandingPage.astro` — the shared long-form template (13 sections): hero +
+    VSL, trust bar (`STATS`), 3 mistakes, why-point-solutions-fail, 3-option compare, 6-part
+    system, results (chart + tiles), pricing + **$10,600 value stack**, 60-day guarantee,
+    who-it's-for/not, how-it-works, FAQ + `AuditForm`, final CTA. FAQ JSON-LD included.
+  - `src/components/Vsl.astro` — responsive 16:9 click-to-play video block.
+  - `src/pages/plumbers-lead-generation.astro` — thin page wiring template + `tradeLeadGen.plumbers`.
+- **Offer model (locked with Matt):** match the main site — **$1,497 +GST setup + from
+  $497/mo +GST**, ad spend separate, "hit your agreed lead goal in 60 days or we work free"
+  guarantee. The value stack is a perceived-value anchor only; the real price sits beneath it.
+- **VSL** is set once in `TradeLandingPage.astro` (`VSL_SRC`, currently
+  `…/media/69e1ba1950b9a3263a793b97.mp4`), so it updates every trade page at once.
+- **`.marker` gotcha**: the gold marker span is `white-space: nowrap`, so `heroHeadlineMark`
+  must be a short 2-4 word phrase or it overflows the H1. Plumbers H1 = "We get you **more
+  plumbing jobs.**" (kept dead simple on purpose).
+- **Edits during review (plumbers page):** removed the client-logo cluster (also removed it from
+  `lead-generation.astro`); removed the ROI "math" section (doubled up with pricing); swapped
+  value-stack "SMS follow-up" → "Email follow-up & nurture system"; hero stacks single-column at
+  all breakpoints (VSL underneath, not squished beside text); **results section is now No Drips
+  only** (per-trade `proof`/`chart`/`resultsSub` tokens; chart $45 target → $14, tiles $14 CPL /
+  ~9% CTR / ~$3k wasted spend cut — all from `results/no-drips.astro`, client-verifiable).
+- **Conventions honoured**: no em dashes, NZ spelling, `STATS` from `consts.ts` as the single
+  source of trust numbers (the old GHL LPs' "17 years / 60+ clients" were wrong), real clients
+  only in results.
+- **Open question for Matt**: old GHL LPs said "call Ryan"; site/About features Matt and
+  `consts` has no first name, so CTAs use the phone number only. Confirm whether to name a person.
+- Build verified clean each step; **nothing committed/pushed yet.**
+
 ### 2026-06-19 — v1.0 (initial site build, committed & deployed)
 - **Case studies**: created `results/bermuda-lifestyle.astro` (multi-channel: website + Google +
   Meta) and `results/no-drips.astro`; wired both into `results.astro` (Bermuda is the featured
@@ -138,9 +208,14 @@ Flow: `AuditForm.astro` → POST `/api/lead` → Turnstile verify → forward to
 
 ## Pending / TODO
 
-- **Trade landing pages** (plumbers, electricians, roofers, HVAC, builders, painters, …):
-  NOT started. Matt will provide an existing template page to model them on first. **Do not
-  build until that template is supplied.**
+- **Trade landing pages — rollout**: ✅ template + 6 trades built (plumbers, electricians,
+  roofers, builders, painters, heat-pumps) and linked from a "By trade" row on
+  `lead-generation.astro`. All awaiting Matt's sign-off. To add more trades: new entry in
+  `src/data/tradeLeadGen.ts` + a thin `src/pages/<trade>-lead-generation.astro` (the by-trade row
+  picks it up automatically). Open items: (a) decide whether to also link the trade pages from
+  `Footer.astro`; (b) no `_redirects` needed (no legacy GHL trade slugs exist); (c) review/refine
+  the per-trade copy with Matt; (d) consider per-trade `proof`/`chart` where a verifiable client
+  matches the trade (currently only plumbers overrides, via No Drips).
 - **`www → apex` Redirect Rule**: create in the Cloudflare dashboard (Rules → Redirect Rules):
   hostname `www.hyperdigital.nz` → 301 `concat("https://hyperdigital.nz", http.request.uri.path)`,
   preserve query string.
