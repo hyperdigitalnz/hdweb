@@ -1,0 +1,38 @@
+---
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+import { PRICING, SETUP_FEE } from "../data/pricing";
+
+interface Props {
+  cta?: string;
+  href?: string;
+}
+const { cta = "Get my free audit", href = "#audit" } = Astro.props;
+---
+<div class="grid items-stretch gap-6 md:grid-cols-3">
+  {PRICING.map((p, i) => (
+    <Reveal delay={i * 0.08} class="h-full">
+      <div class={`card h-full border bg-base-100 shadow-sm ${p.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>
+        <div class="card-body">
+          {p.popular && <span class="badge badge-primary self-start font-display">Most popular</span>}
+          <h3 class="font-display text-2xl">{p.name}</h3>
+          <div class="mt-1">
+            <span class="font-display text-4xl text-primary">${p.price}</span>
+            <span class="text-base-content/60">/mo +GST</span>
+          </div>
+          <p class="mt-1 text-sm text-base-content/60">+ {SETUP_FEE} +GST one-off setup</p>
+          <p class="mt-3 text-base-content/70">{p.who}</p>
+          {p.leadIn && <p class="mt-4 font-display text-sm text-base-content">{p.leadIn}</p>}
+          <ul class={`space-y-2 ${p.leadIn ? "mt-2" : "mt-4"}`}>
+            {p.features.map((f) => (
+              <li class="flex items-start gap-2 text-base-content/80">
+                <Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-primary" /> {f}
+              </li>
+            ))}
+          </ul>
+          <a href={href} class={`btn mt-6 font-display tracking-wide ${p.popular ? "btn-primary" : "btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content"}`}>{cta}</a>
+        </div>
+      </div>
+    </Reveal>
+  ))}
+</div>

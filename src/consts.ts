@@ -25,3 +25,9 @@ export const STATS = [
   { value: "4x", label: "return on ad spend" },
   { value: "2019", label: "in business since" },
 ];
+
+// Footnote shown beneath the trust bar. The 4x figure is a deliberately conservative
+// blended average across managed accounts, so individual case studies (e.g. Tableau
+// Towbars at ~7x) can sit higher without contradicting the headline.
+export const STATS_NOTE =
+  "4x return on ad spend is a conservative blended average across managed accounts. Individual campaigns vary, and some run higher.";

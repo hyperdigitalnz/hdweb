@@ -4,7 +4,7 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
-import { SITE, STATS } from "../consts";
+import { SITE, STATS, STATS_NOTE } from "../consts";
 
 const title = "About Hyper Digital | Marketing Run by Two Kiwis Who Get the Trades";
 const description =
@@ -160,6 +160,7 @@ const orgSchema = {
             </div>
           ))}
         </div>
+        <p class="mx-auto mt-6 max-w-2xl text-center text-xs text-neutral-content/50">{STATS_NOTE}</p>
       </Reveal>
     </div>
   </section>

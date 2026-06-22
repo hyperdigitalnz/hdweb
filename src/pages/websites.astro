@@ -5,6 +5,7 @@ import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
 import LeadFeed from "../components/LeadFeed.astro";
+import PricingTiers from "../components/PricingTiers.astro";
 import { SITE } from "../consts";
 
 const portfolio = [
@@ -18,12 +19,12 @@ const portfolio = [
 
 const title = "Smart Websites for Tradies | Book Jobs 24/7 | Hyper Digital";
 const description =
-  "We build tradies smart websites that reply in 30 seconds, qualify the job and book it in, 24/7. Local SEO built in. From $1,497 + $197/mo. Free audit.";
+  "We build tradies smart websites that reply in 30 seconds, qualify the job and book it in, 24/7. Local SEO built in. From $1,997 setup + $497/mo. Free audit.";
 
 const doesSteps = [
   { n: "01", icon: "bolt", title: "Replies in about 30 seconds", body: "Every call and form gets an instant response, day or night, so the lead never goes cold." },
   { n: "02", icon: "chat", title: "Qualifies the job", body: "It asks the right questions up front, so you're not wasting time on tyre-kickers." },
-  { n: "03", icon: "calendar", title: "Books it straight in", body: "The job lands in your calendar and texts you the details, no back-and-forth." },
+  { n: "03", icon: "calendar", title: "Books it straight in", body: "The job lands in your calendar and sends you the details, no back-and-forth." },
   { n: "04", icon: "star", title: "Wins you the job", body: "Puts your services, reviews and real results front and centre, so choosing you is the easy decision." },
 ];
 
@@ -33,30 +34,14 @@ const trust = [
   { icon: "pin", title: "Found on Google and AI answers", body: "Built to rank in local search, the map pack and the AI answers more customers now use to find a tradie." },
 ];
 
-const packages = [
-  {
-    name: "Basic smart website",
-    price: "197",
-    blurb: "A fast, mobile, search-ready site that captures leads and books them in.",
-    features: ["Fast, mobile-first build", "Local SEO & AEO foundation", "Lead capture and booking", "Reviews and trust built in"],
-    popular: false,
-  },
-  {
-    name: "Full-featured smart website",
-    price: "297",
-    blurb: "Everything in Basic, plus the full AI lead system working around the clock.",
-    features: ["Everything in Basic", "Instant 30-second replies", "Job qualifying", "Automated follow-up", "Texts you every new job"],
-    popular: true,
-  },
-];
-
 const proof = [
-  { name: "Bermuda Lifestyle", stat: "+2,500%", statLabel: "enquiries in year one", body: "From a basic 5-page site that barely ranked to a fast, search-ready website, with 500% revenue growth in their first year." },
+  { name: "Bermuda Lifestyle", stat: "+2,500%", statLabel: "enquiries in year one", body: "From a basic 5-page site that barely ranked to a fast, search-ready website, with 500% revenue growth (client-reported) in their first year." },
   { name: "Tableau Towbars", stat: "+69%", statLabel: "phone enquiries YoY", body: "From a one-page HTML brochure to a fast, search-ready site built around their services, getting found on Google and turning visits into calls." },
 ];
 
 const faqs = [
-  { q: "What's the difference between the two packages?", a: "Basic gives you a fast, search-ready site that captures and books leads. Full-featured adds the AI lead system on top: instant replies, job qualifying and automated follow-up that work around the clock." },
+  { q: "What's the difference between the plans?", a: "Starter gets you found locally for one core service: your smart website, Google Ads, local SEO and the automation that books the work. Growth adds Meta ads, retargeting and a wider catchment. Scale steps it up again for volume across multiple regions. We'll help you pick the right one on your free audit." },
+  { q: "Do you still build a website on its own?", a: "Your smart website is built into every plan, so you get the site, the ad management and the automation working together rather than a site that just sits there. On your audit we'll work out the plan that fits where you're at." },
   { q: "How long does it take to build?", a: "Most smart sites are live within a couple of weeks of your audit, depending on your content and how much you've got ready to go. We'll give you a clear timeline up front." },
   { q: "Will it work on mobile?", a: "Always. Most of your customers find you on their phone, so every site is built mobile-first and to load fast." },
   { q: "Do I have to pay upfront?", a: "Yes. We take the build before we start, then it's a simple monthly fee. We back it with the 60-day guarantee so the risk is on us, not you." },
@@ -226,44 +211,22 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- ===== PRICING (two packages) ===== -->
+  <!-- ===== PRICING (three packages) ===== -->
   <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-[1000px] px-5">
+    <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">Pricing</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Smart website packages.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,497 +GST</span> build, then a simple
-          monthly fee. We take the build before we start and back it with the 60-day guarantee, so
+          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
+          system built. Then pick a monthly plan for your website, ad management and automation.
+          Your ad budget is separate and set to suit your goals. Backed by the 60-day guarantee, so
           the risk is on us, not you.
         </p>
       </Reveal>
 
-      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-2">
-        {packages.map((p, i) => (
-          <Reveal delay={i * 0.08} class="h-full">
-            <div class={`card h-full border bg-base-100 shadow-sm ${p.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>
-              <div class="card-body">
-                {p.popular && <span class="badge badge-primary self-start font-display">Most popular</span>}
-                <h3 class="font-display text-2xl">{p.name}</h3>
-                <div class="mt-1">
-                  <span class="font-display text-4xl text-primary">${p.price}</span>
-                  <span class="text-base-content/60">/mo +GST</span>
-                </div>
-                <p class="mt-1 text-sm text-base-content/60">+ $1,497 +GST one-off build</p>
-                <p class="mt-3 text-base-content/70">{p.blurb}</p>
-                <ul class="mt-4 space-y-2">
-                  {p.features.map((f) => (
-                    <li class="flex items-center gap-2 text-base-content/80">
-                      <Icon name="check" class="h-4 w-4 shrink-0 text-primary" /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <a href="#audit" class={`btn mt-6 font-display tracking-wide ${p.popular ? "btn-primary" : "btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content"}`}>Get my free audit</a>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+      <div class="mt-10">
+        <PricingTiers />
       </div>
     </div>
   </section>

@@ -3,7 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
-import { SITE, STATS } from "../consts";
+import PricingTiers from "../components/PricingTiers.astro";
+import { SITE, STATS, STATS_NOTE } from "../consts";
 
 const system = [
   {
@@ -31,17 +32,11 @@ const steps = [
 
 const trades = ["Plumbers", "Electricians", "Roofers", "Builders", "HVAC & Air Con", "Painters", "Auto & Mechanical", "Drainlayers", "Landscapers", "Concrete"];
 
-const pricing = [
-  { name: "Starter", price: "497", who: "Getting found in your local area, one core service.", popular: false },
-  { name: "Growth", price: "697", who: "Most trades: multiple services and a wider catchment.", popular: true },
-  { name: "Scale", price: "897", who: "Busy operators chasing volume across multiple regions.", popular: false },
-];
-
 const faqs = [
   { q: "How many leads will I actually get?", a: "It depends on your trade, your area and your budget, which is exactly what your free audit works out. We give you honest, realistic numbers up front, and report on real calls and quote requests every month." },
   { q: "What if you don't hit my goal?", a: "We keep working and waive our management fee until we do. We agree the target with you before we start, so there are no surprises." },
   { q: "Is there a lock-in contract?", a: "No. You stay because the work keeps coming, not because a contract traps you." },
-  { q: "Do I have to pay upfront?", a: "Yes. We take the $1,497 +GST setup and your first month before we start. We're a small Kiwi agency and we don't float thousands of dollars before we've earned your trust. We back it with our 60-day guarantee instead." },
+  { q: "Do I have to pay upfront?", a: "Yes. We take the $1,997 +GST setup and your first month before we start. We're a small Kiwi agency and we don't float thousands of dollars before we've earned your trust. We back it with our 60-day guarantee instead." },
   { q: "What's included in the monthly price?", a: "Your smart website, our ad management and the automation that turns clicks into booked jobs. Your ad budget is the one thing that's separate, set to suit your goals, so every dollar works for you." },
   { q: "How soon can I start getting leads?", a: "Most campaigns are live within days of your audit, with leads coming in shortly after. We tune everything over the first few weeks to bring your cost per lead down." },
 ];
@@ -84,6 +79,7 @@ const faqs = [
         </div>
       ))}
     </div>
+    <p class="mx-auto max-w-3xl px-5 pb-5 text-center text-xs text-base-content/45">{STATS_NOTE}</p>
   </div>
 
   <!-- ===== TRADES MARQUEE ===== -->
@@ -226,6 +222,7 @@ const faqs = [
             <div class="max-w-xl">
               <div class="font-display text-3xl text-primary">Bermuda Lifestyle, Pools &amp; Spas</div>
               <p class="mt-2 text-2xl font-bold">2,500% more enquiries and 500% revenue growth in their first year.</p>
+              <p class="mt-1 text-xs text-base-content/50">Revenue growth is client-reported.</p>
               <p class="mt-2 text-base-content/70 italic">
                 "Month after month, year after year Ryan, Matt and their team at Hyper Digital have
                 allowed us the very fortunate position of having new customers booked months in
@@ -312,28 +309,14 @@ const faqs = [
         <span class="eyebrow">Pricing</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,497 +GST</span> setup gets your
+          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
           system built. Then pick a monthly plan for your website, ad management and automation.
           Your ad budget is separate and set to suit your goals.
         </p>
       </Reveal>
 
-      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-3">
-        {pricing.map((p, i) => (
-          <Reveal delay={i * 0.08} class="h-full">
-            <div class={`card h-full border bg-base-100 shadow-sm ${p.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>
-              <div class="card-body">
-                {p.popular && <span class="badge badge-primary self-start font-display">Most popular</span>}
-                <h3 class="font-display text-2xl">{p.name}</h3>
-                <div class="mt-1">
-                  <span class="font-display text-4xl text-primary">${p.price}</span>
-                  <span class="text-base-content/60">/mo +GST</span>
-                </div>
-                <p class="mt-2 text-base-content/70">{p.who}</p>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+      <div class="mt-10">
+        <PricingTiers />
       </div>
 
       <Reveal class="mt-8 text-center">
