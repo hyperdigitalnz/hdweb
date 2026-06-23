@@ -5,6 +5,7 @@ import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
 import AutomationFlow from "../components/AutomationFlow.astro";
+import PricingTiers from "../components/PricingTiers.astro";
 import { SITE } from "../consts";
 
 const title = "AI Automation for Tradies | Never Lose a Lead or Review | Hyper Digital";
@@ -192,6 +193,34 @@ const faqSchema = {
       </Reveal>
       <Reveal class="mt-8 text-center">
         <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
+          system built. Then pick a monthly plan for your website, ad management and automation.
+          Your ad budget is separate and set to suit your goals.
+        </p>
+      </Reveal>
+
+      <div class="mt-10">
+        <PricingTiers />
+      </div>
+
+      <Reveal class="mt-8 text-center">
+        <p class="text-base-content/70">
+          Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
+          to suit. On your free audit we'll work out the right plan and the ad budget that fits your
+          trade and your goals.
+        </p>
+        <a href="#audit" class="btn btn-primary mt-6 font-display text-lg tracking-wide">Get my free audit</a>
       </Reveal>
     </div>
   </section>
