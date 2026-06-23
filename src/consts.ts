@@ -22,12 +22,13 @@ export const STATS = [
   { value: "40+", label: "Kiwi businesses helped" },
   { value: "$1m+", label: "ad spend managed" },
   { value: "$4m+", label: "tracked client revenue" },
-  { value: "4x", label: "return on ad spend" },
+  { value: "4x", label: "return on ad spend*" },
   { value: "2019", label: "in business since" },
 ];
 
-// Footnote shown beneath the trust bar. The 4x figure is a deliberately conservative
-// blended average across managed accounts, so individual case studies (e.g. Tableau
-// Towbars at ~7x) can sit higher without contradicting the headline.
+// Fine print for the asterisked 4x stat, shown once in the footer (not under every trust
+// bar, where it was too distracting). The 4x figure is a deliberately conservative blended
+// average across managed accounts, so individual case studies (e.g. Tableau Towbars at ~7x)
+// can sit higher without contradicting the headline.
 export const STATS_NOTE =
   "4x return on ad spend is a conservative blended average across managed accounts. Individual campaigns vary, and some run higher.";

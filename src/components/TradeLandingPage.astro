@@ -8,7 +8,7 @@ import Icon from "./Icon.astro";
 import SocialProof from "./SocialProof.astro";
 import AuditForm from "./AuditForm.astro";
 import Vsl from "./Vsl.astro";
-import { SITE, STATS, STATS_NOTE } from "../consts";
+import { SITE, STATS } from "../consts";
 import type { TradeLP } from "../data/tradeLeadGen";
 
 interface Props {
@@ -191,7 +191,6 @@ const Ts = trade.tradeSingular;
         </div>
       ))}
     </div>
-    <p class="mx-auto mt-4 max-w-3xl px-5 text-center text-xs text-base-content/45">{STATS_NOTE}</p>
   </section>
 
   <!-- ===== 3. PROBLEM (3 mistakes) ===== -->
