@@ -72,9 +72,20 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
         if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
         try {
-          const res = await fetch(form.action, { method: "POST", body: new FormData(form) });
+          const fd = new FormData(form);
+          const res = await fetch(form.action, { method: "POST", body: fd });
           const data = await res.json().catch(() => ({ ok: res.ok }));
           if (data.ok) {
+            // Stash a few fields to prefill the GHL calendar on /thank-you. Kept in
+            // sessionStorage (not the URL) so it never hits our history or server logs;
+            // it only ends up in the cross-origin booking iframe, where it has to go.
+            try {
+              sessionStorage.setItem("af_prefill", JSON.stringify({
+                name: String(fd.get("name") || ""),
+                email: String(fd.get("email") || ""),
+                website: String(fd.get("website") || ""),
+              }));
+            } catch (e) { /* private mode / storage disabled — prefill just won't apply */ }
             // Verified server-side → send them to the thank-you page (fires the conversion there).
             window.location.assign("/thank-you");
           } else {

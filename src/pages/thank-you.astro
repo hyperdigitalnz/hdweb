@@ -22,8 +22,10 @@ const description = "Your request is in. We'll be in touch within one business d
       </Reveal>
       <Reveal delay={0.14} class="mt-10">
         <div class="mx-auto max-w-[760px] rounded-box bg-base-100 p-3 shadow-xl sm:p-4">
+          <!-- src is set by the prefill script below (base URL + any form-prefill params).
+               The GHL calendar needs JS to function/resize anyway, so no static src is lost. -->
           <iframe
-            src="https://api.leadconnectorhq.com/widget/booking/w3xpc9OhTq5o0cpTvnK7"
+            data-base-src="https://api.leadconnectorhq.com/widget/booking/w3xpc9OhTq5o0cpTvnK7"
             title="Book your free audit"
             style="width:100%;border:none;overflow:hidden;min-height:680px;"
             scrolling="no"
@@ -40,6 +42,39 @@ const description = "Your request is in. We'll be in touch within one business d
       </Reveal>
     </div>
   </section>
+
+  <!-- Prefill the GHL calendar from the audit form (stashed in sessionStorage on submit).
+       Builds the iframe src client-side so PII never touches our URL/history/server logs. -->
+  <script is:inline>
+    (function () {
+      var iframe = document.getElementById("w3xpc9OhTq5o0cpTvnK7_1782263208027");
+      if (!iframe) return;
+      var base = iframe.getAttribute("data-base-src");
+      var src = base;
+      try {
+        var raw = sessionStorage.getItem("af_prefill");
+        if (raw) {
+          var d = JSON.parse(raw);
+          var p = new URLSearchParams();
+          var name = (d.name || "").trim();
+          if (name) {
+            var parts = name.split(/\s+/);
+            p.set("first_name", parts.shift());
+            if (parts.length) p.set("last_name", parts.join(" "));
+          }
+          if (d.email) p.set("email", d.email);
+          // "website" is not a default GHL calendar field. Sent best-effort (GHL ignores
+          // unknown params). To actually populate it, add a custom field to the calendar
+          // and swap "website" below for that field's key.
+          if (d.website) p.set("website", d.website);
+          var qs = p.toString();
+          if (qs) src = base + "?" + qs;
+          sessionStorage.removeItem("af_prefill"); // one-shot: don't leak into a refresh/back-nav
+        }
+      } catch (e) { /* malformed/blocked storage — fall back to the base calendar */ }
+      iframe.src = src;
+    })();
+  </script>
 
   <!-- GHL booking widget resizer: sizes the calendar iframe to its content via its id. -->
   <script is:inline src="https://api.leadconnectorhq.com/js/form_embed.js"></script>
