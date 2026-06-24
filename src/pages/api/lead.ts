@@ -7,7 +7,7 @@ export const prerender = false;
 
 // Only these fields are ever forwarded to GHL. Anything else a bot tries to
 // inject is dropped. Values are capped to keep the payload sane.
-const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "region", "goal", "message"] as const;
+const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message"] as const;
 const REQUIRED_FIELDS = ["name", "email", "website"] as const;
 const MAX_FIELD_LEN = 500;
 

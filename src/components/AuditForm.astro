@@ -4,18 +4,15 @@
 interface Props {
   title?: string;
   lead?: string;
-  compact?: boolean;
   goal?: boolean;
 }
 const {
   title = "Book your free audit",
   lead = "Tell us about your business and we'll show you where your next jobs are coming from.",
-  compact = false,
   goal = false,
 } = Astro.props;
 import SpeedBadge from "./SpeedBadge.astro";
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Painter / Decorator","Auto / Mechanic","Other trade"];
 ---
 <div class="rounded-box border-t-4 border-primary bg-base-100 p-6 text-base-content shadow-xl sm:p-7">
   <h2 class="text-2xl text-base-content">{title}</h2>
@@ -37,22 +34,9 @@ const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Pai
       <input id="af-email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.co.nz" class="input input-bordered w-full" />
     </div>
     <div class="grid gap-1">
-      <label class="text-xs font-bold" for="af-trade">Your trade / business</label>
-      <select id="af-trade" name="trade" required class="select select-bordered w-full">
-        <option value="" disabled selected>Select one…</option>
-        {trades.map((t) => <option>{t}</option>)}
-      </select>
-    </div>
-    <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-website">Business website</label>
       <input id="af-website" name="website" type="text" inputmode="url" required autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full" />
     </div>
-    {!compact && (
-      <div class="grid gap-1">
-        <label class="text-xs font-bold" for="af-region">Region</label>
-        <input id="af-region" name="region" type="text" autocomplete="address-level1" placeholder="e.g. Hawke's Bay" class="input input-bordered w-full" />
-      </div>
-    )}
     {goal && (
       <div class="grid gap-1">
         <label class="text-xs font-bold" for="af-goal">What's your goal right now? <span class="font-normal text-base-content/50">(optional)</span></label>
