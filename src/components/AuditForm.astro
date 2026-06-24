@@ -33,8 +33,8 @@ const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Pai
       <input id="af-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full" />
     </div>
     <div class="grid gap-1">
-      <label class="text-xs font-bold" for="af-phone">Mobile number</label>
-      <input id="af-phone" name="phone" type="tel" required autocomplete="tel" placeholder="027 123 4567" class="input input-bordered w-full" />
+      <label class="text-xs font-bold" for="af-email">Email address</label>
+      <input id="af-email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.co.nz" class="input input-bordered w-full" />
     </div>
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-trade">Your trade / business</label>
@@ -42,6 +42,10 @@ const trades = ["Plumber","Electrician","Roofer","Builder","HVAC / Air Con","Pai
         <option value="" disabled selected>Select one…</option>
         {trades.map((t) => <option>{t}</option>)}
       </select>
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs font-bold" for="af-website">Business website</label>
+      <input id="af-website" name="website" type="text" inputmode="url" required autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full" />
     </div>
     {!compact && (
       <div class="grid gap-1">

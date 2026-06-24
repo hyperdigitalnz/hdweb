@@ -7,8 +7,8 @@ export const prerender = false;
 
 // Only these fields are ever forwarded to GHL. Anything else a bot tries to
 // inject is dropped. Values are capped to keep the payload sane.
-const ALLOWED_FIELDS = ["name", "phone", "trade", "region", "goal", "email", "message"] as const;
-const REQUIRED_FIELDS = ["name", "phone"] as const;
+const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "region", "goal", "message"] as const;
+const REQUIRED_FIELDS = ["name", "email", "website"] as const;
 const MAX_FIELD_LEN = 500;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
