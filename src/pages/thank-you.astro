@@ -57,11 +57,7 @@ const description = "Your request is in. We'll be in touch within one business d
           var d = JSON.parse(raw);
           var p = new URLSearchParams();
           var name = (d.name || "").trim();
-          if (name) {
-            var parts = name.split(/\s+/);
-            p.set("first_name", parts.shift());
-            if (parts.length) p.set("last_name", parts.join(" "));
-          }
+          if (name) p.set("full_name", name);
           if (d.email) p.set("email", d.email);
           // "website" is not a default GHL calendar field. Sent best-effort (GHL ignores
           // unknown params). To actually populate it, add a custom field to the calendar
