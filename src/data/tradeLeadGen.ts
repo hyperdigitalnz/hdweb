@@ -67,6 +67,10 @@ export interface TradeLP {
   /** Optional subhead under the results heading (e.g. naming a single featured client). */
   resultsSub?: string;
 
+  /** Optional hero video (VSL) URL. Omit to hide the video block entirely.
+   *  Only set this where a trade-specific video actually exists. */
+  vsl?: string;
+
   /** Optional hero image; falls back to the pipeline animation. */
   heroImage?: string;
   heroImageAlt?: string;
@@ -81,6 +85,9 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     trade: "plumbing",
     tradePlural: "plumbers",
     tradeSingular: "plumber",
+
+    // Only plumbers has a video set up for now; other trades omit `vsl`.
+    vsl: "https://assets.cdn.filesafe.space/GSVK9f66TXEj40ejsIV0/media/69e1ba1950b9a3263a793b97.mp4",
 
     seoTitle: "Plumbing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:

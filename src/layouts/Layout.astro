@@ -14,6 +14,9 @@ interface Props {
   /** Hide the site nav header. Used on paid-traffic landing pages to remove
    *  exit links and keep focus on the form. */
   hideHeader?: boolean;
+  /** Hide the chat widget. The 404 page must set this explicitly because it
+   *  renders under the requested (missing) URL, not a fixed path. */
+  hideChat?: boolean;
 }
 const {
   title = `${SITE.name} | ${SITE.tagline}`,
@@ -21,11 +24,19 @@ const {
   image = "/img/digital-marketing.png",
   noindex = false,
   hideHeader = false,
+  hideChat = false,
 } = Astro.props;
 
 // Absolute URLs for canonical + social cards (needs `site` in astro.config).
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
+
+// Chat widget shows everywhere except these pages. ClientRouter swaps each
+// page's server-rendered body on navigation, so this per-path check stays
+// correct without client-side logic.
+const noChatPaths = ["/privacy", "/terms", "/thank-you", "/404"];
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const showChat = !hideChat && !noChatPaths.includes(currentPath);
 ---
 <!doctype html>
 <html lang="en-NZ" data-theme="hyper">
@@ -86,6 +97,16 @@ const ogImage = new URL(image, Astro.site).href;
     </main>
     <Footer />
     <StickyCall />
+
+    <!-- LeadConnector chat widget (hidden on privacy, terms, thank-you, 404) -->
+    {showChat && (
+      <script
+        is:inline
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id="695ff09578e0acf0ed3bf73d"
+      ></script>
+    )}
 
     <!-- Scroll-reveal animations via Motion (re-runs after view transitions) -->
     <script>

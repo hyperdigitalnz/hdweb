@@ -82,6 +82,22 @@ const caseStudies = [
     image: null,
   },
   {
+    name: "Hawke's Bay Roofer",
+    trade: "Roofing",
+    featured: false,
+    slug: "/results/hawkes-bay-roofer",
+    headline: "One month, $351 in ads, and a $45,000 roofing job.",
+    body: "A Hawke's Bay roofer. We run brand and high-intent Search campaigns that put them in front of locals searching for re-roofs, repairs and guttering. In a single month, $351 of ad spend brought in 18 enquiries, and one became a $45,000 re-roof.",
+    metrics: [
+      { stat: "$45k", label: "job won from one month of ads" },
+      { stat: "18", label: "leads tracked as conversions" },
+      { stat: "~$20", label: "cost per conversion" },
+    ],
+    quote: null,
+    who: null,
+    image: null,
+  },
+  {
     name: "No Drips",
     trade: "Plumbing & Gas",
     featured: false,
@@ -119,7 +135,7 @@ const featured = caseStudies.filter((c) => c.featured);
 const rest = caseStudies.filter((c) => !c.featured);
 
 // Trades we want a case study for next — placeholder tiles show room to grow.
-const upcoming = ["Electrical", "Roofing", "Building", "Landscaping"];
+const upcoming = ["Electrical", "Building", "Landscaping", "HVAC"];
 
 const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
   "@context": "https://schema.org",

@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
+import SpeedBadge from "../components/SpeedBadge.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
 import { tradeLeadGen } from "../data/tradeLeadGen";
@@ -103,7 +104,10 @@ const faqSchema = {
           <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
-        <Reveal delay={0.22} class="mt-9">
+        <Reveal delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+        </Reveal>
+        <Reveal delay={0.26} class="mt-9">
           <SocialProof />
         </Reveal>
       </div>

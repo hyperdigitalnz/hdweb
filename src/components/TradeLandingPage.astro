@@ -6,6 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import Reveal from "./Reveal.astro";
 import Icon from "./Icon.astro";
 import SocialProof from "./SocialProof.astro";
+import SpeedBadge from "./SpeedBadge.astro";
 import AuditForm from "./AuditForm.astro";
 import Vsl from "./Vsl.astro";
 import { SITE, STATS } from "../consts";
@@ -15,9 +16,6 @@ interface Props {
   trade: TradeLP;
 }
 const { trade } = Astro.props;
-
-const VSL_SRC =
-  "https://assets.cdn.filesafe.space/GSVK9f66TXEj40ejsIV0/media/69e1ba1950b9a3263a793b97.mp4";
 
 // ---- Shared content (same for every trade) -------------------------------
 
@@ -174,10 +172,15 @@ const Ts = trade.tradeSingular;
         <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
         <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
       </Reveal>
-      <Reveal delay={0.22} class="mt-9 flex justify-center"><SocialProof /></Reveal>
-      <Reveal delay={0.28} class="mt-12">
-        <Vsl src={VSL_SRC} caption="Watch: how the system books you more jobs (2 min)" />
+      <Reveal delay={0.2} class="mt-6 flex justify-center">
+        <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
       </Reveal>
+      <Reveal delay={0.22} class="mt-9 flex justify-center"><SocialProof /></Reveal>
+      {trade.vsl && (
+        <Reveal delay={0.28} class="mt-12">
+          <Vsl src={trade.vsl} caption="Watch: how the system books you more jobs (2 min)" />
+        </Reveal>
+      )}
     </div>
   </section>
 
