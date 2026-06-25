@@ -57,7 +57,18 @@ const description = "Your request is in. We'll be in touch within one business d
           var d = JSON.parse(raw);
           var p = new URLSearchParams();
           var name = (d.name || "").trim();
-          if (name) p.set("full_name", name);
+          if (name) {
+            // GHL prefills a field only when the param KEY matches that field's name, and the
+            // calendar has no "full_name" field. Its name field is first_name / last_name, so a
+            // single full-name param can't populate it. Split on the first space (last name = the
+            // rest); send both underscore and no-underscore variants to cover either field naming.
+            var sp = name.indexOf(" ");
+            var first = sp === -1 ? name : name.slice(0, sp);
+            var last = sp === -1 ? "" : name.slice(sp + 1).trim();
+            p.set("first_name", first);
+            p.set("firstname", first);
+            if (last) { p.set("last_name", last); p.set("lastname", last); }
+          }
           if (d.email) p.set("email", d.email);
           // "website" is not a default GHL calendar field. Sent best-effort (GHL ignores
           // unknown params). To actually populate it, add a custom field to the calendar
