@@ -53,7 +53,7 @@ const faqSchema = {
 <Layout title={title} description={description}>
   <!-- ===== HERO (split — automation flow) ===== -->
   <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
         <Reveal>
           <span class="eyebrow">Keep it running</span>
@@ -94,7 +94,7 @@ const faqSchema = {
           Both are costing you jobs right now. And both are fixable, automatically.
         </p>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {leaks.map((l, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card h-full border border-error/30 bg-error/5">
@@ -117,7 +117,7 @@ const faqSchema = {
         <span class="eyebrow">What we automate</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Set it up once. It runs in the background.</h2>
       </Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {automate.map((a, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -135,7 +135,7 @@ const faqSchema = {
 
   <!-- ===== MORE REVIEWS = MORE LEADS (feature row) ===== -->
   <section class="py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
       <Reveal>
         <span class="eyebrow">It compounds</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">More reviews mean more leads, automatically.</h2>
@@ -245,7 +245,7 @@ const faqSchema = {
 
   <!-- ===== FAQ + AUDIT FORM ===== -->
   <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
         <div class="mt-6 space-y-3">

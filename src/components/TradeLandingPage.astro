@@ -204,7 +204,7 @@ const Ts = trade.tradeSingular;
         <h2 class="mt-2 text-3xl sm:text-4xl">Stop losing money to these 3 mistakes.</h2>
         <p class="mt-4 text-lg text-base-content/70">{trade.painLine}</p>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {trade.mistakes.map((m, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card h-full border border-error/30 bg-error/5">
@@ -243,7 +243,7 @@ const Ts = trade.tradeSingular;
         <span class="eyebrow">Your options</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Three ways to chase more work. Only one books jobs.</h2>
       </Reveal>
-      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
         {compare.map((c, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class={`card h-full border-2 ${c.tone === "good" ? "card-glow card-glow-success border-success/40 bg-success/5" : "border-base-300 bg-base-100"}`}>
@@ -274,7 +274,7 @@ const Ts = trade.tradeSingular;
           Not just a website. A complete lead-to-job system, all done for you and managed in-house.
         </p>
       </Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {system.map((c, i) => (
           <Reveal delay={i * 0.06} class="h-full">
             <div class="card h-full border border-white/10 surface-2 shadow-lg">
@@ -308,7 +308,7 @@ const Ts = trade.tradeSingular;
         {trade.resultsSub && <p class="mx-auto mt-3 max-w-2xl text-base-content/70">{trade.resultsSub}</p>}
       </Reveal>
 
-      <div class="mt-10 grid items-center gap-10 lg:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <Reveal>
           <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">
             <div class="flex items-center justify-between">
@@ -332,7 +332,7 @@ const Ts = trade.tradeSingular;
           </div>
         </Reveal>
 
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {proof.map((p, i) => (
             <Reveal delay={i * 0.07} class="h-full">
               <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -368,7 +368,7 @@ const Ts = trade.tradeSingular;
         <h2 class="mt-2 text-3xl sm:text-4xl">Everything you need to capture and convert more leads.</h2>
       </Reveal>
 
-      <div class="mt-10 grid items-start gap-8 lg:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
         <Reveal>
           <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
             {valueStack.map((v) => (
@@ -441,7 +441,7 @@ const Ts = trade.tradeSingular;
         <span class="eyebrow">Honest fit</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Who this works for. And who it doesn't.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Reveal>
           <div class="card h-full border-2 border-success/40 bg-success/5">
             <div class="card-body">
@@ -479,7 +479,7 @@ const Ts = trade.tradeSingular;
         <span class="eyebrow">How it works</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">From "yes" to leads, with no mucking around.</h2>
       </Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal delay={i * 0.07} class="h-full">
             <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
@@ -498,7 +498,7 @@ const Ts = trade.tradeSingular;
 
   <!-- ===== 12. FAQ + AUDIT FORM ===== -->
   <section id="audit" class="scroll-mt-24 bg-grid-soft border-y border-base-300 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions {Tp} ask before they sign up.</h2>
         <div class="mt-6 space-y-3">

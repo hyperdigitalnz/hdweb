@@ -120,7 +120,7 @@ const faqs = [
         <span class="eyebrow">The difference</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Going it alone vs the Hyper Digital system</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Reveal>
           <div class="card h-full border border-error/30 bg-error/5">
             <div class="card-body">
@@ -164,7 +164,7 @@ const faqs = [
           whole thing, start to finish.
         </p>
       </Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {system.map((c, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -183,7 +183,7 @@ const faqs = [
   <!-- ===== SPEED SHOWCASE ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-20">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <Reveal>
           <SpeedBadge tone="dark" />
           <h2 class="mt-5 text-3xl text-neutral-content sm:text-4xl">
@@ -246,7 +246,7 @@ const faqs = [
         </div>
       </Reveal>
 
-      <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Reveal>
           <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
             <div class="card-body">
@@ -299,7 +299,7 @@ const faqs = [
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center"><span class="eyebrow">Simple</span><h2 class="mt-2 text-3xl sm:text-4xl">How it works.</h2></Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {steps.map((s, i) => (
           <Reveal delay={i * 0.08}>
             <div class="text-center">
@@ -362,7 +362,7 @@ const faqs = [
 
   <!-- ===== AUDIT FORM + FAQ ===== -->
   <section id="audit" class="scroll-mt-24 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
         <div class="mt-6 space-y-3">

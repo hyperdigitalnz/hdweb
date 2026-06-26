@@ -60,7 +60,7 @@ const faqSchema = {
 <Layout title={title} description={description}>
   <!-- ===== HERO (split — live lead feed) ===== -->
   <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
         <Reveal>
           <span class="eyebrow">Book the work</span>
@@ -93,7 +93,7 @@ const faqSchema = {
 
   <!-- ===== THE PROBLEM ===== -->
   <section class="py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
       <Reveal>
         <span class="eyebrow">The problem with normal sites</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">A pretty website that doesn't ring the phone is a waste of money.</h2>
@@ -120,7 +120,7 @@ const faqSchema = {
           It's the difference between a brochure and a booking machine.
         </p>
       </Reveal>
-      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {doesSteps.map((s, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -141,7 +141,7 @@ const faqSchema = {
 
   <!-- ===== BUILT TO BE FOUND (feature row) ===== -->
   <section class="py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
       <Reveal>
         <span class="eyebrow">Built to be found</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Found on Google and in AI answers, from day one.</h2>
@@ -166,7 +166,7 @@ const faqSchema = {
         <span class="eyebrow">Built to win the job</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Fast, mobile, and built to win trust.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {trust.map((t, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
@@ -189,7 +189,7 @@ const faqSchema = {
         <span class="eyebrow">Recent builds</span>
         <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Smart websites we've built for Kiwi businesses.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {portfolio.map((p, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="flex h-full flex-col">
@@ -256,7 +256,7 @@ const faqSchema = {
         <span class="eyebrow">Proof</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Websites that actually grew the business.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {proof.map((p, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -278,7 +278,7 @@ const faqSchema = {
 
   <!-- ===== FAQ + AUDIT FORM ===== -->
   <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
         <div class="mt-6 space-y-3">

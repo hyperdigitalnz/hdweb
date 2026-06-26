@@ -177,7 +177,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
   {featured.map((c) => (
     <section class="py-16 sm:py-20">
       <div class="mx-auto max-w-[1160px] px-5">
-        <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <span class="badge badge-primary font-display">Featured · {c.trade}</span>
             <h2 class="mt-3 font-display text-3xl text-primary sm:text-4xl">{c.name}</h2>
@@ -219,7 +219,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
         <span class="eyebrow">More wins</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">More results worth talking about.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {rest.map((c, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -260,7 +260,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
       <Reveal class="mt-10">
         <p class="text-center text-sm uppercase tracking-wide text-base-content/50">More case studies on the way</p>
       </Reveal>
-      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {upcoming.map((t, i) => (
           <Reveal delay={i * 0.06}>
             <div class="flex h-full min-h-[120px] flex-col items-center justify-center rounded-box border-2 border-dashed border-base-300 bg-base-100/50 p-5 text-center">

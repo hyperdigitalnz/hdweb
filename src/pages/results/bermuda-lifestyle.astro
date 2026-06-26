@@ -106,14 +106,14 @@ const reviewSchema = {
           <span class="text-neutral-content/90">{client}</span>
         </nav>
       </Reveal>
-      <div class="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div class="text-center lg:text-left">
           <Reveal>
             <span class="badge badge-primary font-display">Case study · {trade}</span>
           </Reveal>
           <Reveal delay={0.05} class="mt-4">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl">
-              <span class="marker">2,500% more enquiries</span> in year one.
+              <span class="marker">2,500%</span> more enquiries in year one.
             </h1>
           </Reveal>
           <Reveal delay={0.1} class="mt-5">
@@ -214,7 +214,7 @@ const reviewSchema = {
         <div class="mt-8">
           {stack.map((s, i) => (
             <div class="tab-panel" data-panel={s.id} hidden={i !== 0}>
-              <div class="grid items-center gap-10 lg:grid-cols-2">
+              <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
                 <div>
                   <span class="icon-chip"><Icon name={s.icon} class="h-6 w-6" /></span>
                   <h3 class="mt-4 font-display text-2xl sm:text-3xl">{s.heading}</h3>
@@ -255,7 +255,7 @@ const reviewSchema = {
         </p>
       </Reveal>
 
-      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <!-- Animated enquiries growth line chart -->
         <Reveal>
           <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">

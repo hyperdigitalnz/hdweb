@@ -75,7 +75,7 @@ const reviewSchema = {
           <span class="text-neutral-content/90">{client}</span>
         </nav>
       </Reveal>
-      <div class="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div class="text-center lg:text-left">
           <Reveal>
             <span class="badge badge-primary font-display">Case study · {trade}</span>
@@ -168,7 +168,7 @@ const reviewSchema = {
           every year so the results compound.
         </p>
       </Reveal>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {work.map((w, i) => (
           <Reveal delay={i * 0.07} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -194,7 +194,7 @@ const reviewSchema = {
         <h2 class="mt-2 text-3xl sm:text-4xl">More leads, for a lot less each.</h2>
       </Reveal>
 
-      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <!-- Interactive cost-per-lead comparison -->
         <Reveal>
           <div data-cmp data-max="36" class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">

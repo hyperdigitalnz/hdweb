@@ -83,7 +83,7 @@ const faqSchema = {
 <Layout title={title} description={description}>
   <!-- ===== HERO (split — service-page template) ===== -->
   <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
         <Reveal>
           <span class="eyebrow">Find the work</span>
@@ -132,7 +132,7 @@ const faqSchema = {
         </p>
       </Reveal>
 
-      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
         {channels.map((c, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class={`card h-full border bg-base-100 shadow-sm ${c.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>
@@ -161,7 +161,7 @@ const faqSchema = {
         </p>
       </Reveal>
 
-      <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <!-- Animated cost-per-lead chart (moving part) -->
         <Reveal>
           <div class="rounded-box border border-base-300 surface-2 p-6 text-neutral-content shadow-xl sm:p-8">
@@ -202,7 +202,7 @@ const faqSchema = {
         </Reveal>
 
         <!-- The four levers -->
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {levers.map((l, i) => (
             <Reveal delay={i * 0.07}>
               <div class="flex h-full gap-4 rounded-box border border-base-300 bg-base-100 p-5">
@@ -227,7 +227,7 @@ const faqSchema = {
         <h2 class="mt-2 text-3xl sm:text-4xl">Real leads. Managed in-house. No lock-in.</h2>
       </Reveal>
       <Reveal class="mt-8">
-        <ul class="grid gap-3 sm:grid-cols-2">
+        <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {getList.map((item) => (
             <li class="flex items-center gap-3 rounded-box border border-base-300 bg-base-100 p-4">
               <span class="icon-chip shrink-0 h-10 w-10"><Icon name="check" class="h-5 w-5" /></span>
@@ -246,7 +246,7 @@ const faqSchema = {
         <span class="eyebrow">Proof</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">More leads on the same budget. That's the whole point.</h2>
       </Reveal>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {proof.map((p, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -274,7 +274,7 @@ const faqSchema = {
         <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
       </Reveal>
 
-      <div class="mt-10 grid items-stretch gap-6 md:grid-cols-2">
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
         <Reveal class="h-full">
           <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
             <div class="card-body">
@@ -327,7 +327,7 @@ const faqSchema = {
 
   <!-- ===== FAQ + AUDIT FORM ===== -->
   <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
         <div class="mt-6 space-y-3">

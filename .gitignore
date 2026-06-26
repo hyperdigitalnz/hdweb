@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local working docs (kept on disk, not committed)
+/CLAUDE.md
+/LOGS.md

@@ -38,7 +38,7 @@ const orgSchema = {
 <Layout title={title} description={description}>
   <!-- ===== HERO (split — founder photo) ===== -->
   <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
         <Reveal>
           <span class="eyebrow">About us</span>
@@ -70,7 +70,7 @@ const orgSchema = {
 
   <!-- ===== THE STORY ===== -->
   <section class="py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-[1.2fr_0.8fr]">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-[1.2fr_0.8fr]">
       <Reveal>
         <span class="eyebrow">Where it started</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Built by people who were sick of dodgy marketing.</h2>
@@ -103,7 +103,7 @@ const orgSchema = {
         <span class="eyebrow">How we do things</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">What we stand for.</h2>
       </Reveal>
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {values.map((v, i) => (
           <Reveal delay={i * 0.07} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -132,7 +132,7 @@ const orgSchema = {
           Digital, you get one of us.
         </p>
       </Reveal>
-      <div class="mx-auto mt-10 grid max-w-xl gap-6 sm:grid-cols-2">
+      <div class="mx-auto mt-10 grid grid-cols-1 max-w-xl gap-6 sm:grid-cols-2">
         {founders.map((f, i) => (
           <Reveal delay={i * 0.08}>
             <div class="card border border-base-300 bg-base-100 text-center shadow-sm">
@@ -169,7 +169,7 @@ const orgSchema = {
 
   <!-- ===== FINAL CTA + FORM ===== -->
   <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Want to see what we can do for your business?</h2>
         <p class="mt-4 text-lg text-base-content/70">

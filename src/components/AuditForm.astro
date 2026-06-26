@@ -19,7 +19,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   <p class="mt-2 text-sm text-base-content/70">{lead}</p>
   <div class="mt-3"><SpeedBadge tone="light" /></div>
 
-  <form class="audit-form mt-5 grid gap-3" method="post" action="/api/lead">
+  <form class="audit-form mt-5 grid grid-cols-1 gap-3" method="post" action="/api/lead">
     <!-- Honeypot: hidden from real users, catches bots. Keep it unlabelled and out of the tab order. -->
     <div class="hidden" aria-hidden="true">
       <label for="af-company">Company (leave blank)</label>
@@ -27,20 +27,20 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     </div>
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-name">Your name</label>
-      <input id="af-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full" />
+      <input id="af-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full min-w-0" />
     </div>
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-email">Email address</label>
-      <input id="af-email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.co.nz" class="input input-bordered w-full" />
+      <input id="af-email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.co.nz" class="input input-bordered w-full min-w-0" />
     </div>
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-website">Business website</label>
-      <input id="af-website" name="website" type="text" inputmode="url" required autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full" />
+      <input id="af-website" name="website" type="text" inputmode="url" required autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full min-w-0" />
     </div>
     {goal && (
       <div class="grid gap-1">
         <label class="text-xs font-bold" for="af-goal">What's your goal right now? <span class="font-normal text-base-content/50">(optional)</span></label>
-        <select id="af-goal" name="goal" class="select select-bordered w-full">
+        <select id="af-goal" name="goal" class="select select-bordered w-full min-w-0">
           <option value="" disabled selected>Select one…</option>
           <option>More leads</option>
           <option>A new website</option>

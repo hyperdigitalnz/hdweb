@@ -9,7 +9,7 @@ interface Props {
 }
 const { cta = "Get my free audit", href = "#audit" } = Astro.props;
 ---
-<div class="grid items-stretch gap-6 md:grid-cols-3">
+<div class="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
   {PRICING.map((p, i) => (
     <Reveal delay={i * 0.08} class="h-full">
       <div class={`card h-full border bg-base-100 shadow-sm ${p.popular ? "border-primary card-glow shadow-md" : "border-base-300"}`}>

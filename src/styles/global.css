@@ -121,6 +121,10 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
+  /* Safety net against horizontal scroll/shift on mobile. `clip` (not `hidden`) does not create a
+     scroll container, so the sticky header keeps working. Real layouts already fit; this only ever
+     trims a stray overflow on very narrow (<360px) legacy screens. */
+  html, body { overflow-x: clip; }
   body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
@@ -168,10 +172,10 @@
   background-image: radial-gradient(700px 420px at 15% 110%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 60%);
 }
 
-/* Keyword emphasis: colour the word itself in the accent colour (no background swipe). */
+/* Keyword emphasis: colour the word itself in the accent colour (no background swipe).
+   Wraps normally — a long marked phrase breaks across lines rather than overflowing the H1. */
 .marker {
   color: var(--color-primary);
-  white-space: nowrap;
 }
 /* Highlighter swipe: gold background behind a word, like a marker pen. */
 .highlight {
