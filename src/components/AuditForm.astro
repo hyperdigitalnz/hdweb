@@ -59,7 +59,28 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   </form>
 </div>
 
-{siteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+{siteKey && (
+  <>
+    {/* Explicit render: ClientRouter (view transitions) swaps the DOM client-side, so
+        Turnstile's auto-render (which only runs once on script load) never sees the new
+        .cf-turnstile div. We render manually on every astro:page-load instead. */}
+    <script is:inline>
+      function renderTurnstileWidgets() {
+        if (!window.turnstile) return;
+        document.querySelectorAll(".cf-turnstile").forEach(function (el) {
+          if (el.dataset.rendered) return;
+          window.turnstile.render(el, { sitekey: el.getAttribute("data-sitekey") });
+          el.dataset.rendered = "1";
+        });
+      }
+      // Fires once when the Turnstile script finishes loading (covers the initial load).
+      window.onloadTurnstileCallback = renderTurnstileWidgets;
+      // Fires on initial load and after every client-side navigation (covers soft swaps).
+      document.addEventListener("astro:page-load", renderTurnstileWidgets);
+    </script>
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback" async defer></script>
+  </>
+)}
 
 <script>
   function wireForms() {
