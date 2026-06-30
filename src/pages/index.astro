@@ -361,7 +361,7 @@ const faqs = [
   </section>
 
   <!-- ===== AUDIT FORM + FAQ ===== -->
-  <section id="audit" class="scroll-mt-24 py-16 sm:py-20">
+  <section class="py-16 sm:py-20">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
@@ -375,7 +375,7 @@ const faqs = [
           ))}
         </div>
       </Reveal>
-      <Reveal delay={0.1} class="lg:sticky lg:top-24">
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you exactly where your next jobs are coming from, and what they'll cost." />
       </Reveal>
     </div>

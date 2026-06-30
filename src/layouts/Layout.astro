@@ -89,7 +89,7 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <!-- mark JS available so reveal elements can hide pre-animation (no FOUC for no-JS) -->
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
-  <body class="bg-base-100 pb-[60px] text-base-content sm:pb-0">
+  <body class="bg-base-100 text-base-content">
     {!hideHeader && <Header />}
     <main>
       <slot />

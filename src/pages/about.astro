@@ -168,7 +168,7 @@ const orgSchema = {
   </section>
 
   <!-- ===== FINAL CTA + FORM ===== -->
-  <section id="audit" class="scroll-mt-24 bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Want to see what we can do for your business?</h2>
@@ -178,7 +178,7 @@ const orgSchema = {
         </p>
         <a href={SITE.phoneHref} class="btn btn-ghost mt-5 text-primary">Or call {SITE.phone} →</a>
       </Reveal>
-      <Reveal delay={0.1}>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24">
         <AuditForm title="Get your free audit" lead="Tell us about your business and we'll show you where your next jobs are coming from." />
       </Reveal>
     </div>

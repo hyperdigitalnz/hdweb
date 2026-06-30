@@ -497,7 +497,7 @@ const Ts = trade.tradeSingular;
   </section>
 
   <!-- ===== 12. FAQ + AUDIT FORM ===== -->
-  <section id="audit" class="scroll-mt-24 bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
         <h2 class="text-3xl sm:text-4xl">Questions {Tp} ask before they sign up.</h2>
@@ -511,7 +511,7 @@ const Ts = trade.tradeSingular;
           ))}
         </div>
       </Reveal>
-      <Reveal delay={0.1} class="lg:sticky lg:top-24">
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm title="Get your free audit" lead={`In 20 minutes we'll show you where your next ${trade.trade} jobs are coming from, and what your leads should cost.`} />
       </Reveal>
     </div>
