@@ -243,6 +243,59 @@
 .marquee-wrap:hover .marquee { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
+/* Soft radial accent glow behind hero/feature mockups (parent must be relative) */
+.glow-blob {
+  position: absolute;
+  inset: -12% -16%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-primary) 24%, transparent), transparent 72%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Gentle idle float for hero mockups */
+.float-slow { animation: float-slow 7s ease-in-out infinite; }
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Oversized ghost numeral behind system cards */
+.num-ghost {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-primary) 13%, transparent);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Slow-spinning dashed ring (guarantee seal) */
+.spin-slow { animation: spin-slow 16s linear infinite; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+/* Client logo wall: muted until hover */
+.logo-strip img { opacity: .55; filter: grayscale(1); transition: opacity .3s ease, filter .3s ease; }
+.logo-strip img:hover { opacity: 1; filter: grayscale(0); }
+
+/* Recurring shine sweep across primary CTAs */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transform: skewX(-20deg);
+  animation: btn-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btn-shine {
+  0% { left: -60%; }
+  55%, 100% { left: 130%; }
+}
+
 /* Card accent-glow on hover */
 .card-glow { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .card-glow:hover { transform: translateY(-6px); border-color: var(--color-primary); box-shadow: 0 18px 44px color-mix(in srgb, var(--color-primary) 22%, transparent); }

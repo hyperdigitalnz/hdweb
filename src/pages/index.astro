@@ -1,38 +1,99 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.astro";
+import Icon from "../components/Icon.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
 import LeadFeed from "../components/LeadFeed.astro";
+import ChatDemo from "../components/ChatDemo.astro";
 import { SITE, STATS } from "../consts";
+
+const trades = [
+  { name: "Plumbers", icon: "droplet" },
+  { name: "Electricians", icon: "bolt" },
+  { name: "Roofers", icon: "home" },
+  { name: "Builders", icon: "hammer" },
+  { name: "HVAC & Air Con", icon: "flame" },
+  { name: "Painters", icon: "paint" },
+  { name: "Auto & Mechanical", icon: "cog" },
+  { name: "Drainlayers", icon: "wrench" },
+  { name: "Landscapers", icon: "leaf" },
+  { name: "Concrete", icon: "blocks" },
+];
+
+const missed = [
+  { icon: "phone-missed", title: "Missed call", meta: "Unknown number · 9:47am", tilt: "-rotate-2" },
+  { icon: "voicemail", title: "Voicemail", meta: "No message left · 11:15am", tilt: "rotate-1" },
+  { icon: "phone-missed", title: "Missed call", meta: "While you were quoting · 11:52am", tilt: "-rotate-1" },
+];
+
+const alone = [
+  "Calls go to voicemail while you're on the tools.",
+  "Quotes you meant to chase, but never did.",
+  "Ad money spent with nothing to show for it.",
+  "Happy customers who never leave a review.",
+  "Marketing decisions made by gut feel at 9pm.",
+];
+
+const withUs = [
+  "Every enquiry answered in 30 seconds or less, day or night.",
+  "Leads followed up automatically until they book or say no.",
+  "Every dollar tracked, reported and accounted for.",
+  "Reviews requested after every job, on autopilot.",
+  "One system, fully managed, while you stay on the tools.",
+];
 
 const system = [
   {
-    n: "1",
+    n: "01",
+    icon: "target",
     title: "Find the work",
-    body: "We get ready-to-buy locals in front of you on whatever works best for your trade. Usually a tight Google Ads campaign for fast results, with local SEO built into your new site so you keep climbing over time. Real calls and quote requests, not vanity clicks.",
+    body: "Tight Google Ads campaigns put you in front of ready-to-buy locals the moment they search. Local SEO keeps you climbing over time. Real calls and quote requests, not vanity clicks.",
   },
   {
-    n: "2",
+    n: "02",
+    icon: "calendar-check",
     title: "Book the work",
-    body: "Every call and enquiry gets answered, qualified and booked in 30 seconds, day or night. Your new smart website and AI assistant handle it for you, even when you're flat out on a job with your phone in the van.",
+    body: "Your smart website and AI assistant answer, qualify and book every enquiry in 30 seconds or less. Even at 11pm, while you're off the clock.",
   },
   {
-    n: "3",
-    title: "Keep it running",
-    body: "Automatic follow-ups chase every lead until they book or say no. Review requests go out after each job. Past customers get a nudge to book again. Your pipeline keeps filling without you lifting a finger.",
+    n: "03",
+    icon: "repeat",
+    title: "Keep it coming",
+    body: "Automatic follow-ups chase every quote until it's a yes or a no. Reviews roll in after every job. Past customers get a nudge when it's time to book again.",
   },
 ];
 
 const steps = [
-  { n: "1", title: "Free audit", body: "We look at your trade, area and competitors, then show you exactly what's realistic. Real numbers on leads and what they'll cost. No jargon, no obligation." },
-  { n: "2", title: "We build and run it", body: "We build your smart website, set up your campaigns and switch on the automation. You don't have to touch a thing." },
-  { n: "3", title: "Your phone rings", body: "Booked jobs land straight on your phone. We report on real results every month and keep sharpening them." },
+  {
+    n: "1",
+    title: "The free audit",
+    body: "20 minutes. We look at your trade, your area and your competition, then give you real numbers on what's possible. No jargon, no pressure.",
+  },
+  {
+    n: "2",
+    title: "We build your system",
+    body: "Smart website, campaigns, automation. Built and switched on within days, without you lifting a finger.",
+  },
+  {
+    n: "3",
+    title: "Your phone starts ringing",
+    body: "Booked jobs land in your calendar. We report the real numbers every month and keep tuning to bring your cost per job down.",
+  },
 ];
 
-const trades = ["Plumbers", "Electricians", "Roofers", "Builders", "HVAC & Air Con", "Painters", "Auto & Mechanical", "Drainlayers", "Landscapers", "Concrete"];
+const clientLogos = [
+  { src: "/img/continuousGroupLogoBW.png", alt: "Continuous Group" },
+  { src: "/img/no-drips-logo.png", alt: "No Drips Waterproofing" },
+  { src: "/img/boulevardServicesLogoBW.png", alt: "Boulevard Services" },
+  // White logo, invisible on the light section background — gets a dark backing box.
+  { src: "/img/harcourtsLogoBW.png", alt: "Harcourts", darkBox: true },
+  { src: "/img/portaSkipLogoBW.png", alt: "Porta Skip" },
+  { src: "/img/toplineLogoBW.png", alt: "Topline" },
+  { src: "/img/hawksBayCombinedTaxisLogoBW.png", alt: "Hawke's Bay Combined Taxis" },
+];
 
 const faqs = [
   { q: "How many leads will I actually get?", a: "It depends on your trade, your area and your budget, which is exactly what your free audit works out. We give you honest, realistic numbers up front, and report on real calls and quote requests every month." },
@@ -46,30 +107,47 @@ const faqs = [
 <Layout>
   <!-- ===== HERO ===== -->
   <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto max-w-[920px] px-5 py-20 text-center sm:py-28">
-      <Reveal>
-        <span class="badge badge-outline border-primary/40 py-3 text-primary">⚡ NZ's job booking system for tradies</span>
-      </Reveal>
-      <Reveal delay={0.05} class="mt-6">
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl">
-          The complete job booking system for <span class="marker rotator" data-rotate>Electricians</span>.
-        </h1>
-      </Reveal>
-      <Reveal delay={0.1} class="mx-auto mt-6 max-w-2xl">
-        <p class="text-lg text-neutral-content/80">
-          We find you the work, book it while you're on the tools, and keep your calendar full.
-          One system. You just turn up and do the job.
-        </p>
-      </Reveal>
-      <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-        <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
-        <a href="#how" class="btn btn-outline btn-lg w-full border-white text-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">See how it works</a>
-      </Reveal>
-      <Reveal delay={0.2} class="mt-6 flex justify-center">
-        <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
-      </Reveal>
-      <Reveal delay={0.26} class="mt-9">
-        <SocialProof />
+    <div class="mx-auto grid max-w-[1200px] items-center gap-14 px-5 py-16 sm:py-20 lg:grid-cols-[1.12fr_0.88fr] lg:py-24">
+      <div class="text-center lg:text-left">
+        <Reveal>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="sparkles" class="h-4 w-4" /> NZ's job booking system for tradies
+          </span>
+        </Reveal>
+        <Reveal delay={0.05} class="mt-6">
+          <h1 class="text-4xl sm:text-6xl xl:text-7xl">
+            <span class="block text-[0.66em]">The system that keeps</span>
+            <span class="block"><span class="marker rotator" data-rotate>Electricians</span></span>
+            <span class="block">booked solid.</span>
+          </h1>
+        </Reveal>
+        <Reveal delay={0.1} class="mx-auto mt-6 max-w-xl lg:mx-0">
+          <p class="text-lg text-neutral-content/80">
+            We find the work, answer every enquiry in 30 seconds or less and book jobs straight into your
+            calendar while you're flat out on the tools. You just turn up and do the job.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href="#how" class="btn btn-outline btn-lg w-full border-white/60 text-white hover:border-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">
+            See how it works
+          </a>
+        </Reveal>
+        <Reveal delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+          <SpeedBadge tone="dark" label="Replies in 30 seconds or less, 24/7" />
+        </Reveal>
+        <Reveal delay={0.26} class="mt-8 flex justify-center lg:justify-start">
+          <SocialProof />
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.2} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative">
+          <LeadFeed />
+        </div>
       </Reveal>
     </div>
   </section>
@@ -87,64 +165,101 @@ const faqs = [
   </div>
 
   <!-- ===== TRADES MARQUEE ===== -->
-  <div class="border-b border-base-300 bg-neutral py-3.5 text-neutral-content">
+  <div class="border-b border-base-300 bg-neutral py-4 text-neutral-content">
     <div class="marquee-wrap">
       <div class="marquee">
         {[...trades, ...trades].map((t) => (
-          <span class="mx-6 inline-flex items-center gap-3 font-display text-lg font-semibold uppercase tracking-wide text-neutral-content/60">
-            {t} <span class="text-primary">◆</span>
+          <span class="mx-7 inline-flex items-center gap-2.5 font-display text-lg font-semibold uppercase tracking-wide text-neutral-content/60">
+            <Icon name={t.icon} class="h-5 w-5 text-primary" /> {t.name}
           </span>
         ))}
       </div>
     </div>
   </div>
 
-  <!-- ===== PAIN HOOK ===== -->
-  <section class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
-    <Reveal>
-      <h2 class="text-3xl sm:text-4xl">Every missed call is a booked job going to the <span class="highlight">other guy</span>.</h2>
-      <div class="mt-4 space-y-2 text-base-content/70">
-        <p class="text-xl">You can't answer the phone with your hands full on a job.</p>
-        <p class="text-lg">By the time you call back, they've already rung the next name on Google and booked him in.</p>
-        <p class="text-lg">It's not your fault.</p>
-        <p class="text-lg">You're flat out doing the work.</p>
-        <p class="text-lg font-bold text-base-content">But it's quietly costing you real jobs every week.</p>
+  <!-- ===== PAIN: THE LEAK ===== -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <div>
+        <Reveal><span class="eyebrow">The leak</span></Reveal>
+        <Reveal delay={0.05}>
+          <h2 class="mt-3 text-3xl sm:text-5xl">Every missed call is a job for the <span class="highlight">other guy</span>.</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p class="mt-6 text-lg text-base-content/70">
+            You're up a ladder or under a house. The phone rings out. By the time you check it at
+            smoko, they've rung the next name on Google and booked him in.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <p class="mt-4 text-lg text-base-content/70">It's not your fault. You're busy doing the actual work.</p>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p class="mt-4 text-lg font-bold text-base-content">But it's quietly costing you real, winnable jobs every single week.</p>
+        </Reveal>
       </div>
-    </Reveal>
+
+      <div class="mx-auto w-full max-w-sm space-y-4">
+        {missed.map((c, i) => (
+          <Reveal delay={0.1 + i * 0.12}>
+            <div class={`flex items-center gap-4 rounded-2xl border border-error/20 bg-base-100 p-4 shadow-lg ${c.tilt}`}>
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-error/10 text-error">
+                <Icon name={c.icon} class="h-5 w-5" />
+              </span>
+              <div class="min-w-0">
+                <p class="font-display text-lg">{c.title}</p>
+                <p class="text-sm text-base-content/60">{c.meta}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+        <Reveal delay={0.5}>
+          <p class="pt-1 text-center text-sm text-base-content/60">
+            Three missed calls is a normal morning. Any one of them could've been next week's biggest job.
+          </p>
+        </Reveal>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== PROBLEM VS SOLUTION ===== -->
-  <section class="py-16 sm:py-20">
+  <!-- ===== THE DIFFERENCE ===== -->
+  <section class="bg-base-200 py-16 sm:py-24">
     <div class="mx-auto max-w-[1000px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">The difference</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Going it alone vs the Hyper Digital system</h2>
+        <h2 class="mt-3 text-3xl sm:text-5xl">Two ways to run a trade business.</h2>
       </Reveal>
-      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Reveal>
-          <div class="card h-full border border-error/30 bg-error/5">
+          <div class="card h-full border border-base-300 bg-base-100">
             <div class="card-body">
-              <h3 class="text-2xl text-error">😩 On your own</h3>
-              <ul class="mt-2 space-y-2.5 text-base-content/80">
-                <li class="flex gap-2"><span class="text-error">✗</span> Missed calls go to voicemail, then to the next tradie.</li>
-                <li class="flex gap-2"><span class="text-error">✗</span> Quotes you meant to follow up, but never did.</li>
-                <li class="flex gap-2"><span class="text-error">✗</span> Ad spend you can't measure or trust.</li>
-                <li class="flex gap-2"><span class="text-error">✗</span> Happy customers who never leave a review.</li>
-                <li class="flex gap-2"><span class="text-error">✗</span> No system, just hoping the phone rings.</li>
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-error/10 text-error">
+                <Icon name="phone-missed" class="h-5 w-5" />
+              </span>
+              <h3 class="mt-3 text-2xl">Doing it all yourself</h3>
+              <ul class="mt-3 space-y-3 text-base-content/70">
+                {alone.map((item) => (
+                  <li class="flex gap-3">
+                    <Icon name="x" class="mt-1 h-4 w-4 shrink-0 text-error" /> {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <div class="card card-glow card-glow-success h-full border-2 border-success/40 bg-success/5">
+          <div class="card card-glow h-full border-2 border-primary/60 bg-brand-dark text-neutral-content shadow-xl">
             <div class="card-body">
-              <h3 class="text-2xl text-success">🚀 With Hyper Digital</h3>
-              <ul class="mt-2 space-y-2.5 text-base-content/80">
-                <li class="flex gap-2"><span class="text-success">✓</span> Every enquiry answered in 30 seconds, 24/7.</li>
-                <li class="flex gap-2"><span class="text-success">✓</span> Leads chased automatically until they book.</li>
-                <li class="flex gap-2"><span class="text-success">✓</span> Honest reporting on every dollar you spend.</li>
-                <li class="flex gap-2"><span class="text-success">✓</span> Reviews requested after every job, on autopilot.</li>
-                <li class="flex gap-2"><span class="text-success">✓</span> One complete system, fully managed for you.</li>
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <Icon name="bolt" class="h-5 w-5" />
+              </span>
+              <h3 class="mt-3 text-2xl text-neutral-content">Running the Hyper Digital system</h3>
+              <ul class="mt-3 space-y-3 text-neutral-content/80">
+                {withUs.map((item) => (
+                  <li class="flex gap-3">
+                    <Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-primary" /> {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -154,94 +269,110 @@ const faqs = [
   </section>
 
   <!-- ===== THE SYSTEM ===== -->
-  <section id="how" class="bg-base-200 py-16 sm:py-20">
-    <div class="mx-auto max-w-[1160px] px-5">
+  <section id="how" class="bg-brand-dark scroll-mt-20 text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-24">
       <Reveal class="mx-auto max-w-2xl text-center">
         <span class="eyebrow">The system</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">One system that runs your whole job pipeline.</h2>
-        <p class="mt-3 text-base-content/70">
-          Most agencies sell you one piece and leave you to stitch the rest together. We run the
-          whole thing, start to finish.
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">One system. Three jobs. All handled.</h2>
+        <p class="mt-4 text-neutral-content/70">
+          Most agencies sell you one piece of the puzzle and leave you to figure out the rest.
+          We build and run the whole machine.
         </p>
       </Reveal>
-      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
         {system.map((c, i) => (
           <Reveal delay={i * 0.08}>
-            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
-              <div class="card-body">
-                <div class="flex h-12 w-12 items-center justify-center rounded-box bg-neutral font-display text-2xl text-primary">{c.n}</div>
-                <h3 class="mt-3 text-2xl">{c.title}</h3>
-                <p class="text-base-content/70">{c.body}</p>
-              </div>
+            <div class="card-glow relative h-full overflow-hidden rounded-box border border-white/10 surface-2 p-7">
+              <span class="num-ghost absolute -top-3 right-4 text-8xl" aria-hidden="true">{c.n}</span>
+              <span class="icon-chip relative">
+                <Icon name={c.icon} class="h-6 w-6" />
+              </span>
+              <h3 class="relative mt-5 text-2xl text-neutral-content">{c.title}</h3>
+              <p class="relative mt-2.5 text-neutral-content/70">{c.body}</p>
             </div>
           </Reveal>
         ))}
       </div>
+      <Reveal class="mt-12 text-center">
+        <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
+          Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
+      </Reveal>
     </div>
   </section>
 
-  <!-- ===== SPEED SHOWCASE ===== -->
-  <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-20">
-      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <Reveal>
-          <SpeedBadge tone="dark" />
-          <h2 class="mt-5 text-3xl text-neutral-content sm:text-4xl">
-            Every enquiry answered in <span class="marker">30 seconds</span>. Day or night.
-          </h2>
-          <p class="mt-4 text-lg text-neutral-content/80">
-            The fastest reply almost always wins the job. While most enquiries sit unanswered for
-            hours, your system replies, qualifies and books them in within 30 seconds, even when
-            you're flat out on the tools. It's the same system working on this page right now.
-          </p>
-          <div class="mt-7 flex flex-col flex-wrap gap-3 sm:flex-row">
-            <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free audit</a>
-            <a href="/ai-automation" class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide">See how it works</a>
-          </div>
+  <!-- ===== SPEED WINS ===== -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <div>
+        <Reveal><span class="eyebrow">Speed wins</span></Reveal>
+        <Reveal delay={0.05}>
+          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours takes <span class="marker">30 seconds or less</span>.</h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <LeadFeed />
+          <p class="mt-6 text-lg text-base-content/70">
+            Most enquiries sit unanswered for hours. Yours get answered, qualified and booked before
+            the customer has finished their cuppa. Day or night, weekends and public holidays, while
+            you're on the tools or off the clock.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free audit</a>
+          <a href="/ai-automation" class="btn btn-outline btn-lg border-base-content/30 font-display text-lg tracking-wide hover:border-base-content hover:bg-base-content hover:text-base-100">
+            See the automation
+          </a>
         </Reveal>
       </div>
+      <Reveal delay={0.1} class="relative">
+        <div class="glow-blob opacity-60"></div>
+        <div class="relative"><ChatDemo /></div>
+      </Reveal>
     </div>
-  </section>
-
-  <!-- ===== WHY DIFFERENT ===== -->
-  <section class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
-    <Reveal>
-      <h2 class="text-3xl sm:text-4xl">Why tradies stick with us.</h2>
-      <p class="mt-4 text-lg text-base-content/70">
-        Most marketing leaks. You pay for ads that send people to a website that never replies,
-        and the lead goes cold before you've finished the job in front of you. We own the whole chain,
-        from the first click to the booked job, so nothing falls through the cracks. And there's
-        no lock-in contract. You stay because the work keeps coming.
-      </p>
-    </Reveal>
   </section>
 
   <!-- ===== PROOF ===== -->
-  <section class="py-16 sm:py-20">
+  <section class="bg-base-200 py-16 sm:py-24">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">Proof</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Real Kiwi businesses. Real results.</h2>
+        <h2 class="mt-3 text-3xl sm:text-5xl">Real Kiwi businesses. Real numbers.</h2>
       </Reveal>
 
-      <Reveal class="mt-10">
-        <div class="card border border-base-300 bg-base-100 shadow-sm">
-          <div class="card-body gap-4 md:flex-row md:items-center md:justify-between">
-            <div class="max-w-xl">
-              <div class="font-display text-3xl text-primary">Bermuda Lifestyle, Pools &amp; Spas</div>
-              <p class="mt-2 text-2xl font-bold">2,500% more enquiries and 500% revenue growth in their first year.</p>
-              <p class="mt-1 text-xs text-base-content/50">Revenue growth is client-reported.</p>
-              <p class="mt-2 text-base-content/70 italic">
+      <!-- Featured case study -->
+      <Reveal class="mt-12">
+        <div class="card overflow-hidden border border-base-300 bg-base-100 shadow-md">
+          <div class="card-body gap-8 p-7 sm:p-9 lg:flex-row lg:items-center">
+            <div class="flex shrink-0 gap-10 lg:flex-col lg:gap-8">
+              <div>
+                <div class="font-display text-5xl text-primary sm:text-6xl"><span data-count="2500">2,500</span>%</div>
+                <div class="mt-1 text-sm text-base-content/60">more enquiries, year one</div>
+              </div>
+              <div>
+                <div class="font-display text-5xl text-primary sm:text-6xl"><span data-count="500">500</span>%</div>
+                <div class="mt-1 text-sm text-base-content/60">revenue growth, year one*</div>
+              </div>
+            </div>
+            <div class="min-w-0">
+              <Icon name="quote" class="h-8 w-8 text-primary/40" />
+              <p class="mt-3 text-xl leading-relaxed text-base-content/80 italic">
                 "Month after month, year after year Ryan, Matt and their team at Hyper Digital have
                 allowed us the very fortunate position of having new customers booked months in
                 advance for our Pools and Spas."
               </p>
-              <p class="mt-2 font-display text-base-content">Denise Howell</p>
+              <div class="mt-5 flex items-center gap-3">
+                <img src="/img/denise-bermuda-lifestyle-avatar.jpg" alt="Denise Howell" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
+                <div>
+                  <div class="font-display text-lg">Denise Howell</div>
+                  <div class="text-sm text-base-content/60">Bermuda Lifestyle, Pools &amp; Spas</div>
+                </div>
+              </div>
+              <p class="mt-4 text-xs text-base-content/50">*Revenue growth is client-reported.</p>
             </div>
-            <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">Read the full story →</a>
+            <div class="shrink-0 lg:self-center">
+              <a href="/results/bermuda-lifestyle" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+                Read the full story <Icon name="arrow-right" class="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
       </Reveal>
@@ -250,124 +381,195 @@ const faqs = [
         <Reveal>
           <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
             <div class="card-body">
-              <div class="text-primary">★★★★★</div>
+              <div class="flex items-start justify-between">
+                <div class="text-primary">★★★★★</div>
+                <Icon name="quote" class="h-6 w-6 text-primary/30" />
+              </div>
               <p class="text-xl font-bold">Phone enquiries up 69% year-on-year.</p>
               <p class="text-base-content/70 italic">
                 "Ryan from Hyper Digital walked through the door and sat with me. He had already
                 taken time to learn all about us and what we do. Since then they have got us found
                 on Google with Ads to showcase our products all over NZ."
               </p>
-              <div class="font-display text-xl">Donna Godfrey, Tableau Towbars</div>
+              <div class="mt-2 flex items-center gap-3">
+                <img src="/img/tableau-towbars-avatar.png" alt="Tableau Towbars" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
+                <div class="font-display text-lg">Donna Godfrey, Tableau Towbars</div>
+              </div>
             </div>
           </div>
         </Reveal>
         <Reveal delay={0.08}>
           <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
             <div class="card-body">
-              <div class="text-primary">★★★★★</div>
+              <div class="flex items-start justify-between">
+                <div class="text-primary">★★★★★</div>
+                <Icon name="quote" class="h-6 w-6 text-primary/30" />
+              </div>
               <p class="text-xl font-bold">Cost per lead cut from $31 to around $17.</p>
               <p class="text-base-content/70 italic">
                 "Harris Pumps and Filtration have been a client of Hyper Digital from the very
                 beginning. A great company that has helped grow our online advertising with real
                 results. They offer customised solutions that work."
               </p>
-              <div class="font-display text-xl">Stephen Harris, Harris Pumps &amp; Filtration</div>
+              <div class="mt-2 flex items-center gap-3">
+                <img src="/img/harris-pumps-avatar.png" alt="Harris Pumps &amp; Filtration" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
+                <div class="font-display text-lg">Stephen Harris, Harris Pumps &amp; Filtration</div>
+              </div>
             </div>
           </div>
+        </Reveal>
+      </div>
+
+      <!-- Client logo wall -->
+      <Reveal class="mt-14 text-center">
+        <p class="text-sm font-semibold uppercase tracking-widest text-base-content/50">Some of the businesses we've worked with</p>
+        <div class="logo-strip mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-7">
+          {clientLogos.map((l) =>
+            l.darkBox ? (
+              <span class="inline-flex items-center bg-neutral px-2 py-1">
+                <img src={l.src} alt={l.alt} loading="lazy" decoding="async" class="h-5 w-auto object-contain sm:h-6" />
+              </span>
+            ) : (
+              <img src={l.src} alt={l.alt} loading="lazy" decoding="async" class="h-9 w-auto object-contain sm:h-10" />
+            )
+          )}
+        </div>
+        <a href="/results" class="btn btn-ghost mt-8 text-primary">See all case studies <Icon name="arrow-right" class="h-4 w-4" /></a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FOUNDERS ===== -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-14 px-5 lg:grid-cols-2">
+      <Reveal class="relative mx-auto w-full max-w-lg">
+        <div class="absolute -top-4 -left-4 h-full w-full rounded-box border-2 border-primary/40" aria-hidden="true"></div>
+        <img
+          src="/img/HD-Founders.jpg"
+          alt="Matt and Ryan, founders of Hyper Digital"
+          loading="lazy"
+          decoding="async"
+          class="relative w-full rounded-box object-cover shadow-2xl"
+        />
+        <span class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-neutral/90 px-4 py-1.5 text-sm font-semibold text-neutral-content backdrop-blur">
+          <span class="inline-block h-2 w-2 rounded-full bg-primary"></span> Matt &amp; Ryan · Founders
+        </span>
+      </Reveal>
+      <div>
+        <Reveal><span class="eyebrow">Who you're dealing with</span></Reveal>
+        <Reveal delay={0.05}>
+          <h2 class="mt-3 text-3xl sm:text-5xl">Two blokes who answer their own phone.</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p class="mt-6 text-lg text-base-content/70">
+            Hyper Digital is Matt and Ryan. Two hardworking Kiwis who've been running this agency
+            since 2019, helping local businesses grow. No account managers, no offshore call centre,
+            no runaround. When you ring, you get one of us. And we treat your ad budget like it's
+            coming out of our own pocket.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-6 flex flex-wrap gap-2.5">
+          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="pin" class="h-4 w-4 text-primary" /> Hawke's Bay based, NZ-wide</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="clock" class="h-4 w-4 text-primary" /> Since 2019</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="phone" class="h-4 w-4 text-primary" /> You call, we answer</span>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <a href="/about" class="btn btn-outline mt-7 border-primary font-display text-lg tracking-wide text-primary hover:bg-primary hover:text-primary-content">
+            Our story <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
         </Reveal>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOUNDERS ===== -->
-  <section class="bg-base-200 py-16 sm:py-20">
-    <div class="mx-auto max-w-[820px] px-5 text-center">
-      <Reveal>
-        <h2 class="text-3xl sm:text-4xl">Run by two blokes who get the trades.</h2>
-        <p class="mt-4 text-lg text-base-content/70">
-          Hyper Digital is Matt and Ryan, two hardworking Kiwis who've spent decades in the industry
-          and have run Hyper Digital since 2019, helping local businesses grow. We're not a faceless
-          agency or a fly-by-night startup. We answer the phone, we know your world, and we treat
-          your ad budget like it's our own money. When you call, you get one of us.
-        </p>
-        <a href="/about" class="btn btn-ghost mt-5 text-primary">Our story →</a>
-      </Reveal>
-    </div>
-  </section>
-
   <!-- ===== HOW IT WORKS ===== -->
-  <section class="py-16 sm:py-20">
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-24">
     <div class="mx-auto max-w-[1160px] px-5">
-      <Reveal class="text-center"><span class="eyebrow">Simple</span><h2 class="mt-2 text-3xl sm:text-4xl">How it works.</h2></Reveal>
-      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {steps.map((s, i) => (
-          <Reveal delay={i * 0.08}>
-            <div class="text-center">
-              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary font-display text-2xl text-primary-content">{s.n}</div>
-              <h3 class="mt-4 text-2xl">{s.title}</h3>
-              <p class="mt-2 text-base-content/70">{s.body}</p>
-            </div>
-          </Reveal>
-        ))}
+      <Reveal class="text-center">
+        <span class="eyebrow">Getting started</span>
+        <h2 class="mt-3 text-3xl sm:text-5xl">From first look to full calendar.</h2>
+      </Reveal>
+      <div class="relative mt-14">
+        <div class="flow-line absolute top-7 right-[16%] left-[16%] hidden h-0.5 md:block" aria-hidden="true"></div>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+          {steps.map((s, i) => (
+            <Reveal delay={i * 0.08}>
+              <div class="text-center">
+                <div class="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary font-display text-2xl text-primary-content shadow-lg shadow-primary/30 ring-4 ring-base-100">{s.n}</div>
+                <h3 class="mt-5 text-2xl">{s.title}</h3>
+                <p class="mx-auto mt-2.5 max-w-xs text-base-content/70">{s.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== PRICING ===== -->
-  <section class="bg-base-200 py-16 sm:py-20">
+  <section class="bg-base-200 py-16 sm:py-24">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">Pricing</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
-          system built. Then pick a monthly plan for your website, ad management and automation.
-          Your ad budget is separate and set to suit your goals.
+        <h2 class="mt-3 text-3xl sm:text-5xl">Simple plans. No lock-in. No surprises.</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup builds your
+          system. Then one monthly plan covers your website, ad management and automation. Your ad
+          budget is separate and set to suit your goals.
         </p>
       </Reveal>
 
-      <div class="mt-10">
+      <div class="mt-12">
         <PricingTiers />
       </div>
 
-      <Reveal class="mt-8 text-center">
-        <p class="text-base-content/70">
+      <Reveal class="mt-10 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
           Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
           to suit. On your free audit we'll work out the right plan and the ad budget that fits your
           trade and your goals.
         </p>
-        <a href="#audit" class="btn btn-primary mt-6 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-7 font-display text-lg tracking-wide">
+          Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
       </Reveal>
     </div>
   </section>
 
   <!-- ===== GUARANTEE ===== -->
   <section class="bg-brand-dark-2 text-neutral-content">
-    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-24">
       <Reveal>
-        <span class="badge badge-outline border-primary/40 text-primary">Our 60-day guarantee</span>
-        <h2 class="mt-4 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="text-primary">free</span> until you do.
+        <div class="relative mx-auto flex h-24 w-24 items-center justify-center">
+          <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
+          <div class="flex h-[4.3rem] w-[4.3rem] items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
+            <Icon name="shield-check" class="h-9 w-9" />
+          </div>
+        </div>
+        <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
         </h2>
-        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+        <p class="mx-auto mt-6 max-w-2xl text-neutral-content/80">
           Before we start, we agree a monthly lead target with you, based on your trade, your area
           and your budget. If we don't hit it in the first 60 days, we keep working and waive our
           management fee until we do. You still cover your ad spend, but you won't pay us another
           cent until we deliver what we promised.
         </p>
-        <a href="#audit" class="btn btn-primary mt-7 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
       </Reveal>
     </div>
   </section>
 
   <!-- ===== AUDIT FORM + FAQ ===== -->
-  <section class="py-16 sm:py-20">
-    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
-        <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
-        <div class="mt-6 space-y-3">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Straight answers to fair questions.</h2>
+        <div class="mt-7 space-y-3">
           {faqs.map((f) => (
-            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <div class="collapse-arrow collapse rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
               <input type="checkbox" />
               <div class="collapse-title font-display text-xl">{f.q}</div>
               <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
@@ -382,25 +584,35 @@ const faqs = [
   </section>
 
   <!-- ===== FINAL CTA ===== -->
-  <section class="bg-primary text-primary-content">
-    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-20 text-center sm:py-28">
       <Reveal>
-        <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to keep your calendar full?</h2>
-        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation audit. We'll show you exactly where your next jobs are coming
-          from and what they'll cost.
+        <h2 class="text-4xl text-neutral-content sm:text-6xl">
+          The work's out there. Let's make it <span class="marker">ring your phone</span>.
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-lg text-neutral-content/80">
+          Get your free 20-minute audit. We'll show you exactly where your next jobs are coming
+          from and what they'll cost. Worst case, you walk away knowing your local market better
+          than your competition does.
         </p>
-        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="#audit" class="btn btn-neutral btn-lg w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">Get my free audit</a>
-          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        <div class="mt-9 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">
+            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-white/60 text-white hover:border-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">
+            Or call {SITE.phone}
+          </a>
         </div>
+        <p class="mt-7 text-sm text-neutral-content/60">
+          Free 20-minute audit <span class="text-primary">·</span> Real numbers <span class="text-primary">·</span> No obligation
+        </p>
       </Reveal>
     </div>
   </section>
 
-  <!-- Rotating trade in the hero headline (stalkr-style) -->
+  <!-- Rotating trade in the hero headline + count-up trust numbers -->
   <script>
-    import { animate } from "motion";
+    import { animate, inView } from "motion";
 
     const TRADES = [
       "Electricians", "Plumbers", "Roofers", "Builders",
@@ -428,7 +640,30 @@ const faqs = [
       }, 3000);
     }
 
-    document.addEventListener("astro:page-load", setupRotator);
+    // Numbers with [data-count] count up from 0 when scrolled into view.
+    // No-JS and reduced-motion users just see the server-rendered final value.
+    function setupCounters() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+        if (el.dataset.counted) return;
+        el.dataset.counted = "1";
+        const target = parseInt(el.dataset.count || "", 10);
+        if (!Number.isFinite(target)) return;
+        inView(
+          el,
+          () => {
+            animate(0, target, {
+              duration: 1.4,
+              ease: [0.16, 1, 0.3, 1],
+              onUpdate: (v) => { el.textContent = Math.round(v).toLocaleString("en-NZ"); },
+            });
+          },
+          { amount: 0.6 }
+        );
+      });
+    }
+
+    document.addEventListener("astro:page-load", () => { setupRotator(); setupCounters(); });
     document.addEventListener("astro:before-swap", () => clearInterval(rotateTimer));
   </script>
 </Layout>

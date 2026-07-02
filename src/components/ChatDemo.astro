@@ -1,0 +1,85 @@
+---
+// Chat-bubble phone mockup: an example after-hours enquiry answered, qualified and booked
+// in seconds. Illustrative example, not real data — labelled as such to stay honest.
+const messages = [
+  { from: "them", text: "Hi, my hot water cylinder is leaking. Can someone take a look this week?", time: "9:47pm" },
+  { from: "us", text: "Sorry to hear that! We can definitely help. Whereabouts are you?", time: "9:47pm", badge: "Replied in 24 seconds" },
+  { from: "them", text: "Taradale, Napier", time: "9:48pm" },
+  { from: "us", text: "Perfect, we cover Taradale. We've got Thursday 8:30am or Friday 1pm free. Which suits?", time: "9:48pm" },
+  { from: "them", text: "Thursday 8:30 works", time: "9:49pm" },
+  { from: "us", text: "Booked! You'll get a confirmation text now and a reminder the night before. See you Thursday.", time: "9:49pm", badge: "Job booked while you slept" },
+];
+---
+<div class="mx-auto w-full max-w-sm">
+  <div class="rounded-[2rem] border border-white/10 surface-2 p-3 shadow-2xl">
+    <!-- top bar -->
+    <div class="flex items-center justify-between px-3 py-2">
+      <span class="text-xs font-bold uppercase tracking-wide text-neutral-content/60">After-hours enquiry</span>
+      <span class="flex items-center gap-1.5 text-xs text-primary">
+        <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-primary"></span> AI assistant
+      </span>
+    </div>
+
+    <div class="space-y-3 rounded-2xl bg-black/30 p-4" data-chat>
+      {messages.map((m) => (
+        <div data-msg={m.from} class={m.from === "us" ? "flex flex-col items-end" : "flex flex-col items-start"}>
+          <div
+            class={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-snug ${
+              m.from === "us"
+                ? "rounded-br-sm bg-primary text-primary-content"
+                : "rounded-bl-sm border border-white/10 surface-3 text-neutral-content"
+            }`}
+          >
+            {m.text}
+          </div>
+          <div class={`mt-1 flex items-center gap-2 text-[0.65rem] text-neutral-content/50 ${m.from === "us" ? "flex-row-reverse" : ""}`}>
+            <span>{m.time}</span>
+            {m.badge && <span class="cat-chip">{m.badge}</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <p class="mt-3 text-center text-xs text-base-content/50">Example conversation. Not live data.</p>
+</div>
+
+<!-- Messages play in one by one, sliding in from their sender's side, when the chat
+     scrolls into view. Container height never changes, so nothing below shifts.
+     No-JS and reduced-motion users just see the full conversation. -->
+<script>
+  import { animate, inView } from "motion";
+
+  function setupChatDemo() {
+    const chat = document.querySelector<HTMLElement>("[data-chat]");
+    if (!chat || chat.dataset.played) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const msgs = [...chat.querySelectorAll<HTMLElement>("[data-msg]")];
+    if (!msgs.length) return;
+    chat.dataset.played = "1";
+    msgs.forEach((m) => { m.style.opacity = "0"; });
+
+    inView(
+      chat,
+      () => {
+        msgs.forEach((m, i) => {
+          const fromUs = m.dataset.msg === "us";
+          animate(
+            m,
+            {
+              opacity: [0, 1],
+              transform: [
+                `translate(${fromUs ? 28 : -28}px, 16px) scale(0.9)`,
+                "translate(0px, 0px) scale(1)",
+              ],
+            },
+            { duration: 0.55, delay: 0.2 + i * 0.7, ease: [0.16, 1, 0.3, 1] }
+          );
+        });
+      },
+      { amount: 0.35 }
+    );
+  }
+
+  document.addEventListener("astro:page-load", setupChatDemo);
+</script>
