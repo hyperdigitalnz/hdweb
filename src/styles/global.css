@@ -243,12 +243,16 @@
 .marquee-wrap:hover .marquee { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
-/* Soft radial accent glow behind hero/feature mockups (parent must be relative) */
+/* Soft radial accent glow behind hero/feature mockups (parent must be relative).
+   Horizontal bleed is a small FIXED value (not a %) so it always stays inside the section's
+   px-5 (20px) gutter and can never push past the viewport edge — a percentage here scaled with
+   the parent and caused the mobile horizontal-scroll/"shift to white". The soft, wide halo comes
+   from the blur, which is ink-only paint and never adds scrollable width. */
 .glow-blob {
   position: absolute;
-  inset: -12% -16%;
+  inset: -12% -0.75rem;
   background: radial-gradient(closest-side, color-mix(in srgb, var(--color-primary) 24%, transparent), transparent 72%);
-  filter: blur(12px);
+  filter: blur(24px);
   pointer-events: none;
 }
 

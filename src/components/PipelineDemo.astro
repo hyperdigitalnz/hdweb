@@ -1,0 +1,119 @@
+---
+// CRM pipeline mockup (GoHighLevel-style opportunities board): leads flowing left to right
+// from new lead to booked job. Illustrative example, not real data — labelled as such to
+// stay honest. Column totals must equal the sum of their cards.
+const stages = [
+  {
+    name: "New lead",
+    chip: "primary",
+    count: "3 leads",
+    total: "$3,950",
+    cards: [
+      { title: "Hot water cylinder", meta: "Taradale · 12 min ago", value: "$850" },
+      { title: "Switchboard upgrade", meta: "Hastings · 1 hr ago", value: "$1,900" },
+      { title: "Roof leak repair", meta: "Napier · 3 hrs ago", value: "$1,200" },
+    ],
+  },
+  {
+    name: "Quote sent",
+    chip: "info",
+    count: "2 quotes",
+    total: "$7,800",
+    cards: [
+      { title: "Bathroom re-pipe", meta: "Havelock North · follow-up Tue", value: "$4,600" },
+      { title: "Heat pump install", meta: "Napier · auto follow-up on", value: "$3,200" },
+    ],
+  },
+  {
+    name: "Job booked",
+    chip: "success",
+    count: "2 jobs",
+    total: "$18,890",
+    cards: [
+      { title: "Reroof + spouting", meta: "Hastings · Thu 8:30am", value: "$18,500" },
+      { title: "Drain unblock", meta: "Clive · Fri 1:00pm", value: "$390" },
+    ],
+  },
+];
+---
+<div class="mx-auto w-full max-w-xl">
+  <div class="rounded-2xl border border-white/10 surface-2 p-3 shadow-2xl">
+    <!-- window top bar -->
+    <div class="flex items-center justify-between px-3 py-2">
+      <span class="flex items-center gap-1.5" aria-hidden="true">
+        <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+      </span>
+      <span class="text-xs font-bold uppercase tracking-wide text-neutral-content/60">Your job pipeline</span>
+      <span class="flex items-center gap-1.5 text-xs text-primary">
+        <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-primary"></span> Live
+      </span>
+    </div>
+
+    <div class="grid grid-cols-3 items-start gap-2 rounded-xl bg-black/30 p-2.5 sm:gap-3 sm:p-3" data-pipeline>
+      {stages.map((s, col) => (
+        <div class="min-w-0" style={`--chip: var(--color-${s.chip})`}>
+          <!-- stage header -->
+          <div class="px-1">
+            <div class="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-wide text-neutral-content/70">
+              <span class="h-2 w-2 shrink-0 rounded-full" style="background: var(--chip)"></span>
+              <span class="truncate">{s.name}</span>
+            </div>
+            <div class="mt-0.5 truncate text-[0.62rem] text-neutral-content/45">{s.count} · {s.total}</div>
+          </div>
+          <!-- opportunity cards -->
+          <div class="mt-2 space-y-2">
+            {s.cards.map((c, row) => (
+              <div
+                class="rounded-lg border border-white/10 surface-3 p-2 sm:p-2.5"
+                style="border-left: 2px solid color-mix(in srgb, var(--chip) 65%, transparent)"
+                data-pcard
+                data-delay={(col * 0.4 + row * 0.16).toFixed(2)}
+              >
+                <p class="truncate text-[0.72rem] font-semibold leading-snug text-neutral-content sm:text-xs">{c.title}</p>
+                <p class="mt-0.5 truncate text-[0.6rem] text-neutral-content/50">{c.meta}</p>
+                <span class="cat-chip mt-1.5">{c.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <p class="mt-3 text-center text-xs text-neutral-content/50">Example pipeline. Not live data.</p>
+</div>
+
+<!-- Cards deal in column by column (left to right, top to bottom) when the board scrolls
+     into view. Opacity-only hiding, so the board's height never changes and nothing shifts.
+     No-JS and reduced-motion users just see the full board. -->
+<script>
+  import { animate, inView } from "motion";
+
+  function setupPipelineDemo() {
+    const board = document.querySelector<HTMLElement>("[data-pipeline]");
+    if (!board || board.dataset.played) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const cards = [...board.querySelectorAll<HTMLElement>("[data-pcard]")];
+    if (!cards.length) return;
+    board.dataset.played = "1";
+    cards.forEach((c) => { c.style.opacity = "0"; });
+
+    inView(
+      board,
+      () => {
+        cards.forEach((c) => {
+          animate(
+            c,
+            { opacity: [0, 1], transform: ["translateY(14px) scale(0.94)", "translateY(0px) scale(1)"] },
+            { duration: 0.5, delay: 0.2 + parseFloat(c.dataset.delay || "0"), ease: [0.16, 1, 0.3, 1] }
+          );
+        });
+      },
+      { amount: 0.35 }
+    );
+  }
+
+  document.addEventListener("astro:page-load", setupPipelineDemo);
+</script>

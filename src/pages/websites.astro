@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
+import SpeedBadge from "../components/SpeedBadge.astro";
 import Icon from "../components/Icon.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import PricingTiers from "../components/PricingTiers.astro";
@@ -34,9 +35,10 @@ const trust = [
   { icon: "pin", title: "Found on Google and AI answers", body: "Built to rank in local search, the map pack and the AI answers more customers now use to find a tradie." },
 ];
 
+// `stat` is rendered with set:html so the numbers can count up on scroll ([data-count]).
 const proof = [
-  { name: "Bermuda Lifestyle", stat: "+2,500%", statLabel: "enquiries in year one", body: "From a basic 5-page site that barely ranked to a fast, search-ready website, with 500% revenue growth (client-reported) in their first year." },
-  { name: "Tableau Towbars", stat: "+69%", statLabel: "phone enquiries YoY", body: "From a one-page HTML brochure to a fast, search-ready site built around their services, getting found on Google and turning visits into calls." },
+  { name: "Bermuda Lifestyle", stat: '+<span data-count="2500">2,500</span>%', statLabel: "enquiries in year one", body: "From a basic 5-page site that barely ranked to a fast, search-ready website, with 500% revenue growth (client-reported) in their first year." },
+  { name: "Tableau Towbars", stat: '+<span data-count="69">69</span>%', statLabel: "phone enquiries YoY", body: "From a one-page HTML brochure to a fast, search-ready site built around their services, getting found on Google and turning visits into calls." },
 ];
 
 const faqs = [
@@ -63,9 +65,11 @@ const faqSchema = {
     <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
         <Reveal>
-          <span class="eyebrow">Book the work</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="calendar-check" class="h-4 w-4" /> Book the work
+          </span>
         </Reveal>
-        <Reveal delay={0.05} class="mt-3">
+        <Reveal delay={0.05} class="mt-5">
           <h1 class="text-4xl sm:text-5xl lg:text-6xl">
             A website that <span class="marker">books the job</span> while you're on the tools.
           </h1>
@@ -78,15 +82,23 @@ const faqSchema = {
           </p>
         </Reveal>
         <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
-          <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
-        <Reveal delay={0.22} class="mt-9">
+        <Reveal delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+        </Reveal>
+        <Reveal delay={0.26} class="mt-8 flex justify-center lg:justify-start">
           <SocialProof />
         </Reveal>
       </div>
-      <Reveal delay={0.15}>
-        <LeadFeed />
+      <Reveal delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative">
+          <LeadFeed />
+        </div>
       </Reveal>
     </div>
   </section>
@@ -123,14 +135,12 @@ const faqSchema = {
       <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {doesSteps.map((s, i) => (
           <Reveal delay={i * 0.08} class="h-full">
-            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card card-glow relative h-full overflow-hidden border border-base-300 bg-base-100 shadow-sm">
+              <span class="num-ghost absolute -top-3 right-4 text-8xl" aria-hidden="true">{s.n}</span>
               <div class="card-body">
-                <div class="flex items-center justify-between">
-                  <span class="icon-chip"><Icon name={s.icon} class="h-6 w-6" /></span>
-                  <span class="font-display text-3xl text-base-300">{s.n}</span>
-                </div>
-                <h3 class="mt-3 font-display text-xl">{s.title}</h3>
-                <p class="mt-1 text-base-content/70">{s.body}</p>
+                <span class="icon-chip relative"><Icon name={s.icon} class="h-6 w-6" /></span>
+                <h3 class="relative mt-3 font-display text-xl">{s.title}</h3>
+                <p class="relative mt-1 text-base-content/70">{s.body}</p>
               </div>
             </div>
           </Reveal>
@@ -151,7 +161,9 @@ const faqSchema = {
           coming in over time, on top of whatever ads you're running. A fast, well-built site is the
           foundation everything else stands on.
         </p>
-        <a href="/lead-generation" class="btn btn-ghost mt-5 text-primary">See how we drive traffic to it →</a>
+        <a href="/lead-generation" class="btn btn-ghost mt-5 text-primary">
+          See how we drive traffic to it <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
       </Reveal>
       <Reveal delay={0.1}>
         <img src="/img/plumbers-serp.jpg" alt="A customer searching for a local plumber on Google" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
@@ -169,7 +181,7 @@ const faqSchema = {
       <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {trust.map((t, i) => (
           <Reveal delay={i * 0.08} class="h-full">
-            <div class="card h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
               <div class="card-body">
                 <span class="icon-chip"><Icon name={t.icon} class="h-6 w-6" /></span>
                 <h3 class="mt-3 font-display text-xl">{t.title}</h3>
@@ -193,15 +205,23 @@ const faqSchema = {
         {portfolio.map((p, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="flex h-full flex-col">
-              <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="block" aria-label={`Visit the ${p.name} website (opens in a new tab)`}>
-                <img src={p.src} alt={`${p.name} website built by Hyper Digital`} loading="lazy" class="aspect-[16/10] w-full object-contain object-top transition-transform duration-300 hover:scale-[1.03]" />
+              <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="group block overflow-hidden rounded-box border border-white/10 surface-2 shadow-xl transition-colors hover:border-primary/50" aria-label={`Visit the ${p.name} website (opens in a new tab)`}>
+                <!-- browser-style top bar -->
+                <div class="flex items-center gap-1.5 px-3.5 py-2.5" aria-hidden="true">
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15"></span>
+                  <span class="ml-2 truncate rounded-full bg-black/30 px-3 py-0.5 text-[0.68rem] text-neutral-content/50">{p.display}</span>
+                </div>
+                <img src={p.src} alt={`${p.name} website built by Hyper Digital`} loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" />
               </a>
-              <div class="mt-4 rounded-box bg-base-100 p-4 text-center shadow-sm">
-                <div class="font-display text-lg text-base-content">{p.name}</div>
-                <div class="text-sm text-base-content/60">{p.trade}</div>
-                <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="mt-1 inline-flex items-center justify-center gap-1 text-sm text-primary transition-colors hover:text-secondary">
-                  {p.display}
-                  <span aria-hidden="true">↗</span>
+              <div class="mt-3 flex items-center justify-between gap-3 rounded-box border border-white/10 surface-3 px-4 py-3">
+                <div class="min-w-0">
+                  <div class="truncate font-display text-lg text-neutral-content">{p.name}</div>
+                  <div class="truncate text-sm text-neutral-content/60">{p.trade}</div>
+                </div>
+                <a href={p.url} target="_blank" rel="nofollow noopener noreferrer" class="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-accent">
+                  Visit site <Icon name="arrow-right" class="h-4 w-4 -rotate-45" />
                 </a>
               </div>
             </div>
@@ -216,7 +236,7 @@ const faqSchema = {
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
         <span class="eyebrow">Pricing</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in. No surprises.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
           A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
           system built. Then pick a monthly plan for your website, ad management and automation.
@@ -228,6 +248,14 @@ const faqSchema = {
       <div class="mt-10">
         <PricingTiers />
       </div>
+
+      <Reveal class="mt-10 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
+          to suit. On your free audit we'll work out the right plan and the ad budget that fits your
+          trade and your goals.
+        </p>
+      </Reveal>
     </div>
   </section>
 
@@ -235,16 +263,22 @@ const faqSchema = {
   <section class="bg-brand-dark-2 text-neutral-content">
     <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
       <Reveal>
-        <span class="icon-chip mx-auto h-14 w-14"><Icon name="shield" class="h-7 w-7" /></span>
-        <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="text-primary">free</span> until you do.
+        <div class="relative mx-auto flex h-24 w-24 items-center justify-center">
+          <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
+          <div class="flex h-[4.3rem] w-[4.3rem] items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
+            <Icon name="shield-check" class="h-9 w-9" />
+          </div>
+        </div>
+        <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
           we keep working and waive our management fee until we do. You still cover your ad spend,
           but you won't pay us another cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary mt-7 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
       </Reveal>
     </div>
   </section>
@@ -261,7 +295,7 @@ const faqSchema = {
           <Reveal delay={i * 0.08}>
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
               <div class="card-body">
-                <div class="font-display text-3xl text-primary">{p.stat}</div>
+                <div class="font-display text-3xl text-primary" set:html={p.stat} />
                 <div class="text-sm uppercase tracking-wide text-base-content/60">{p.statLabel}</div>
                 <div class="mt-3 font-display text-xl">{p.name}</div>
                 <p class="mt-1 text-base-content/70">{p.body}</p>
@@ -271,7 +305,9 @@ const faqSchema = {
         ))}
       </div>
       <Reveal class="mt-8 text-center">
-        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">See more results →</a>
+        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+          See more results <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
       </Reveal>
     </div>
   </section>
@@ -280,10 +316,11 @@ const faqSchema = {
   <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
       <Reveal>
-        <h2 class="text-3xl sm:text-4xl">Questions, answered.</h2>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Questions, answered.</h2>
         <div class="mt-6 space-y-3">
           {faqs.map((f) => (
-            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
               <input type="checkbox" />
               <div class="collapse-title font-display text-xl">{f.q}</div>
               <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
@@ -306,12 +343,47 @@ const faqSchema = {
           Get your free, no-obligation audit. We'll show you what a smart website could do for your trade.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="#audit" class="btn btn-neutral btn-lg w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">Get my free audit</a>
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
+        <p class="mt-7 text-sm text-primary-content/70">
+          Free 20-minute audit · Real numbers · No obligation
+        </p>
       </Reveal>
     </div>
   </section>
 
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Count-up proof numbers (same pattern as the homepage trust stats) -->
+  <script>
+    import { animate, inView } from "motion";
+
+    // Numbers with [data-count] count up from 0 when scrolled into view.
+    // No-JS and reduced-motion users just see the server-rendered final value.
+    function setupCounters() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+        if (el.dataset.counted) return;
+        el.dataset.counted = "1";
+        const target = parseInt(el.dataset.count || "", 10);
+        if (!Number.isFinite(target)) return;
+        inView(
+          el,
+          () => {
+            animate(0, target, {
+              duration: 1.4,
+              ease: [0.16, 1, 0.3, 1],
+              onUpdate: (v) => { el.textContent = Math.round(v).toLocaleString("en-NZ"); },
+            });
+          },
+          { amount: 0.6 }
+        );
+      });
+    }
+
+    document.addEventListener("astro:page-load", setupCounters);
+  </script>
 </Layout>

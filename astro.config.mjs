@@ -11,7 +11,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://hyperdigital.nz',
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Keep noindex utility pages out of the sitemap. /thank-you fires the Google Ads
+      // conversion and is marked noindex, so it shouldn't be advertised for crawling.
+      filter: (page) => !page.includes('/thank-you'),
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()]

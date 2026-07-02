@@ -25,7 +25,10 @@ const nodes = [
       <span class="absolute left-6 top-6 bottom-6 w-px -translate-x-1/2 bg-gradient-to-b from-primary/60 via-primary/30 to-primary/60"></span>
       {nodes.map((n, i) => (
         <div class="relative flex items-start gap-4 pb-5 last:pb-0">
-          <span class="icon-chip flow-pulse z-10 shrink-0 surface-3" style={`animation-delay:${i * 1.4}s`}>
+          <span
+            class="icon-chip flow-pulse z-10 shrink-0"
+            style={`animation-delay:${i * 1.4}s; background: color-mix(in srgb, var(--color-primary) 12%, var(--brand-dark-3, var(--color-neutral)))`}
+          >
             <Icon name={n.icon} class="h-5 w-5" />
           </span>
           <div class="min-w-0 pt-1.5">
