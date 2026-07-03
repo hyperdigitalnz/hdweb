@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Article body styles for /insights markdown posts (prose classes). */
+@plugin "@tailwindcss/typography";
+
 /* Enable daisyUI's built-in themes (for A/B previewing) alongside our custom ones below. */
 @plugin "daisyui" {
   themes: all;
