@@ -5,14 +5,20 @@ interface Props {
   title?: string;
   lead?: string;
   goal?: boolean;
+  /** Show the optional "What's your trade?" select (soft qualification for GHL routing). */
+  trade?: boolean;
+  /** Trade LPs already know the trade: send it as a hidden field instead of the select. */
+  tradePrefill?: string;
 }
 const {
   title = "Book your free audit",
   lead = "Tell us about your business and we'll show you where your next jobs are coming from.",
   goal = false,
+  trade = true,
+  tradePrefill,
 } = Astro.props;
 import SpeedBadge from "./SpeedBadge.astro";
-const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+import Turnstile from "./Turnstile.astro";
 ---
 <div class="rounded-box border-t-4 border-primary bg-base-100 p-6 text-base-content shadow-xl sm:p-7">
   <h2 class="text-2xl text-base-content">{title}</h2>
@@ -25,6 +31,8 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       <label for="af-company">Company (leave blank)</label>
       <input id="af-company" name="company" type="text" tabindex="-1" autocomplete="off" />
     </div>
+    <!-- Source page: tells GHL which page the lead came from (baked in at prerender). -->
+    <input type="hidden" name="page" value={Astro.url.pathname} />
     <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-name">Your name</label>
       <input id="af-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full min-w-0" />
@@ -34,9 +42,33 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       <input id="af-email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.co.nz" class="input input-bordered w-full min-w-0" />
     </div>
     <div class="grid gap-1">
+      <!-- No pattern attribute: NZ numbers vary too much (02x mobiles, 0800, landlines
+           with area codes) and a strict pattern would block real leads. -->
+      <label class="text-xs font-bold" for="af-phone">Phone number</label>
+      <input id="af-phone" name="phone" type="tel" required autocomplete="tel" placeholder="027 123 4567" class="input input-bordered w-full min-w-0" />
+    </div>
+    <div class="grid gap-1">
       <label class="text-xs font-bold" for="af-website">Business website</label>
       <input id="af-website" name="website" type="text" inputmode="url" required autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full min-w-0" />
     </div>
+    {tradePrefill ? (
+      <input type="hidden" name="trade" value={tradePrefill} />
+    ) : trade && (
+      <div class="grid gap-1">
+        <label class="text-xs font-bold" for="af-trade">What's your trade? <span class="font-normal text-base-content/50">(optional)</span></label>
+        <select id="af-trade" name="trade" class="select select-bordered w-full min-w-0">
+          <option value="" disabled selected>Select one…</option>
+          <option>Plumber</option>
+          <option>Electrician</option>
+          <option>Roofer</option>
+          <option>Builder</option>
+          <option>Painter</option>
+          <option>HVAC / heat pumps</option>
+          <option>Other trade</option>
+          <option>Not a trade business</option>
+        </select>
+      </div>
+    )}
     {goal && (
       <div class="grid gap-1">
         <label class="text-xs font-bold" for="af-goal">What's your goal right now? <span class="font-normal text-base-content/50">(optional)</span></label>
@@ -50,7 +82,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       </div>
     )}
 
-    {siteKey && <div class="cf-turnstile" data-sitekey={siteKey}></div>}
+    <Turnstile />
 
     <button type="submit" class="btn btn-primary btn-block font-display text-lg tracking-wide">Get my free audit →</button>
     <p class="form-msg text-center text-xs text-base-content/60" aria-live="polite">
@@ -58,29 +90,6 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     </p>
   </form>
 </div>
-
-{siteKey && (
-  <>
-    {/* Explicit render: ClientRouter (view transitions) swaps the DOM client-side, so
-        Turnstile's auto-render (which only runs once on script load) never sees the new
-        .cf-turnstile div. We render manually on every astro:page-load instead. */}
-    <script is:inline>
-      function renderTurnstileWidgets() {
-        if (!window.turnstile) return;
-        document.querySelectorAll(".cf-turnstile").forEach(function (el) {
-          if (el.dataset.rendered) return;
-          window.turnstile.render(el, { sitekey: el.getAttribute("data-sitekey") });
-          el.dataset.rendered = "1";
-        });
-      }
-      // Fires once when the Turnstile script finishes loading (covers the initial load).
-      window.onloadTurnstileCallback = renderTurnstileWidgets;
-      // Fires on initial load and after every client-side navigation (covers soft swaps).
-      document.addEventListener("astro:page-load", renderTurnstileWidgets);
-    </script>
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback" async defer></script>
-  </>
-)}
 
 <script>
   function wireForms() {
@@ -102,8 +111,10 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
             // it only ends up in the cross-origin booking iframe, where it has to go.
             try {
               sessionStorage.setItem("af_prefill", JSON.stringify({
+                type: "audit",
                 name: String(fd.get("name") || ""),
                 email: String(fd.get("email") || ""),
+                phone: String(fd.get("phone") || ""),
                 website: String(fd.get("website") || ""),
               }));
             } catch (e) { /* private mode / storage disabled — prefill just won't apply */ }
@@ -115,6 +126,9 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         } catch (err) {
           if (msg) { msg.textContent = "Something went wrong. Please call us on 027 666 1973."; msg.classList.add("text-error"); }
           if (btn) { btn.disabled = false; btn.textContent = "Get my free audit →"; }
+          // The widget token is single-use; reset it so an immediate retry can pass siteverify.
+          const widget = form.querySelector<HTMLElement>(".cf-turnstile");
+          if (widget) (window as any).turnstile?.reset?.(widget);
         }
       });
     });

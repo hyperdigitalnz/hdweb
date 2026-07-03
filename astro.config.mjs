@@ -14,8 +14,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Keep noindex utility pages out of the sitemap. /thank-you fires the Google Ads
-      // conversion and is marked noindex, so it shouldn't be advertised for crawling.
-      filter: (page) => !page.includes('/thank-you'),
+      // conversion and /callback is a sticky-bar target; both are marked noindex, so
+      // they shouldn't be advertised for crawling.
+      filter: (page) => !page.includes('/thank-you') && !page.includes('/callback'),
     }),
   ],
 

@@ -11,11 +11,11 @@ const description = "Your request is in. We'll be in touch within one business d
     <div class="mx-auto max-w-[820px] px-5 py-24 text-center sm:py-32">
       <Reveal>
         <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary text-3xl text-primary-content">✓</div>
-        <span class="eyebrow mt-6 block">Request received</span>
-        <h1 class="mt-3 text-4xl sm:text-5xl lg:text-6xl">Now book your <span class="marker">free audit</span>.</h1>
+        <span id="ty-eyebrow" class="eyebrow mt-6 block">Request received</span>
+        <h1 id="ty-heading" class="mt-3 text-4xl sm:text-5xl lg:text-6xl">Now book your <span class="marker">free audit</span>.</h1>
       </Reveal>
       <Reveal delay={0.08} class="mt-5">
-        <p class="mx-auto max-w-xl text-lg text-neutral-content/80">
+        <p id="ty-copy" class="mx-auto max-w-xl text-lg text-neutral-content/80">
           Your details are in and a confirmation is on its way to your inbox. Pick a time that suits
           you below and we'll have your free audit ready to walk through.
         </p>
@@ -70,12 +70,23 @@ const description = "Your request is in. We'll be in touch within one business d
             if (last) { p.set("last_name", last); p.set("lastname", last); }
           }
           if (d.email) p.set("email", d.email);
+          if (d.phone) p.set("phone", d.phone);
           // "website" is not a default GHL calendar field. Sent best-effort (GHL ignores
           // unknown params). To actually populate it, add a custom field to the calendar
           // and swap "website" below for that field's key.
           if (d.website) p.set("website", d.website);
           var qs = p.toString();
           if (qs) src = base + "?" + qs;
+          // Callback requests reframe the page: the call is the promise, booking a slot
+          // becomes the optional extra. Same page so the conversion fires identically.
+          if (d.type === "callback") {
+            var eb = document.getElementById("ty-eyebrow");
+            var h = document.getElementById("ty-heading");
+            var copy = document.getElementById("ty-copy");
+            if (eb) eb.textContent = "Callback requested";
+            if (h) h.innerHTML = 'We\'ll <span class="marker">ring you back</span>.';
+            if (copy) copy.textContent = "Your callback request is in and we'll ring you as soon as we can. If you'd rather lock in a time that suits you, pick a slot below.";
+          }
           sessionStorage.removeItem("af_prefill"); // one-shot: don't leak into a refresh/back-nav
         }
       } catch (e) { /* malformed/blocked storage — fall back to the base calendar */ }

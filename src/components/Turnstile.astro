@@ -1,0 +1,49 @@
+---
+// Cloudflare Turnstile widget, shared by every form so one page can host several
+// widgets with a single api.js loader. Renders nothing when the site key isn't set
+// (local dev without keys); the server skips siteverify in that case too.
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+{siteKey && <div class="cf-turnstile" data-sitekey={siteKey}></div>}
+
+<script>
+  // Explicit render: ClientRouter (view transitions) swaps the DOM client-side, so
+  // Turnstile's auto-render (which only runs once on script load) never sees new
+  // .cf-turnstile divs. Astro hoists and dedupes this script, so it runs once per
+  // page no matter how many forms include this component. Each rendered widget
+  // injects its own cf-turnstile-response hidden input into its own form.
+  type TurnstileApi = {
+    render: (el: HTMLElement, opts: { sitekey: string | null }) => void;
+    reset?: (el?: HTMLElement | string) => void;
+  };
+  const w = window as unknown as {
+    turnstile?: TurnstileApi;
+    onloadTurnstileCallback?: () => void;
+  };
+
+  function renderTurnstileWidgets() {
+    const els = document.querySelectorAll<HTMLElement>(".cf-turnstile");
+    if (!els.length) return; // no site key configured: nothing to do
+    if (!w.turnstile) {
+      ensureLoader();
+      return;
+    }
+    els.forEach((el) => {
+      if (el.dataset.rendered) return;
+      w.turnstile!.render(el, { sitekey: el.getAttribute("data-sitekey") });
+      el.dataset.rendered = "1";
+    });
+  }
+
+  function ensureLoader() {
+    if (document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile/"]')) return;
+    w.onloadTurnstileCallback = renderTurnstileWidgets;
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback";
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  document.addEventListener("astro:page-load", renderTurnstileWidgets);
+</script>

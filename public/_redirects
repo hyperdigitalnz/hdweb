@@ -3,23 +3,41 @@
 # Cloudflare serves these from the static-assets dir (same as _headers).
 # Note: only relative URLs are allowed here. www → apex is handled by a
 # Cloudflare Redirect Rule in the dashboard, not this file.
+# Rules do NOT auto-match trailing slashes (verified 03/07/2026: /google-ads
+# redirected while /google-ads/ 404'd), so every path is listed in both forms.
 
 # Service pages → closest new equivalent
-/google-ads               /lead-generation   301
-/digital-marketing        /lead-generation   301
-/targeted-marketing       /lead-generation   301
-/seo                      /lead-generation   301
-/social-media             /lead-generation   301
-/websites-and-e-commerce  /websites          301
-/ai                       /ai-automation     301
-/services                 /                  301
-/training                 /                  301
+/google-ads                /lead-generation   301
+/google-ads/               /lead-generation   301
+/paid-ads                  /lead-generation   301
+/paid-ads/                 /lead-generation   301
+/digital-marketing         /lead-generation   301
+/digital-marketing/        /lead-generation   301
+/targeted-marketing        /lead-generation   301
+/targeted-marketing/       /lead-generation   301
+/seo                       /lead-generation   301
+/seo/                      /lead-generation   301
+/social-media              /lead-generation   301
+/social-media/             /lead-generation   301
+/websites-and-e-commerce   /websites          301
+/websites-and-e-commerce/  /websites          301
+/ai                        /ai-automation     301
+/ai/                       /ai-automation     301
+/services                  /                  301
+/services/                 /                  301
+/training                  /                  301
+/training/                 /                  301
 
 # Conversion / contact pages (/thank-you is a real page — form success lands there)
-/book-an-appointment      /contact           301
-/free-consultation        /contact           301
+/book-an-appointment       /contact           301
+/book-an-appointment/      /contact           301
+/free-consultation         /contact           301
+/free-consultation/        /contact           301
 
 # Legal + about
-/terms-and-conditions     /terms             301
-/privacy-policy           /privacy           301
-/about-us                 /about             301
+/terms-and-conditions      /terms             301
+/terms-and-conditions/     /terms             301
+/privacy-policy            /privacy           301
+/privacy-policy/           /privacy           301
+/about-us                  /about             301
+/about-us/                 /about             301

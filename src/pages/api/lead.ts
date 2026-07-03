@@ -7,8 +7,12 @@ export const prerender = false;
 
 // Only these fields are ever forwarded to GHL. Anything else a bot tries to
 // inject is dropped. Values are capped to keep the payload sane.
-const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message"] as const;
-const REQUIRED_FIELDS = ["name", "email", "website"] as const;
+const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message", "page", "type"] as const;
+// Audit form vs the compact callback form (hidden type=callback). An absent type
+// means audit, so cached pages posting without it keep working.
+const REQUIRED_AUDIT = ["name", "email", "phone", "website"] as const;
+const REQUIRED_CALLBACK = ["name", "phone"] as const;
+const KNOWN_TYPES = ["callback"] as const;
 const MAX_FIELD_LEN = 500;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
@@ -52,8 +56,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       if (value) lead[key] = value;
     }
 
-    // 4. Reject obviously incomplete submissions.
-    for (const key of REQUIRED_FIELDS) {
+    // 4. Constrain type to known values so bots can't inject arbitrary strings into GHL,
+    //    then reject obviously incomplete submissions for that form type.
+    if (lead.type && !(KNOWN_TYPES as readonly string[]).includes(lead.type)) delete lead.type;
+    const required = lead.type === "callback" ? REQUIRED_CALLBACK : REQUIRED_AUDIT;
+    for (const key of required) {
       if (!lead[key]) return wantsHtml ? redirect("/contact") : json({ ok: false, error: "missing" }, 400);
     }
 

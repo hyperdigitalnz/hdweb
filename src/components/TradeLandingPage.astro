@@ -155,7 +155,7 @@ const faqSchema = {
 const Tp = trade.tradePlural;
 const Ts = trade.tradeSingular;
 ---
-<Layout title={trade.seoTitle} description={trade.seoDescription} hideHeader>
+<Layout title={trade.seoTitle} description={trade.seoDescription} hideHeader stickyCallback={false}>
   <!-- ===== 1. HERO + VSL ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-24">
@@ -512,7 +512,7 @@ const Ts = trade.tradeSingular;
         </div>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free audit" lead={`In 20 minutes we'll show you where your next ${trade.trade} jobs are coming from, and what your leads should cost.`} />
+        <AuditForm title="Get your free audit" tradePrefill={trade.trade} lead={`In 20 minutes we'll show you where your next ${trade.trade} jobs are coming from, and what your leads should cost.`} />
       </Reveal>
     </div>
   </section>

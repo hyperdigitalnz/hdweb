@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import StickyCall from "../components/StickyCall.astro";
 import { SITE } from "../consts";
 
 interface Props {
@@ -16,6 +17,11 @@ interface Props {
   /** Hide the chat widget. The 404 page must set this explicitly because it
    *  renders under the requested (missing) URL, not a fixed path. */
   hideChat?: boolean;
+  /** Hide the mobile sticky call bar (404 sets this explicitly, same reason as hideChat). */
+  hideSticky?: boolean;
+  /** When false, the sticky bar stays plain tap-to-call instead of swapping to
+   *  "Request a callback" during the callback window. Used by trade LPs. */
+  stickyCallback?: boolean;
 }
 const {
   title = `${SITE.name} | ${SITE.tagline}`,
@@ -24,6 +30,8 @@ const {
   noindex = false,
   hideHeader = false,
   hideChat = false,
+  hideSticky = false,
+  stickyCallback = true,
 } = Astro.props;
 
 // Absolute URLs for canonical + social cards (needs `site` in astro.config).
@@ -36,6 +44,11 @@ const ogImage = new URL(image, Astro.site).href;
 const noChatPaths = ["/privacy", "/terms", "/thank-you", "/404"];
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const showChat = !hideChat && !noChatPaths.includes(currentPath);
+
+// Mobile sticky call/callback bar: everywhere except thank-you (already has call CTAs)
+// and 404 (which passes hideSticky explicitly, same as hideChat).
+const noStickyPaths = ["/thank-you", "/404"];
+const showSticky = !hideSticky && !noStickyPaths.includes(currentPath);
 ---
 <!doctype html>
 <html lang="en-NZ" data-theme="hyper">
@@ -95,6 +108,14 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
       <slot />
     </main>
     <Footer />
+
+    {showSticky && (
+      <>
+        <StickyCall callback={stickyCallback} />
+        <!-- Spacer so the fixed bar never covers the footer's last content on mobile. -->
+        <div class="h-14 sm:hidden" aria-hidden="true"></div>
+      </>
+    )}
 
     <!-- LeadConnector chat widget (hidden on privacy, terms, thank-you, 404) -->
     {showChat && (

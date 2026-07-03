@@ -1,0 +1,103 @@
+---
+// Compact "request a callback" form → /api/lead with type=callback. The status line
+// SSR-renders the closed copy (so a visitor without JS is never shown a promise we
+// might not keep); a client script swaps it to the open copy during the callback
+// window (Pacific/Auckland, configured in consts.ts CALLBACK).
+import { CALLBACK } from "../consts";
+import Turnstile from "./Turnstile.astro";
+
+interface Props {
+  title?: string;
+}
+const { title = "Prefer we ring you?" } = Astro.props;
+---
+<div class="rounded-box border-t-4 border-primary bg-base-100 p-6 text-base-content shadow-xl sm:p-7">
+  <h2 class="text-2xl text-base-content">{title}</h2>
+  <p
+    class="cb-window mt-2 text-sm text-base-content/70"
+    data-open-copy={CALLBACK.openCopy}
+    data-closed-copy={CALLBACK.closedCopy}
+  >{CALLBACK.closedCopy}</p>
+
+  <form class="callback-form mt-5 grid grid-cols-1 gap-3" method="post" action="/api/lead">
+    <!-- Honeypot: hidden from real users, catches bots. Ids are cb- prefixed so this
+         form can share a page with AuditForm without duplicate ids. -->
+    <div class="hidden" aria-hidden="true">
+      <label for="cb-company">Company (leave blank)</label>
+      <input id="cb-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="type" value="callback" />
+    <input type="hidden" name="page" value={Astro.url.pathname} />
+    <div class="grid gap-1">
+      <label class="text-xs font-bold" for="cb-name">Your name</label>
+      <input id="cb-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" class="input input-bordered w-full min-w-0" />
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs font-bold" for="cb-phone">Phone number</label>
+      <input id="cb-phone" name="phone" type="tel" required autocomplete="tel" placeholder="027 123 4567" class="input input-bordered w-full min-w-0" />
+    </div>
+
+    <Turnstile />
+
+    <button type="submit" class="btn btn-primary btn-block font-display text-lg tracking-wide">Request my callback</button>
+    <p class="form-msg text-center text-xs text-base-content/60" aria-live="polite">
+      No pressure and no obligation. We'll just talk through what you're after.
+    </p>
+  </form>
+</div>
+
+<script>
+  import { isCallbackOpen, SITE } from "../consts";
+
+  // Swap the SSR'd closed copy to the open copy while inside the callback window.
+  function updateCallbackWindows() {
+    const open = isCallbackOpen();
+    document.querySelectorAll<HTMLElement>(".cb-window").forEach((el) => {
+      const copy = open ? el.dataset.openCopy : el.dataset.closedCopy;
+      if (copy) el.textContent = copy;
+    });
+  }
+
+  // Same progressive enhancement as AuditForm, kept separate so the audit form's
+  // wiring carries zero regression risk. Native POST still works without JS.
+  function wireCallbackForms() {
+    document.querySelectorAll<HTMLFormElement>(".callback-form").forEach((form) => {
+      if (form.dataset.wired) return;
+      form.dataset.wired = "1";
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const msg = form.querySelector<HTMLElement>(".form-msg");
+        const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+        if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+        try {
+          const fd = new FormData(form);
+          const res = await fetch(form.action, { method: "POST", body: fd });
+          const data = (await res.json().catch(() => ({ ok: res.ok }))) as { ok?: boolean; error?: string };
+          if (data.ok) {
+            try {
+              sessionStorage.setItem("af_prefill", JSON.stringify({
+                type: "callback",
+                name: String(fd.get("name") || ""),
+                phone: String(fd.get("phone") || ""),
+              }));
+            } catch (e) { /* private mode / storage disabled: thank-you just shows generic copy */ }
+            window.location.assign("/thank-you");
+          } else {
+            throw new Error(data.error || "failed");
+          }
+        } catch (err) {
+          if (msg) { msg.textContent = `Something went wrong. Please call us on ${SITE.phone}.`; msg.classList.add("text-error"); }
+          if (btn) { btn.disabled = false; btn.textContent = "Request my callback"; }
+          // The widget token is single-use; reset it so an immediate retry can pass siteverify.
+          const widget = form.querySelector<HTMLElement>(".cf-turnstile");
+          if (widget) (window as any).turnstile?.reset?.(widget);
+        }
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    updateCallbackWindows();
+    wireCallbackForms();
+  });
+</script>

@@ -1,0 +1,333 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import { SITE } from "../consts";
+
+// Local SEO page. This URL ranked on the old site (GSC: "seo hawkes bay" ~pos 10),
+// so it is deliberately recreated at the exact same path. Linked from the footer
+// only (nav stays tradie-first). See ../../seo/SEO-OPPORTUNITIES-2026-07-03.md.
+
+const title = "SEO Hawke's Bay | Local SEO for Napier & Hastings | Hyper Digital";
+const description =
+  "Local SEO for Hawke's Bay businesses. Rank in local Google searches, the map pack and AI answers across Napier, Hastings and Havelock North. Free SEO audit.";
+
+const places = [
+  { icon: "pin", title: "The map pack", body: "The three map results under the search bar take a huge share of local clicks. Your Google Business Profile, reviews and local signals decide whether you're in them." },
+  { icon: "search", title: "The organic results", body: "The classic blue links. Pages built around the exact jobs you do and the places you do them, on a fast site Google trusts, climb here and stay." },
+  { icon: "sparkles", title: "AI answers", body: "More people ask Google's AI and ChatGPT who to call. We structure your site so those answers can read it, quote it and recommend you. Most Hawke's Bay businesses haven't caught up yet." },
+];
+
+const work = [
+  { icon: "pin", title: "Google Business Profile", body: "Set up, verified and properly optimised: services, photos, posts and the details Google cross-checks. This is the single biggest local ranking lever." },
+  { icon: "star", title: "A steady flow of reviews", body: "Happy customers rarely review unprompted. We build the ask into your follow-up so your rating and review count keep climbing." },
+  { icon: "layout", title: "Location & service pages", body: "A page for each service and area you cover, written around how Hawke's Bay people actually search. No thin, copy-paste town pages." },
+  { icon: "bolt", title: "A fast, healthy site", body: "Speed, mobile experience and clean structure. Every site we build passes Google's checks from day one; we can fix yours if it doesn't." },
+  { icon: "check", title: "Citations & consistency", body: "Your name, address and phone number consistent across the directories Google checks. Boring, fiddly and necessary. We handle it." },
+  { icon: "trend", title: "Honest monthly reporting", body: "Rankings, traffic and, most importantly, the calls and enquiries that came from search. If something isn't moving, we say so." },
+];
+
+const faqs = [
+  { q: "How long does SEO take to work?", a: "Local SEO usually shows movement in 2 to 3 months, with strong results in 6 to 12. That's the honest answer anyone should give you. If you need leads this month, Google Ads is the right tool while your SEO builds, and we run both." },
+  { q: "Can you guarantee a number one ranking?", a: "No, and nobody honestly can, because Google doesn't sell guarantees to anyone. What we can show you is exactly what we're doing, what's moving and what it's costing per enquiry, every month, with no lock-in contract if we're not delivering." },
+  { q: "What does SEO cost?", a: "It depends on how competitive your services and area are, which is exactly what your free audit works out. For most local businesses SEO is bundled into our monthly plans from $497 +GST, alongside your website and ads, rather than sold as a standalone line item." },
+  { q: "Do you only work with tradies?", a: "Trades and home services are our specialty, but the same local SEO system works for any Hawke's Bay business that lives on local searches, from health to hospitality. If we don't think we're the right fit, we'll tell you in the audit." },
+  { q: "I'm already running Google Ads. Why bother with SEO?", a: "Ads stop the moment you stop paying. SEO compounds: the same searches that cost you per click start coming free, and businesses showing in the map pack, the organic results and the ads together win a disproportionate share of calls." },
+  { q: "Which areas do you cover?", a: "We're based in Hawke's Bay and work with businesses in Napier, Hastings, Havelock North, Clive, Waipukurau and across Central Hawke's Bay, plus clients NZ-wide." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Local SEO Hawke's Bay",
+  serviceType: "Search engine optimisation",
+  areaServed: ["Hawke's Bay", "Napier", "Hastings", "Havelock North", "Central Hawke's Bay"],
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Hyper Digital",
+    url: "https://hyperdigital.nz",
+    telephone: "+64276661973",
+    address: { "@type": "PostalAddress", addressRegion: "Hawke's Bay", addressCountry: "NZ" },
+  },
+};
+
+// Mock local results card for the hero visual (clearly labelled as an example).
+const mockResults = [
+  { name: "Your Business Name", rating: "4.9", reviews: 87, line: "Open · Napier, Hawke's Bay", you: true },
+  { name: "Competitor One Ltd", rating: "4.4", reviews: 31, line: "Open · Hastings", you: false },
+  { name: "Another Local Co", rating: "4.1", reviews: 19, line: "Opens 8am · Napier", you: false },
+];
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO (split — service-page template) ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="pin" class="h-4 w-4" /> Local SEO, Hawke's Bay
+          </span>
+        </Reveal>
+        <Reveal delay={0.05} class="mt-5">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            SEO Hawke's Bay: get found by <span class="marker">locals ready to buy</span>.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            When someone in Napier or Hastings searches for what you do, you're either on the first
+            page or you're invisible. We get Hawke's Bay businesses into the local results that
+            matter, and turn those searches into calls and quote requests, not just traffic.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free SEO audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+
+      <!-- Mock local search result (branded visual, labelled as example) -->
+      <Reveal delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative rounded-box border border-white/10 surface-2 p-5 shadow-xl sm:p-6">
+          <div class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-content/70">
+            <Icon name="search" class="h-4 w-4 shrink-0 text-primary" />
+            <span>your trade <span class="text-neutral-content">hawke's bay</span></span>
+          </div>
+          <div class="mt-4 space-y-3">
+            {mockResults.map((r) => (
+              <div class={`rounded-box border p-4 ${r.you ? "border-primary/60 bg-primary/10" : "border-white/10 bg-white/5"}`}>
+                <div class="flex items-center justify-between gap-3">
+                  <span class="font-display text-lg">{r.name}</span>
+                  {r.you && <span class="badge badge-primary badge-sm font-display shrink-0">You</span>}
+                </div>
+                <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                  <Icon name="star" class="h-4 w-4 text-primary" />
+                  <span>{r.rating} ({r.reviews} reviews)</span>
+                </div>
+                <p class="mt-1 text-sm text-neutral-content/60">{r.line}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-4 text-xs text-neutral-content/50">Example local results. Not live data.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== THE THREE PLACES YOU GET FOUND ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow">Why local SEO</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Three places Hawke's Bay customers find you. We work on all of them.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Most "SEO" only chases the blue links. Local customers actually pick from the map pack,
+          the organic results and, increasingly, AI answers. Ranking in all three is how one
+          business ends up with a full calendar while the next one wonders where the calls went.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+        {places.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={p.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-2xl">{p.title}</h3>
+                <p class="mt-2 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE ACTUALLY DO ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What we actually do</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">No dark arts. Just the local work done properly.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Local SEO isn't a secret trick, it's a set of jobs most businesses never get around to.
+          We do them, keep doing them, and show you what changed each month.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {work.map((w, i) => (
+          <Reveal delay={i * 0.06}>
+            <div class="flex h-full gap-4 rounded-box border border-base-300 bg-base-100 p-5 transition-colors hover:border-primary/40">
+              <span class="icon-chip shrink-0"><Icon name={w.icon} class="h-6 w-6" /></span>
+              <div>
+                <h3 class="font-display text-lg">{w.title}</h3>
+                <p class="mt-1 text-sm text-base-content/70">{w.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOCAL PROOF ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow">Local proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Hawke's Bay businesses we've made easier to find.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          We've been getting Bay businesses found on Google since 2019, across search, maps and
+          ads. Real clients, numbers they can verify in their own accounts.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <Reveal>
+          <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <div class="font-display text-4xl text-primary">9% → 12%</div>
+              <div class="text-sm uppercase tracking-wide text-base-content/60">conversion rate since 2021</div>
+              <div class="mt-3 font-display text-xl">Tableau Towbars, Hawke's Bay</div>
+              <p class="mt-1 text-base-content/70">
+                We set up and optimised their Google Business Profile so they rank in the local map
+                results, built their online quote funnel, and have run their Google presence since
+                2021. Found by Hawke's Bay customers searching nearby, profitable every year.
+              </p>
+              <a href="/results/tableau-towbars" class="link mt-2 text-primary">Read the case study</a>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <div class="font-display text-4xl text-primary">+2,500%</div>
+              <div class="text-sm uppercase tracking-wide text-base-content/60">enquiries in year one</div>
+              <div class="mt-3 font-display text-xl">Bermuda Lifestyle</div>
+              <p class="mt-1 text-base-content/70">
+                They came to us with a five page site that barely ranked and brought in next to no
+                leads. We rebuilt it search-ready and ran Google, Facebook and Instagram alongside.
+                Now customers book months in advance.
+              </p>
+              <a href="/results/bermuda-lifestyle" class="link mt-2 text-primary">Read the case study</a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal class="mt-10 text-center">
+        <a href="/results" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+          See more results <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== SEO + ADS, STRAIGHT ANSWER ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="eyebrow">The straight answer</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-4xl">
+          SEO is the long game. If you need leads <span class="marker">this month</span>, say so.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Plenty of agencies will happily sell you SEO alone because it's hard to measure and easy
+          to invoice. We won't. SEO compounds and pays off for years, but it takes months to build.
+          If your phone needs to ring now, we'll tell you to put the first dollars into
+          <a href="/lead-generation" class="link text-primary">Google Ads</a> and let SEO build
+          underneath it. Both together is how the businesses that own page one got there.
+        </p>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get the right plan for you</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== AREAS WE COVER ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">Where we work</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Based in the Bay. Not a call centre in Auckland.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          We live here, so we know how people search here: Napier and Hastings are twenty minutes
+          apart but they search like different towns, and your SEO should treat them that way. We
+          work with businesses across Napier, Hastings, Havelock North, Clive and Central Hawke's
+          Bay, plus clients NZ-wide.
+        </p>
+      </Reveal>
+      <Reveal class="mt-8">
+        <div class="flex flex-wrap justify-center gap-3">
+          {["Napier", "Hastings", "Havelock North", "Clive", "Waipukurau", "Central Hawke's Bay"].map((town) => (
+            <span class="badge badge-outline badge-lg border-primary/40 font-display text-primary">
+              <Icon name="pin" class="mr-1 h-4 w-4" /> {town}
+            </span>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + AUDIT FORM ===== -->
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Straight answers on SEO.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
+              <input type="checkbox" />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <AuditForm
+          title="Get your free SEO audit"
+          lead="We'll show you where you rank in Hawke's Bay right now, what's holding you back, and what it would take to own your local searches."
+        />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Own your local searches.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free SEO audit. We'll show you exactly where you sit in Hawke's Bay search
+          results today, and what it takes to move up. No jargon, no obligation.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free SEO audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <p class="mt-7 text-sm text-primary-content/70">Free audit · Local team · No lock-in contracts</p>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+</Layout>
