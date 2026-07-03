@@ -95,7 +95,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         try {
           const fd = new FormData(form);
           const res = await fetch(form.action, { method: "POST", body: fd });
-          const data = await res.json().catch(() => ({ ok: res.ok }));
+          const data = (await res.json().catch(() => ({ ok: res.ok }))) as { ok?: boolean; error?: string };
           if (data.ok) {
             // Stash a few fields to prefill the GHL calendar on /thank-you. Kept in
             // sessionStorage (not the URL) so it never hits our history or server logs;

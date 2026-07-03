@@ -16,7 +16,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const form = await request.formData();
 
     // Env: Worker secrets come from cloudflare:workers; fall back to import.meta.env for `astro dev`.
-    const env = cfEnv as Record<string, string | undefined>;
+    const env = cfEnv as unknown as Record<string, string | undefined>;
     const secret = env.TURNSTILE_SECRET_KEY ?? import.meta.env.TURNSTILE_SECRET_KEY;
     const webhook = env.GHL_WEBHOOK_URL ?? import.meta.env.GHL_WEBHOOK_URL;
 
