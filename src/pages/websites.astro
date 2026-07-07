@@ -321,7 +321,7 @@ const faqSchema = {
         <div class="mt-6 space-y-3">
           {faqs.map((f) => (
             <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
-              <input type="checkbox" />
+              <input type="checkbox" aria-label={f.q} />
               <div class="collapse-title font-display text-xl">{f.q}</div>
               <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
             </div>

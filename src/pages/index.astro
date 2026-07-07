@@ -360,7 +360,7 @@ const faqs = [
                 advance for our Pools and Spas."
               </p>
               <div class="mt-5 flex items-center gap-3">
-                <img src="/img/denise-bermuda-lifestyle-avatar.jpg" alt="Denise Howell" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
+                <img src="/img/denise-bermuda-lifestyle-avatar.webp" alt="Denise Howell" width="96" height="96" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
                 <div>
                   <div class="font-display text-lg">Denise Howell</div>
                   <div class="text-sm text-base-content/60">Bermuda Lifestyle, Pools &amp; Spas</div>
@@ -392,7 +392,7 @@ const faqs = [
                 on Google with Ads to showcase our products all over NZ."
               </p>
               <div class="mt-2 flex items-center gap-3">
-                <img src="/img/tableau-towbars-avatar.png" alt="Tableau Towbars" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
+                <img src="/img/tableau-towbars-avatar.webp" alt="Tableau Towbars" width="96" height="96" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
                 <div class="font-display text-lg">Donna Godfrey, Tableau Towbars</div>
               </div>
             </div>
@@ -412,7 +412,7 @@ const faqs = [
                 results. They offer customised solutions that work."
               </p>
               <div class="mt-2 flex items-center gap-3">
-                <img src="/img/harris-pumps-avatar.png" alt="Harris Pumps &amp; Filtration" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
+                <img src="/img/harris-pumps-avatar.webp" alt="Harris Pumps &amp; Filtration" width="96" height="96" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
                 <div class="font-display text-lg">Stephen Harris, Harris Pumps &amp; Filtration</div>
               </div>
             </div>
@@ -570,7 +570,7 @@ const faqs = [
         <div class="mt-7 space-y-3">
           {faqs.map((f) => (
             <div class="collapse-arrow collapse rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
-              <input type="checkbox" />
+              <input type="checkbox" aria-label={f.q} />
               <div class="collapse-title font-display text-xl">{f.q}</div>
               <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
             </div>
