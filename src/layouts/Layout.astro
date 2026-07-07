@@ -1,5 +1,10 @@
 ---
 import "../styles/global.css";
+// Self-hosted fonts: Outfit variable (all weights, registers "Outfit Variable")
+// + Source Sans 3 at 800 only (SVG chart labels reference "Source Sans 3").
+import "@fontsource-variable/outfit";
+import "@fontsource/source-sans-3/800.css";
+import outfitWoff2 from "@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url";
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -67,22 +72,9 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Brand fonts. Loaded non-blocking (media=print until loaded) so the font CSS
-         never delays first paint; display=swap shows fallback text meanwhile. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- Preload the display font: the LCP element (header logo text) renders in it,
+         so having it by first paint avoids a late font-swap repaint. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={outfitWoff2} />
 
     <ClientRouter />
 

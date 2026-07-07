@@ -116,10 +116,12 @@
 [data-theme="hyper-alt"] .bg-brand-dark-2 { background-image: none; }
 [data-theme="hyper-alt"] .cmp-fill { background: var(--color-primary); }
 
-/* Outfit everywhere (body + display). Headings = heavy weight. */
+/* Outfit everywhere (body + display). Headings = heavy weight.
+   Self-hosted via @fontsource-variable (imported in Layout.astro); the variable
+   font registers as "Outfit Variable". */
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit Variable", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-display: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {

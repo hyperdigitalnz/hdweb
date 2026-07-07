@@ -85,14 +85,14 @@ const steps = [
 ];
 
 const clientLogos = [
-  { src: "/img/continuousGroupLogoBW.png", alt: "Continuous Group" },
-  { src: "/img/no-drips-logo.png", alt: "No Drips Waterproofing" },
-  { src: "/img/boulevardServicesLogoBW.png", alt: "Boulevard Services" },
+  { src: "/img/continuousGroupLogoBW.png", alt: "Continuous Group", w: 300, h: 180 },
+  { src: "/img/no-drips-logo.png", alt: "No Drips Waterproofing", w: 329, h: 247 },
+  { src: "/img/boulevardServicesLogoBW.png", alt: "Boulevard Services", w: 300, h: 180 },
   // White logo, invisible on the light section background — gets a dark backing box.
-  { src: "/img/harcourtsLogoBW.png", alt: "Harcourts", darkBox: true },
-  { src: "/img/portaSkipLogoBW.png", alt: "Porta Skip" },
-  { src: "/img/toplineLogoBW.png", alt: "Topline" },
-  { src: "/img/hawksBayCombinedTaxisLogoBW.png", alt: "Hawke's Bay Combined Taxis" },
+  { src: "/img/harcourtsLogoBW.png", alt: "Harcourts", darkBox: true, w: 297, h: 74 },
+  { src: "/img/portaSkipLogoBW.png", alt: "Porta Skip", w: 250, h: 116 },
+  { src: "/img/toplineLogoBW.png", alt: "Topline", w: 300, h: 180 },
+  { src: "/img/hawksBayCombinedTaxisLogoBW.png", alt: "Hawke's Bay Combined Taxis", w: 300, h: 180 },
 ];
 
 const faqs = [
@@ -427,10 +427,10 @@ const faqs = [
           {clientLogos.map((l) =>
             l.darkBox ? (
               <span class="inline-flex items-center bg-neutral px-2 py-1">
-                <img src={l.src} alt={l.alt} loading="lazy" decoding="async" class="h-5 w-auto object-contain sm:h-6" />
+                <img src={l.src} alt={l.alt} width={l.w} height={l.h} loading="lazy" decoding="async" class="h-5 w-auto object-contain sm:h-6" />
               </span>
             ) : (
-              <img src={l.src} alt={l.alt} loading="lazy" decoding="async" class="h-9 w-auto object-contain sm:h-10" />
+              <img src={l.src} alt={l.alt} width={l.w} height={l.h} loading="lazy" decoding="async" class="h-9 w-auto object-contain sm:h-10" />
             )
           )}
         </div>
@@ -447,6 +447,8 @@ const faqs = [
         <img
           src="/img/HD-Founders.jpg"
           alt="Matt and Ryan, founders of Hyper Digital"
+          width="882"
+          height="663"
           loading="lazy"
           decoding="async"
           class="relative w-full rounded-box object-cover shadow-2xl"
