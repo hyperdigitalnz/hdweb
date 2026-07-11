@@ -9,38 +9,6 @@ export const SITE = {
   location: "Hawke's Bay, NZ. Working with tradies NZ-wide",
 };
 
-// Request-a-callback window and copy. Pages are prerendered, so the open/closed state is
-// evaluated client-side in the visitor's browser against Pacific/Auckland time. A wrong
-// device clock only ever affects the copy shown, never the submission itself.
-export const CALLBACK = {
-  timeZone: "Pacific/Auckland",
-  days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-  startMinutes: 8 * 60 + 30, // 08:30
-  endMinutes: 17 * 60, // 17:00
-  openCopy: "Leave your name and number and we'll ring you back shortly.",
-  closedCopy: "Leave your name and number and we'll call you on the next business day.",
-  openLabel: "Request a callback",
-} as const;
-
-// True when it's currently inside the callback window in NZ. Importable from client
-// <script>s (Vite bundles this module into them); no date libraries needed.
-export function isCallbackOpen(now: Date = new Date()): boolean {
-  const parts = new Intl.DateTimeFormat("en-NZ", {
-    timeZone: CALLBACK.timeZone,
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23", // avoids the hour-"24" midnight quirk of hour12: false
-  }).formatToParts(now);
-  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
-  const mins = parseInt(get("hour"), 10) * 60 + parseInt(get("minute"), 10);
-  return (
-    (CALLBACK.days as readonly string[]).includes(get("weekday")) &&
-    mins >= CALLBACK.startMinutes &&
-    mins < CALLBACK.endMinutes
-  );
-}
-
 export const NAV = [
   { label: "Find Work", href: "/lead-generation" },
   { label: "Websites", href: "/websites" },

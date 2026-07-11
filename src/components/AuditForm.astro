@@ -4,6 +4,8 @@
 interface Props {
   title?: string;
   lead?: string;
+  /** Show the optional "What's your goal right now?" select. On by default everywhere
+   *  (Matt's call, 11/07/2026); pass false to drop it. */
   goal?: boolean;
   /** Show the optional "What's your trade?" select (soft qualification for GHL routing). */
   trade?: boolean;
@@ -13,7 +15,7 @@ interface Props {
 const {
   title = "Book your free audit",
   lead = "Tell us about your business and we'll show you where your next jobs are coming from.",
-  goal = false,
+  goal = true,
   trade = true,
   tradePrefill,
 } = Astro.props;
@@ -117,7 +119,6 @@ import Turnstile from "./Turnstile.astro";
             // it only ends up in the cross-origin booking iframe, where it has to go.
             try {
               sessionStorage.setItem("af_prefill", JSON.stringify({
-                type: "audit",
                 name: String(fd.get("name") || ""),
                 email: String(fd.get("email") || ""),
                 phone: String(fd.get("phone") || ""),

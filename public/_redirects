@@ -35,6 +35,9 @@
 /digital-marketing-hawkes-bay/  /insights/digital-marketing-hawkes-bay   301
 
 # Conversion / contact pages (/thank-you is a real page — form success lands there)
+# /callback: retired 11/07/2026; old links (ads, signatures, GHL automations) go to /contact
+/callback                  /contact           301
+/callback/                 /contact           301
 /book-an-appointment       /contact           301
 /book-an-appointment/      /contact           301
 /free-consultation         /contact           301

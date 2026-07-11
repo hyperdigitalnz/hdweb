@@ -6,15 +6,12 @@ import { env as cfEnv } from "cloudflare:workers";
 export const prerender = false;
 
 // Only these fields are ever forwarded to GHL. Anything else a bot tries to
-// inject is dropped. Values are capped to keep the payload sane.
-const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message", "page", "type"] as const;
-// Audit form vs the compact callback form (hidden type=callback). An absent type
-// means audit, so cached pages posting without it keep working.
+// inject is dropped. Values are capped to keep the payload sane. (`type` was
+// removed with the callback form, retired 11/07/2026.)
+const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message", "page"] as const;
 // `website` is deliberately NOT required: no-website tradies are prime prospects,
 // and a blank value tells the audit "no website yet".
 const REQUIRED_AUDIT = ["name", "email", "phone"] as const;
-const REQUIRED_CALLBACK = ["name", "phone"] as const;
-const KNOWN_TYPES = ["callback"] as const;
 const MAX_FIELD_LEN = 500;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
@@ -69,11 +66,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       if (value) lead[key] = value;
     }
 
-    // 4. Constrain type to known values so bots can't inject arbitrary strings into GHL,
-    //    then reject obviously incomplete submissions for that form type.
-    if (lead.type && !(KNOWN_TYPES as readonly string[]).includes(lead.type)) delete lead.type;
-    const required = lead.type === "callback" ? REQUIRED_CALLBACK : REQUIRED_AUDIT;
-    for (const key of required) {
+    // 4. Reject obviously incomplete submissions.
+    for (const key of REQUIRED_AUDIT) {
       if (!lead[key]) return wantsHtml ? redirect("/contact") : json({ ok: false, error: "missing" }, 400);
     }
 

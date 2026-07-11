@@ -77,16 +77,6 @@ const description = "Your request is in. We'll be in touch within one business d
           if (d.website) p.set("website", d.website);
           var qs = p.toString();
           if (qs) src = base + "?" + qs;
-          // Callback requests reframe the page: the call is the promise, booking a slot
-          // becomes the optional extra. Same page so the conversion fires identically.
-          if (d.type === "callback") {
-            var eb = document.getElementById("ty-eyebrow");
-            var h = document.getElementById("ty-heading");
-            var copy = document.getElementById("ty-copy");
-            if (eb) eb.textContent = "Callback requested";
-            if (h) h.innerHTML = 'We\'ll <span class="marker">ring you back</span>.';
-            if (copy) copy.textContent = "Your callback request is in and we'll ring you as soon as we can. If you'd rather lock in a time that suits you, pick a slot below.";
-          }
           sessionStorage.removeItem("af_prefill"); // one-shot: don't leak into a refresh/back-nav
         }
       } catch (e) { /* malformed/blocked storage — fall back to the base calendar */ }
