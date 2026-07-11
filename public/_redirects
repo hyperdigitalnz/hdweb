@@ -28,6 +28,12 @@
 /training                  /                  301
 /training/                 /                  301
 
+# Hawke's Bay local pages moved under /insights (11/07/2026)
+/seo-hawkes-bay                 /insights/seo-hawkes-bay                 301
+/seo-hawkes-bay/                /insights/seo-hawkes-bay                 301
+/digital-marketing-hawkes-bay   /insights/digital-marketing-hawkes-bay   301
+/digital-marketing-hawkes-bay/  /insights/digital-marketing-hawkes-bay   301
+
 # Conversion / contact pages (/thank-you is a real page — form success lands there)
 /book-an-appointment       /contact           301
 /book-an-appointment/      /contact           301

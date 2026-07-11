@@ -9,6 +9,7 @@ import SpeedBadge from "../components/SpeedBadge.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import ChatDemo from "../components/ChatDemo.astro";
 import { SITE, STATS } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
 
 const trades = [
   { name: "Plumbers", icon: "droplet" },
@@ -38,7 +39,7 @@ const alone = [
 ];
 
 const withUs = [
-  "Every enquiry answered in 30 seconds or less, day or night.",
+  "Every website enquiry answered in 30 seconds, day or night.",
   "Leads followed up automatically until they book or say no.",
   "Every dollar tracked, reported and accounted for.",
   "Reviews requested after every job, on autopilot.",
@@ -56,7 +57,7 @@ const system = [
     n: "02",
     icon: "calendar-check",
     title: "Book the work",
-    body: "Your smart website and AI assistant answer, qualify and book every enquiry in 30 seconds or less. Even at 11pm, while you're off the clock.",
+    body: "Your smart website and AI assistant answer, qualify and book every enquiry in 30 seconds. Even at 11pm, while you're off the clock.",
   },
   {
     n: "03",
@@ -99,7 +100,7 @@ const faqs = [
   { q: "How many leads will I actually get?", a: "It depends on your trade, your area and your budget, which is exactly what your free audit works out. We give you honest, realistic numbers up front, and report on real calls and quote requests every month." },
   { q: "What if you don't hit my goal?", a: "We keep working and waive our management fee until we do. We agree the target with you before we start, so there are no surprises." },
   { q: "Is there a lock-in contract?", a: "No. You stay because the work keeps coming, not because a contract traps you." },
-  { q: "Do I have to pay upfront?", a: "Yes. We take the $1,997 +GST setup and your first month before we start. We're a small Kiwi agency and we don't float thousands of dollars before we've earned your trust. We back it with our 60-day guarantee instead." },
+  { q: "Do I have to pay upfront?", a: `Yes. We take the ${SETUP_FEE} +GST setup and your first month before we start. We're a small Kiwi agency and we don't float thousands of dollars before we've earned your trust. We back it with our 60-day guarantee instead.` },
   { q: "What's included in the monthly price?", a: "Your smart website, our ad management and the automation that turns clicks into booked jobs. Your ad budget is the one thing that's separate, set to suit your goals, so every dollar works for you." },
   { q: "How soon can I start getting leads?", a: "Most campaigns are live within days of your audit, with leads coming in shortly after. We tune everything over the first few weeks to bring your cost per lead down." },
 ];
@@ -123,7 +124,7 @@ const faqs = [
         </Reveal>
         <Reveal delay={0.1} class="mx-auto mt-6 max-w-xl lg:mx-0">
           <p class="text-lg text-neutral-content/80">
-            We find the work, answer every enquiry in 30 seconds or less and book jobs straight into your
+            We find the work, reply to every enquiry in 30 seconds and book jobs straight into your
             calendar while you're flat out on the tools. You just turn up and do the job.
           </p>
         </Reveal>
@@ -136,7 +137,7 @@ const faqs = [
           </a>
         </Reveal>
         <Reveal delay={0.2} class="mt-6 flex justify-center lg:justify-start">
-          <SpeedBadge tone="dark" label="Replies in 30 seconds or less, 24/7" />
+          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
         </Reveal>
         <Reveal delay={0.26} class="mt-8 flex justify-center lg:justify-start">
           <SocialProof />
@@ -307,7 +308,7 @@ const faqs = [
       <div>
         <Reveal><span class="eyebrow">Speed wins</span></Reveal>
         <Reveal delay={0.05}>
-          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours takes <span class="marker">30 seconds or less</span>.</h2>
+          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours takes <span class="marker">30 seconds</span>.</h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p class="mt-6 text-lg text-base-content/70">
@@ -515,7 +516,7 @@ const faqs = [
         <span class="eyebrow">Pricing</span>
         <h2 class="mt-3 text-3xl sm:text-5xl">Simple plans. No lock-in. No surprises.</h2>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup builds your
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup builds your
           system. Then one monthly plan covers your website, ad management and automation. Your ad
           budget is separate and set to suit your goals.
         </p>

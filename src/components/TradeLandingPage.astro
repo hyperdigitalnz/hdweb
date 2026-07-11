@@ -10,6 +10,7 @@ import SpeedBadge from "./SpeedBadge.astro";
 import AuditForm from "./AuditForm.astro";
 import Vsl from "./Vsl.astro";
 import { SITE, STATS } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
 import type { TradeLP } from "../data/tradeLeadGen";
 
 interface Props {
@@ -87,7 +88,7 @@ const system = [
 
 const valueStack = [
   { item: "Professional website", value: "$3,500" },
-  { item: "AI chat and voice responder", value: "$2,000" },
+  { item: "AI chat responder", value: "$2,000" },
   { item: "Content management system", value: "$1,500" },
   { item: "Email automation sequences", value: "$1,000" },
   { item: "Automated booking system", value: "$800" },
@@ -390,7 +391,7 @@ const Ts = trade.tradeSingular;
               <div class="card-body">
                 <span class="icon-chip"><Icon name="bolt" class="h-6 w-6" /></span>
                 <div class="mt-3 text-sm uppercase tracking-wide text-base-content/60">One-off setup</div>
-                <div class="font-display text-4xl text-primary">$1,997 <span class="text-2xl text-base-content/60">+GST</span></div>
+                <div class="font-display text-4xl text-primary">{SETUP_FEE} <span class="text-2xl text-base-content/60">+GST</span></div>
                 <p class="mt-2 text-base-content/70">Your whole system built and live, ready to start bringing in leads.</p>
               </div>
             </div>

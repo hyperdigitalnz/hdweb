@@ -8,6 +8,7 @@ import Icon from "../components/Icon.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import { SITE } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
 
 const portfolio = [
   { src: "/img/websites/bermuda-lifestyle-website(1).png", name: "Bermuda Lifestyle", trade: "Pools & Spas", url: "https://bermuda.co.nz", display: "bermuda.co.nz" },
@@ -20,10 +21,10 @@ const portfolio = [
 
 const title = "Smart Websites for Tradies | Book Jobs 24/7 | Hyper Digital";
 const description =
-  "We build tradies smart websites that reply in 30 seconds, qualify the job and book it in, 24/7. Local SEO built in. From $1,997 setup + $497/mo. Free audit.";
+  `We build tradies smart websites that reply in 30 seconds, qualify the job and book it in, 24/7. Local SEO built in. From ${SETUP_FEE} setup + $497/mo. Free audit.`;
 
 const doesSteps = [
-  { n: "01", icon: "bolt", title: "Replies in 30 seconds", body: "Every call and form gets an instant response, day or night, so the lead never goes cold." },
+  { n: "01", icon: "bolt", title: "Replies in 30 seconds", body: "Every enquiry through your site gets an instant reply, day or night, so the lead never goes cold." },
   { n: "02", icon: "chat", title: "Qualifies the job", body: "It asks the right questions up front, so you're not wasting time on tyre-kickers." },
   { n: "03", icon: "calendar", title: "Books it straight in", body: "The job lands in your calendar and sends you the details, no back-and-forth." },
   { n: "04", icon: "star", title: "Wins you the job", body: "Puts your services, reviews and real results front and centre, so choosing you is the easy decision." },
@@ -238,7 +239,7 @@ const faqSchema = {
         <span class="eyebrow">Pricing</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in. No surprises.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup gets your
           system built. Then pick a monthly plan for your website, ad management and automation.
           Your ad budget is separate and set to suit your goals. Backed by the 60-day guarantee, so
           the risk is on us, not you.

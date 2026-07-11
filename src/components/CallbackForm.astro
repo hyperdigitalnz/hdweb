@@ -21,10 +21,12 @@ const { title = "Prefer we ring you?" } = Astro.props;
 
   <form class="callback-form mt-5 grid grid-cols-1 gap-3" method="post" action="/api/lead">
     <!-- Honeypot: hidden from real users, catches bots. Ids are cb- prefixed so this
-         form can share a page with AuditForm without duplicate ids. -->
+         form can share a page with AuditForm without duplicate ids. The name/label must
+         never match a browser-autofill field type (was `company`; autofill filled it and
+         real leads were silently dropped). -->
     <div class="hidden" aria-hidden="true">
-      <label for="cb-company">Company (leave blank)</label>
-      <input id="cb-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+      <label for="cb-hp">Leave this field empty</label>
+      <input id="cb-hp" name="hp_field" type="text" tabindex="-1" autocomplete="off" />
     </div>
     <input type="hidden" name="type" value="callback" />
     <input type="hidden" name="page" value={Astro.url.pathname} />

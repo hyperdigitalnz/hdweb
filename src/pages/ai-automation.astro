@@ -8,6 +8,7 @@ import Icon from "../components/Icon.astro";
 import AutomationFlow from "../components/AutomationFlow.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import { SITE } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
 
 const title = "AI Automation for Tradies | Never Lose a Lead or Review | Hyper Digital";
 const description =
@@ -19,7 +20,7 @@ const leaks = [
 ];
 
 const automate = [
-  { icon: "chat", title: "Instant & scheduled follow-ups", body: "Chases every lead until they book or say no, so nothing slips." },
+  { icon: "chat", title: "Email follow-ups that don't forget", body: "An email nurture sequence chases every lead until they book or say no, so nothing slips." },
   { icon: "mail", title: "Instant email reply to every enquiry", body: "Every web enquiry gets an automatic reply in seconds, so the lead never goes cold while you're on the tools." },
   { icon: "star", title: "Automatic review requests", body: "Sent after every completed job, at the moment the customer is happiest." },
   { icon: "trend", title: "Reactivation messages", body: "Nudges past customers to book you again, bringing in work from people who already trust you." },
@@ -221,7 +222,7 @@ const faqSchema = {
         <span class="eyebrow">Pricing</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in. No surprises.</h2>
         <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">$1,997 +GST</span> setup gets your
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup gets your
           system built. Then pick a monthly plan for your website, ad management and automation.
           Your ad budget is separate and set to suit your goals.
         </p>

@@ -1,14 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Reveal from "../components/Reveal.astro";
-import AuditForm from "../components/AuditForm.astro";
-import SocialProof from "../components/SocialProof.astro";
-import Icon from "../components/Icon.astro";
-import { SITE, STATS } from "../consts";
+import Layout from "../../layouts/Layout.astro";
+import Reveal from "../../components/Reveal.astro";
+import AuditForm from "../../components/AuditForm.astro";
+import SocialProof from "../../components/SocialProof.astro";
+import Icon from "../../components/Icon.astro";
+import { SITE, STATS } from "../../consts";
+import { SETUP_FEE } from "../../data/pricing";
 
 // Local agency page for the "digital marketing hawke's bay / napier / hastings"
 // cluster (homepage ranked pos 2-8 for these with ~0 clicks; this page exists to
-// win the click). Footer-linked only. See ../../seo/SEO-OPPORTUNITIES-2026-07-03.md.
+// win the click). Moved under /insights/ on 11/07/2026 (Matt's call) with a 301 from
+// the old path in public/_redirects. Linked from the insights index.
+// See ../../../seo/SEO-OPPORTUNITIES-2026-07-03.md.
 
 const title = "Digital Marketing Agency Hawke's Bay | Hyper Digital";
 const description =
@@ -17,7 +20,7 @@ const description =
 const services = [
   { icon: "search", title: "Google Ads", href: "/lead-generation", body: "Tightly managed Search campaigns that put you in front of Hawke's Bay locals at the exact moment they need you. Fast results, wasted spend cut, every lead tracked." },
   { icon: "layout", title: "Smart websites", href: "/websites", body: "Fast, search-ready sites that reply to enquiries in 30 seconds, qualify the job and book it in, 24/7. Built to convert, not just to look good." },
-  { icon: "pin", title: "Local SEO", href: "/seo-hawkes-bay", body: "Rank in the map pack, local searches and AI answers across Napier and Hastings. The long game that turns paid clicks into free ones." },
+  { icon: "pin", title: "Local SEO", href: "/insights/seo-hawkes-bay", body: "Rank in the map pack, local searches and AI answers across Napier and Hastings. The long game that turns paid clicks into free ones." },
   { icon: "cog", title: "AI automation", href: "/ai-automation", body: "Follow-up, review requests and booking on autopilot, so no enquiry slips through the cracks while you're busy working." },
 ];
 
@@ -36,7 +39,7 @@ const whoFor = [
 
 const faqs = [
   { q: "Are you actually based in Hawke's Bay?", a: "Yes. We live and work in the Bay and have run campaigns for local businesses since 2019. When you call, you get one of the owners, not an account manager three timezones away." },
-  { q: "What does it cost?", a: "A one-off $1,997 +GST setup builds your system, then monthly plans start at $497 +GST covering your website, ad management and automation. Ad spend is separate and set to suit your goals. Your free audit tells you the right plan and budget before you commit to anything." },
+  { q: "What does it cost?", a: `A one-off ${SETUP_FEE} +GST setup builds your system, then monthly plans start at $497 +GST covering your website, ad management and automation. Ad spend is separate and set to suit your goals. Your free audit tells you the right plan and budget before you commit to anything.` },
   { q: "Do you only work with tradies?", a: "Trades are our specialty and most of our case studies, but the same system works for any local business that wants more calls and bookings. If we don't think we can move the needle for you, we'll say so in the audit." },
   { q: "What makes you different from other Hawke's Bay agencies?", a: "We run the whole pipeline in-house: the ads, the website the ads land on, and the follow-up that books the job. We report on leads and cost per lead, not impressions. And we back it with a 60-day lead guarantee, with no lock-in contracts." },
   { q: "Can you help if my customers are outside Hawke's Bay?", a: "Yes. We're Bay-based but run campaigns NZ-wide, from Auckland to Southland. Local knowledge just means we're extra sharp on Hawke's Bay targeting." },
@@ -57,7 +60,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: "Hyper Digital",
   description: "Digital marketing agency in Hawke's Bay: Google Ads, smart websites, local SEO and AI automation.",
-  url: "https://hyperdigital.nz/digital-marketing-hawkes-bay",
+  url: "https://hyperdigital.nz/insights/digital-marketing-hawkes-bay",
   telephone: "+64276661973",
   foundingDate: "2019",
   areaServed: ["Hawke's Bay", "Napier", "Hastings", "Havelock North", "New Zealand"],

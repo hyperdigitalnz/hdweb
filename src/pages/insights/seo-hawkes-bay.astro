@@ -1,14 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Reveal from "../components/Reveal.astro";
-import AuditForm from "../components/AuditForm.astro";
-import SocialProof from "../components/SocialProof.astro";
-import Icon from "../components/Icon.astro";
-import { SITE } from "../consts";
+import Layout from "../../layouts/Layout.astro";
+import Reveal from "../../components/Reveal.astro";
+import AuditForm from "../../components/AuditForm.astro";
+import SocialProof from "../../components/SocialProof.astro";
+import Icon from "../../components/Icon.astro";
+import { SITE } from "../../consts";
 
-// Local SEO page. This URL ranked on the old site (GSC: "seo hawkes bay" ~pos 10),
-// so it is deliberately recreated at the exact same path. Linked from the footer
-// only (nav stays tradie-first). See ../../seo/SEO-OPPORTUNITIES-2026-07-03.md.
+// Local SEO page. Originally recreated at /seo-hawkes-bay because that URL ranked on
+// the old site (GSC: "seo hawkes bay" ~pos 10); moved under /insights/ on 11/07/2026
+// (Matt's call) with a 301 from the old path in public/_redirects. Linked from the
+// insights index (nav stays tradie-first). See ../../../seo/SEO-OPPORTUNITIES-2026-07-03.md.
 
 const title = "SEO Hawke's Bay | Local SEO for Napier & Hastings | Hyper Digital";
 const description =
