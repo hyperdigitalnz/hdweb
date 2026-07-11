@@ -13,9 +13,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      // Keep the noindex /thank-you utility page (fires the Google Ads conversion)
-      // out of the sitemap.
-      filter: (page) => !page.includes('/thank-you'),
+      // Keep noindex utility pages out of the sitemap: /thank-you fires the Google
+      // Ads conversion, /links is the links-in-bio page for social profiles.
+      filter: (page) => !page.includes('/thank-you') && !page.endsWith('/links-in-bio/'),
     }),
   ],
 

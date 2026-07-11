@@ -18,6 +18,8 @@ interface Props {
   /** Hide the site nav header. Used on paid-traffic landing pages to remove
    *  exit links and keep focus on the form. */
   hideHeader?: boolean;
+  /** Hide the footer too. Used by chrome-free utility pages like /links. */
+  hideFooter?: boolean;
   /** Hide the chat widget. The 404 page must set this explicitly because it
    *  renders under the requested (missing) URL, not a fixed path. */
   hideChat?: boolean;
@@ -28,6 +30,7 @@ const {
   image = "/img/digital-marketing.png",
   noindex = false,
   hideHeader = false,
+  hideFooter = false,
   hideChat = false,
 } = Astro.props;
 
@@ -95,7 +98,7 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <main>
       <slot />
     </main>
-    <Footer />
+    {!hideFooter && <Footer />}
 
     <!-- DO NOT mount anything fixed to the bottom of the mobile viewport here (a sticky
          call/callback bar lived here briefly on 03/07/2026 and was removed): the GHL

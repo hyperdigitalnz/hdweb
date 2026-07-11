@@ -43,6 +43,21 @@
 /free-consultation         /contact           301
 /free-consultation/        /contact           301
 
+# Links-in-bio page lives at /links-in-bio (the URL in the social bios).
+# Catch the common slug variants (11/07/2026).
+/links                     /links-in-bio      301
+/links/                    /links-in-bio      301
+/bio                       /links-in-bio      301
+/bio/                      /links-in-bio      301
+/linkinbio                 /links-in-bio      301
+/linkinbio/                /links-in-bio      301
+/link-in-bio               /links-in-bio      301
+/link-in-bio/              /links-in-bio      301
+/social                    /links-in-bio      301
+/social/                   /links-in-bio      301
+/socials                   /links-in-bio      301
+/socials/                  /links-in-bio      301
+
 # Legal + about
 /terms-and-conditions      /terms             301
 /terms-and-conditions/     /terms             301
