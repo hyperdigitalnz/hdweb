@@ -81,6 +81,17 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
 
     <ClientRouter />
 
+    <!-- Google Tag Manager (GTM-KXHVKNQ): FB pixel, GA4, Clarity/Hotjar etc. all live in GTM.
+         Tag changes happen in the GTM UI/API, not this codebase. -->
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KXHVKNQ');
+    </script>
+    <!-- End Google Tag Manager -->
+
     <!-- Google Ads global tag (conversion id from runlog) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-703611224"></script>
     <script is:inline>
@@ -94,6 +105,10 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body class="bg-base-100 text-base-content">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXHVKNQ"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     {!hideHeader && <Header />}
     <main>
       <slot />
