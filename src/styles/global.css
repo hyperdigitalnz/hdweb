@@ -475,11 +475,24 @@
   .flow-line { animation: none !important; }
 }
 
-/* ---------- Reveal-on-scroll ---------- */
-.js [data-reveal] { opacity: 0; transform: translateY(16px); will-change: opacity, transform; }
+/* ---------- Reveal ---------- */
+/* CSS-only entrance for above-the-fold content (<Reveal instant>): plays at first paint,
+   no JS dependency, so LCP is never gated on scripts. Delay comes from an inline
+   animation-delay set by the component.
+   Starts at opacity 0.5, NOT 0: Chrome skips opacity-0 first paints when scoring LCP, so a
+   fade-from-zero hero either drops out of LCP or re-enters on a late third-party repaint
+   with a ~10s timestamp. Half-visible text is painted and counted at first paint. */
+.reveal-instant { animation: revealRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes revealRise { from { opacity: 0.5; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Scroll-reveal (Motion script in Layout.astro). The 3s forceVisible fallback guarantees
+   content can never stay hidden if that script fails or loads slowly. */
+.js [data-reveal] { opacity: 0; transform: translateY(16px); will-change: opacity, transform; animation: forceVisible 0s 3s forwards; }
+@keyframes forceVisible { to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .reveal-instant { animation: none !important; }
   .marquee, .vmarquee, .flow-pulse { animation: none !important; }
   * , *::before, *::after {
     animation-duration: 0.01ms !important;

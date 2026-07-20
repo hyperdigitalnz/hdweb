@@ -32,32 +32,32 @@ const work = [
   <!-- ===== HERO ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[900px] px-5 py-14 text-center sm:py-20">
-      <Reveal>
+      <Reveal instant instant>
         <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
           <a href="/results" class="transition-colors hover:text-primary">Results</a>
           <span class="px-2">/</span>
           <span class="text-neutral-content/90">{client}</span>
         </nav>
       </Reveal>
-      <Reveal class="mt-8">
+      <Reveal instant class="mt-8">
         <span class="badge badge-primary font-display">Case study · {trade}</span>
       </Reveal>
-      <Reveal delay={0.05} class="mt-4">
+      <Reveal instant delay={0.05} class="mt-4">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl">
           $351 in ads. A <span class="marker">$45,000 job</span>.
         </h1>
       </Reveal>
-      <Reveal delay={0.1} class="mt-5">
+      <Reveal instant delay={0.1} class="mt-5">
         <p class="text-sm uppercase tracking-wider text-primary">{region}</p>
       </Reveal>
-      <Reveal delay={0.14} class="mt-5">
+      <Reveal instant delay={0.14} class="mt-5">
         <p class="mx-auto max-w-xl text-lg text-neutral-content/80">
           This client is a Hawke's Bay roofer doing re-roofs, repairs, guttering and fascia. We manage
           their Google Ads around commercial intent and track every lead through to the job, so we can
           tie one month's $351 of ad spend straight to a $45,000 re-roof.
         </p>
       </Reveal>
-      <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+      <Reveal instant delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
         <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
         <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
       </Reveal>

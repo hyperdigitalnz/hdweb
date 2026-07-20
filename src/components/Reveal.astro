@@ -1,12 +1,28 @@
 ---
-// Wraps content in a scroll-reveal container. Animated by the Motion script in Layout.astro.
+// Wraps content in a reveal container.
+//
+// Default: scroll-reveal, hidden until the Motion script in Layout.astro animates it into
+// view. Never use this above the fold: content stays invisible until that script runs.
+//
+// `instant`: CSS-only entrance animation (see .reveal-instant in global.css) that plays at
+// first paint with no JS involved. Use for heroes and anything visible on load so LCP is
+// never gated on scripts.
 interface Props {
   delay?: number;
   class?: string;
   id?: string;
+  instant?: boolean;
 }
-const { delay = 0, class: className = "", id } = Astro.props;
+const { delay = 0, class: className = "", id, instant = false } = Astro.props;
 ---
-<div data-reveal data-reveal-delay={delay} class={className} id={id}>
-  <slot />
-</div>
+{
+  instant ? (
+    <div class:list={["reveal-instant", className]} id={id} style={delay ? `animation-delay: ${delay}s` : undefined}>
+      <slot />
+    </div>
+  ) : (
+    <div data-reveal data-reveal-delay={delay} class={className} id={id}>
+      <slot />
+    </div>
+  )
+}

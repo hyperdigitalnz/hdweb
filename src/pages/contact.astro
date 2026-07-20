@@ -32,20 +32,20 @@ const localBusinessSchema = {
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-start gap-12 px-5 py-16 sm:py-20 lg:grid-cols-2">
       <div class="text-center lg:text-left">
-        <Reveal>
+        <Reveal instant instant>
           <span class="eyebrow">Contact</span>
         </Reveal>
-        <Reveal delay={0.05} class="mt-3">
+        <Reveal instant delay={0.05} class="mt-3">
           <h1 class="text-4xl sm:text-5xl lg:text-6xl">Get your <span class="marker">free audit</span>.</h1>
         </Reveal>
-        <Reveal delay={0.1} class="mt-6">
+        <Reveal instant delay={0.1} class="mt-6">
           <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
             Tell us about your business and we'll show you exactly where your next jobs are coming
             from, and what they'll cost. No jargon, no obligation.
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} class="mt-8">
+        <Reveal instant delay={0.15} class="mt-8">
           <ul class="mx-auto grid max-w-md gap-3 text-left lg:mx-0">
             <li>
               <a href={SITE.phoneHref} class="flex items-center gap-3 rounded-box border border-white/10 bg-white/5 p-4 transition-colors hover:border-primary/50">
@@ -84,12 +84,12 @@ const localBusinessSchema = {
           </ul>
         </Reveal>
 
-        <Reveal delay={0.22} class="mt-8">
+        <Reveal instant delay={0.22} class="mt-8">
           <SocialProof />
         </Reveal>
       </div>
 
-      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+      <Reveal instant id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm
           title="Book your free audit"
           lead="Tell us about your business and we'll show you where your next jobs are coming from, and what they'll cost."

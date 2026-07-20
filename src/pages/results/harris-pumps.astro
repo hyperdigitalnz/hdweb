@@ -68,7 +68,7 @@ const reviewSchema = {
   <!-- ===== HERO ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
-      <Reveal>
+      <Reveal instant instant>
         <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
           <a href="/results" class="transition-colors hover:text-primary">Results</a>
           <span class="px-2">/</span>
@@ -77,32 +77,32 @@ const reviewSchema = {
       </Reveal>
       <div class="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div class="text-center lg:text-left">
-          <Reveal>
+          <Reveal instant instant>
             <span class="badge badge-primary font-display">Case study · {trade}</span>
           </Reveal>
-          <Reveal delay={0.05} class="mt-4">
+          <Reveal instant delay={0.05} class="mt-4">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl">
               Cost per lead <span class="marker">nearly halved</span>, and the leads keep growing.
             </h1>
           </Reveal>
-          <Reveal delay={0.1} class="mt-5">
+          <Reveal instant delay={0.1} class="mt-5">
             <p class="text-sm uppercase tracking-wider text-primary">{region}</p>
           </Reveal>
-          <Reveal delay={0.14} class="mt-5">
+          <Reveal instant delay={0.14} class="mt-5">
             <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
               Harris Pumps & Filtration have been with us from the very beginning, one of our very first
               clients. Year after year we have grown their online advertising and made it leaner, cutting
               the cost of every lead while bringing in more of them. 2026 is their most efficient year yet.
             </p>
           </Reveal>
-          <Reveal delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <Reveal instant delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
             <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
             <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
           </Reveal>
         </div>
 
         <!-- Hero media — client -->
-        <Reveal delay={0.15}>
+        <Reveal instant delay={0.15}>
           <img
             src="/img/case-studies/harris-pumps.jpg"
             alt="Harris Pumps & Filtration"

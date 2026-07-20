@@ -139,6 +139,9 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
         document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
           if (el.dataset.revealed) return;
           el.dataset.revealed = "1";
+          // JS is in charge now: cancel the CSS forceVisible fallback so items below the
+          // fold don't pop in at 3s and then re-animate when scrolled into view.
+          el.style.animation = "none";
           if (reduce) { el.style.opacity = "1"; el.style.transform = "none"; return; }
           const delay = parseFloat(el.dataset.revealDelay || "0");
           inView(
@@ -154,6 +157,11 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
           );
         });
       }
+      // Run immediately: this module executes right after DOM parse, so reveals start at
+      // first paint instead of waiting for astro:page-load (which fires only after the full
+      // load event, third-party scripts included). The listener re-runs it after view
+      // transitions; setupReveal itself is idempotent via data-revealed.
+      setupReveal();
       document.addEventListener("astro:page-load", setupReveal);
     </script>
   </body>

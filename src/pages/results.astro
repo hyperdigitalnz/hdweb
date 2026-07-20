@@ -166,17 +166,17 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
   <!-- ===== HERO + STATS ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-24">
-      <Reveal><span class="eyebrow">Results</span></Reveal>
-      <Reveal delay={0.05} class="mt-3">
+      <Reveal instant instant><span class="eyebrow">Results</span></Reveal>
+      <Reveal instant delay={0.05} class="mt-3">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl">Real Kiwi businesses. <span class="marker">Real results</span>.</h1>
       </Reveal>
-      <Reveal delay={0.1} class="mx-auto mt-6 max-w-2xl">
+      <Reveal instant delay={0.1} class="mx-auto mt-6 max-w-2xl">
         <p class="text-lg text-neutral-content/80">
           We only report numbers our clients can check in their own accounts. No vanity metrics, no
           spin. Here's what working with us actually looks like.
         </p>
       </Reveal>
-      <Reveal delay={0.18} class="mt-10">
+      <Reveal instant delay={0.18} class="mt-10">
         <div class="flex flex-wrap justify-center gap-6 text-center">
           {STATS.map((s) => (
             <div class="w-full md:w-[28%] lg:w-[17%]">

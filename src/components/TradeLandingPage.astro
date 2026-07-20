@@ -160,25 +160,25 @@ const Ts = trade.tradeSingular;
   <!-- ===== 1. HERO + VSL ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-24">
-      <Reveal><span class="eyebrow">{trade.heroEyebrow}</span></Reveal>
-      <Reveal delay={0.05} class="mt-3">
+      <Reveal instant instant><span class="eyebrow">{trade.heroEyebrow}</span></Reveal>
+      <Reveal instant delay={0.05} class="mt-3">
         <h1 class="text-balance text-4xl sm:text-5xl lg:text-6xl">
           {trade.heroHeadlineLead} <span class="marker">{trade.heroHeadlineMark}</span>
         </h1>
       </Reveal>
-      <Reveal delay={0.1} class="mt-6">
+      <Reveal instant delay={0.1} class="mt-6">
         <p class="mx-auto max-w-xl text-lg text-neutral-content/80">{trade.heroSub}</p>
       </Reveal>
-      <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+      <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
         <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
         <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
       </Reveal>
-      <Reveal delay={0.2} class="mt-6 flex justify-center">
+      <Reveal instant delay={0.2} class="mt-6 flex justify-center">
         <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
       </Reveal>
-      <Reveal delay={0.22} class="mt-9 flex justify-center"><SocialProof /></Reveal>
+      <Reveal instant delay={0.22} class="mt-9 flex justify-center"><SocialProof /></Reveal>
       {trade.vsl && (
-        <Reveal delay={0.28} class="mt-12">
+        <Reveal instant delay={0.28} class="mt-12">
           <Vsl src={trade.vsl} caption="Watch: how the system books you more jobs (2 min)" />
         </Reveal>
       )}
