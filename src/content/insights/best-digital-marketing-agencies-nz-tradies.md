@@ -21,7 +21,7 @@ laid out the evidence so you can judge for yourself.
 
 **Based in:** Hawke's Bay, working with tradies NZ-wide
 **Best for:** Plumbing, roofing, spouting, electrical, building, house relocation, pumps
-**Services:** Google Ads, websites, local SEO, AI-powered lead follow-up
+**Services:** [Google Ads](/google-ads), websites, local SEO, AI-powered lead follow-up
 **In business since:** 2019
 
 Hyper Digital (that's us) works exclusively with trade and local service businesses. We

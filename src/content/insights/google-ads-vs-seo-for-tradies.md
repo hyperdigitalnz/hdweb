@@ -5,8 +5,8 @@ pubDate: 2026-07-03
 tags: ["Google Ads", "SEO"]
 ---
 
-Every week a tradie asks us some version of the same question: should I pay for Google Ads,
-or put that money into SEO and get "free" traffic instead?
+Every week a tradie asks us some version of the same question: should I pay for
+[Google Ads](/google-ads), or put that money into SEO and get "free" traffic instead?
 
 The honest answer is that they do different jobs, and the right order depends on one thing:
 how soon you need the phone to ring.
