@@ -1,0 +1,596 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import SpeedBadge from "../components/SpeedBadge.astro";
+import PricingTiers from "../components/PricingTiers.astro";
+import Icon from "../components/Icon.astro";
+import { SITE, STATS } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
+
+// Primary target: "facebook ads agency nz" / "facebook ads agency" (GSC: near-me variant
+// already ranks pos 1 on the homepage). Secondary, worked into body and FAQ rather than
+// the title: "facebook advertising agency", "meta ads agency", "facebook and instagram
+// advertising agency", "facebook marketing for small business", "instagram ads nz".
+// Deliberately NOT chasing "meta ads manager" / "facebook ads management" head terms:
+// Keyword Planner shows they are DIY tool-seekers hunting the Meta login (see LOGS.md
+// 21/07/2026), the impressions-without-clicks trap this page exists to avoid.
+const title = "Facebook Ads Agency NZ | Facebook & Instagram Ads | Hyper Digital";
+const description =
+  "A Meta Business Partner running Facebook and Instagram ads for New Zealand trade and local businesses. Campaigns measured in enquiries and booked jobs, not likes.";
+
+const problems = [
+  {
+    icon: "thumbs-up",
+    title: "Boosting posts and hoping",
+    body: "The blue Boost button is Facebook's easiest money and the worst way to buy ads. It optimises for likes and reach, not enquiries, and most boosted budgets vanish without a single lead to show for it.",
+  },
+  {
+    icon: "target",
+    title: "Ads shown to the wrong people",
+    body: "Broad targeting, no proper audiences and the whole country selected. Your budget gets spent showing a Napier service to someone in Invercargill who will never buy it.",
+  },
+  {
+    icon: "eye",
+    title: "No pixel, so nothing is measured",
+    body: "Without the Meta pixel and conversion tracking set up properly, you cannot retarget the people who visited, and nobody can tell you what a lead actually cost. The account just quietly drifts.",
+  },
+];
+
+const included = [
+  {
+    icon: "target",
+    title: "Audiences built around real buyers",
+    body: "Location, demographics, interests and lookalikes built around the customers you actually want, in the areas you actually cover. No spray and pray.",
+  },
+  {
+    icon: "image",
+    title: "Ad creative and copy done for you",
+    body: "Scroll-stopping images, video and copy written for your business and your offer. On Facebook the creative does most of the heavy lifting, so we keep testing new angles.",
+  },
+  {
+    icon: "trend",
+    title: "Meta pixel and conversion tracking",
+    body: "Pixel, events and conversion tracking wired up properly, so campaigns optimise toward enquiries and booked jobs instead of likes and reach.",
+  },
+  {
+    icon: "repeat",
+    title: "Retargeting that closes the loop",
+    body: "Most people do not enquire on the first visit. We follow up website visitors and engaged audiences with warm ads, which is usually the cheapest lead in the whole account.",
+  },
+  {
+    icon: "layout",
+    title: "Landing pages that convert",
+    body: "Your ads point at pages built for the offer behind them, not a homepage. A better landing page lowers your cost per lead before you spend another dollar.",
+  },
+  {
+    icon: "search",
+    title: "Testing and reporting you can verify",
+    body: "Creative, audiences and offers tested every month, with reporting on enquiries and cost per lead. Every number we report, you can check in your own Ads Manager.",
+  },
+];
+
+// Formats we genuinely run. No catalogue/ecommerce entry: we exited ecommerce and the
+// page must not invite those enquiries.
+const adTypes = [
+  {
+    icon: "image",
+    title: "Facebook feed ads",
+    body: "Image and video ads in the feed where Kiwis actually spend their time. The workhorse format for local awareness and lead generation.",
+  },
+  {
+    icon: "mobile",
+    title: "Instagram and Reels",
+    body: "The same campaign can run across Instagram feed, Stories and Reels. One build, one budget, and Meta serves it wherever your customers scroll.",
+  },
+  {
+    icon: "bolt",
+    title: "Lead ads",
+    body: "Forms that open right inside Facebook or Instagram, pre-filled with the person's details. Fewer steps, cheaper leads, and every one flows straight into your follow-up automation.",
+  },
+  {
+    icon: "repeat",
+    title: "Retargeting",
+    body: "Warm ads to people who visited your site or engaged with your page but did not enquire. Cheaper clicks and a second chance at the job.",
+  },
+  {
+    icon: "megaphone",
+    title: "Awareness campaigns",
+    body: "For businesses whose customers plan ahead, staying front of mind for months before the buying decision is the whole game. Used deliberately, with a tight audience, never as a budget sink.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    title: "Audit before anything",
+    body: "Before you sign a thing, we audit your website and marketing, tell you honestly whether Facebook ads are the right channel for you, and what your cost per lead should look like.",
+  },
+  {
+    n: "02",
+    title: "Discovery",
+    body: "We narrow down which services you want more of, then work out what a lead and a job are really worth to you from your sales pipeline and margins. That number steers every decision after it.",
+  },
+  {
+    n: "03",
+    title: "The build",
+    body: "Campaigns, audiences, ad creative and copy built for you, with the Meta pixel and conversion tracking set up end to end. You can review it all before launch, or just tell us to hit go.",
+  },
+  {
+    n: "04",
+    title: "Launch and fine-tune",
+    body: "We usually go live on the 1st of the month so your reporting starts clean. The first weeks are about finding which creative and audiences convert, and cutting the ones that do not.",
+  },
+  {
+    n: "05",
+    title: "First-month review",
+    body: "We present the first month's results, get your feedback and tune the account to what you actually want. Some clients want fewer, better leads. Others want the budget pushed harder at one offer.",
+  },
+  {
+    n: "06",
+    title: "Ongoing optimisation",
+    body: "Fresh creative, audience refreshes and budget moves every month, with a catch-up rhythm you choose: weekly, monthly or quarterly. Facebook ads fatigue fast, so standing still costs money.",
+  },
+];
+
+const areas = [
+  "Hawke's Bay",
+  "Napier",
+  "Hastings",
+  "Auckland",
+  "Wellington",
+  "Christchurch",
+  "Tauranga",
+  "Hamilton",
+];
+
+const faqs = [
+  {
+    q: "What does Facebook advertising cost in NZ?",
+    a: `Two parts: the ad budget you give Meta, and the management. Most local businesses get meaningful data from around $20 to $30 a day in ad spend, and we will give you a straight number for your industry on the free audit. For management, the full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, ad management and the automation that books the work, with your ad budget separate. Already running Google Ads with us? Meta usually slots into your existing plan, and we will price it before you commit to anything.`,
+  },
+  {
+    q: "Facebook ads or Google Ads: which is better?",
+    a: "They do different jobs. Google Ads catches people already searching for your service, which is why it is usually the first channel we run for trade and local businesses. Facebook and Instagram create demand: they put you in front of the right locals before they search, keep past visitors warm, and work brilliantly for services people plan ahead for. The honest answer is that for most of our clients Facebook earns its place alongside Google, not instead of it, and on the audit we will tell you which mix fits your business.",
+  },
+  {
+    q: "Do you run Instagram ads as well?",
+    a: "Yes. Facebook and Instagram share the same ad platform, so one campaign and one budget covers both, including Stories and Reels. We let the results decide where your budget flows: Meta serves the ads wherever your customers respond, and we cut the placements that do not perform.",
+  },
+  {
+    q: "What is wrong with just boosting posts?",
+    a: "Boosting optimises for engagement: likes, comments and reach. It cannot use proper campaign objectives, full audience targeting or conversion tracking, which is exactly the machinery that turns ad spend into enquiries. Proper campaigns built in Ads Manager consistently beat boosted posts on cost per lead, usually by a wide margin.",
+  },
+  {
+    q: "Do Facebook ads work for tradies and local businesses?",
+    a: "For the right trades, very well. Facebook suits work people plan ahead for: renovations, heat pumps, pools and spas, landscaping, painting, new builds. It is weaker for urgent call-outs, because someone with a burst pipe searches Google, they do not scroll Facebook. That is the honest test we apply on your audit, and if Facebook is the wrong first channel for your trade we will tell you so.",
+  },
+  {
+    q: "Do I need a Facebook page to run ads?",
+    a: "Yes, ads run from a Facebook business page, with an Instagram account connected for Instagram placements. If yours does not exist yet or has been gathering dust, we set it up and tidy it as part of the build. It does not need a big following: the targeting does the work, not the page.",
+  },
+  {
+    q: "How do you measure and report results?",
+    a: "Enquiries and cost per lead, not likes or reach. The Meta pixel and conversion events are set up on every account so form fills, calls and booked audits are counted properly, and you get a monthly report you can check against your own Ads Manager. After the first month we go over the results together, then set a catch-up rhythm that suits you.",
+  },
+  {
+    q: "What is retargeting and why does it matter?",
+    a: "Most people who visit your website leave without enquiring. Retargeting shows follow-up ads to those same people on Facebook and Instagram while your business is still fresh in their mind. Because the audience already knows you, it is usually the cheapest cost per lead in the account, and it is one of the first things we build.",
+  },
+  {
+    q: "Who owns the ad account?",
+    a: "You do. We build and run everything under your own Meta Business portfolio, so you keep full access, you can see every number we report, and if you ever leave you take the account, the pixel and its history with you.",
+  },
+  {
+    q: "How long before I see results?",
+    a: "Ads start showing within a day or two of launch, and lead ads can produce enquiries in the first week. The first 30 to 60 days are about testing creative and audiences to find what converts, so cost per lead typically improves after the first month. Awareness plays take longer by design, and we will be upfront about which kind of campaign you are buying.",
+  },
+  {
+    q: "Do you work outside Hawke's Bay?",
+    a: "Yes. Home base is Hawke's Bay, but Meta campaigns are built and managed remotely, so we run Facebook and Instagram ads for businesses all over New Zealand: Auckland, Wellington, Christchurch, Tauranga, Hamilton and everywhere in between. Your location simply becomes part of the audience targeting.",
+  },
+  {
+    q: "What if it does not work?",
+    a: "The same guarantee that backs everything we run: a monthly lead target agreed before we start. Miss it in the first 60 days and our management fee comes off the table while we keep working until we get there. Your ad spend still runs, but we do not earn another cent until the leads arrive.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+// Tells Google this page is the Facebook/Instagram ads service, and where we serve.
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Facebook Ads Management",
+  name: "Facebook & Instagram Ads Management",
+  provider: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: "https://hyperdigital.nz",
+    telephone: "+64276661973",
+    email: SITE.email,
+  },
+  areaServed: { "@type": "Country", name: "New Zealand" },
+  description:
+    "Facebook and Instagram (Meta) advertising management for New Zealand trade and local service businesses.",
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal instant>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="shield-check" class="h-4 w-4" /> Meta Business Partner · NZ-wide
+          </span>
+        </Reveal>
+        <Reveal instant delay={0.05} class="mt-5">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            Facebook ads that turn scrolling into <span class="marker">real enquiries</span>.
+          </h1>
+        </Reveal>
+        <Reveal instant delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            We are a New Zealand Facebook ads agency and Meta Business Partner for trade and
+            local businesses. We build and manage the Facebook and Instagram campaigns that put
+            you in front of the right locals, follow up the ones who almost enquired, and report
+            in leads, not likes.
+          </p>
+        </Reveal>
+        <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+        </Reveal>
+        <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
+          <SocialProof />
+        </Reveal>
+      </div>
+      <Reveal instant delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative">
+          <img src="/img/phone-on-table.jpg" alt="A local customer scrolling Facebook on their phone" loading="eager" class="aspect-[4/3] w-full rounded-box border border-white/10 object-cover shadow-2xl" />
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="border-b border-base-300 bg-base-200">
+    <div class="mx-auto flex max-w-[1160px] flex-wrap items-center justify-center gap-x-10 gap-y-5 px-5 py-7 sm:justify-between">
+      {STATS.map((s) => (
+        <div class="text-center">
+          <div class="font-display text-2xl text-primary sm:text-3xl">{s.value}</div>
+          <div class="text-xs uppercase tracking-wide text-base-content/60 sm:text-sm">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== THE PROBLEM ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">Why most Facebook budgets vanish</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Facebook ads are not a scam. Most accounts are just run badly.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          When a business owner tells us Facebook advertising did not work for them, it is almost
+          always one of these three, and all three are fixable.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {problems.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={p.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{p.title}</h3>
+                <p class="mt-1 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT'S INCLUDED ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What our Facebook advertising covers</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">The work that actually moves cost per lead.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          No set-and-forget. Every Meta account gets the same six things, every month.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {included.map((f, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={f.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{f.title}</h3>
+                <p class="mt-1 text-base-content/70">{f.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AD FORMATS ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The whole toolkit</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Facebook, Instagram, Reels, lead ads. We run the lot.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          One campaign can reach your customers across Facebook and Instagram in every format Meta
+          offers. Each format earns its place case by case, and we will tell you straight when one
+          is not worth your budget.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {adTypes.map((t, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={t.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{t.title}</h3>
+                <p class="mt-1 text-base-content/70">{t.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROOF (dark band, mirrors the homepage "system" section) ===== -->
+  <section class="bg-brand-dark text-neutral-content py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <Reveal>
+          <span class="eyebrow">Proof</span>
+          <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">Real accounts, real numbers.</h2>
+          <p class="mt-4 text-lg text-neutral-content/70">
+            Every figure we publish comes from a client's own account, and they can check it
+            themselves. Bermuda Lifestyle is the one to read here: Facebook and Instagram ads have
+            run alongside their Google Ads for years, keeping their pool and spa business booked
+            months in advance.
+          </p>
+          <p class="mt-4 text-lg text-neutral-content/70">
+            We also run Facebook ads for our own business, with our own money. The strategies we
+            recommend are the ones we trust with our own budget.
+          </p>
+          <a href="/results" class="btn btn-ghost mt-6 text-primary">
+            See all our results <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <a href="/results/bermuda-lifestyle" class="card-glow block rounded-box border border-white/10 surface-2 p-7 transition-colors hover:border-primary/50">
+            <div class="font-display text-4xl text-primary">+2,500%</div>
+            <div class="text-sm uppercase tracking-wide text-neutral-content/60">enquiries in year one</div>
+            <div class="mt-3 font-display text-2xl text-neutral-content">Bermuda Lifestyle</div>
+            <p class="mt-1 text-neutral-content/70">
+              A new website plus Google Ads, Facebook and Instagram working together. "They
+              deliver the exact customers we require via Google Ads, Facebook Ads and
+              Instagram." Denise Howell, owner.
+            </p>
+            <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+              Read the case study <Icon name="arrow-right" class="h-4 w-4" />
+            </span>
+          </a>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FACEBOOK + GOOGLE, NOT FACEBOOK VS GOOGLE ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">The honest bit</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Is Facebook even the right channel for you?</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Google Ads catches people already searching for your service, which is why it is usually
+          the first channel we run. Facebook and Instagram do a different job: they create demand,
+          putting you in front of the right locals before they search, and keeping the people who
+          visited your site warm until they are ready.
+        </p>
+        <p class="mt-4 text-lg text-base-content/70">
+          Facebook is brilliant for work people plan ahead for, and a poor fit for urgent
+          call-outs. If it is the wrong first channel for your business, your free audit will say
+          so, because we would rather turn down a Meta budget than manage one that cannot work.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/google-ads" class="btn btn-ghost text-primary">
+            See our Google Ads management <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+          <a href="/lead-generation" class="btn btn-ghost text-primary">
+            How we pick the mix <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <img src="/img/working-on-laptop.jpg" alt="Planning a Facebook and Instagram ad campaign for a local business" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHERE WE WORK ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">Where we work</span>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">A Hawke's Bay Facebook ads agency, working NZ-wide.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-neutral-content/80">
+          We are based in Hawke's Bay and run Facebook and Instagram advertising for trade and
+          local businesses across New Zealand. Campaigns are managed remotely, so where you are
+          does not change the work, only the audiences and areas we target.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-2.5">
+          {areas.map((a) => (
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 surface-3 px-4 py-1.5 text-sm text-neutral-content/80">
+              <Icon name="pin" class="h-3.5 w-3.5 text-primary" /> {a}
+            </span>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-neutral-content/60">
+          Not on the list? We work with businesses anywhere in New Zealand.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">How we work</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From free audit to dialled-in, step by step.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          No mystery, no black box. This is the exact process every new Facebook ads client goes
+          through.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {processSteps.map((s, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="font-display text-3xl text-primary/40">{s.n}</span>
+                <h3 class="mt-2 font-display text-xl">{s.title}</h3>
+                <p class="mt-1 text-base-content/70">{s.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in. No surprises.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup gets your
+          system built. Then pick a monthly plan covering your website, ad management and
+          automation. Your ad budget is separate and set to suit your goals. Backed by the 60-day
+          guarantee, so the risk is on us, not you.
+        </p>
+      </Reveal>
+
+      <div class="mt-10">
+        <PricingTiers />
+      </div>
+
+      <Reveal class="mt-10 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          Already running Google Ads with us, or just want your Meta ads managed? Facebook and
+          Instagram usually slot into an existing plan, and we will price it on your free audit
+          before you commit to anything. One standard service either way: strategy, creative,
+          conversion tracking, optimisation and a monthly report. Never a charge per campaign or
+          per ad.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <div class="relative mx-auto flex h-24 w-24 items-center justify-center">
+          <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
+          <div class="flex h-[4.3rem] w-[4.3rem] items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
+            <Icon name="shield-check" class="h-9 w-9" />
+          </div>
+        </div>
+        <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
+          we keep working and waive our management fee until we do. You still cover your ad spend,
+          but you won't pay us another cent until we deliver.
+        </p>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads audit</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + AUDIT FORM ===== -->
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Facebook ads questions, answered.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
+              <input type="checkbox" aria-label={f.q} />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-base-content/70">
+          Weighing up where to start? See how we
+          run <a href="/google-ads" class="font-semibold text-primary transition-colors hover:text-accent">Google Ads management</a> and
+          how the channels fit together
+          in <a href="/lead-generation" class="font-semibold text-primary transition-colors hover:text-accent">our lead generation approach</a>.
+        </p>
+      </Reveal>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <AuditForm title="Get your free Facebook ads audit" lead="In 20 minutes we'll show you whether Meta is the right channel for you, where your budget is leaking, and what your cost per lead should be." />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Ready for leads, not likes?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free, no-obligation Facebook ads audit. We'll tell you straight whether Meta is
+          right for your business, what's burning money, and what your cost per lead should look
+          like.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <p class="mt-7 text-sm text-primary-content/70">
+          Free 20-minute audit · Real numbers · No obligation
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+</Layout>

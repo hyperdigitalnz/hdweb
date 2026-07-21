@@ -30,7 +30,16 @@ const title = "Lead Generation for Tradies | More Calls & Booked Jobs | Hyper Di
 const description =
   "We get Kiwi tradies more calls and quote requests: Google Ads for fast results, local SEO built in, Meta when it's worth it. More leads on the same budget. Free audit.";
 
-const channels = [
+type ChannelCard = {
+  icon: string;
+  tag: string;
+  title: string;
+  body: string;
+  link?: { href: string; label: string };
+  popular: boolean;
+};
+
+const channels: ChannelCard[] = [
   {
     icon: "search",
     tag: "Our usual starting point",
@@ -50,6 +59,7 @@ const channels = [
     tag: "When it's worth it",
     title: "Meta (Facebook & Instagram)",
     body: "Facebook and Instagram can work well for some trades, but usually only once your Google spend is big enough to justify it. We won't push you onto Meta just to pad an invoice. When the numbers say it's time, we'll tell you.",
+    link: { href: "/facebook-ads", label: "How we run Facebook ads" },
     popular: false,
   },
 ];
@@ -161,6 +171,11 @@ const faqSchema = {
                 <span class={`badge mt-3 self-start font-display ${c.popular ? "badge-primary" : "badge-outline border-primary/40 text-primary"}`}>{c.tag}</span>
                 <h3 class="mt-1 font-display text-2xl">{c.title}</h3>
                 <p class="mt-2 text-base-content/70">{c.body}</p>
+                {c.link && (
+                  <a href={c.link.href} class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-accent">
+                    {c.link.label} <Icon name="arrow-right" class="h-4 w-4" />
+                  </a>
+                )}
               </div>
             </div>
           </Reveal>

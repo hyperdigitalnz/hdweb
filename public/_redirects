@@ -19,8 +19,10 @@
 /targeted-marketing/       /lead-generation   301
 /seo                       /lead-generation   301
 /seo/                      /lead-generation   301
-/social-media              /lead-generation   301
-/social-media/             /lead-generation   301
+# /social-media repointed 21/07/2026: /facebook-ads is now the real social-ads page,
+# the same fix /paid-ads got when /google-ads was rebuilt.
+/social-media              /facebook-ads      301
+/social-media/             /facebook-ads      301
 /websites-and-e-commerce   /websites          301
 /websites-and-e-commerce/  /websites          301
 /ai                        /ai-automation     301
