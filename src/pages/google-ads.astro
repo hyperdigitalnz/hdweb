@@ -1,0 +1,614 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import SpeedBadge from "../components/SpeedBadge.astro";
+import PricingTiers from "../components/PricingTiers.astro";
+import Icon from "../components/Icon.astro";
+import { SITE, STATS } from "../consts";
+import { SETUP_FEE } from "../data/pricing";
+
+// Primary target: "google ads management nz" / "google ads agency".
+// Secondary, worked into the body and FAQ rather than the title: "ppc agency nz",
+// "google ads nz", "adwords management nz", "google ads consultant",
+// "google ads auckland", "google ads napier".
+const title = "Google Ads Management NZ | Certified Google Partner | Hyper Digital";
+const description =
+  "A certified Google Partner managing Google Ads and PPC for New Zealand trade and local businesses. Search, Shopping, Display and YouTube. Booked jobs, not clicks.";
+
+const problems = [
+  {
+    icon: "dollar",
+    title: "Budget burnt on the wrong searches",
+    body: "Most accounts we take over are paying for people looking for a job, a DIY guide, or a supplier. Nobody ever added the negatives to stop it.",
+  },
+  {
+    icon: "layout",
+    title: "Ads pointing at a homepage",
+    body: "The click lands on a generic page, the visitor has to hunt for what they searched for, and they leave. You still paid for the click.",
+  },
+  {
+    icon: "eye",
+    title: "Nobody knows what a lead costs",
+    body: "Without conversion tracking wired up properly, you are optimising toward clicks. Clicks are not jobs, and the account quietly drifts.",
+  },
+];
+
+const included = [
+  {
+    icon: "search",
+    title: "Campaigns built around real services",
+    body: "We structure the account around the jobs you actually want, in the areas you actually cover, so your budget goes to searches that can turn into work.",
+  },
+  {
+    icon: "target",
+    title: "Wasted spend stripped out",
+    body: "Negative keywords, search term reviews and geo controls, done continuously. This is usually where the first big saving comes from.",
+  },
+  {
+    icon: "layout",
+    title: "Landing pages that convert",
+    body: "Your ads point at pages built for the search behind them, not a homepage. A better landing page lowers your cost per lead before you spend another dollar.",
+  },
+  {
+    icon: "trend",
+    title: "Conversion tracking done properly",
+    body: "Calls, forms and booked audits tracked through Google Tag Manager and GA4, so bidding optimises toward real enquiries instead of clicks.",
+  },
+  {
+    icon: "repeat",
+    title: "Ongoing optimisation",
+    body: "Bids, budgets, ad copy and keywords reviewed every month. Small compounding improvements are what separate a good account from an expensive one.",
+  },
+  {
+    icon: "eye",
+    title: "Reporting you can verify",
+    body: "Every number we report, you can check in your own Google Ads account. You own the account, not us.",
+  },
+];
+
+// Campaign types we genuinely run. No call-only or Local Services Ads entries:
+// call ads are gone as a standalone format and LSAs are not available in NZ.
+const adTypes = [
+  {
+    icon: "search",
+    title: "Search",
+    body: "The workhorse for trade and local businesses. Text ads shown to people typing in the job you want, in the areas you cover, at the moment they need it done.",
+  },
+  {
+    icon: "cart",
+    title: "Shopping",
+    body: "Product listings with a photo and price, straight in the results. For businesses that sell products as well as services, we build and manage the feed behind them too.",
+  },
+  {
+    icon: "image",
+    title: "Display",
+    body: "Banner ads across the sites and apps your customers browse. Used with tight audiences so it builds your name without quietly draining the budget.",
+  },
+  {
+    icon: "megaphone",
+    title: "YouTube",
+    body: "Video ads in front of local viewers. The right call for some businesses and the wrong one for others. We will tell you which you are before a dollar is spent.",
+  },
+  {
+    icon: "repeat",
+    title: "Remarketing",
+    body: "Follow-up ads to people who already visited your site but did not enquire. Warm audiences, cheaper clicks and a second chance at the job.",
+  },
+];
+
+// The actual onboarding + management process, as run. Go-live is usually the 1st of
+// the following month so reporting lines up with clean calendar months.
+const processSteps = [
+  {
+    n: "01",
+    title: "Audit before anything",
+    body: "Before you sign a thing, we audit your website and marketing, then walk you through what we found and what your cost per lead should look like.",
+  },
+  {
+    n: "02",
+    title: "Discovery",
+    body: "We narrow down which services you want more of, then work out what a lead and a job are really worth to you from your sales pipeline and margins. That number steers every decision after it.",
+  },
+  {
+    n: "03",
+    title: "The build",
+    body: "We build the campaigns, write every ad, and set up conversion tracking end to end. You can review it all before launch, or just tell us to hit go.",
+  },
+  {
+    n: "04",
+    title: "Launch and fine-tune",
+    body: "We usually go live on the 1st of the month so your reporting starts clean. In the early days and weeks we watch closely, making hourly and daily adjustments while the account finds its feet.",
+  },
+  {
+    n: "05",
+    title: "First-month review",
+    body: "We present the first month's results, get your feedback and tune the account to what you actually want. Some clients want fewer, better leads. Others want the budget pushed harder at one service.",
+  },
+  {
+    n: "06",
+    title: "Ongoing optimisation",
+    body: "Continuous optimisation with a catch-up rhythm you choose: weekly, monthly or quarterly. As goals or search volume change, we scale the budget up or down with you.",
+  },
+];
+
+// All figures below come from real client accounts and match the /results case studies.
+const proof = [
+  {
+    name: "Harris Pumps & Filtration",
+    slug: "/results/harris-pumps",
+    stat: "$31 → $17",
+    statLabel: "cost per lead",
+    body: "One of our first clients. Year after year we have grown their Google Ads and made it more efficient, with 29% more tracked leads on the way through.",
+  },
+  {
+    name: "Houses On The Move",
+    slug: "/results/houses-on-the-move",
+    stat: "↓ 52%",
+    statLabel: "cost per lead, more than halved",
+    body: "Google Ads Search across their key regions, putting them in front of homeowners and builders at the moment they search. Over a 4.5-year partnership, cost per lead has been cut by more than half.",
+  },
+  {
+    name: "Tableau Towbars",
+    slug: "/results/tableau-towbars",
+    stat: "~7x",
+    statLabel: "return on ad spend",
+    body: "Profitable Google Ads since 2021, beating target every year on a lean budget. A small account that punches well above its weight.",
+  },
+];
+
+// Ordered by where we actually have clients, then by market size. These are plain
+// text for now; each becomes a link when the city pages are built.
+const areas = [
+  "Hawke's Bay",
+  "Napier",
+  "Hastings",
+  "Auckland",
+  "Wellington",
+  "Christchurch",
+  "Tauranga",
+  "Hamilton",
+];
+
+const faqs = [
+  {
+    q: "What does Google Ads management cost?",
+    a: `Two ways in. The full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, Google Ads management and the automation that books the work, with your ad budget separate. Or, for Google Ads on its own, all-inclusive plans start at $545 +GST a month for small operations. That covers both our management and your ad spend, and steps up in $100 increments as your budget grows. On the free audit we will tell you what a realistic budget looks like for your services and your area.`,
+  },
+  {
+    q: "Do you charge per campaign or per keyword?",
+    a: "No. One standard service covers every client: setup, campaign monitoring, optimisation, conversion tracking and a monthly report. We size the plan once at the start, and if an account genuinely has more moving parts we agree a fair price up front. No hidden charges and no surprise costs for routine work.",
+  },
+  {
+    q: "Which Google Ads campaign types do you manage?",
+    a: "All of them: Search, Shopping, Display, YouTube and remarketing. For most trade and local businesses, Search does the heavy lifting and the others earn their place case by case. We will tell you straight when a format is not worth your budget.",
+  },
+  {
+    q: "How do you measure and report results?",
+    a: "Leads and cost per lead, not clicks. Conversion tracking is set up on every account so calls and enquiries are counted properly, and you get a monthly report you can check against your own Google Ads account. After the first month we go over the results together, then set a catch-up rhythm that suits you: weekly, monthly or quarterly.",
+  },
+  {
+    q: "Is this the same thing as PPC management?",
+    a: "Yes. PPC (pay per click) is the wider term, and Google Ads is the platform most Kiwi trade and local businesses should start on, because it reaches people at the exact moment they search for the job. If you have been quoted by a PPC agency in NZ, this is the same service.",
+  },
+  {
+    q: "Do you still call it AdWords?",
+    a: "Google renamed AdWords to Google Ads back in 2018, so it is the same platform under a new name. Plenty of business owners still search for AdWords management, and it is the same work.",
+  },
+  {
+    q: "Do I own the Google Ads account?",
+    a: "Yes. We build the account under our manager account so we can run it, but the account is yours. You keep full access, you can see every number we report, and if you ever leave you take the account and its history with you.",
+  },
+  {
+    q: "Do you only work with tradies?",
+    a: "Trade and local service businesses are what we know best, and it is most of our book. We do run accounts for other local businesses where the model fits. The honest test is whether people search for what you sell. If they do not, Google Ads is the wrong first channel and we will tell you so.",
+  },
+  {
+    q: "How long before I see leads?",
+    a: "Google Ads is the fastest channel we run. Enquiries usually start within days of going live, unlike SEO which takes months. The first 30 to 60 days are about finding which searches convert and cutting the ones that do not, so cost per lead typically improves after the first month.",
+  },
+  {
+    q: "Do you work outside Hawke's Bay?",
+    a: "Yes. We are based in Hawke's Bay and work with businesses NZ-wide, including Auckland, Wellington, Christchurch, Tauranga and Hamilton. Google Ads is managed remotely either way, so your location does not change the work.",
+  },
+  {
+    q: "Should I start with Google Ads or SEO?",
+    a: "If you need work coming in now, Google Ads. It puts you in front of buyers within days, while SEO typically takes months to move. The two are not rivals though: ads bring the leads in today and show you exactly which searches turn into jobs, which then tells you what SEO should chase. Most of our clients run ads first and layer SEO in once the numbers prove out.",
+  },
+  {
+    q: "What if it does not work?",
+    a: "We agree a monthly lead target with you up front. If we do not hit it in the first 60 days, we keep working and waive our management fee until we do. You still cover your ad spend, but you will not pay us another cent until we deliver.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+// Tells Google this page is the Google Ads management service, and where we serve.
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Google Ads Management",
+  name: "Google Ads Management",
+  provider: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: "https://hyperdigital.nz",
+    telephone: "+64276661973",
+    email: SITE.email,
+  },
+  areaServed: { "@type": "Country", name: "New Zealand" },
+  description:
+    "Google Ads and PPC campaign management for New Zealand trade and local service businesses.",
+};
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal instant>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="shield-check" class="h-4 w-4" /> Certified Google Partner · NZ-wide
+          </span>
+        </Reveal>
+        <Reveal instant delay={0.05} class="mt-5">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            Google Ads that book <span class="marker">real jobs</span>, not clicks.
+          </h1>
+        </Reveal>
+        <Reveal instant delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            We are a New Zealand Google Ads agency and certified Google Partner for trade and
+            local businesses. We build and manage the campaigns that put you in front of people
+            searching for your service right now, then cut the waste every month so the same
+            budget brings in more work.
+          </p>
+        </Reveal>
+        <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+        </Reveal>
+        <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
+          <SocialProof />
+        </Reveal>
+      </div>
+      <Reveal instant delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative">
+          <img src="/img/plumbers-serp.jpg" alt="A customer searching Google for a local tradie" loading="eager" class="aspect-[4/3] w-full rounded-box border border-white/10 object-cover shadow-2xl" />
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="border-b border-base-300 bg-base-200">
+    <div class="mx-auto flex max-w-[1160px] flex-wrap items-center justify-center gap-x-10 gap-y-5 px-5 py-7 sm:justify-between">
+      {STATS.map((s) => (
+        <div class="text-center">
+          <div class="font-display text-2xl text-primary sm:text-3xl">{s.value}</div>
+          <div class="text-xs uppercase tracking-wide text-base-content/60 sm:text-sm">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== THE PROBLEM ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">Why most accounts leak money</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Google Ads is not broken. Most accounts are just set up badly.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          When someone tells us Google Ads did not work for them, it is almost always one of these
+          three, and all three are fixable.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {problems.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={p.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{p.title}</h3>
+                <p class="mt-1 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT'S INCLUDED ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What our Google Ads management covers</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">The work that actually moves cost per lead.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          No set-and-forget. Every account gets the same six things, every month.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {included.map((f, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={f.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{f.title}</h3>
+                <p class="mt-1 text-base-content/70">{f.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAMPAIGN TYPES ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The whole toolkit</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Search, Shopping, Display, YouTube. We manage the lot.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          As a certified Google Partner we run every Google Ads campaign type. For most trade and
+          local businesses Search does the heavy lifting, and the rest earn their place case by
+          case. We will tell you straight when a format is not worth your budget.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {adTypes.map((t, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={t.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-xl">{t.title}</h3>
+                <p class="mt-1 text-base-content/70">{t.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROOF ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Real accounts, real numbers.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          Every figure here comes from a client's own Google Ads account, and they can check it
+          themselves. These are named clients who have left us public reviews, and some have been
+          with us since we opened in 2019.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {proof.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <a href={p.slug} class="card card-glow block h-full border border-base-300 bg-base-100 shadow-sm transition-colors hover:border-primary/50">
+              <div class="card-body">
+                <div class="font-display text-3xl text-primary">{p.stat}</div>
+                <div class="text-sm uppercase tracking-wide text-base-content/60">{p.statLabel}</div>
+                <div class="mt-3 font-display text-xl">{p.name}</div>
+                <p class="mt-1 text-base-content/70">{p.body}</p>
+                <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Read the case study <Icon name="arrow-right" class="h-4 w-4" />
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADS + THE REST OF THE SYSTEM ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">Ads are only half the job</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Getting the click is the easy part.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Plenty of agencies will run your Google Ads and stop there. The problem is that a lead
+          only counts once someone answers it. That is why every plan pairs your ad management with
+          a smart website that replies to enquiries in 30 seconds, and automation that follows up
+          until the job is booked or the lead says no.
+        </p>
+        <p class="mt-4 text-lg text-base-content/70">
+          Ads bring the enquiry in. The rest of the system makes sure you do not lose it.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/websites" class="btn btn-ghost text-primary">
+            See the smart website <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+          <a href="/ai-automation" class="btn btn-ghost text-primary">
+            See the automation <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <img src="/img/tidy-homepage-no-enquiries.jpg" alt="A trade website receiving enquiries from Google Ads" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WHERE WE WORK ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">Where we work</span>
+        <h2 class="mt-2 text-3xl text-neutral-content sm:text-4xl">A Hawke's Bay Google Ads agency, working NZ-wide.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-neutral-content/80">
+          We are based in Hawke's Bay and run Google Ads for trade and local businesses across New
+          Zealand. Campaigns are managed remotely, so where you are does not change the work, only
+          the searches and the areas we target.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-2.5">
+          {areas.map((a) => (
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 surface-3 px-4 py-1.5 text-sm text-neutral-content/80">
+              <Icon name="pin" class="h-3.5 w-3.5 text-primary" /> {a}
+            </span>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-neutral-content/60">
+          Not on the list? We work with businesses anywhere in New Zealand.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">How we work</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From free audit to dialled-in, step by step.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          No mystery, no black box. This is the exact process every new Google Ads client goes
+          through.
+        </p>
+      </Reveal>
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {processSteps.map((s, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="font-display text-3xl text-primary/40">{s.n}</span>
+                <h3 class="mt-2 font-display text-xl">{s.title}</h3>
+                <p class="mt-1 text-base-content/70">{s.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Simple plans. No lock-in. No surprises.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup gets your
+          system built. Then pick a monthly plan covering your website, ad management and
+          automation. Your ad budget is separate and set to suit your goals. Backed by the 60-day
+          guarantee, so the risk is on us, not you.
+        </p>
+      </Reveal>
+
+      <div class="mt-10">
+        <PricingTiers />
+      </div>
+
+      <Reveal class="mt-10 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          Bigger account or multiple regions? We will build
+          a <span class="font-bold text-base-content">Custom</span> plan to suit. On your free audit we
+          will work out the right plan and the ad budget that fits your trade and your goals.
+        </p>
+        <p class="mx-auto mt-4 max-w-2xl text-base-content/70">
+          Just want your Google Ads managed? All-inclusive ads-only plans start
+          at <span class="font-bold text-base-content">$545 +GST</span> a month for small operations,
+          covering both our management and your ad spend, and step up in $100 increments as your
+          budget grows. One standard service either way: setup, monitoring, optimisation,
+          conversion tracking and a monthly report. Never a charge per campaign or per keyword.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== GUARANTEE ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <div class="relative mx-auto flex h-24 w-24 items-center justify-center">
+          <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
+          <div class="flex h-[4.3rem] w-[4.3rem] items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
+            <Icon name="shield-check" class="h-9 w-9" />
+          </div>
+        </div>
+        <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
+          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
+          we keep working and waive our management fee until we do. You still cover your ad spend,
+          but you won't pay us another cent until we deliver.
+        </p>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads audit</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + AUDIT FORM ===== -->
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Google Ads questions, answered.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
+              <input type="checkbox" aria-label={f.q} />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-base-content/70">
+          Still weighing up ads against
+          SEO? <a href="/insights/google-ads-vs-seo-for-tradies" class="font-semibold text-primary transition-colors hover:text-accent">Read our full Google Ads vs SEO guide</a>.
+        </p>
+      </Reveal>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <AuditForm title="Get your free Google Ads audit" lead="In 20 minutes we'll show you where your ad budget is leaking, and what your cost per lead should be." />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to stop wasting ad spend?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free, no-obligation Google Ads audit. We'll show you what's working, what's
+          burning money, and what your cost per lead should look like.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <p class="mt-7 text-sm text-primary-content/70">
+          Free 20-minute audit · Real numbers · No obligation
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+</Layout>

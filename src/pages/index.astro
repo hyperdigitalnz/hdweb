@@ -46,12 +46,24 @@ const withUs = [
   "One system, fully managed, while you stay on the tools.",
 ];
 
-const system = [
+type SystemCard = {
+  n: string;
+  icon: string;
+  title: string;
+  body: string;
+  link?: { href: string; label: string };
+};
+
+const system: SystemCard[] = [
   {
     n: "01",
     icon: "target",
     title: "Find the work",
     body: "Tight Google Ads campaigns put you in front of ready-to-buy locals the moment they search. Local SEO keeps you climbing over time. Real calls and quote requests, not vanity clicks.",
+    // Exact-match anchor into the ads page. The homepage was ranking for
+    // "google ads agency" style queries with nothing relevant to land on;
+    // this is the signal that /google-ads is the better match.
+    link: { href: "/google-ads", label: "Google Ads management" },
   },
   {
     n: "02",
@@ -290,6 +302,11 @@ const faqs = [
               </span>
               <h3 class="relative mt-5 text-2xl text-neutral-content">{c.title}</h3>
               <p class="relative mt-2.5 text-neutral-content/70">{c.body}</p>
+              {c.link && (
+                <a href={c.link.href} class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-accent">
+                  {c.link.label} <Icon name="arrow-right" class="h-4 w-4" />
+                </a>
+              )}
             </div>
           </Reveal>
         ))}

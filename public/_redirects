@@ -7,10 +7,12 @@
 # redirected while /google-ads/ 404'd), so every path is listed in both forms.
 
 # Service pages → closest new equivalent
-/google-ads                /lead-generation   301
-/google-ads/               /lead-generation   301
-/paid-ads                  /lead-generation   301
-/paid-ads/                 /lead-generation   301
+# /google-ads is a real page again (20/07/2026). It used to 301 to /lead-generation,
+# which cost us the ads-management intent: GSC showed the old URL still ranking while
+# the destination page talked about tradie lead gen. Do NOT re-add a rule for it here,
+# a _redirects entry would shadow the page.
+/paid-ads                  /google-ads        301
+/paid-ads/                 /google-ads        301
 /digital-marketing         /lead-generation   301
 /digital-marketing/        /lead-generation   301
 /targeted-marketing        /lead-generation   301
@@ -65,3 +67,17 @@
 /privacy-policy/           /privacy           301
 /about-us                  /about             301
 /about-us/                 /about             301
+
+# Old WordPress glossary + category archives (20/07/2026).
+# These were still returning hard 404s while pulling impressions in Search Console
+# (/glossary/display-advertising/ alone did 922 in 90 days). The content is gone and
+# not worth reviving (it drew international definition-seekers, not NZ buyers), so
+# these splats just park the remaining link equity on /insights.
+# Splats live at the END of the file: Wrangler warns that any exact rule sitting
+# below a splat is matched less efficiently.
+/glossary                  /insights          301
+/glossary/                 /insights          301
+/category                  /insights          301
+/category/                 /insights          301
+/glossary/*                /insights          301
+/category/*                /insights          301
