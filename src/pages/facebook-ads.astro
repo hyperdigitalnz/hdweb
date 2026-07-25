@@ -148,11 +148,11 @@ const areas = [
 const faqs = [
   {
     q: "What does Facebook advertising cost in NZ?",
-    a: `Two parts: the ad budget you give Meta, and the management. Most local businesses get meaningful data from around $20 to $30 a day in ad spend, and we will give you a straight number for your industry on the free audit. For management, the full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, ad management and the automation that books the work, with your ad budget separate. Already running Google Ads with us? Meta usually slots into your existing plan, and we will price it before you commit to anything.`,
+    a: `Two parts: the ad budget you give Meta, and the management. Most local businesses get meaningful data from around $20 to $30 a day in ad spend, and we will give you a straight number for your industry on the free game plan. For management, the full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, ad management and the automation that books the work, with your ad budget separate. Already running Google Ads with us? Meta usually slots into your existing plan, and we will price it before you commit to anything.`,
   },
   {
     q: "Facebook ads or Google Ads: which is better?",
-    a: "They do different jobs. Google Ads catches people already searching for your service, which is why it is usually the first channel we run for trade and local businesses. Facebook and Instagram create demand: they put you in front of the right locals before they search, keep past visitors warm, and work brilliantly for services people plan ahead for. The honest answer is that for most of our clients Facebook earns its place alongside Google, not instead of it, and on the audit we will tell you which mix fits your business.",
+    a: "They do different jobs. Google Ads catches people already searching for your service, which is why it is usually the first channel we run for trade and local businesses. Facebook and Instagram create demand: they put you in front of the right locals before they search, keep past visitors warm, and work brilliantly for services people plan ahead for. The honest answer is that for most of our clients Facebook earns its place alongside Google, not instead of it, and on the game plan call we will tell you which mix fits your business.",
   },
   {
     q: "Do you run Instagram ads as well?",
@@ -164,7 +164,7 @@ const faqs = [
   },
   {
     q: "Do Facebook ads work for tradies and local businesses?",
-    a: "For the right trades, very well. Facebook suits work people plan ahead for: renovations, heat pumps, pools and spas, landscaping, painting, new builds. It is weaker for urgent call-outs, because someone with a burst pipe searches Google, they do not scroll Facebook. That is the honest test we apply on your audit, and if Facebook is the wrong first channel for your trade we will tell you so.",
+    a: "For the right trades, very well. Facebook suits work people plan ahead for: renovations, heat pumps, pools and spas, landscaping, painting, new builds. It is weaker for urgent call-outs, because someone with a burst pipe searches Google, they do not scroll Facebook. That is the honest test we apply on your game plan call, and if Facebook is the wrong first channel for your trade we will tell you so.",
   },
   {
     q: "Do I need a Facebook page to run ads?",
@@ -172,7 +172,7 @@ const faqs = [
   },
   {
     q: "How do you measure and report results?",
-    a: "Enquiries and cost per lead, not likes or reach. The Meta pixel and conversion events are set up on every account so form fills, calls and booked audits are counted properly, and you get a monthly report you can check against your own Ads Manager. After the first month we go over the results together, then set a catch-up rhythm that suits you.",
+    a: "Enquiries and cost per lead, not likes or reach. The Meta pixel and conversion events are set up on every account so form fills, calls and booked calls are counted properly, and you get a monthly report you can check against your own Ads Manager. After the first month we go over the results together, then set a catch-up rhythm that suits you.",
   },
   {
     q: "What is retargeting and why does it matter?",
@@ -249,12 +249,12 @@ const serviceSchema = {
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free ads game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
         <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
-          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+          <SpeedBadge tone="dark" />
         </Reveal>
         <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
           <SocialProof />
@@ -263,7 +263,7 @@ const serviceSchema = {
       <Reveal instant delay={0.15} class="relative">
         <div class="glow-blob"></div>
         <div class="float-slow relative">
-          <img src="/img/phone-on-table.jpg" alt="A local customer scrolling Facebook on their phone" loading="eager" class="aspect-[4/3] w-full rounded-box border border-white/10 object-cover shadow-2xl" />
+          <img src="/img/phone-on-table.webp" alt="A local customer scrolling Facebook on their phone" loading="eager" class="aspect-[4/3] w-full rounded-box border border-white/10 object-cover shadow-2xl" />
         </div>
       </Reveal>
     </div>
@@ -416,7 +416,7 @@ const serviceSchema = {
         </p>
         <p class="mt-4 text-lg text-base-content/70">
           Facebook is brilliant for work people plan ahead for, and a poor fit for urgent
-          call-outs. If it is the wrong first channel for your business, your free audit will say
+          call-outs. If it is the wrong first channel for your business, your free game plan will say
           so, because we would rather turn down a Meta budget than manage one that cannot work.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
@@ -429,7 +429,7 @@ const serviceSchema = {
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <img src="/img/working-on-laptop.jpg" alt="Planning a Facebook and Instagram ad campaign for a local business" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
+        <img src="/img/working-on-laptop.webp" alt="Planning a Facebook and Instagram ad campaign for a local business" loading="lazy" class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl" />
       </Reveal>
     </div>
   </section>
@@ -464,7 +464,7 @@ const serviceSchema = {
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="mx-auto max-w-2xl text-center">
         <span class="eyebrow">How we work</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">From free audit to dialled-in, step by step.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From free game plan to dialled-in, step by step.</h2>
         <p class="mt-4 text-lg text-base-content/70">
           No mystery, no black box. This is the exact process every new Facebook ads client goes
           through.
@@ -507,7 +507,7 @@ const serviceSchema = {
       <Reveal class="mt-10 text-center">
         <p class="mx-auto max-w-2xl text-base-content/70">
           Already running Google Ads with us, or just want your Meta ads managed? Facebook and
-          Instagram usually slot into an existing plan, and we will price it on your free audit
+          Instagram usually slot into an existing plan, and we will price it on your free game plan
           before you commit to anything. One standard service either way: strategy, creative,
           conversion tracking, optimisation and a monthly report. Never a charge per campaign or
           per ad.
@@ -528,14 +528,14 @@ const serviceSchema = {
         </div>
         <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
         <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+          60 days to hit your number, or our fee <span class="marker">stops</span>.
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
           we keep working and waive our management fee until we do. You still cover your ad spend,
           but you won't pay us another cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads game plan</a>
       </Reveal>
     </div>
   </section>
@@ -563,7 +563,7 @@ const serviceSchema = {
         </p>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free Facebook ads audit" lead="In 20 minutes we'll show you whether Meta is the right channel for you, where your budget is leaking, and what your cost per lead should be." />
+        <AuditForm title="Get your free Facebook ads game plan" lead="In 20 minutes we'll show you whether Meta is the right channel for you, where your budget is leaking, and what your cost per lead should be." />
       </Reveal>
     </div>
   </section>
@@ -574,18 +574,18 @@ const serviceSchema = {
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Ready for leads, not likes?</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation Facebook ads audit. We'll tell you straight whether Meta is
+          Get your free, no-obligation Facebook ads game plan. We'll tell you straight whether Meta is
           right for your business, what's burning money, and what your cost per lead should look
           like.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free ads game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <p class="mt-7 text-sm text-primary-content/70">
-          Free 20-minute audit · Real numbers · No obligation
+          Free 20-minute game plan · Real numbers · No obligation
         </p>
       </Reveal>
     </div>

@@ -31,6 +31,7 @@ const work = [
 const standout = [
   "A low, steady cost per conversion that has held consistent for years.",
   "Conversion rate up from 9% in 2021 to 12% in 2026.",
+  "Phone enquiries up 69% year-on-year, and tracked enquiries up 12% on flat ad spend.",
   "Roughly 7x return on ad spend, all from a lean budget.",
   "The instant towbar quote funnel turns curious visitors into accurate quotes in moments.",
   "Beats its target every year, dependable extra revenue alongside the main business.",
@@ -67,7 +68,7 @@ const reviewSchema = {
   <!-- ===== HERO ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
-      <Reveal instant instant>
+      <Reveal instant>
         <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
           <a href="/results" class="transition-colors hover:text-primary">Results</a>
           <span class="px-2">/</span>
@@ -76,7 +77,7 @@ const reviewSchema = {
       </Reveal>
       <div class="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div class="text-center lg:text-left">
-          <Reveal instant instant>
+          <Reveal instant>
             <span class="badge badge-primary font-display">Case study · {trade}</span>
           </Reveal>
           <Reveal instant delay={0.05} class="mt-4">
@@ -96,7 +97,7 @@ const reviewSchema = {
             </p>
           </Reveal>
           <Reveal instant delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
-            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free audit</a>
+            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free game plan</a>
             <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
           </Reveal>
         </div>
@@ -104,7 +105,7 @@ const reviewSchema = {
         <!-- Hero media — client website -->
         <Reveal instant delay={0.15}>
           <img
-            src="/img/case-studies/tableau-towbars.jpg"
+            src="/img/case-studies/tableau-towbars.webp"
             alt="Tableau Towbars work in Hawke's Bay"
             loading="eager"
             class="aspect-[4/3] w-full rounded-box border border-base-300 object-cover shadow-xl"
@@ -307,10 +308,10 @@ const reviewSchema = {
         <h2 class="mt-5 text-3xl text-neutral-content sm:text-5xl">Want results like these for your business?</h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           Hit your agreed lead goal in 60 days, or we work for free until you do. Get a free, no-obligation
-          audit and we'll show you what your leads should cost.
+          game plan and we'll show you what your leads should cost.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
           <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
         </div>
       </Reveal>

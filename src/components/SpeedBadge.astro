@@ -1,12 +1,12 @@
 ---
-// Small "live speed" proof pill. One source of truth for the 30-second reply signal
-// shown across the site. When the GHL chatbot goes live this can trigger/open it.
+// Small "live speed" proof pill. One source of truth for the instant-reply signal
+// shown across the site (standard wording "Instant replies, 24/7", Matt 25/07/2026).
 interface Props {
   tone?: "dark" | "light";
   label?: string;
   class?: string;
 }
-const { tone = "dark", label = "Replies in 30 seconds", class: cls = "" } = Astro.props;
+const { tone = "dark", label = "Instant replies, 24/7", class: cls = "" } = Astro.props;
 const skin =
   tone === "dark"
     ? "border-primary/40 bg-primary/15 text-primary"

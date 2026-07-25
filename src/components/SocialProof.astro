@@ -1,5 +1,9 @@
 ---
-// Avatar stack + stars + count (fa.st-style social proof row).
+// Avatar stack + real Google-review badge (fa.st-style social proof row).
+// The stars are anchored to the actual review count in consts.ts (REVIEWS), never
+// a bare unsourced row; the client count is the confirmed 107-since-2019 figure.
+import { REVIEWS } from "../consts";
+
 interface Props {
   tone?: "dark" | "light";
 }
@@ -30,8 +34,13 @@ const avatars = [
       />
     ))}
   </div>
-  <div class="text-left">
-    <div class="leading-none text-primary">★★★★★</div>
-    <div class={`text-sm ${sub}`}>Trusted by <span class={`font-bold ${strong}`}>40+ Kiwi tradies</span></div>
-  </div>
+  <a href={REVIEWS.url} target="_blank" rel="noopener" class="text-left">
+    <div class="leading-none text-primary" aria-hidden="true">★★★★★</div>
+    <div class={`mt-0.5 text-sm ${sub}`}>
+      <span class={`font-bold ${strong}`}>{REVIEWS.rating}</span> from {REVIEWS.count} Google reviews
+    </div>
+    <div class={`text-sm ${sub}`}>
+      <span class={`font-bold ${strong}`}>107</span> Kiwi businesses since 2019
+    </div>
+  </a>
 </div>

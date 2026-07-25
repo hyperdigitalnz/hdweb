@@ -7,21 +7,27 @@ import SpeedBadge from "../components/SpeedBadge.astro";
 import Icon from "../components/Icon.astro";
 import AutomationFlow from "../components/AutomationFlow.astro";
 import PricingTiers from "../components/PricingTiers.astro";
+import PaymentsBlock from "../components/PaymentsBlock.astro";
 import { SITE } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
 
 const title = "AI Automation for Tradies | Never Lose a Lead or Review | Hyper Digital";
 const description =
-  "We automate your follow-ups, review requests and repeat-work reminders so no lead goes cold and happy customers actually leave reviews. Runs itself. Free audit.";
+  "We automate your follow-ups, review requests and repeat-work reminders so no lead goes cold and happy customers actually leave reviews. Runs itself. Free game plan.";
 
 const leaks = [
   { icon: "phone", title: "Leads you never followed up", body: "The quote you meant to chase. The missed call you never returned. Quietly costing you jobs every week." },
   { icon: "star", title: "Happy customers who never reviewed", body: "Every five-star review you didn't ask for is a ranking boost, and a future customer, you left on the table." },
 ];
 
+// The full automation set: instant reply + AI chat + booking + payments + email
+// follow-up + reviews + reactivation. Channels are email and AI chat only — never
+// SMS, never claiming calls get answered (lead-response rules).
 const automate = [
+  { icon: "mail", title: "Instant email reply to every enquiry", body: "Every web enquiry gets an automatic reply straight away, so the lead never goes cold while you're on the tools." },
+  { icon: "calendar-check", title: "AI chat that qualifies and books", body: "The AI assistant on your site answers questions, qualifies the job and books it straight into your calendar, day or night." },
   { icon: "chat", title: "Email follow-ups that don't forget", body: "An email nurture sequence chases every lead until they book or say no, so nothing slips." },
-  { icon: "mail", title: "Instant email reply to every enquiry", body: "Every web enquiry gets an automatic reply in seconds, so the lead never goes cold while you're on the tools." },
+  { icon: "dollar", title: "Deposits and payments on booking", body: "Take a card payment, deposit or call-out fee at the moment the job books. Apple Pay and Google Pay included." },
   { icon: "star", title: "Automatic review requests", body: "Sent after every completed job, at the moment the customer is happiest." },
   { icon: "trend", title: "Reactivation messages", body: "Nudges past customers to book you again, bringing in work from people who already trust you." },
 ];
@@ -36,7 +42,7 @@ const proof = {
 };
 
 const faqs = [
-  { q: "What is the AI lead system?", a: "It's the part of your smart website that handles the instant reply. When a lead comes in, it answers in 30 seconds, qualifies the job and books it, so no enquiry ever sits waiting. You and your team take it from there." },
+  { q: "What is the AI lead system?", a: "It's the part of your smart website that handles the instant reply. When a lead comes in, it replies straight away, qualifies the job and books it, so no enquiry ever sits waiting. You and your team take it from there." },
   { q: "Does it work after hours?", a: "Yes, around the clock. Most enquiries come in when you're on a job or knocked off for the day. That's exactly when it earns its keep." },
   { q: "How does it get me more reviews?", a: "After a job is marked complete, it automatically asks that customer for a review at the right moment, when they're happiest, so you steadily build the reviews that win you the next job." },
   { q: "Will I have to manage it?", a: "No. We set it up and it runs in the background. You just keep doing the work." },
@@ -57,7 +63,7 @@ const faqSchema = {
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
-        <Reveal instant instant>
+        <Reveal instant>
           <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             <Icon name="repeat" class="h-4 w-4" /> Keep it running
           </span>
@@ -76,7 +82,7 @@ const faqSchema = {
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
@@ -129,7 +135,7 @@ const faqSchema = {
         <span class="eyebrow">What we automate</span>
         <h2 class="mt-2 text-3xl sm:text-4xl">Set it up once. It runs in the background.</h2>
       </Reveal>
-      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {automate.map((a, i) => (
           <Reveal delay={i * 0.08} class="h-full">
             <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
@@ -215,6 +221,9 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- ===== PAYMENTS ===== -->
+  <PaymentsBlock />
+
   <!-- ===== PRICING ===== -->
   <section class="bg-base-200 py-16 sm:py-20">
     <div class="mx-auto max-w-[1160px] px-5">
@@ -235,11 +244,11 @@ const faqSchema = {
       <Reveal class="mt-8 text-center">
         <p class="text-base-content/70">
           Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
-          to suit. On your free audit we'll work out the right plan and the ad budget that fits your
+          to suit. On your free game plan we'll work out the right plan and the ad budget that fits your
           trade and your goals.
         </p>
         <a href="#audit" class="btn btn-primary btn-lg mt-7 font-display text-lg tracking-wide">
-          Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
         </a>
       </Reveal>
     </div>
@@ -257,14 +266,14 @@ const faqSchema = {
         </div>
         <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
         <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+          Miss the lead goal in 60 days and the automation keeps running, <span class="marker">free</span>.
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
           we keep working and waive our management fee until we do. You still cover your ad spend,
           but you won't pay us another cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
       </Reveal>
     </div>
   </section>
@@ -286,7 +295,7 @@ const faqSchema = {
         </div>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you where you're leaking jobs, and how to plug it." />
+        <AuditForm title="Get your free game plan" lead="In 20 minutes we'll show you where you're leaking jobs, and how to plug it." />
       </Reveal>
     </div>
   </section>
@@ -297,16 +306,16 @@ const faqSchema = {
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to stop letting leads slip through?</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation audit. We'll show you where you're leaking jobs and how to plug it.
+          Get your free, no-obligation game plan. We'll show you where you're leaking jobs and how to plug it.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <p class="mt-7 text-sm text-primary-content/70">
-          Free 20-minute audit · Real numbers · No obligation
+          Free 20-minute game plan · Real numbers · No obligation
         </p>
       </Reveal>
     </div>

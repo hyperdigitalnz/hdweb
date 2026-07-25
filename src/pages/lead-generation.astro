@@ -6,6 +6,7 @@ import SocialProof from "../components/SocialProof.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
 import PipelineDemo from "../components/PipelineDemo.astro";
 import PricingTiers from "../components/PricingTiers.astro";
+import JobCalculator from "../components/JobCalculator.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
@@ -28,7 +29,7 @@ const tradePages = Object.values(tradeLeadGen).map((t) => ({
 
 const title = "Lead Generation for Tradies | More Calls & Booked Jobs | Hyper Digital";
 const description =
-  "We get Kiwi tradies more calls and quote requests: Google Ads for fast results, local SEO built in, Meta when it's worth it. More leads on the same budget. Free audit.";
+  "We get Kiwi tradies more calls and quote requests: Google Ads for fast results, local SEO built in, Meta when it's worth it. More leads on the same budget. Free game plan.";
 
 type ChannelCard = {
   icon: string;
@@ -87,10 +88,10 @@ const proof = [
 ];
 
 const faqs = [
-  { q: "Which channel is right for my trade?", a: "That's exactly what your free audit works out. For most trades we start with Google Ads for fast results and build local SEO into your website for the long game. We add Meta only when your spend justifies it." },
+  { q: "Which channel is right for my trade?", a: "That's exactly what your free game plan works out. For most trades we start with Google Ads for fast results and build local SEO into your website for the long game. We add Meta only when your spend justifies it." },
   { q: "How is this different from a normal Google Ads agency?", a: "Most agencies sell you one channel and leave the rest to you. We run the whole pipeline, from ads to website to follow-up, so the leads we generate actually turn into booked jobs. And we back it with a 60-day lead guarantee." },
-  { q: "How soon will I see leads?", a: "Most Google Ads campaigns are live within days of your audit, with leads coming in shortly after. SEO builds over the following months on top of that." },
-  { q: "Will you lock me into a contract?", a: "No. You stay because the work keeps coming, not because a contract traps you." },
+  { q: "How soon will I see leads?", a: "Most Google Ads campaigns are live within days of your game plan call, with leads coming in shortly after. SEO builds over the following months on top of that." },
+  { q: "Will you lock me into a contract?", a: "No lock-in. One month's notice when you cancel, just so we can clear any rolled-over ad spend, and everything we've built for your marketing (campaigns, landing pages, tracking) transfers to you in full. No exit fee. You stay because the work keeps coming, not because a contract traps you." },
   { q: "What counts as a lead?", a: "A real phone call or quote request from a potential customer, not clicks or impressions." },
 ];
 
@@ -109,7 +110,7 @@ const faqSchema = {
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
-        <Reveal instant instant>
+        <Reveal instant>
           <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             <Icon name="target" class="h-4 w-4" /> Find the work
           </span>
@@ -128,12 +129,12 @@ const faqSchema = {
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
         <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
-          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+          <SpeedBadge tone="dark" />
         </Reveal>
         <Reveal instant delay={0.26} class="mt-9">
           <SocialProof />
@@ -228,8 +229,8 @@ const faqSchema = {
               <circle cx="14" cy="34" r="4" fill="var(--color-primary)" />
               <circle class="fade-in-late" cx="306" cy="130" r="5" fill="var(--color-primary)" />
               <!-- labels -->
-              <text x="14" y="24" fill="#faf8f5" font-size="15" font-weight="800" font-family="Source Sans 3">$31</text>
-              <text class="fade-in-late" x="288" y="124" fill="var(--color-primary)" font-size="15" font-weight="800" font-family="Source Sans 3">$17</text>
+              <text x="14" y="24" fill="#faf8f5" font-size="15" font-weight="800" font-family="Outfit Variable">$31</text>
+              <text class="fade-in-late" x="288" y="124" fill="var(--color-primary)" font-size="15" font-weight="800" font-family="Outfit Variable">$17</text>
             </svg>
             <p class="mt-3 text-sm text-neutral-content/60">
               Real client trend, Harris Pumps &amp; Filtration. Illustrative chart.
@@ -324,12 +325,15 @@ const faqSchema = {
       <Reveal class="mt-10 text-center">
         <p class="mx-auto max-w-2xl text-base-content/70">
           Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
-          to suit. Your free audit tells you the right plan and budget for your trade and area. No
+          to suit. Your free game plan tells you the right plan and budget for your trade and area. No
           guesswork, no hidden extras.
         </p>
       </Reveal>
     </div>
   </section>
+
+  <!-- ===== JOB VALUE CALCULATOR ===== -->
+  <JobCalculator />
 
   <!-- ===== GUARANTEE ===== -->
   <section class="bg-brand-dark-2 text-neutral-content">
@@ -343,7 +347,7 @@ const faqSchema = {
         </div>
         <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
         <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+          Your lead goal in 60 days, or you stop paying us until we <span class="marker">deliver</span>.
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           Before we start, we agree a monthly lead target with you, based on your trade, your area
@@ -351,7 +355,7 @@ const faqSchema = {
           management fee until we do. You still cover your ad spend, but you won't pay us another
           cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
       </Reveal>
     </div>
   </section>
@@ -373,7 +377,7 @@ const faqSchema = {
         </div>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you which channels will work best for your trade, and what your leads should cost." />
+        <AuditForm title="Get your free game plan" lead="In 20 minutes we'll show you which channels will work best for your trade, and what your leads should cost." />
       </Reveal>
     </div>
   </section>
@@ -407,17 +411,17 @@ const faqSchema = {
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Want more booked jobs from the same budget?</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation audit. We'll show you which channels will work best for your
+          Get your free, no-obligation game plan. We'll show you which channels will work best for your
           trade and what your leads should cost.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <p class="mt-7 text-sm text-primary-content/70">
-          Free 20-minute audit · Real numbers · No obligation
+          Free 20-minute game plan · Real numbers · No obligation
         </p>
       </Reveal>
     </div>

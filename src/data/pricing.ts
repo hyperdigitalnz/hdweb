@@ -20,7 +20,7 @@ export const PRICING: PricingTier[] = [
     who: "Getting found in your local area, one core service.",
     popular: false,
     features: [
-      "30-second reply smart website (SEO & AEO optimised)",
+      "Smart website with instant lead replies (SEO & AEO optimised)",
       "Google Ads management (one core service)",
       "Local SEO & Google Business Profile optimisation",
       "AI chat: qualifies the job and books it in",

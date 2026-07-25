@@ -70,12 +70,15 @@ const caseStudies = [
     trade: "House Relocations",
     featured: false,
     slug: "/results/houses-on-the-move",
-    headline: "Enquiries more than doubled year-on-year, and cost per lead cut by more than half.",
+    // Card stats deliberately match what the case-study page substantiates (↓52% CPL).
+    // The +122% YoY leads and 43k clicks figures come back once they're sourced on the
+    // page itself (SITE-REVIEW-2026-07-25.md, Part 5 #9).
+    headline: "Two kinds of leads, and cost per lead cut by more than half.",
     body: "A 4.5-year partnership and growing. We run Google Ads Search campaigns across their key regions, putting them in front of homeowners, developers and builders at the exact moment they're searching for house relocation.",
     metrics: [
-      { stat: "+122%", label: "tracked leads YoY" },
       { stat: "$32 → $16", label: "cost per lead" },
-      { stat: "43,000+", label: "clicks all-time" },
+      { stat: "10%+", label: "CTR, ~3x the average" },
+      { stat: "4.5 yrs", label: "partnership and counting" },
     ],
     quote: null,
     who: null,
@@ -166,7 +169,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
   <!-- ===== HERO + STATS ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-24">
-      <Reveal instant instant><span class="eyebrow">Results</span></Reveal>
+      <Reveal instant><span class="eyebrow">Results</span></Reveal>
       <Reveal instant delay={0.05} class="mt-3">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl">Real Kiwi businesses. <span class="marker">Real results</span>.</h1>
       </Reveal>
@@ -301,7 +304,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
           for free until you do.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free audit</a>
+          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <Reveal delay={0.1} class="mt-9"><SocialProof /></Reveal>

@@ -54,7 +54,7 @@ const included = [
   {
     icon: "trend",
     title: "Conversion tracking done properly",
-    body: "Calls, forms and booked audits tracked through Google Tag Manager and GA4, so bidding optimises toward real enquiries instead of clicks.",
+    body: "Calls, forms and booked calls tracked through Google Tag Manager and GA4, so bidding optimises toward real enquiries instead of clicks.",
   },
   {
     icon: "repeat",
@@ -174,7 +174,7 @@ const areas = [
 const faqs = [
   {
     q: "What does Google Ads management cost?",
-    a: `Two ways in. The full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, Google Ads management and the automation that books the work, with your ad budget separate. Or, for Google Ads on its own, all-inclusive plans start at $545 +GST a month for small operations. That covers both our management and your ad spend, and steps up in $100 increments as your budget grows. On the free audit we will tell you what a realistic budget looks like for your services and your area.`,
+    a: `Two ways in. The full system starts at ${SETUP_FEE} +GST one-off setup, then from $497 +GST a month covering your smart website, Google Ads management and the automation that books the work, with your ad budget separate. Or, for Google Ads on its own, all-inclusive plans start at $545 +GST a month for small operations. That covers both our management and your ad spend, and steps up in $100 increments as your budget grows. On the free game plan we will tell you what a realistic budget looks like for your services and your area.`,
   },
   {
     q: "Do you charge per campaign or per keyword?",
@@ -275,12 +275,12 @@ const serviceSchema = {
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free ads game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
         <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
-          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+          <SpeedBadge tone="dark" />
         </Reveal>
         <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
           <SocialProof />
@@ -420,6 +420,26 @@ const serviceSchema = {
     </div>
   </section>
 
+  <!-- ===== BURNED BEFORE (compact: ownership + exit terms) ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-14 text-center sm:py-16">
+      <Reveal>
+        <span class="eyebrow">Been burned by an ads agency before?</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-4xl">
+          You own it all. You can check it all.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Your Google Ads account stays in your name and you keep the login, so every number we
+          report is one you can verify yourself. If you ever leave, the campaigns, the landing
+          pages and the conversion tracking transfer to you in full: one month's notice, no exit
+          fee. When we took over <a href="/results/no-drips" class="link text-primary">No Drips'
+          account</a>, the first thing we did was find and cut close to $3,000 the previous agency
+          had spent on clicks that were never going to book a job.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
   <!-- ===== ADS + THE REST OF THE SYSTEM ===== -->
   <section class="py-16 sm:py-20">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
@@ -429,7 +449,7 @@ const serviceSchema = {
         <p class="mt-4 text-lg text-base-content/70">
           Plenty of agencies will run your Google Ads and stop there. The problem is that a lead
           only counts once someone answers it. That is why every plan pairs your ad management with
-          a smart website that replies to enquiries in 30 seconds, and automation that follows up
+          a smart website that replies to enquiries straight away, and automation that follows up
           until the job is booked or the lead says no.
         </p>
         <p class="mt-4 text-lg text-base-content/70">
@@ -480,7 +500,7 @@ const serviceSchema = {
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="mx-auto max-w-2xl text-center">
         <span class="eyebrow">How we work</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">From free audit to dialled-in, step by step.</h2>
+        <h2 class="mt-2 text-3xl sm:text-4xl">From free game plan to dialled-in, step by step.</h2>
         <p class="mt-4 text-lg text-base-content/70">
           No mystery, no black box. This is the exact process every new Google Ads client goes
           through.
@@ -523,7 +543,7 @@ const serviceSchema = {
       <Reveal class="mt-10 text-center">
         <p class="mx-auto max-w-2xl text-base-content/70">
           Bigger account or multiple regions? We will build
-          a <span class="font-bold text-base-content">Custom</span> plan to suit. On your free audit we
+          a <span class="font-bold text-base-content">Custom</span> plan to suit. On your free game plan we
           will work out the right plan and the ad budget that fits your trade and your goals.
         </p>
         <p class="mx-auto mt-4 max-w-2xl text-base-content/70">
@@ -549,14 +569,14 @@ const serviceSchema = {
         </div>
         <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
         <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
+          Hit your lead goal in 60 days, or we manage your ads for <span class="marker">free</span>.
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
           We agree a monthly lead target with you up front. If we don't hit it in the first 60 days,
           we keep working and waive our management fee until we do. You still cover your ad spend,
           but you won't pay us another cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free ads game plan</a>
       </Reveal>
     </div>
   </section>
@@ -582,7 +602,7 @@ const serviceSchema = {
         </p>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free Google Ads audit" lead="In 20 minutes we'll show you where your ad budget is leaking, and what your cost per lead should be." />
+        <AuditForm title="Get your free Google Ads game plan" lead="In 20 minutes we'll show you where your ad budget is leaking, and what your cost per lead should be." />
       </Reveal>
     </div>
   </section>
@@ -593,17 +613,17 @@ const serviceSchema = {
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to stop wasting ad spend?</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation Google Ads audit. We'll show you what's working, what's
+          Get your free, no-obligation Google Ads game plan. We'll show you what's working, what's
           burning money, and what your cost per lead should look like.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free ads audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free ads game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <p class="mt-7 text-sm text-primary-content/70">
-          Free 20-minute audit · Real numbers · No obligation
+          Free 20-minute game plan · Real numbers · No obligation
         </p>
       </Reveal>
     </div>

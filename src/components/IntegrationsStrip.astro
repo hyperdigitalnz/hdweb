@@ -1,0 +1,45 @@
+---
+// "It plugs into what you already run" — kills the top objection from established
+// operators ("will it work with my tools?"). Tool list confirmed in the platform
+// capability doc (ghl-chatbot-training.md, 24/07/2026); text chips, no logo assets
+// needed. Used on the homepage, /websites and /ai-automation.
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  /** Extra classes on the section wrapper (e.g. border/background tweaks per page). */
+  class?: string;
+}
+const { class: cls = "" } = Astro.props;
+
+const groups = [
+  { label: "Bookings", tools: ["Google Calendar", "Calendly", "Cal.com"] },
+  { label: "Jobs & projects", tools: ["monday.com", "Asana", "ClickUp", "Notion", "HubSpot"] },
+  { label: "The paperwork", tools: ["Xero", "QuickBooks"] },
+];
+---
+<section class={`border-y border-base-300 bg-base-200 py-12 sm:py-16 ${cls}`}>
+  <div class="mx-auto max-w-[1160px] px-5">
+    <Reveal class="text-center">
+      <span class="eyebrow">Plays well with others</span>
+      <h2 class="mt-2 text-3xl sm:text-4xl">It plugs into what you already run.</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base-content/80">
+        Bookings sync with your calendar. Jobs and meetings drop into the tools you already use.
+        And the paperwork side keeps itself up to date. Using something else? Mention it on your
+        game plan call and we'll check the fit.
+      </p>
+    </Reveal>
+    <Reveal delay={0.08} class="mt-8 flex flex-col items-center gap-4">
+      {groups.map((g) => (
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-base-content/50">{g.label}</span>
+          {g.tools.map((t) => (
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-base-300 bg-base-100 px-3.5 py-1.5 text-sm font-semibold">
+              <Icon name="check" class="h-3.5 w-3.5 text-primary" /> {t}
+            </span>
+          ))}
+        </div>
+      ))}
+    </Reveal>
+  </div>
+</section>

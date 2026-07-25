@@ -8,6 +8,7 @@ import PricingTiers from "../components/PricingTiers.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import ChatDemo from "../components/ChatDemo.astro";
+import JobCalculator from "../components/JobCalculator.astro";
 import { SITE, STATS } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
 
@@ -39,7 +40,7 @@ const alone = [
 ];
 
 const withUs = [
-  "Every website enquiry answered in 30 seconds, day or night.",
+  "Every website enquiry gets an instant reply, day or night.",
   "Leads followed up automatically until they book or say no.",
   "Every dollar tracked, reported and accounted for.",
   "Reviews requested after every job, on autopilot.",
@@ -69,20 +70,23 @@ const system: SystemCard[] = [
     n: "02",
     icon: "calendar-check",
     title: "Book the work",
-    body: "Your smart website and AI assistant answer, qualify and book every enquiry in 30 seconds. Even at 11pm, while you're off the clock.",
+    body: "Your smart website and AI assistant reply, qualify and book every enquiry on the spot. Even at 11pm, while you're off the clock.",
+    // Keyword-matched anchor, same idea as card 01 → /google-ads.
+    link: { href: "/websites", label: "Smart websites for tradies" },
   },
   {
     n: "03",
     icon: "repeat",
     title: "Keep it coming",
     body: "Automatic follow-ups chase every quote until it's a yes or a no. Reviews roll in after every job. Past customers get a nudge when it's time to book again.",
+    link: { href: "/ai-automation", label: "AI automation for tradies" },
   },
 ];
 
 const steps = [
   {
     n: "1",
-    title: "The free audit",
+    title: "The free game plan",
     body: "20 minutes. We look at your trade, your area and your competition, then give you real numbers on what's possible. No jargon, no pressure.",
   },
   {
@@ -109,20 +113,24 @@ const clientLogos = [
 ];
 
 const faqs = [
-  { q: "How many leads will I actually get?", a: "It depends on your trade, your area and your budget, which is exactly what your free audit works out. We give you honest, realistic numbers up front, and report on real calls and quote requests every month." },
+  { q: "How many leads will I actually get?", a: "It depends on your trade, your area and your budget, which is exactly what your free game plan works out. We give you honest, realistic numbers up front, and report on real calls and quote requests every month." },
   { q: "What if you don't hit my goal?", a: "We keep working and waive our management fee until we do. We agree the target with you before we start, so there are no surprises." },
-  { q: "Is there a lock-in contract?", a: "No. You stay because the work keeps coming, not because a contract traps you." },
+  { q: "Is there a lock-in contract? What happens if I leave?", a: "No lock-in. We ask for one month's notice when you cancel, and there's a simple reason: ad spend can roll over from month to month, so the notice month lets us clear anything that's carried over and hand your account over clean. Everything we've built for your marketing is yours: the Google Ads campaigns, the Meta campaigns, the landing pages, the conversion tracking. All of it transfers to you in full, along with your domain, your Google Business Profile and your customer list. No exit fee, no argument." },
   { q: "Do I have to pay upfront?", a: `Yes. We take the ${SETUP_FEE} +GST setup and your first month before we start. We're a small Kiwi agency and we don't float thousands of dollars before we've earned your trust. We back it with our 60-day guarantee instead.` },
   { q: "What's included in the monthly price?", a: "Your smart website, our ad management and the automation that turns clicks into booked jobs. Your ad budget is the one thing that's separate, set to suit your goals, so every dollar works for you." },
-  { q: "How soon can I start getting leads?", a: "Most campaigns are live within days of your audit, with leads coming in shortly after. We tune everything over the first few weeks to bring your cost per lead down." },
+  { q: "What if I get too busy?", a: "Good problem, and a real one. We agree your monthly lead target before we start and we can throttle the ad spend up or down any month. Plenty of our clients dial it back over summer and open it up again when they've got capacity. You're never stuck paying for leads you can't service." },
+  { q: "How soon can I start getting leads?", a: "Most campaigns are live within days of your game plan call, with leads coming in shortly after. We tune everything over the first few weeks to bring your cost per lead down." },
 ];
 ---
-<Layout>
+<Layout
+  title="Digital Marketing for NZ Tradies | Google Ads, Websites & Automation | Hyper Digital"
+  description="Google Ads, smart websites and automation that get NZ tradies more booked jobs. Every enquiry gets an instant reply, 24/7. From $497 +GST/mo. Free 20-minute game plan."
+>
   <!-- ===== HERO ===== -->
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid max-w-[1200px] items-center gap-14 px-5 py-16 sm:py-20 lg:grid-cols-[1.12fr_0.88fr] lg:py-24">
       <div class="min-w-0 text-center lg:text-left">
-        <Reveal instant instant>
+        <Reveal instant>
           <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             <Icon name="sparkles" class="h-4 w-4" /> NZ's job booking system for tradies
           </span>
@@ -136,20 +144,20 @@ const faqs = [
         </Reveal>
         <Reveal instant delay={0.1} class="mx-auto mt-6 max-w-xl lg:mx-0">
           <p class="text-lg text-neutral-content/80">
-            We find the work, reply to every enquiry in 30 seconds and book jobs straight into your
-            calendar while you're flat out on the tools. You just turn up and do the job.
+            We find the work, reply to every enquiry the moment it lands and book jobs straight
+            into your calendar while you're flat out on the tools. You just turn up and do the job.
           </p>
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href="#how" class="btn btn-outline btn-lg w-full border-white/60 text-white hover:border-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">
             See how it works
           </a>
         </Reveal>
         <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
-          <SpeedBadge tone="dark" label="Replies in 30 seconds, 24/7" />
+          <SpeedBadge tone="dark" />
         </Reveal>
         <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
           <SocialProof />
@@ -193,21 +201,21 @@ const faqs = [
   <!-- ===== PAIN: THE LEAK ===== -->
   <section class="py-16 sm:py-24">
     <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
-      <div>
+      <div class="text-center lg:text-left">
         <Reveal><span class="eyebrow">The leak</span></Reveal>
-        <Reveal delay={0.05}>
+        <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
           <h2 class="mt-3 text-3xl sm:text-5xl">Every missed call is a job for the <span class="highlight">other guy</span>.</h2>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
           <p class="mt-6 text-lg text-base-content/70">
             You're up a ladder or under a house. The phone rings out. By the time you check it at
             smoko, they've rung the next name on Google and booked him in.
           </p>
         </Reveal>
-        <Reveal delay={0.15}>
+        <Reveal delay={0.15} class="mx-auto max-w-xl lg:mx-0">
           <p class="mt-4 text-lg text-base-content/70">It's not your fault. You're busy doing the actual work.</p>
         </Reveal>
-        <Reveal delay={0.2}>
+        <Reveal delay={0.2} class="mx-auto max-w-xl lg:mx-0">
           <p class="mt-4 text-lg font-bold text-base-content">But it's quietly costing you real, winnable jobs every single week.</p>
         </Reveal>
       </div>
@@ -313,7 +321,7 @@ const faqs = [
       </div>
       <Reveal class="mt-12 text-center">
         <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
-          Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
         </a>
       </Reveal>
     </div>
@@ -322,20 +330,20 @@ const faqs = [
   <!-- ===== SPEED WINS ===== -->
   <section class="py-16 sm:py-24">
     <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
-      <div>
+      <div class="text-center lg:text-left">
         <Reveal><span class="eyebrow">Speed wins</span></Reveal>
-        <Reveal delay={0.05}>
-          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours takes <span class="marker">30 seconds</span>.</h2>
+        <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours is <span class="marker">instant</span>.</h2>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
           <p class="mt-6 text-lg text-base-content/70">
-            Most enquiries sit unanswered for hours. Yours get answered, qualified and booked before
+            Most enquiries sit ignored for hours. Yours get replied to, qualified and booked before
             the customer has finished their cuppa. Day or night, weekends and public holidays, while
             you're on the tools or off the clock.
           </p>
         </Reveal>
-        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap gap-3 sm:flex-row">
-          <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free audit</a>
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free game plan</a>
           <a href="/ai-automation" class="btn btn-outline btn-lg border-base-content/30 font-display text-lg tracking-wide hover:border-base-content hover:bg-base-content hover:text-base-100">
             See the automation
           </a>
@@ -457,6 +465,48 @@ const faqs = [
     </div>
   </section>
 
+  <!-- ===== BURNED BEFORE (objection: "I've paid an agency and got nothing") ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1000px] px-5 py-16 sm:py-24">
+      <Reveal class="text-center">
+        <span class="eyebrow">Been burned before?</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
+          If your last agency left a bad taste, <span class="marker">read this</span>.
+        </h2>
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-content/80">
+          Most tradies we talk to have already paid an agency and got nothing back. Usually the
+          same story: a monthly report full of clicks and impressions, no way to tell if a single
+          job came from it, and a contract you can't get out of. Here's how we're different, and
+          you can check every line of it.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {[
+          { title: "Everything we build for you is yours.", body: "The Google Ads campaigns, the Meta campaigns, the landing pages, the conversion tracking. If you ever leave, all of it transfers to you in full." },
+          { title: "Your ad budget is never marked up.", body: "Ad spend goes straight to Google or Meta at cost. You always know exactly what's our fee and what's your ads, down to the dollar." },
+          { title: "We report leads, not clicks.", body: "Clear monthly reports on real calls and quote requests, and what each one cost. No impressions, no engagement, no fog." },
+          { title: "No lock-in.", body: "One month's notice, and that month is about your money, not ours: it lets us clear any ad spend that's rolled over or catching up, so your account leaves clean." },
+        ].map((c, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="h-full rounded-box border border-white/10 surface-2 p-6">
+              <p class="flex items-start gap-3 font-display text-xl text-neutral-content">
+                <Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-primary" /> {c.title}
+              </p>
+              <p class="mt-2 pl-8 text-neutral-content/70">{c.body}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal delay={0.2} class="mx-auto mt-8 max-w-2xl text-center">
+        <p class="text-neutral-content/80">
+          When we took over <a href="/results/no-drips" class="link text-primary">No Drips' account</a>,
+          the first thing we did was find close to $3,000 the previous agency had spent on clicks
+          that were never going to book a job. Then we cut it.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
   <!-- ===== FOUNDERS ===== -->
   <section class="py-16 sm:py-24">
     <div class="mx-auto grid max-w-[1160px] items-center gap-14 px-5 lg:grid-cols-2">
@@ -475,20 +525,20 @@ const faqs = [
           <span class="inline-block h-2 w-2 rounded-full bg-primary"></span> Matt &amp; Ryan · Founders
         </span>
       </Reveal>
-      <div>
+      <div class="text-center lg:text-left">
         <Reveal><span class="eyebrow">Who you're dealing with</span></Reveal>
-        <Reveal delay={0.05}>
+        <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
           <h2 class="mt-3 text-3xl sm:text-5xl">Two blokes who answer their own phone.</h2>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
           <p class="mt-6 text-lg text-base-content/70">
             Hyper Digital is Matt and Ryan. Two hardworking Kiwis who've been running this agency
-            since 2019, helping local businesses grow. No account managers, no offshore call centre,
-            no runaround. When you ring, you get one of us. And we treat your ad budget like it's
-            coming out of our own pocket.
+            since 2019. We look after 49 Kiwi businesses right now, and we keep it deliberately
+            small: no account managers, no offshore call centre, no runaround. When you ring, you
+            get one of us. And we treat your ad budget like it's coming out of our own pocket.
           </p>
         </Reveal>
-        <Reveal delay={0.15} class="mt-6 flex flex-wrap gap-2.5">
+        <Reveal delay={0.15} class="mt-6 flex flex-wrap justify-center gap-2.5 lg:justify-start">
           <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="pin" class="h-4 w-4 text-primary" /> Hawke's Bay based, NZ-wide</span>
           <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="clock" class="h-4 w-4 text-primary" /> Since 2019</span>
           <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="phone" class="h-4 w-4 text-primary" /> You call, we answer</span>
@@ -523,6 +573,19 @@ const faqs = [
           ))}
         </div>
       </div>
+
+      <!-- What it costs you in time (objection: "I don't have time for this") -->
+      <Reveal delay={0.2} class="mx-auto mt-14 max-w-3xl">
+        <div class="rounded-box border border-base-300 bg-base-100 p-6 sm:p-7">
+          <p class="text-center font-display text-xl">Here's everything we need from you:</p>
+          <div class="mt-5 grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+            <div><p class="font-display text-2xl text-primary">20 minutes</p><p class="mt-1 text-sm text-base-content/70">The free game plan call.</p></div>
+            <div><p class="font-display text-2xl text-primary">One hour</p><p class="mt-1 text-sm text-base-content/70">We walk you through the system once it's built.</p></div>
+            <div><p class="font-display text-2xl text-primary">That's it</p><p class="mt-1 text-sm text-base-content/70">No content to write, no photos to chase, no logins to figure out.</p></div>
+          </div>
+          <p class="mt-5 text-center text-sm text-base-content/60">We build it, we run it, you stay on the tools.</p>
+        </div>
+      </Reveal>
     </div>
   </section>
 
@@ -546,15 +609,33 @@ const faqs = [
       <Reveal class="mt-10 text-center">
         <p class="mx-auto max-w-2xl text-base-content/70">
           Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
-          to suit. On your free audit we'll work out the right plan and the ad budget that fits your
+          to suit. On your free game plan we'll work out the right plan and the ad budget that fits your
           trade and your goals.
         </p>
         <a href="#audit" class="btn btn-primary btn-lg mt-7 font-display text-lg tracking-wide">
-          Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
         </a>
+      </Reveal>
+
+      <!-- Regional exclusivity (honest scarcity; promoted from the trade LPs 25/07/2026) -->
+      <Reveal delay={0.1} class="mx-auto mt-12 max-w-3xl">
+        <div class="flex flex-col items-center gap-4 rounded-box border-2 border-primary/40 bg-base-100 p-6 text-center sm:flex-row sm:text-left">
+          <span class="icon-chip h-14 w-14 shrink-0"><Icon name="pin" class="h-7 w-7" /></span>
+          <div>
+            <p class="font-display text-xl">We only take one of each trade per patch.</p>
+            <p class="mt-1 text-base-content/70">
+              If we're already running ads for a roofer in Napier, we won't take a second one. It's
+              the only way both of you get a fair go, and it's why we can only take on a handful of
+              new clients a month. If your trade and area are free, they're yours.
+            </p>
+          </div>
+        </div>
       </Reveal>
     </div>
   </section>
+
+  <!-- ===== JOB VALUE CALCULATOR ===== -->
+  <JobCalculator />
 
   <!-- ===== GUARANTEE ===== -->
   <section class="bg-brand-dark-2 text-neutral-content">
@@ -576,7 +657,7 @@ const faqs = [
           management fee until we do. You still cover your ad spend, but you won't pay us another
           cent until we deliver what we promised.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
       </Reveal>
     </div>
   </section>
@@ -598,7 +679,7 @@ const faqs = [
         </div>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
-        <AuditForm title="Get your free audit" lead="In 20 minutes we'll show you exactly where your next jobs are coming from, and what they'll cost." />
+        <AuditForm title="Get your free game plan" lead="In 20 minutes we'll show you exactly where your next jobs are coming from, and what they'll cost." />
       </Reveal>
     </div>
   </section>
@@ -611,20 +692,20 @@ const faqs = [
           The work's out there. Let's make it <span class="marker">ring your phone</span>.
         </h2>
         <p class="mx-auto mt-6 max-w-xl text-lg text-neutral-content/80">
-          Get your free 20-minute audit. We'll show you exactly where your next jobs are coming
+          Get your free 20-minute game plan. We'll show you exactly where your next jobs are coming
           from and what they'll cost. Worst case, you walk away knowing your local market better
           than your competition does.
         </p>
         <div class="mt-9 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-white/60 text-white hover:border-white hover:bg-white hover:text-neutral font-display text-lg tracking-wide sm:w-auto">
             Or call {SITE.phone}
           </a>
         </div>
         <p class="mt-7 text-sm text-neutral-content/60">
-          Free 20-minute audit <span class="text-primary">·</span> Real numbers <span class="text-primary">·</span> No obligation
+          Free 20-minute game plan <span class="text-primary">·</span> Real numbers <span class="text-primary">·</span> No obligation
         </p>
       </Reveal>
     </div>

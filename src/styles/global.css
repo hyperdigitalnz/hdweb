@@ -3,9 +3,11 @@
 /* Article body styles for /insights markdown posts (prose classes). */
 @plugin "@tailwindcss/typography";
 
-/* Enable daisyUI's built-in themes (for A/B previewing) alongside our custom ones below. */
+/* Built-in themes OFF: only the two custom themes below ship. `themes: all` existed for
+   an A/B theme picker that no longer exists and was costing ~150 KB of CSS (37 themes)
+   on every page. Re-enable a built-in here temporarily if you ever need to preview one. */
 @plugin "daisyui" {
-  themes: all;
+  themes: false;
 }
 
 /* Hyper Digital brand theme — black + gold (amber). No lime. */
@@ -111,6 +113,23 @@
   --brand-dark-3: #2b3f6b;   /* lighter navy — list items / chips on dark */
 }
 
+/* ── Gold that reads on light backgrounds (WCAG fix, approved by Matt 25/07/2026) ──
+   Brand gold #cea46f measures 2.29:1 on white — fails AA for any text size. The ink
+   variant #8a6432 measures 5.32:1. The token defaults to the ink value and flips back
+   to bright gold inside dark surfaces, so `.marker`, `.eyebrow` and `text-primary`
+   TEXT is always readable while gold fills/borders/buttons stay #cea46f everywhere. */
+:root, [data-theme="hyper"] { --gold-ink: #8a6432; }
+[data-theme="hyper-alt"] { --gold-ink: #b23f00; }  /* deep safety orange, 5.4:1 on white */
+.bg-brand-dark, .bg-brand-dark-2, .bg-neutral, .surface-2, .surface-3 {
+  --gold-ink: var(--color-primary);
+}
+/* Repoint the text utility only. Backgrounds (bg-primary), borders (border-primary)
+   and daisyUI components (btn-primary etc.) keep the bright brand gold. Layered so
+   pseudo-class utilities (hover:text-accent etc.) still win on interaction. */
+@layer utilities {
+  .text-primary { color: var(--gold-ink, var(--color-primary)); }
+}
+
 /* Hi-Vis blueprint: keep colour flat and solid (no tech-startup gradients) — alt theme only */
 [data-theme="hyper-alt"] .bg-brand-dark,
 [data-theme="hyper-alt"] .bg-brand-dark-2 { background-image: none; }
@@ -178,9 +197,10 @@
 }
 
 /* Keyword emphasis: colour the word itself in the accent colour (no background swipe).
-   Wraps normally — a long marked phrase breaks across lines rather than overflowing the H1. */
+   Wraps normally — a long marked phrase breaks across lines rather than overflowing the H1.
+   Uses the context-aware gold token: readable deep gold on light, bright gold on dark. */
 .marker {
-  color: var(--color-primary);
+  color: var(--gold-ink, var(--color-primary));
 }
 /* Highlighter swipe: gold background behind a word, like a marker pen. */
 .highlight {
@@ -224,14 +244,14 @@
   border-color: color-mix(in srgb, var(--chip, var(--color-primary)) 28%, transparent);
 }
 
-/* Small uppercase accent section label */
+/* Small uppercase accent section label (context-aware gold: see --gold-ink) */
 .eyebrow {
   display: inline-block;
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--gold-ink, var(--color-primary));
 }
 
 /* Gradient accent text */

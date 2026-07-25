@@ -15,11 +15,11 @@ import { SETUP_FEE } from "../../data/pricing";
 
 const title = "Digital Marketing Agency Hawke's Bay | Hyper Digital";
 const description =
-  "Hyper Digital is a digital marketing agency based in Hawke's Bay since 2019. Google Ads, smart websites, local SEO and AI automation for Napier and Hastings businesses. Free audit.";
+  "Hyper Digital is a digital marketing agency based in Hawke's Bay since 2019. Google Ads, smart websites, local SEO and AI automation for Napier and Hastings businesses. Free game plan.";
 
 const services = [
   { icon: "search", title: "Google Ads", href: "/google-ads", body: "Tightly managed Search campaigns that put you in front of Hawke's Bay locals at the exact moment they need you. Fast results, wasted spend cut, every lead tracked." },
-  { icon: "layout", title: "Smart websites", href: "/websites", body: "Fast, search-ready sites that reply to enquiries in 30 seconds, qualify the job and book it in, 24/7. Built to convert, not just to look good." },
+  { icon: "layout", title: "Smart websites", href: "/websites", body: "Fast, search-ready sites that reply to enquiries instantly, qualify the job and book it in, 24/7. Built to convert, not just to look good." },
   { icon: "pin", title: "Local SEO", href: "/insights/seo-hawkes-bay", body: "Rank in the map pack, local searches and AI answers across Napier and Hastings. The long game that turns paid clicks into free ones." },
   { icon: "cog", title: "AI automation", href: "/ai-automation", body: "Follow-up, review requests and booking on autopilot, so no enquiry slips through the cracks while you're busy working." },
 ];
@@ -39,8 +39,8 @@ const whoFor = [
 
 const faqs = [
   { q: "Are you actually based in Hawke's Bay?", a: "Yes. We live and work in the Bay and have run campaigns for local businesses since 2019. When you call, you get one of the owners, not an account manager three timezones away." },
-  { q: "What does it cost?", a: `A one-off ${SETUP_FEE} +GST setup builds your system, then monthly plans start at $497 +GST covering your website, ad management and automation. Ad spend is separate and set to suit your goals. Your free audit tells you the right plan and budget before you commit to anything.` },
-  { q: "Do you only work with tradies?", a: "Trades are our specialty and most of our case studies, but the same system works for any local business that wants more calls and bookings. If we don't think we can move the needle for you, we'll say so in the audit." },
+  { q: "What does it cost?", a: `A one-off ${SETUP_FEE} +GST setup builds your system, then monthly plans start at $497 +GST covering your website, ad management and automation. Ad spend is separate and set to suit your goals. Your free game plan tells you the right plan and budget before you commit to anything.` },
+  { q: "Do you only work with tradies?", a: "Trades are our specialty and most of our case studies, but the same system works for any local business that wants more calls and bookings. If we don't think we can move the needle for you, we'll say so on the game plan call." },
   { q: "What makes you different from other Hawke's Bay agencies?", a: "We run the whole pipeline in-house: the ads, the website the ads land on, and the follow-up that books the job. We report on leads and cost per lead, not impressions. And we back it with a 60-day lead guarantee, with no lock-in contracts." },
   { q: "Can you help if my customers are outside Hawke's Bay?", a: "Yes. We're Bay-based but run campaigns NZ-wide, from Auckland to Southland. Local knowledge just means we're extra sharp on Hawke's Bay targeting." },
 ];
@@ -73,7 +73,7 @@ const localBusinessSchema = {
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
-        <Reveal instant instant>
+        <Reveal instant>
           <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             <Icon name="pin" class="h-4 w-4" /> Hawke's Bay, since 2019
           </span>
@@ -92,7 +92,7 @@ const localBusinessSchema = {
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
@@ -258,7 +258,7 @@ const localBusinessSchema = {
           our management fee until we do. You still cover your ad spend, but you won't pay us
           another cent until we deliver.
         </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free audit</a>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
       </Reveal>
     </div>
   </section>
@@ -281,7 +281,7 @@ const localBusinessSchema = {
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm
-          title="Get your free audit"
+          title="Get your free game plan"
           lead="Tell us about your business and we'll show you where your next Hawke's Bay customers are coming from, and what they'll cost."
         />
       </Reveal>
@@ -294,16 +294,16 @@ const localBusinessSchema = {
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Ready to be the business that's everywhere?</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free, no-obligation audit from a local team. We'll show you exactly where your
+          Get your free, no-obligation game plan from a local team. We'll show you exactly where your
           next customers are coming from, and what they should cost.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
-        <p class="mt-7 text-sm text-primary-content/70">Free 20-minute audit · Hawke's Bay based · No lock-in</p>
+        <p class="mt-7 text-sm text-primary-content/70">Free 20-minute game plan · Hawke's Bay based · No lock-in</p>
       </Reveal>
     </div>
   </section>

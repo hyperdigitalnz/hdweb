@@ -1,42 +1,316 @@
 ---
-import { SITE, NAV } from "../consts";
+// Site header: desktop nav with a CSS-driven "Get more work" dropdown, and a native
+// <dialog> full-screen mobile panel (focus trap, Escape and top-layer stacking for free —
+// the top layer also renders above the GHL chat widget). Nothing is ever fixed to the
+// bottom of the mobile viewport (the chat embed owns that area, Matt 03/07/2026).
+import { SITE, NAV, NAV_COMPANY, REVIEWS } from "../consts";
+import { tradeLeadGen } from "../data/tradeLeadGen";
+import Icon from "./Icon.astro";
+
+const dropdown = NAV.filter((i) => i.children);
+const tradeChips = Object.values(tradeLeadGen).map((t) => ({
+  label: t.tradePlural.charAt(0).toUpperCase() + t.tradePlural.slice(1),
+  href: `/${t.slug}`,
+}));
+
+// Mobile panel groups, from the same NAV source as desktop + footer.
+const getWork = NAV.find((i) => i.children)?.children ?? [];
+const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.href !== "/about");
 ---
 <header class="sticky top-0 z-50 border-b border-white/10 bg-neutral/95 text-neutral-content backdrop-blur">
-  <div class="mx-auto flex h-[70px] max-w-[1160px] items-center justify-between px-5">
+  <div class="mx-auto flex h-[70px] max-w-[1160px] items-center justify-between gap-2 px-5">
     <a href="/" class="logo text-2xl transition-transform hover:scale-[1.03]">
       HYPER<span class="text-primary">DIGITAL</span>
     </a>
 
     <!-- desktop nav -->
-    <nav class="hidden items-center gap-7 lg:flex">
-      {NAV.map((item) => (
-        <a
-          href={item.href}
-          class="relative text-sm font-semibold text-neutral-content/80 transition-colors hover:text-primary
-                 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary
-                 after:transition-all hover:after:w-full"
-        >{item.label}</a>
-      ))}
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
+      {NAV.map((item) =>
+        item.children ? (
+          <div class="dropdown dropdown-hover hd-drop">
+            <a
+              href={item.href}
+              class="relative inline-flex items-center gap-1 text-sm font-semibold text-neutral-content/80 transition-colors hover:text-primary"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {item.label} <Icon name="chevron-down" class="hd-drop-chev h-3.5 w-3.5 transition-transform" />
+            </a>
+            <ul class="dropdown-content menu z-[60] mt-2 w-52 rounded-box border border-white/10 bg-neutral p-2 shadow-xl">
+              {item.children.map((c, i) => (
+                <li class="hd-drop-item" style={`--i:${i}`}>
+                  <a href={c.href} class="text-neutral-content hover:text-primary">
+                    {c.label} <Icon name="arrow-right" class="ml-auto h-3.5 w-3.5 text-primary/60" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class="relative text-sm font-semibold text-neutral-content/80 transition-colors hover:text-primary
+                   after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary
+                   after:transition-all hover:after:w-full"
+          >{item.label}</a>
+        )
+      )}
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- live open/closed pill, wide screens only -->
+      <span class="hd-status hidden items-center gap-1.5 text-xs font-semibold text-neutral-content/70 xl:inline-flex" data-nav-status style="display:none">
+        <span class="inline-block h-2 w-2 rounded-full bg-success" data-nav-dot></span>
+        <span data-nav-text></span>
+      </span>
+
       <a href={SITE.phoneHref} class="hidden font-display text-xl tracking-wide sm:block">{SITE.phone}</a>
+      <!-- tap-to-call on phones, where the number text is hidden -->
+      <a href={SITE.phoneHref} class="btn btn-ghost btn-sm btn-square sm:hidden" aria-label={`Call ${SITE.phone}`}>
+        <Icon name="phone" class="h-5 w-5" />
+      </a>
       <a href="/contact#audit" class="btn btn-primary btn-sm font-display text-base tracking-wide">
-        <span class="sm:hidden">Free audit</span><span class="hidden sm:inline">Get my free audit</span>
+        <span class="sm:hidden">Game plan</span><span class="hidden sm:inline">Get my free game plan</span>
       </a>
 
-      <!-- mobile menu -->
-      <div class="dropdown dropdown-end lg:hidden">
-        <button tabindex="0" class="btn btn-ghost btn-sm btn-square" aria-label="Menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <ul tabindex="0" class="dropdown-content menu z-[60] mt-3 w-56 rounded-box bg-neutral p-2 shadow-xl">
-          {NAV.map((item) => <li><a href={item.href} class="text-neutral-content">{item.label}</a></li>)}
-          <li><a href={SITE.phoneHref} class="text-primary font-semibold">Call {SITE.phone}</a></li>
-        </ul>
-      </div>
+      <!-- mobile panel trigger -->
+      <button
+        type="button"
+        class="btn btn-ghost btn-sm btn-square lg:hidden"
+        aria-label="Open menu"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        data-nav-open
+      >
+        <Icon name="menu" class="h-6 w-6" />
+      </button>
     </div>
   </div>
 </header>
+
+<!-- ===== Mobile nav panel ===== -->
+<dialog class="hd-nav" data-nav-dialog aria-label="Menu">
+  <div class="flex min-h-full flex-col bg-neutral text-neutral-content">
+    <div class="mx-auto flex h-[70px] w-full max-w-[1160px] items-center justify-between px-5">
+      <a href="/" class="logo text-2xl">HYPER<span class="text-primary">DIGITAL</span></a>
+      <button type="button" class="btn btn-ghost btn-sm btn-square" aria-label="Close menu" data-nav-close>
+        <Icon name="x" class="h-6 w-6" />
+      </button>
+    </div>
+
+    <div class="mx-auto w-full max-w-[1160px] flex-1 overflow-y-auto px-5 pb-10">
+      <!-- status line -->
+      <p class="hd-nav-group flex items-center gap-2 text-sm font-semibold text-neutral-content/80" style="--g:0; display:none" data-nav-status>
+        <span class="inline-block h-2 w-2 rounded-full bg-success" data-nav-dot></span>
+        <span data-nav-text></span>
+      </p>
+
+      <!-- action pair -->
+      <div class="hd-nav-group mt-4 grid grid-cols-2 gap-3" style="--g:1">
+        <a href={SITE.phoneHref} class="btn btn-outline border-white/40 font-display text-base tracking-wide text-neutral-content hover:border-white hover:bg-white hover:text-neutral">
+          <Icon name="phone" class="h-4 w-4" /> {SITE.phone}
+        </a>
+        <a href="/contact#audit" class="btn btn-primary btn-shine font-display text-base tracking-wide">
+          Free game plan <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+
+      <!-- get more work -->
+      <div class="hd-nav-group mt-7" style="--g:2">
+        <p class="eyebrow">Get more work</p>
+        <ul class="mt-2 divide-y divide-white/10">
+          {getWork.map((c) => (
+            <li>
+              <a href={c.href} class="flex h-14 items-center justify-between font-display text-xl text-neutral-content transition-colors hover:text-primary">
+                {c.label} <Icon name="arrow-right" class="h-5 w-5 text-primary" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- the system -->
+      <div class="hd-nav-group mt-6" style="--g:3">
+        <p class="eyebrow">The system</p>
+        <ul class="mt-2 divide-y divide-white/10">
+          {theSystem.map((c) => (
+            <li>
+              <a href={c.href} class="flex h-14 items-center justify-between font-display text-xl text-neutral-content transition-colors hover:text-primary">
+                {c.label === "Automation" ? "AI Automation" : c.label}
+                <Icon name="arrow-right" class="h-5 w-5 text-primary" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- by trade -->
+      <div class="hd-nav-group mt-6" style="--g:4">
+        <p class="eyebrow">By trade</p>
+        <div class="-mx-5 mt-3 flex gap-2 overflow-x-auto px-5 pb-1" style="scrollbar-width: none;">
+          {tradeChips.map((t) => (
+            <a href={t.href} class="btn btn-sm shrink-0 rounded-full border-white/20 bg-white/5 font-display tracking-wide text-neutral-content hover:border-primary hover:text-primary">
+              {t.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- proof & company -->
+      <div class="hd-nav-group mt-6" style="--g:5">
+        <p class="eyebrow">Proof &amp; company</p>
+        <div class="mt-2 grid grid-cols-2 gap-x-6">
+          {NAV_COMPANY.map((c) => (
+            <a href={c.href} class="flex h-12 items-center justify-between border-b border-white/10 font-semibold text-neutral-content/90 transition-colors hover:text-primary">
+              {c.label} <Icon name="arrow-right" class="h-4 w-4 text-primary/70" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- review badge -->
+      <a href={REVIEWS.url} target="_blank" rel="noopener" class="hd-nav-group mt-8 flex items-center justify-center gap-2 text-sm text-neutral-content/80" style="--g:6">
+        <span class="text-primary" aria-hidden="true">★★★★★</span>
+        <span><span class="font-bold text-neutral-content">{REVIEWS.rating}</span> from {REVIEWS.count} Google reviews</span>
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  /* Full-screen top sheet on the browser top layer (above the GHL chat widget). */
+  .hd-nav {
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    background: transparent;
+    color: inherit;
+  }
+  .hd-nav::backdrop {
+    background: rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(3px);
+  }
+  .hd-nav[open] {
+    animation: hdNavSheet 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes hdNavSheet {
+    from { opacity: 0.6; transform: translateY(-14px); }
+    to { opacity: 1; transform: none; }
+  }
+  /* Staggered group entrance; resting styles carry the design so reduced-motion
+     (globally clamped to 0.01ms) just shows the finished panel. */
+  .hd-nav[open] .hd-nav-group {
+    animation: hdNavGroup 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(0.05s + var(--g, 0) * 0.04s);
+  }
+  @keyframes hdNavGroup {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  /* Keep the background page still while the panel is open. `overflow` on body here is
+     fine: the sticky-header constraint only matters while the page itself scrolls. */
+  :global(body:has(.hd-nav[open])) {
+    overflow: hidden;
+  }
+  /* Desktop dropdown: chevron flips while open (hover or keyboard focus). */
+  .hd-drop:hover .hd-drop-chev,
+  .hd-drop:focus-within .hd-drop-chev {
+    transform: rotate(180deg);
+  }
+  .hd-drop .dropdown-content {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+</style>
+
+<script>
+  import { SITE } from "../consts";
+
+  // ── Mobile panel ──────────────────────────────────────────────────────────
+  function wireNav() {
+    const dialog = document.querySelector<HTMLDialogElement>("[data-nav-dialog]");
+    const openBtn = document.querySelector<HTMLButtonElement>("[data-nav-open]");
+    if (!dialog || !openBtn || openBtn.dataset.wired) return;
+    openBtn.dataset.wired = "1";
+
+    const setExpanded = (v: boolean) => openBtn.setAttribute("aria-expanded", String(v));
+    openBtn.addEventListener("click", () => {
+      dialog.showModal();
+      setExpanded(true);
+    });
+    dialog.querySelector("[data-nav-close]")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("close", () => setExpanded(false));
+    // Click on the backdrop (the dialog element itself, outside the inner sheet) closes.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
+  // A panel open during a view transition would trap the user on the old page.
+  document.addEventListener("astro:before-swap", () => {
+    document.querySelector<HTMLDialogElement>("[data-nav-dialog][open]")?.close();
+  });
+
+  // ── Desktop dropdown a11y: aria-expanded + Escape closes ──────────────────
+  function wireDropdowns() {
+    document.querySelectorAll<HTMLElement>(".hd-drop").forEach((drop) => {
+      if (drop.dataset.wired) return;
+      drop.dataset.wired = "1";
+      const trigger = drop.querySelector("a[aria-haspopup]");
+      const set = (v: boolean) => trigger?.setAttribute("aria-expanded", String(v));
+      drop.addEventListener("mouseenter", () => set(true));
+      drop.addEventListener("mouseleave", () => set(false));
+      drop.addEventListener("focusin", () => set(true));
+      drop.addEventListener("focusout", () => set(false));
+      drop.addEventListener("keydown", (e) => {
+        if ((e as KeyboardEvent).key === "Escape") (document.activeElement as HTMLElement)?.blur();
+      });
+    });
+  }
+
+  // ── Live open/closed status (Pacific/Auckland vs SITE.hours) ──────────────
+  // Mon–Fri 7am–9pm, Sat–Sun 9am–7pm. Falls back to hidden if Intl is unavailable.
+  function wireStatus() {
+    let day: string, hour: number;
+    try {
+      const parts = new Intl.DateTimeFormat("en-NZ", {
+        timeZone: "Pacific/Auckland",
+        weekday: "short",
+        hour: "numeric",
+        hour12: false,
+      }).formatToParts(new Date());
+      day = parts.find((p) => p.type === "weekday")?.value ?? "";
+      hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "", 10);
+    } catch {
+      return;
+    }
+    if (!day || !Number.isFinite(hour)) return;
+    const weekend = day === "Sat" || day === "Sun";
+    const open = weekend ? hour >= 9 && hour < 19 : hour >= 7 && hour < 21;
+    document.querySelectorAll<HTMLElement>("[data-nav-status]").forEach((el) => {
+      const dot = el.querySelector<HTMLElement>("[data-nav-dot]");
+      const text = el.querySelector<HTMLElement>("[data-nav-text]");
+      if (!dot || !text) return;
+      if (open) {
+        dot.className = dot.className.replace("bg-primary", "bg-success");
+        text.textContent = `Open now, call ${SITE.phone}`;
+      } else {
+        dot.className = dot.className.replace("bg-success", "bg-primary");
+        text.textContent = "Closed, but every web enquiry gets an instant reply";
+      }
+      el.style.display = "";
+    });
+  }
+
+  function setupHeader() {
+    wireNav();
+    wireDropdowns();
+    wireStatus();
+  }
+  setupHeader();
+  document.addEventListener("astro:page-load", setupHeader);
+</script>

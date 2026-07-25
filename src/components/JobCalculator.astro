@@ -1,0 +1,290 @@
+---
+// "What's a job worth to you?" — combined job value calculator + plan picker
+// (SITE-REVIEW-2026-07-25.md Part 4 #1; Matt's calls 25/07: merged tool, trade
+// dropdown, anonymous usage logging so our trade-level numbers improve over time).
+//
+// Honesty rules baked in:
+//  - The only CPL figures shown are published case-study numbers (plumbing $13–$17
+//    from No Drips + Napier Plumber, roofing ~$20 from the HB Roofer study). Trades
+//    without published numbers get "real numbers on your game plan call", never an invention.
+//  - Every output is labelled an estimate based on the user's own inputs.
+//  - Logging is anonymous: inputs and outputs only, no name/contact fields exist here.
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+---
+<section id="calculator" class="scroll-mt-24 bg-brand-dark text-neutral-content">
+  <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-24">
+    <Reveal class="mx-auto max-w-2xl text-center">
+      <span class="eyebrow">Run your own numbers</span>
+      <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">What's a job worth to <span class="marker">you</span>?</h2>
+      <p class="mt-4 text-neutral-content/70">
+        Thirty seconds, no strings. Slide your numbers in and see what extra jobs are worth,
+        and which plan fits.
+      </p>
+    </Reveal>
+
+    <Reveal delay={0.1} class="mt-12">
+      <div class="jc grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <!-- inputs -->
+        <div class="rounded-box border border-white/10 surface-2 p-6 sm:p-7">
+          <div class="grid gap-1">
+            <label class="text-xs font-bold uppercase tracking-wider text-neutral-content/70" for="jc-trade">Your trade</label>
+            <select id="jc-trade" class="select select-bordered w-full border-white/20 bg-black/30 text-neutral-content" data-jc-trade>
+              <option value="plumber">Plumber</option>
+              <option value="electrician">Electrician</option>
+              <option value="roofer" selected>Roofer</option>
+              <option value="builder">Builder</option>
+              <option value="painter">Painter</option>
+              <option value="hvac">HVAC / heat pumps</option>
+              <option value="other">Other trade</option>
+            </select>
+          </div>
+
+          <div class="mt-6 grid gap-2">
+            <div class="flex items-baseline justify-between">
+              <label class="text-xs font-bold uppercase tracking-wider text-neutral-content/70" for="jc-value">Average job value</label>
+              <span class="font-display text-2xl text-primary" data-jc-value-label>$15,000</span>
+            </div>
+            <input id="jc-value" type="range" min="0" max="100" value="74" class="range range-primary" data-jc-value aria-label="Average job value" />
+            <div class="flex justify-between text-xs text-neutral-content/50"><span>$500</span><span>$50,000</span></div>
+          </div>
+
+          <div class="mt-6 grid gap-2">
+            <div class="flex items-baseline justify-between">
+              <label class="text-xs font-bold uppercase tracking-wider text-neutral-content/70" for="jc-jobs">Extra jobs a month you'd like</label>
+              <span class="font-display text-2xl text-primary" data-jc-jobs-label>4</span>
+            </div>
+            <input id="jc-jobs" type="range" min="1" max="20" value="4" class="range range-primary" data-jc-jobs aria-label="Extra jobs per month" />
+            <div class="flex justify-between text-xs text-neutral-content/50"><span>1</span><span>20</span></div>
+          </div>
+
+          <div class="mt-6 grid gap-2">
+            <div class="flex items-baseline justify-between">
+              <label class="text-xs font-bold uppercase tracking-wider text-neutral-content/70" for="jc-win">Quotes you win</label>
+              <span class="font-display text-2xl text-primary" data-jc-win-label>40%</span>
+            </div>
+            <input id="jc-win" type="range" min="10" max="90" step="5" value="40" class="range range-primary" data-jc-win aria-label="Share of quotes you win" />
+            <div class="flex justify-between text-xs text-neutral-content/50"><span>1 in 10</span><span>9 in 10</span></div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="grid gap-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-neutral-content/70">Got a website?</span>
+              <div class="join" role="group" aria-label="Got a website?">
+                <button type="button" class="btn join-item btn-sm flex-1 border-white/20 bg-black/30 text-neutral-content" data-jc-web="yes" aria-pressed="true">Yes</button>
+                <button type="button" class="btn join-item btn-sm flex-1 border-white/20 bg-black/30 text-neutral-content" data-jc-web="no" aria-pressed="false">Not yet</button>
+              </div>
+            </div>
+            <div class="grid gap-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-neutral-content/70">Areas you cover</span>
+              <div class="join" role="group" aria-label="Areas you cover">
+                <button type="button" class="btn join-item btn-sm flex-1 border-white/20 bg-black/30 text-neutral-content" data-jc-areas="1" aria-pressed="true">1</button>
+                <button type="button" class="btn join-item btn-sm flex-1 border-white/20 bg-black/30 text-neutral-content" data-jc-areas="2-3" aria-pressed="false">2–3</button>
+                <button type="button" class="btn join-item btn-sm flex-1 border-white/20 bg-black/30 text-neutral-content" data-jc-areas="4+" aria-pressed="false">4+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- outputs -->
+        <div class="flex flex-col rounded-box border-2 border-primary/50 surface-2 p-6 sm:p-7">
+          <p class="text-xs font-bold uppercase tracking-wider text-neutral-content/70">Your numbers</p>
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div>
+              <p class="font-display text-3xl text-primary sm:text-4xl" data-jc-out-revmo>$60,000</p>
+              <p class="mt-1 text-sm text-neutral-content/60">extra revenue a month</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-primary sm:text-4xl" data-jc-out-revyr>$720,000</p>
+              <p class="mt-1 text-sm text-neutral-content/60">a year, at your job value</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-neutral-content sm:text-4xl" data-jc-out-leads>10</p>
+              <p class="mt-1 text-sm text-neutral-content/60">leads needed a month, at your win rate</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-neutral-content sm:text-4xl" data-jc-out-cpl>~$200</p>
+              <p class="mt-1 text-sm text-neutral-content/60" data-jc-out-cpl-label>a month in leads, at our real roofing cost per lead</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-xl border border-white/10 bg-black/30 p-4">
+            <p class="text-xs font-bold uppercase tracking-wider text-neutral-content/70">The fit</p>
+            <p class="mt-1 font-display text-2xl text-primary" data-jc-out-plan>Growth · $697/mo +GST</p>
+            <p class="mt-1 text-sm text-neutral-content/70" data-jc-out-plansub>
+              Plus an ad budget of roughly $400–$700 a month. A starting point, not a quote: your
+              game plan call sets the real number.
+            </p>
+          </div>
+
+          <p class="mt-4 text-xs text-neutral-content/50" data-jc-disclaimer>
+            An estimate from your own inputs, not a promise. Lead costs shown only where we have
+            published client results; your game plan call gives you real numbers for your trade and area.
+          </p>
+
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine mt-auto w-full font-display text-lg tracking-wide" data-jc-cta style="margin-top: 1.25rem">
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <noscript><p class="mt-3 text-center text-xs text-neutral-content/60">Turn on JavaScript to use the sliders, or just book the call and we'll run the numbers with you.</p></noscript>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>
+
+<script>
+  // All maths client-side; anonymous usage events go to /api/tool-event so we can
+  // improve our own per-trade numbers over time (Matt, 25/07/2026). No PII here.
+  type Areas = "1" | "2-3" | "4+";
+
+  const DEFAULT_JOB_VALUE: Record<string, number> = {
+    plumber: 800, electrician: 900, roofer: 15000, builder: 25000,
+    painter: 6000, hvac: 3500, other: 2000,
+  };
+  // Published, verifiable CPL ranges only (case studies). Everything else: audit.
+  const PUBLISHED_CPL: Record<string, { lo: number; hi: number; label: string } | undefined> = {
+    plumber: { lo: 13, hi: 17, label: "at our real plumbing cost per lead" },
+    roofer: { lo: 20, hi: 20, label: "at our real roofing cost per lead" },
+  };
+  const PLANS = { starter: "Starter · $497/mo +GST", growth: "Growth · $697/mo +GST", scale: "Scale · $997/mo +GST" };
+
+  const nf = new Intl.NumberFormat("en-NZ");
+  const money = (n: number) => "$" + nf.format(Math.round(n));
+  const sliderToValue = (t: number) => {
+    // 0–100 → $500–$50,000 on a log scale, snapped to tidy steps.
+    const raw = 500 * Math.pow(100, t / 100);
+    const step = raw < 2000 ? 100 : raw < 10000 ? 500 : 1000;
+    return Math.round(raw / step) * step;
+  };
+
+  function setupCalc() {
+    const root = document.querySelector<HTMLElement>("#calculator .jc");
+    if (!root || root.dataset.wired) return;
+    root.dataset.wired = "1";
+
+    const $ = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const trade = $<HTMLSelectElement>("[data-jc-trade]");
+    const value = $<HTMLInputElement>("[data-jc-value]");
+    const jobs = $<HTMLInputElement>("[data-jc-jobs]");
+    const win = $<HTMLInputElement>("[data-jc-win]");
+    let web = "yes";
+    let areas: Areas = "1";
+    let interacted = false;
+    let logTimer: number | undefined;
+
+    const state = () => ({
+      trade: trade.value,
+      jobValue: sliderToValue(parseInt(value.value, 10)),
+      jobsWanted: parseInt(jobs.value, 10),
+      winRate: parseInt(win.value, 10) / 100,
+      website: web,
+      areas,
+    });
+
+    function compute() {
+      const s = state();
+      const revMo = s.jobValue * s.jobsWanted;
+      const leadsNeeded = Math.max(1, Math.ceil(s.jobsWanted / s.winRate));
+      const cpl = PUBLISHED_CPL[s.trade];
+      // Plan fit: multi-region → Scale; wider catchment or higher volume → Growth.
+      const plan = s.areas === "4+" || s.jobsWanted >= 12 ? "scale" : s.areas === "2-3" || s.jobsWanted >= 5 ? "growth" : "starter";
+      // Ad budget starting point: leads × (published CPL midpoint, else a $25 working
+      // figure), floored at the $300/mo entry media budget, rounded to $50.
+      const workingCpl = cpl ? (cpl.lo + cpl.hi) / 2 : 25;
+      const budget = Math.max(300, Math.round((leadsNeeded * workingCpl) / 50) * 50);
+      return { ...s, revMo, revYr: revMo * 12, leadsNeeded, cpl, plan, budget };
+    }
+
+    function render() {
+      const o = compute();
+      $("[data-jc-value-label]").textContent = money(o.jobValue);
+      $("[data-jc-jobs-label]").textContent = String(o.jobsWanted);
+      $("[data-jc-win-label]").textContent = Math.round(o.winRate * 100) + "%";
+      $("[data-jc-out-revmo]").textContent = money(o.revMo);
+      $("[data-jc-out-revyr]").textContent = money(o.revYr);
+      $("[data-jc-out-leads]").textContent = String(o.leadsNeeded);
+      if (o.cpl) {
+        const lo = o.leadsNeeded * o.cpl.lo, hi = o.leadsNeeded * o.cpl.hi;
+        $("[data-jc-out-cpl]").textContent = lo === hi ? "~" + money(lo) : money(lo) + "–" + money(hi).slice(1);
+        $("[data-jc-out-cpl-label]").textContent = "a month in leads, " + o.cpl.label;
+      } else {
+        $("[data-jc-out-cpl]").textContent = "Audit";
+        $("[data-jc-out-cpl-label]").textContent = "we'll show you real lead costs for your trade on the call";
+      }
+      $("[data-jc-out-plan]").textContent = PLANS[o.plan as keyof typeof PLANS];
+      $("[data-jc-out-plansub]").textContent =
+        `Plus an ad budget of roughly ${money(o.budget)}–${money(Math.round((o.budget * 1.6) / 50) * 50)} a month. A starting point, not a quote: your game plan call sets the real number.`;
+      return o;
+    }
+
+    function log(converted: boolean) {
+      const o = compute();
+      const body = JSON.stringify({
+        tool: "job-calculator",
+        trade: o.trade,
+        inputs: { jobValue: o.jobValue, jobsWanted: o.jobsWanted, winRate: o.winRate, website: o.website, areas: o.areas },
+        outputs: { revMo: o.revMo, leadsNeeded: o.leadsNeeded, plan: o.plan, budget: o.budget },
+        converted,
+        page: location.pathname,
+      });
+      try {
+        navigator.sendBeacon?.("/api/tool-event", new Blob([body], { type: "application/json" })) ||
+          fetch("/api/tool-event", { method: "POST", body, headers: { "Content-Type": "application/json" }, keepalive: true });
+      } catch { /* logging must never break the tool */ }
+    }
+
+    const scheduleLog = () => {
+      interacted = true;
+      clearTimeout(logTimer);
+      logTimer = window.setTimeout(() => log(false), 1500);
+    };
+
+    trade.addEventListener("change", () => {
+      // New trade → sensible slider default for that trade.
+      const def = DEFAULT_JOB_VALUE[trade.value] ?? 2000;
+      const t = Math.round((Math.log(def / 500) / Math.log(100)) * 100);
+      value.value = String(Math.min(100, Math.max(0, t)));
+      render();
+      scheduleLog();
+    });
+    [value, jobs, win].forEach((el) => el.addEventListener("input", () => { render(); scheduleLog(); }));
+
+    root.querySelectorAll<HTMLButtonElement>("[data-jc-web]").forEach((b) =>
+      b.addEventListener("click", () => {
+        web = b.dataset.jcWeb!;
+        root.querySelectorAll("[data-jc-web]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        render();
+        scheduleLog();
+      })
+    );
+    root.querySelectorAll<HTMLButtonElement>("[data-jc-areas]").forEach((b) =>
+      b.addEventListener("click", () => {
+        areas = b.dataset.jcAreas as Areas;
+        root.querySelectorAll("[data-jc-areas]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        render();
+        scheduleLog();
+      })
+    );
+
+    // CTA: hand the numbers to the audit form (rides to GHL via the `message` field)
+    // and flag the session converted in the log.
+    $("[data-jc-cta]").addEventListener("click", () => {
+      const o = compute();
+      const summary =
+        `Calculator: ${o.trade}, avg job ${money(o.jobValue)}, wants ${o.jobsWanted} more/mo, ` +
+        `wins ${Math.round(o.winRate * 100)}% of quotes, website: ${o.website}, areas: ${o.areas}. ` +
+        `Rec: ${PLANS[o.plan as keyof typeof PLANS]} + ~${money(o.budget)}/mo ads.`;
+      try { sessionStorage.setItem("af_calc", summary.slice(0, 400)); } catch { /* storage off */ }
+      if (interacted) { clearTimeout(logTimer); log(true); }
+    });
+
+    // Selected-state styling for the join toggles (aria-pressed drives it).
+    const style = document.createElement("style");
+    style.textContent = `#calculator [aria-pressed="true"]{background:var(--color-primary);color:var(--color-primary-content);border-color:var(--color-primary);}`;
+    document.head.appendChild(style);
+
+    render();
+  }
+  setupCalc();
+  document.addEventListener("astro:page-load", setupCalc);
+</script>

@@ -10,5 +10,15 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	// Anonymous tool-usage logging (job calculator → /api/tool-event).
+	// Schema: db/tool_events.sql. Query e.g.:
+	//   wrangler d1 execute hdweb-tools --remote --command "SELECT trade, COUNT(*) FROM tool_events GROUP BY trade"
+	"d1_databases": [
+		{
+			"binding": "TOOLS_DB",
+			"database_name": "hdweb-tools",
+			"database_id": "0861b8c1-dd8e-428d-92f8-8dd7d79fb973"
+		}
+	]
 }

@@ -7,7 +7,7 @@ interface Props {
   cta?: string;
   href?: string;
 }
-const { cta = "Get my free audit", href = "#audit" } = Astro.props;
+const { cta = "Get my free game plan", href = "#audit" } = Astro.props;
 ---
 <div class="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
   {PRICING.map((p, i) => (

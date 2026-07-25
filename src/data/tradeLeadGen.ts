@@ -71,10 +71,6 @@ export interface TradeLP {
    *  Only set this where a trade-specific video actually exists. */
   vsl?: string;
 
-  /** Optional hero image; falls back to the pipeline animation. */
-  heroImage?: string;
-  heroImageAlt?: string;
-
   /** Optional trade-specific FAQs appended to the shared set. */
   faqExtra?: TradeFaq[];
 }
@@ -91,13 +87,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Plumbing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked plumbing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked plumbing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For plumbing businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more plumbing jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't answer the phone with your hands full under a sink.",
 
@@ -155,13 +151,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Electrician Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked electrical jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked electrical jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For electrical businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more electrical jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't stop and quote a job with live wires in your hands.",
 
@@ -205,13 +201,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Roofing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked roofing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked roofing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For roofing businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more roofing jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't take a call when you're two storeys up on a roof.",
 
@@ -255,13 +251,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Building Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked building jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked building jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For building businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more building jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't price a new job when you're flat out running the current one.",
 
@@ -305,13 +301,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Painting Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked painting jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked painting jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For painting businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more painting jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't answer the phone with a brush in one hand and a wall half done.",
 
@@ -355,13 +351,13 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Heat Pump & HVAC Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked heat pump and HVAC jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies in 30 seconds, and follow-up that books the job. Free audit.",
+      "More booked heat pump and HVAC jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that books the job. Free game plan.",
 
     heroEyebrow: "For heat pump and HVAC businesses in NZ",
     heroHeadlineLead: "We get you",
     heroHeadlineMark: "more heat pump jobs.",
     heroSub:
-      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies in 30 seconds, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
+      "We build you a complete lead-to-job system: ads that reach ready-to-buy locals, a website that replies straight away, and follow-up that books the job. Real calls and quote requests, not vanity clicks.",
 
     painLine: "You can't return calls when you're up a ladder mounting a unit.",
 

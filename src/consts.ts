@@ -9,22 +9,69 @@ export const SITE = {
   location: "Hawke's Bay, NZ. Working with tradies NZ-wide",
 };
 
-export const NAV = [
-  { label: "Find Work", href: "/lead-generation" },
+// Google reviews badge (static by design, Matt 25/07/2026: no auto-update machinery).
+// Bump `count` by hand as reviews land; understating between bumps is the safe direction.
+// TODO(Matt): swap `url` for the exact Google profile/review link when you have it.
+export const REVIEWS = {
+  rating: "5.0",
+  count: 15,
+  url: "https://www.google.com/search?q=Hyper+Digital+Hawke%27s+Bay+reviews",
+};
+
+/**
+ * Navigation, single source for the header (desktop + mobile panel) and footer.
+ * `children` on a primary item renders as a dropdown on desktop and a link group
+ * in the mobile panel. Keep the top level at five labels.
+ */
+export type NavLink = { label: string; href: string };
+export type NavItem = NavLink & { children?: NavLink[] };
+
+export const NAV: NavItem[] = [
+  {
+    label: "Get more work",
+    href: "/lead-generation",
+    children: [
+      { label: "Google Ads", href: "/google-ads" },
+      { label: "Facebook Ads", href: "/facebook-ads" },
+      { label: "Lead Generation", href: "/lead-generation" },
+      // { label: "SEO & Local", href: "/seo" }, // lands with the /seo page build
+    ],
+  },
   { label: "Websites", href: "/websites" },
   { label: "Automation", href: "/ai-automation" },
   { label: "Results", href: "/results" },
   { label: "About", href: "/about" },
 ];
 
-// Trust stats — all confirmed true (16/06/2026)
+// Footer columns + the mobile panel's "Proof & company" group.
+export const NAV_SERVICES: NavLink[] = [
+  { label: "Google Ads", href: "/google-ads" },
+  { label: "Facebook Ads", href: "/facebook-ads" },
+  { label: "Lead Generation", href: "/lead-generation" },
+  { label: "Websites", href: "/websites" },
+  { label: "AI Automation", href: "/ai-automation" },
+];
+export const NAV_COMPANY: NavLink[] = [
+  { label: "Results", href: "/results" },
+  { label: "Insights", href: "/insights" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+// Trust stats. 107/49 confirmed by Matt 25/07/2026 ("40+" retired; check quarterly).
+// 107 = clients since 2019 (only grows, safe). The current-book figure (49) deliberately
+// does NOT appear here next to 107 — it lives in body copy only (capacity/exclusivity),
+// so the two numbers never invite subtraction. See SITE-REVIEW-2026-07-25.md §3.6.
 export const STATS = [
-  { value: "40+", label: "Kiwi businesses helped" },
+  { value: "107", label: "Kiwi businesses since 2019" },
   { value: "$1m+", label: "ad spend managed" },
   { value: "$4m+", label: "tracked client revenue" },
   { value: "4x", label: "return on ad spend*" },
-  { value: "2019", label: "in business since" },
+  { value: `★ ${REVIEWS.rating}`, label: `from ${REVIEWS.count} Google reviews` },
 ];
+
+// Current client count, body-copy use only (see note above). Confirmed 25/07/2026.
+export const CURRENT_CLIENTS = 49;
 
 // Fine print for the asterisked 4x stat, shown once in the footer (not under every trust
 // bar, where it was too distracting). The 4x figure is a deliberately conservative blended

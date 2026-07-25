@@ -13,7 +13,7 @@ import { SITE } from "../../consts";
 
 const title = "SEO Hawke's Bay | Local SEO for Napier & Hastings | Hyper Digital";
 const description =
-  "Local SEO for Hawke's Bay businesses. Rank in local Google searches, the map pack and AI answers across Napier, Hastings and Havelock North. Free SEO audit.";
+  "Local SEO for Hawke's Bay businesses. Rank in local Google searches, the map pack and AI answers across Napier, Hastings and Havelock North. Free SEO game plan.";
 
 const places = [
   { icon: "pin", title: "The map pack", body: "The three map results under the search bar take a huge share of local clicks. Your Google Business Profile, reviews and local signals decide whether you're in them." },
@@ -33,8 +33,8 @@ const work = [
 const faqs = [
   { q: "How long does SEO take to work?", a: "Local SEO usually shows movement in 2 to 3 months, with strong results in 6 to 12. That's the honest answer anyone should give you. If you need leads this month, Google Ads is the right tool while your SEO builds, and we run both." },
   { q: "Can you guarantee a number one ranking?", a: "No, and nobody honestly can, because Google doesn't sell guarantees to anyone. What we can show you is exactly what we're doing, what's moving and what it's costing per enquiry, every month, with no lock-in contract if we're not delivering." },
-  { q: "What does SEO cost?", a: "It depends on how competitive your services and area are, which is exactly what your free audit works out. For most local businesses SEO is bundled into our monthly plans from $497 +GST, alongside your website and ads, rather than sold as a standalone line item." },
-  { q: "Do you only work with tradies?", a: "Trades and home services are our specialty, but the same local SEO system works for any Hawke's Bay business that lives on local searches, from health to hospitality. If we don't think we're the right fit, we'll tell you in the audit." },
+  { q: "What does SEO cost?", a: "It depends on how competitive your services and area are, which is exactly what your free game plan works out. For most local businesses SEO is bundled into our monthly plans from $497 +GST, alongside your website and ads, rather than sold as a standalone line item." },
+  { q: "Do you only work with tradies?", a: "Trades and home services are our specialty, but the same local SEO system works for any Hawke's Bay business that lives on local searches, from health to hospitality. If we don't think we're the right fit, we'll tell you on the game plan call." },
   { q: "I'm already running Google Ads. Why bother with SEO?", a: "Ads stop the moment you stop paying. SEO compounds: the same searches that cost you per click start coming free, and businesses showing in the map pack, the organic results and the ads together win a disproportionate share of calls." },
   { q: "Which areas do you cover?", a: "We're based in Hawke's Bay and work with businesses in Napier, Hastings, Havelock North, Clive, Waipukurau and across Central Hawke's Bay, plus clients NZ-wide." },
 ];
@@ -76,7 +76,7 @@ const mockResults = [
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="text-center lg:text-left">
-        <Reveal instant instant>
+        <Reveal instant>
           <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
             <Icon name="pin" class="h-4 w-4" /> Local SEO, Hawke's Bay
           </span>
@@ -95,7 +95,7 @@ const mockResults = [
         </Reveal>
         <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
-            Get my free SEO audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free SEO game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </Reveal>
@@ -302,7 +302,7 @@ const mockResults = [
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm
-          title="Get your free SEO audit"
+          title="Get your free SEO game plan"
           lead="We'll show you where you rank in Hawke's Bay right now, what's holding you back, and what it would take to own your local searches."
         />
       </Reveal>
@@ -315,16 +315,16 @@ const mockResults = [
       <Reveal>
         <h2 class="text-4xl text-primary-content sm:text-5xl">Own your local searches.</h2>
         <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
-          Get your free SEO audit. We'll show you exactly where you sit in Hawke's Bay search
+          Get your free SEO game plan. We'll show you exactly where you sit in Hawke's Bay search
           results today, and what it takes to move up. No jargon, no obligation.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
-            Get my free SEO audit <Icon name="arrow-right" class="h-5 w-5" />
+            Get my free SEO game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
-        <p class="mt-7 text-sm text-primary-content/70">Free audit · Local team · No lock-in contracts</p>
+        <p class="mt-7 text-sm text-primary-content/70">Free game plan · Local team · No lock-in contracts</p>
       </Reveal>
     </div>
   </section>

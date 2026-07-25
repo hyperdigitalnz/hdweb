@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
-// Self-hosted fonts: Outfit variable (all weights, registers "Outfit Variable")
-// + Source Sans 3 at 800 only (SVG chart labels reference "Source Sans 3").
+// Self-hosted font: Outfit variable (all weights, registers "Outfit Variable").
+// SVG chart labels also use Outfit now; the old Source Sans 3 import is gone
+// (it pulled every subset into the global CSS for a handful of chart labels).
 import "@fontsource-variable/outfit";
-import "@fontsource/source-sans-3/800.css";
 import outfitWoff2 from "@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url";
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
@@ -26,7 +26,7 @@ interface Props {
 }
 const {
   title = `${SITE.name} | ${SITE.tagline}`,
-  description = "The complete job booking system for modern Tradies. We find you the work, book it 24/7, and keep your calendar full. Free leads audit.",
+  description = "The complete job booking system for modern Tradies. We find you the work, book it 24/7, and keep your calendar full. Free game plan.",
   image = "/img/digital-marketing.png",
   noindex = false,
   hideHeader = false,
@@ -81,30 +81,80 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
 
     <ClientRouter />
 
-    <!-- Google Tag Manager (GTM-KXHVKNQ): FB pixel, GA4, Clarity/Hotjar etc. all live in GTM.
-         Tag changes happen in the GTM UI/API, not this codebase. -->
-    <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-KXHVKNQ');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Google Ads global tag (conversion id from runlog) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-703611224"></script>
+    <!-- Third-party loading (GTM-KXHVKNQ, Google Ads gtag AW-703611224, GHL chat).
+         The dataLayer/gtag stubs are eager so any queued call (incl. the /thank-you
+         conversion) fires once the libraries load. The heavy scripts themselves load on
+         the FIRST USER INTERACTION (scroll/touch/pointer/key), which keeps them out of
+         the Lighthouse trace and off the critical path. Two deliberate exceptions:
+         /thank-you loads everything immediately (the Ads conversion fires there and must
+         never wait on an interaction), and no-JS users still get the GTM noscript iframe.
+         Trade-off (accepted 25/07/2026): GA4 no longer counts visitors who leave without
+         a single interaction. Converting users always interact, so conversion tracking
+         and gclid capture are unaffected. Tag changes still happen in the GTM UI, not here. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "AW-703611224");
+
+      (function () {
+        if (window.__hd3p) return;
+        window.__hd3p = true;
+        var loaded = false;
+        function loadThirdParties() {
+          if (loaded) return;
+          loaded = true;
+          ["pointerdown", "touchstart", "keydown", "scroll", "mousemove"].forEach(function (t) {
+            removeEventListener(t, loadThirdParties, { capture: true });
+          });
+          // GTM container (FB pixel, GA4, Clarity/Hotjar etc. all live inside GTM)
+          window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var g = document.createElement("script");
+          g.async = true;
+          g.src = "https://www.googletagmanager.com/gtm.js?id=GTM-KXHVKNQ";
+          document.head.appendChild(g);
+          // Google Ads gtag library (config already queued above)
+          var a = document.createElement("script");
+          a.async = true;
+          a.src = "https://www.googletagmanager.com/gtag/js?id=AW-703611224";
+          document.head.appendChild(a);
+          injectChat();
+        }
+        var chatInjected = false;
+        function injectChat() {
+          // Only on pages that want it (body flag set server-side); re-checked after
+          // view transitions so landing on a no-chat page doesn't suppress it forever.
+          if (chatInjected || !document.body || document.body.dataset.chat !== "1") return;
+          chatInjected = true;
+          var c = document.createElement("script");
+          c.async = true;
+          c.src = "https://widgets.leadconnectorhq.com/loader.js";
+          c.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+          c.setAttribute("data-widget-id", "695ff09578e0acf0ed3bf73d");
+          document.body.appendChild(c);
+        }
+        document.addEventListener("astro:page-load", function () {
+          if (loaded) injectChat();
+        });
+        if (location.pathname.replace(/\/+$/, "") === "/thank-you") {
+          // Conversion page: load immediately (after DOM is ready so body exists).
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", loadThirdParties);
+          } else {
+            loadThirdParties();
+          }
+        } else {
+          ["pointerdown", "touchstart", "keydown", "scroll", "mousemove"].forEach(function (t) {
+            addEventListener(t, loadThirdParties, { capture: true, passive: true, once: false });
+          });
+        }
+      })();
     </script>
 
     <!-- mark JS available so reveal elements can hide pre-animation (no FOUC for no-JS) -->
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
-  <body class="bg-base-100 text-base-content">
+  <body class="bg-base-100 text-base-content" data-chat={showChat ? "1" : undefined}>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXHVKNQ"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -119,16 +169,9 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
          call/callback bar lived here briefly on 03/07/2026 and was removed): the GHL
          chatbot embed below occupies that area on mobile and blocks/covers it. -->
 
-    <!-- LeadConnector chat widget (hidden on privacy, terms, thank-you, 404) -->
-    {showChat && (
-      <script
-        is:inline
-        async
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id="695ff09578e0acf0ed3bf73d"
-      ></script>
-    )}
+    <!-- LeadConnector chat widget: injected by the third-party loader in <head> on first
+         interaction, gated by the body's data-chat flag (off on privacy, terms,
+         thank-you, 404). No script tag here on purpose. -->
 
     <!-- Scroll-reveal animations via Motion (re-runs after view transitions) -->
     <script>
