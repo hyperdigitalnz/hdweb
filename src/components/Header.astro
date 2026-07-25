@@ -24,7 +24,7 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
     </a>
 
     <!-- desktop nav -->
-    <nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
+    <nav class="hidden items-center gap-6 lg:flex xl:gap-7" aria-label="Main">
       {NAV.map((item) =>
         item.children ? (
           <div class="dropdown dropdown-hover hd-drop">
@@ -36,7 +36,9 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
             >
               {item.label} <Icon name="chevron-down" class="hd-drop-chev h-3.5 w-3.5 transition-transform" />
             </a>
-            <ul class="dropdown-content menu z-[60] mt-2 w-52 rounded-box border border-white/10 bg-neutral p-2 shadow-xl">
+            <!-- No margin offset: a gap between trigger and panel breaks the hover path
+                 and the menu flickers shut on the way down. -->
+            <ul class="dropdown-content menu z-[60] w-52 rounded-box border border-white/10 bg-neutral p-2 shadow-xl">
               {item.children.map((c, i) => (
                 <li class="hd-drop-item" style={`--i:${i}`}>
                   <a href={c.href} class="text-neutral-content hover:text-primary">
@@ -58,19 +60,18 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
     </nav>
 
     <div class="flex items-center gap-2 sm:gap-3">
-      <!-- live open/closed pill, wide screens only -->
-      <span class="hd-status hidden items-center gap-1.5 text-xs font-semibold text-neutral-content/70 xl:inline-flex" data-nav-status style="display:none">
-        <span class="inline-block h-2 w-2 rounded-full bg-success" data-nav-dot></span>
-        <span data-nav-text></span>
-      </span>
-
-      <a href={SITE.phoneHref} class="hidden font-display text-xl tracking-wide sm:block">{SITE.phone}</a>
+      <!-- Phone number: shown on tablet (no nav links there) and from xl up. Hidden
+           lg→xl, where the five nav items + CTA already fill the row — showing it
+           there overflows the 1024px breakpoint. The open/closed status line lives
+           in the mobile panel only; the header has no room for it. -->
+      <a href={SITE.phoneHref} class="hidden font-display text-xl tracking-wide sm:block lg:hidden xl:block">{SITE.phone}</a>
       <!-- tap-to-call on phones, where the number text is hidden -->
       <a href={SITE.phoneHref} class="btn btn-ghost btn-sm btn-square sm:hidden" aria-label={`Call ${SITE.phone}`}>
         <Icon name="phone" class="h-5 w-5" />
       </a>
+      <!-- CTA label steps with available width -->
       <a href="/contact#audit" class="btn btn-primary btn-sm font-display text-base tracking-wide">
-        <span class="sm:hidden">Game plan</span><span class="hidden sm:inline">Get my free game plan</span>
+        <span class="sm:hidden">Game plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
       </a>
 
       <!-- mobile panel trigger -->
@@ -222,8 +223,18 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
   .hd-drop:focus-within .hd-drop-chev {
     transform: rotate(180deg);
   }
-  .hd-drop .dropdown-content {
+  /* Staggered item entrance on open, driven by the per-item --i custom property.
+     Resting (open) state is fully visible, so reduced-motion just shows the menu. */
+  .hd-drop .hd-drop-item {
+    opacity: 0;
+    transform: translateY(-4px);
     transition: opacity 0.2s ease, transform 0.2s ease;
+    transition-delay: calc(var(--i, 0) * 40ms);
+  }
+  .hd-drop:hover .hd-drop-item,
+  .hd-drop:focus-within .hd-drop-item {
+    opacity: 1;
+    transform: none;
   }
 </style>
 

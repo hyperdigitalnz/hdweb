@@ -75,10 +75,10 @@ vary).
 - A fast, mobile-first website built to convert (not a template)
 - Google Ads managed monthly with full search-term transparency
 - Local SEO and Google Business Profile optimisation
-- AI-powered email follow-up that replies to every website enquiry within 30 seconds, 24/7
-- A free audit before you spend a cent
+- AI-powered email follow-up that replies to every website enquiry instantly, 24/7
+- A free game plan before you spend a cent
 
-📞 [Get a free audit](/contact) or call 027 666 1973.
+📞 [Get a free game plan](/contact) or call 027 666 1973.
 
 ---
 
@@ -188,6 +188,6 @@ agencies. We only work with trades. Every dollar of ad spend we report is verifi
 client's own account. And every case study on our [results page](/results) links to the
 real numbers.
 
-If you want to see what we could do for your trade, [book a free audit](/contact). We'll
+If you want to see what we could do for your trade, [book a free game plan](/contact). We'll
 show you where your next jobs are coming from, and what they'll cost. No jargon, no
 obligation.

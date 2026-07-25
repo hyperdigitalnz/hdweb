@@ -49,5 +49,5 @@ the meantime costs more than it looks, and you have no data about which searches
 first isn't us upselling you; it's the fastest way to find out what works before you invest
 in ranking for it.
 
-If you want a straight answer for your own trade and area, [get a free audit](/contact) and
+If you want a straight answer for your own trade and area, [get a free game plan](/contact) and
 we'll show you the numbers.

@@ -120,7 +120,10 @@
    TEXT is always readable while gold fills/borders/buttons stay #cea46f everywhere. */
 :root, [data-theme="hyper"] { --gold-ink: #8a6432; }
 [data-theme="hyper-alt"] { --gold-ink: #b23f00; }  /* deep safety orange, 5.4:1 on white */
-.bg-brand-dark, .bg-brand-dark-2, .bg-neutral, .surface-2, .surface-3 {
+/* The attribute selector catches opacity variants like bg-neutral/95 (the header),
+   which are different class tokens and would otherwise miss the flip — leaving the
+   logo and nav hovers in dark ink gold on a near-black background. */
+.bg-brand-dark, .bg-brand-dark-2, .bg-neutral, [class*="bg-neutral/"], .surface-2, .surface-3 {
   --gold-ink: var(--color-primary);
 }
 /* Repoint the text utility only. Backgrounds (bg-primary), borders (border-primary)
