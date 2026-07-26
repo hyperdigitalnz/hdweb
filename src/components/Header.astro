@@ -65,13 +65,11 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
            there overflows the 1024px breakpoint. The open/closed status line lives
            in the mobile panel only; the header has no room for it. -->
       <a href={SITE.phoneHref} class="hidden font-display text-xl tracking-wide sm:block lg:hidden xl:block">{SITE.phone}</a>
-      <!-- tap-to-call on phones, where the number text is hidden -->
-      <a href={SITE.phoneHref} class="btn btn-ghost btn-sm btn-square sm:hidden" aria-label={`Call ${SITE.phone}`}>
-        <Icon name="phone" class="h-5 w-5" />
-      </a>
+      <!-- No tap-to-call icon on mobile (Matt, 26/07: too close to the CTA) — calling
+           is one tap away inside the panel's action pair instead. -->
       <!-- CTA label steps with available width -->
       <a href="/contact#audit" class="btn btn-primary btn-sm font-display text-base tracking-wide">
-        <span class="sm:hidden">Game plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
+        <span class="sm:hidden">Free plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
       </a>
 
       <!-- mobile panel trigger -->

@@ -124,7 +124,7 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
         function injectChat() {
           // Only on pages that want it (body flag set server-side); re-checked after
           // view transitions so landing on a no-chat page doesn't suppress it forever.
-          if (chatInjected || !document.body || document.body.dataset.chat !== "1") return;
+          if (chatInjected || !document.body || document.body.dataset.chatWidget !== "1") return;
           chatInjected = true;
           var c = document.createElement("script");
           c.async = true;
@@ -154,7 +154,8 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <!-- mark JS available so reveal elements can hide pre-animation (no FOUC for no-JS) -->
     <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
-  <body class="bg-base-100 text-base-content" data-chat={showChat ? "1" : undefined}>
+  <!-- data-chat-widget (not data-chat: that selector belongs to ChatDemo's bubbles) -->
+  <body class="bg-base-100 text-base-content" data-chat-widget={showChat ? "1" : undefined}>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXHVKNQ"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
