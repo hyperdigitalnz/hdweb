@@ -87,7 +87,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Plumbing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked plumbing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked plumbing jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For plumbing businesses in NZ",
     heroHeadlineLead: "We get you",
@@ -151,7 +151,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Electrician Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked electrical jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked electrical jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For electrical businesses in NZ",
     heroHeadlineLead: "We get you",
@@ -201,7 +201,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Roofing Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked roofing jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked roofing jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For roofing businesses in NZ",
     heroHeadlineLead: "We get you",
@@ -251,7 +251,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Building Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked building jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked building jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For building businesses in NZ",
     heroHeadlineLead: "We get you",
@@ -301,7 +301,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Painting Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked painting jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked painting jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For painting businesses in NZ",
     heroHeadlineLead: "We get you",
@@ -351,7 +351,7 @@ export const tradeLeadGen: Record<string, TradeLP> = {
 
     seoTitle: "Heat Pump & HVAC Leads That Book Jobs | Google Ads & Smart Sites | Hyper Digital",
     seoDescription:
-      "More booked heat pump and HVAC jobs from your phone. Google Ads that reach ready-to-buy locals, a site that replies straight away, and follow-up that turns enquiries into jobs. Free game plan.",
+      "More booked heat pump and HVAC jobs. Google Ads that reach ready-to-buy locals, a site that replies instantly, follow-up that wins the work. Free game plan.",
 
     heroEyebrow: "For heat pump and HVAC businesses in NZ",
     heroHeadlineLead: "We get you",
