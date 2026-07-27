@@ -1,6 +1,6 @@
 ---
 title: "Best Digital Marketing Agencies for NZ Tradies 2026"
-description: "An honest look at the agencies helping NZ trade businesses get more jobs online, backed by real results, not awards or promises."
+description: "A straight-up look at the agencies helping NZ trade businesses get more jobs online, backed by real results, not awards or promises."
 pubDate: 2026-07-16
 tags: ["Digital Marketing", "Tradies"]
 ---

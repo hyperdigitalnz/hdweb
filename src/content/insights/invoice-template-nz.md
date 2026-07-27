@@ -48,6 +48,11 @@ Not GST registered? You can't charge GST and you shouldn't show a GST number. Ch
 heading to "Invoice", delete the GST rows, and keep an eye on turnover: once it passes
 $60,000 in any 12-month period, registering stops being optional.
 
+*A quick note: we're a marketing agency, not accountants or lawyers. Everything in this
+article is general information, not tax, legal or financial advice. Rules change, so
+check the current requirements with [IRD](https://www.ird.govt.nz) or your accountant
+before relying on them.*
+
 ## How to fill it in: a worked tradie example
 
 The template ships with a hot water cylinder replacement as the example, because a real
@@ -65,7 +70,7 @@ job makes the layout obvious:
 Three habits that make this work:
 
 1. **Split labour and materials.** Customers dispute vague totals; they rarely dispute an
-   itemised list. It also makes your own job costing honest.
+   itemised list. It also keeps your own job costing accurate.
 2. **Number invoices in sequence** (0047, 0048, 0049). It's not a legal requirement, but
    your accountant will thank you and it makes chasing payment unambiguous.
 3. **Describe the work like the customer would.** "Replace hot water cylinder, upstairs
@@ -101,7 +106,7 @@ everywhere:
 
 ## When a template stops being enough
 
-Honest answer: if you send a handful of invoices a month, this template plus a spreadsheet
+Straight answer: if you send a handful of invoices a month, this template plus a spreadsheet
 is genuinely fine. Don't let anyone sell you software you don't need yet.
 
 Once you're juggling ten or more jobs a month, quoting, invoicing and chasing payments by

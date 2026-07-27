@@ -23,7 +23,7 @@ export const PRICING: PricingTier[] = [
       "Smart website with instant lead replies (SEO & AEO optimised)",
       "Google Ads management (one core service)",
       "Local SEO & Google Business Profile optimisation",
-      "AI chat: qualifies the job and books it in",
+      "AI chat: captures job details, books visits and call backs",
       "Automated email follow-ups",
       "5-star review funnel",
       "Monthly reporting",
