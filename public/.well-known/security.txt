@@ -1,0 +1,6 @@
+# Security contact for hyperdigital.nz (RFC 9116).
+# Bump Expires at least once a year, or scanners flag the file as stale.
+Contact: mailto:sales@hyperdigital.nz
+Expires: 2027-07-28T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://hyperdigital.nz/.well-known/security.txt

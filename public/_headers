@@ -17,3 +17,9 @@
 # Cache static media for a week.
 /img/*
   Cache-Control: public, max-age=604800
+
+# Feed: served as a static asset, so set the feed MIME type explicitly
+# (X-Content-Type-Options: nosniff means readers get no second guess).
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  Cache-Control: public, max-age=3600

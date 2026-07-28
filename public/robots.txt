@@ -1,4 +1,15 @@
+# hyperdigital.nz
+# AI crawlers are deliberately allowed: being quotable in ChatGPT, Perplexity and
+# Google AI Overviews is a channel, not a leak. /llms.txt is the curated summary.
+
+# /thank-you and /links-in-bio are deliberately NOT disallowed here. Both send
+# `noindex, nofollow` in their HTML (Layout's `noindex` prop), and a Disallow would
+# stop crawlers fetching the page and reading that tag, which is what actually gets
+# a URL dropped. Blocked-but-linked URLs can still be indexed as bare links.
+# Only /api/ is disallowed: it returns JSON, so it can carry no meta robots tag.
+
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://hyperdigital.nz/sitemap-index.xml

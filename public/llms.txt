@@ -35,7 +35,19 @@ We focus on real outcomes for trade businesses: more phone calls and booked jobs
 
 - [About Hyper Digital](https://hyperdigital.nz/about): Run by founders Matt and Ryan. When you ring, you get one of the owners.
 - [Insights](https://hyperdigital.nz/insights): Straight-talking marketing advice for NZ tradies.
+- [Insights RSS feed](https://hyperdigital.nz/rss.xml): Machine-readable feed of every published article.
 - [Contact / free game plan](https://hyperdigital.nz/contact): Book a free, no-obligation 20-minute game plan call: real numbers on where your next jobs are coming from and what they'll cost.
+
+## Insights and free tools
+
+Articles and templates written for NZ trade businesses. Keep this list in step with
+src/content/insights/ (published posts only, no drafts).
+
+- [Google Ads vs SEO for tradies](https://hyperdigital.nz/insights/google-ads-vs-seo-for-tradies): Ads get the phone ringing this month, SEO makes it cheaper every month after. How to decide which comes first.
+- [Best digital marketing agencies for NZ tradies 2026](https://hyperdigital.nz/insights/best-digital-marketing-agencies-nz-tradies): An honest look at the agencies working with NZ trade businesses, judged on results rather than awards.
+- [Free invoice template NZ (Word + PDF)](https://hyperdigital.nz/insights/invoice-template-nz): Free NZ invoice template with GST handled correctly, plus what legally has to be on a tradie's invoice.
+- [Digital marketing in Hawke's Bay](https://hyperdigital.nz/insights/digital-marketing-hawkes-bay): Local guide to marketing a trade or local business in Napier, Hastings and the wider Bay.
+- [SEO in Hawke's Bay](https://hyperdigital.nz/insights/seo-hawkes-bay): How local search works in the Bay and what actually moves a trade business up the map pack.
 
 ## Legal
 
