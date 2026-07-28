@@ -8,7 +8,7 @@ draft: true
 
 Ask Google what its ads cost and you'll get a calculator. Ask an agency and you'll often
 get "it depends" followed by a pitch. Both answers are useless when you're trying to work
-out whether $10 a day is brave or stupid for a plumbing business in Napier.
+out whether $10 a day is brave or stupid for a plumbing business in Wellington.
 
 So here are real numbers. We manage Google Ads for dozens of NZ trade and local
 businesses, and below is what they actually pay per click, by trade, from our own
@@ -16,35 +16,37 @@ accounts. No other NZ agency we know of publishes this.
 
 ## What NZ trade businesses actually pay per click
 
-Real averages from the NZ Google Ads accounts we manage: Search campaigns only, 12 months
-to July 2026. Figures exclude GST. Every account is different; treat these as a guide,
-not a promise.
+The Central North Island column is real averages from the NZ Google Ads accounts we
+manage: Search campaigns only, 12 months to July 2026, GST-exclusive. The Metros column
+is estimated from that same data using Google's own bid figures for Auckland, Wellington
+and Christchurch (how, below the table). Every account is different; treat both as a
+guide, not a promise.
 
-| Trade | Cost per click (NZD) |
-| --- | --- |
-| Automotive services | $0.65 to $1.95 |
-| HVAC & refrigeration | $0.95 to $1.05 |
-| Pumps & water treatment | $1.20 to $2.10 |
-| House relocation | $2.15 to $2.40 |
-| Garage doors | $2.15 to $2.30 |
-| Plumbing & gasfitting | $2.20 to $5.10 |
-| Electrical | $2.20 to $6.50 |
-| Painting & decorating | $2.80 to $4.80 |
-| Roofing & spouting | $3.10 to $4.00 |
-| Solar | ~$3.10 |
-| Exterior house washing | $3.70 to $4.20 |
-| Landscaping & outdoor living | $3.80 to $6.00 |
-| Marketing services (our own ads, for contrast) | $11 to $13 |
+| Trade | Central North Island | Metros (estimated) |
+| --- | --- | --- |
+| Automotive services | $0.65 to $1.95 | $0.80 to $3.50 |
+| HVAC & refrigeration | $0.95 to $1.05 | $1.15 to $1.90 |
+| Pumps & water treatment | $1.20 to $2.10 | $1.45 to $3.80 |
+| House relocation | $2.15 to $2.40 | $2.60 to $4.30 |
+| Garage doors | $2.15 to $2.30 | $2.60 to $4.15 |
+| Plumbing & gasfitting | $2.20 to $5.10 | $2.65 to $9.20 |
+| Electrical | $2.20 to $6.50 | $2.65 to $11.70 |
+| Painting & decorating | $2.80 to $4.80 | $3.35 to $8.65 |
+| Roofing & spouting | $3.10 to $4.00 | $3.70 to $7.20 |
+| Solar | ~$3.10 | $3.70 to $5.60 |
+| Exterior house washing | $3.70 to $4.20 | $4.45 to $7.55 |
+| Landscaping & outdoor living | $3.80 to $6.00 | $4.55 to $10.80 |
+| Marketing services (our own ads, for contrast) | $11 to $13 | $11 to $13 |
 
 Yes, the dearest clicks in that whole table are our own. Marketing is a brutally
 competitive auction, which is also why we don't flinch at paying for it: the maths still
 works when the job behind the click is worth enough.
 
-**The regional note that matters:** most of these accounts run in regional NZ, Hawke's
-Bay and similar. The same trade costs more in the main centres. Google's own bid
-estimates for identical searches run roughly 35 to 80% higher in Auckland than in
-Hawke's Bay, and roughly 20 to 30% higher in Wellington and Christchurch. If you're in a
-metro, read the table with that loading on top.
+**How the Metros column is built:** our accounts mostly run in the central North Island,
+so that column is measured. For the main centres we applied the gap Google's own bid
+estimates show for identical searches: roughly 20 to 30% higher in Wellington and
+Christchurch, and 35 to 80% higher in Auckland. That's also why the metro ranges are
+wide: Auckland lives at the top of them, Wellington and Christchurch nearer the bottom.
 
 ## How Google Ads pricing works in plain English
 
@@ -137,10 +139,10 @@ covers when a slower, cheaper channel makes more sense first.
 
 ### How much do Google Ads cost in NZ?
 
-For trade and local services, most clicks cost between $1 and $6.50 in regional NZ
-(see the table above for your trade), with the main centres 20 to 80% higher. Total
-cost is your daily media budget, from around $300 a month, plus management if someone
-runs it for you.
+For trade and local services, most clicks cost between $1 and $6.50 across the central
+North Island accounts we manage, and roughly 20 to 80% more in Auckland, Wellington and
+Christchurch (full table above). Total cost is your daily media budget, from around $300
+a month, plus management if someone runs it for you.
 
 ### Is it worth paying for Google Ads?
 
