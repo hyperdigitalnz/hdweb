@@ -3,7 +3,6 @@ title: "How Much Does a Website Cost in NZ? (2026 Prices)"
 description: "Real 2026 website prices in NZ: what DIY builders, freelancers and agencies charge, what you get at each price, and the ongoing costs nobody mentions."
 pubDate: 2026-07-29
 tags: ["Websites", "Pricing"]
-draft: true
 ---
 
 Ask three companies what a website costs in New Zealand and you'll get three numbers so
