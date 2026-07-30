@@ -3,7 +3,6 @@ title: "Free Quote Template NZ for Tradies (Word, PDF + How to Quote)"
 description: "Free NZ quote template built for trade businesses, plus how to price a job properly: charge-out rates, margin on materials and terms that protect you."
 pubDate: 2026-07-31
 tags: ["Free template", "Business admin"]
-draft: true
 ---
 
 A quote does two jobs at once. It wins the work, and it decides whether that work makes
