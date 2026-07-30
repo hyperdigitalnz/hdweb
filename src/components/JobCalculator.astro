@@ -11,6 +11,7 @@
 //  - Logging is anonymous: inputs and outputs only, no name/contact fields exist here.
 import Reveal from "./Reveal.astro";
 import Icon from "./Icon.astro";
+import { SITE } from "../consts";
 ---
 <section id="calculator" class="scroll-mt-24 bg-brand-dark text-neutral-content">
   <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-24">
@@ -142,6 +143,11 @@ import Icon from "./Icon.astro";
             <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide" data-jc-cta>
               Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
             </a>
+            {/* Phone-first visitors get their native gesture right at the decision
+                moment, not 5,000px later in the final band. */}
+            <a href={SITE.phoneHref} class="btn btn-outline btn-lg mt-3 w-full border-white/40 font-display text-lg tracking-wide text-neutral-content hover:border-white hover:bg-white hover:text-neutral">
+              Or call {SITE.phone}
+            </a>
           </div>
           <noscript><p class="mt-3 text-center text-xs text-neutral-content/60">Turn on JavaScript to use the sliders, or just book the call and we'll run the numbers with you.</p></noscript>
         </div>
@@ -160,7 +166,10 @@ import Icon from "./Icon.astro";
     painter: 6000, hvac: 3500, other: 2000,
   };
   // Verifiable CPL ranges only (client results). Everything else: real numbers on the call.
-  // Labels complete the sentence "cost per lead, <label>".
+  // Labels complete the sentence "cost per lead, <label>". Roofer's ~$20 (HB Roofer
+  // study) confirmed by Matt 31/07/2026: real account data, kept even though no roofing
+  // case study is published on the site yet, so its label says "results", never
+  // "published". Upgrade the label if/when the roofing case study goes live.
   const PUBLISHED_CPL: Record<string, { lo: number; hi: number; label: string } | undefined> = {
     plumber: { lo: 13, hi: 17, label: "from our published plumbing results" },
     roofer: { lo: 20, hi: 20, label: "from our Hawke's Bay roofing results" },

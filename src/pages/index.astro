@@ -702,9 +702,14 @@ const faqs = [
         </div>
       </Reveal>
 
-      <Reveal delay={0.3} class="mt-10 text-center">
-        <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
+      {/* Paired phone action: calls count as conversions and the phone path was
+          otherwise invisible on mobile until the final band (critique 31/07). */}
+      <Reveal delay={0.3} class="mt-10 flex flex-col flex-wrap justify-center gap-3 text-center sm:flex-row">
+        <a href="#audit" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide sm:w-auto">
           Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
+        <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary font-display text-lg tracking-wide text-primary hover:bg-primary hover:text-primary-content sm:w-auto">
+          Or call {SITE.phone}
         </a>
       </Reveal>
     </div>
@@ -763,7 +768,10 @@ const faqs = [
   <!-- Rotating trade in the hero headline + count-up trust numbers -->
   <script>
     import { animate, inView } from "motion";
+    import { TRADE_JOBS } from "../data/bookedWeek";
 
+    // Must match TRADE_JOBS keys: the BookedWeek planner follows the rotating trade
+    // so the hero never says "Electricians" over a plumber's diary (critique 31/07).
     const TRADES = [
       "Electricians", "Plumbers", "Roofers", "Builders",
       "Painters", "Landscapers", "Drainlayers", "Concreters",
@@ -775,6 +783,18 @@ const faqs = [
       const el = document.querySelector<HTMLElement>("[data-rotate]");
       if (!el) return;
       el.textContent = TRADES[0];
+      // SSR renders DEFAULT_TRADE (= TRADES[0]) in the planner, so no initial sync
+      // is needed; reduced-motion returns before the interval and both stay put.
+      const rows = document.querySelector<HTMLElement>("[data-bw-rows]");
+      const titleEls = Array.from(document.querySelectorAll<HTMLElement>("[data-bw-title]"));
+      const applyTrade = (trade: string) => {
+        const jobs = TRADE_JOBS[trade];
+        if (!jobs) return;
+        titleEls.forEach((t) => {
+          const i = parseInt(t.dataset.bwTitle ?? "", 10);
+          if (jobs[i]) t.textContent = jobs[i];
+        });
+      };
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -782,9 +802,14 @@ const faqs = [
       clearInterval(rotateTimer);
       rotateTimer = window.setInterval(() => {
         const out = animate(el, { opacity: [1, 0], transform: ["translateY(0px)", "translateY(-14px)"] }, { duration: 0.3, ease: "easeIn" });
+        // The planner dips with the outgoing word and returns with the new one,
+        // so the whole first viewport changes trade as a single beat.
+        if (rows) rows.style.opacity = "0.35";
         out.finished.then(() => {
           idx = (idx + 1) % TRADES.length;
           el.textContent = TRADES[idx];
+          applyTrade(TRADES[idx]);
+          if (rows) rows.style.opacity = "1";
           animate(el, { opacity: [0, 1], transform: ["translateY(14px)", "translateY(0px)"] }, { duration: 0.45, ease: [0.16, 1, 0.3, 1] });
         });
       }, 3000);

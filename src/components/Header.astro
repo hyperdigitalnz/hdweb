@@ -8,6 +8,11 @@ import { tradeLeadGen } from "../data/tradeLeadGen";
 import Icon from "./Icon.astro";
 
 const dropdown = NAV.filter((i) => i.children);
+
+// The homepage carries the AuditForm one anchor away; a full navigation to
+// /contact#audit from there was the most expensive route to a form already on
+// the page (and discarded scroll context). Other pages keep the contact route.
+const ctaHref = Astro.url.pathname === "/" ? "#audit" : "/contact#audit";
 const tradeChips = Object.values(tradeLeadGen).map((t) => ({
   label: t.tradePlural.charAt(0).toUpperCase() + t.tradePlural.slice(1),
   href: `/${t.slug}`,
@@ -68,7 +73,7 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
       <!-- No tap-to-call icon on mobile (Matt, 26/07: too close to the CTA) — calling
            is one tap away inside the panel's action pair instead. -->
       <!-- CTA label steps with available width -->
-      <a href="/contact#audit" class="btn btn-primary btn-sm font-display text-base tracking-wide">
+      <a href={ctaHref} class="btn btn-primary btn-sm font-display text-base tracking-wide">
         <span class="sm:hidden">Game plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
       </a>
 
@@ -111,7 +116,7 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
         </a>
         <!-- "Game plan" (not "Free game plan"): the longer label wraps to two lines
              inside this half-width pill at 390px. Matches the header CTA label. -->
-        <a href="/contact#audit" class="btn btn-primary btn-shine font-display text-base tracking-wide">
+        <a href={ctaHref} class="btn btn-primary btn-shine font-display text-base tracking-wide">
           Game plan <Icon name="arrow-right" class="h-4 w-4" />
         </a>
       </div>
@@ -259,6 +264,10 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
     // Click on the backdrop (the dialog element itself, outside the inner sheet) closes.
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) dialog.close();
+      // Same-page anchor links (the homepage CTA → #audit) trigger no page swap,
+      // so the modal must close itself or it would sit over the scrolled-to form.
+      const anchor = (e.target as HTMLElement).closest?.('a[href^="#"]');
+      if (anchor) dialog.close();
     });
   }
 

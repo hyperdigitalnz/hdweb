@@ -114,6 +114,26 @@ import Turnstile from "./Turnstile.astro";
     document.querySelectorAll<HTMLFormElement>(".audit-form").forEach((form) => {
       if (form.dataset.wired) return;
       form.dataset.wired = "1";
+
+      // Gate submit on Turnstile readiness: the api.js loader is deferred, so a fast
+      // submitter on a slow connection could otherwise post without a token and get a
+      // generic failure. JS-only by design (no-JS keeps a live button and the server
+      // now redirects failures to an explanatory notice). The 8s fallback re-enables
+      // the button if the Turnstile script never arrives (blocked/offline), so the
+      // form is never bricked; the server-side check still has the final say.
+      const btn0 = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (btn0 && form.querySelector(".cf-turnstile")) {
+        const readyLabel = btn0.textContent;
+        const setReady = (ready: boolean) => {
+          btn0.disabled = !ready;
+          btn0.textContent = ready ? readyLabel : "Loading secure check…";
+        };
+        setReady(false);
+        const fallback = window.setTimeout(() => setReady(true), 8000);
+        form.addEventListener("turnstile:token", () => { clearTimeout(fallback); setReady(true); });
+        form.addEventListener("turnstile:expired", () => setReady(false));
+      }
+
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const msg = form.querySelector<HTMLElement>(".form-msg");

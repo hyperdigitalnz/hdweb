@@ -13,7 +13,14 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   // page no matter how many forms include this component. Each rendered widget
   // injects its own cf-turnstile-response hidden input into its own form.
   type TurnstileApi = {
-    render: (el: HTMLElement, opts: { sitekey: string | null }) => void;
+    render: (
+      el: HTMLElement,
+      opts: {
+        sitekey: string | null;
+        callback?: (token: string) => void;
+        "expired-callback"?: () => void;
+      }
+    ) => void;
     reset?: (el?: HTMLElement | string) => void;
   };
   const w = window as unknown as {
@@ -30,7 +37,13 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     }
     els.forEach((el) => {
       if (el.dataset.rendered) return;
-      w.turnstile!.render(el, { sitekey: el.getAttribute("data-sitekey") });
+      // Bubbling events let the host form gate its submit button on token
+      // readiness (AuditForm disables submit until `turnstile:token` arrives).
+      w.turnstile!.render(el, {
+        sitekey: el.getAttribute("data-sitekey"),
+        callback: () => el.dispatchEvent(new CustomEvent("turnstile:token", { bubbles: true })),
+        "expired-callback": () => el.dispatchEvent(new CustomEvent("turnstile:expired", { bubbles: true })),
+      });
       el.dataset.rendered = "1";
     });
   }

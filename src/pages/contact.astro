@@ -6,7 +6,7 @@ import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
 
-const title = "Contact Hyper Digital | Get Your Free Audit";
+const title = "Contact Hyper Digital | Get Your Free Game Plan";
 const description =
   "Get your free, no-obligation game plan. Call 027 666 1973 or send us a few details and we'll show you where your next jobs are coming from.";
 
@@ -90,6 +90,31 @@ const localBusinessSchema = {
       </div>
 
       <Reveal instant id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <!-- Failed no-JS submissions 303 here with a fragment; the CSS :target rule
+             reveals the matching notice. Pure CSS on purpose: the visitor who hits
+             these paths is exactly the one without JavaScript. -->
+        <style>
+          /* Not the `hidden` attribute: Tailwind's preflight styles [hidden] with
+             !important, which would beat the :target reveal. */
+          .form-issue { display: none; }
+          .form-issue:target { display: block; }
+        </style>
+        <div id="form-couldnt-verify" class="form-issue mb-4 rounded-box border border-error/40 bg-error/5 p-4 text-sm">
+          <p class="font-bold">Your message didn't come through.</p>
+          <p class="mt-1 text-base-content/70">
+            Our security check couldn't confirm you're a person (it needs JavaScript turned on).
+            Try again below, or skip the form and call
+            <a class="link font-semibold whitespace-nowrap" href={SITE.phoneHref}>{SITE.phone}</a>.
+          </p>
+        </div>
+        <div id="form-missing-details" class="form-issue mb-4 rounded-box border border-error/40 bg-error/5 p-4 text-sm">
+          <p class="font-bold">Your message didn't come through.</p>
+          <p class="mt-1 text-base-content/70">
+            A name, email and phone number are all needed so we can get back to you. Give it
+            another go below, or just call
+            <a class="link font-semibold whitespace-nowrap" href={SITE.phoneHref}>{SITE.phone}</a>.
+          </p>
+        </div>
         <AuditForm
           title="Book your free game plan"
           lead="Tell us about your business and we'll show you where your next jobs are coming from, and what they'll cost."

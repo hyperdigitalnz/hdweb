@@ -53,7 +53,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       });
       const outcome = (await verify.json()) as { success: boolean };
       if (!outcome.success) {
-        return wantsHtml ? redirect("/contact") : json({ ok: false, error: "bot" }, 400);
+        // The fragment targets a CSS :target notice on /contact, so even a no-JS
+        // visitor (who can never mint a Turnstile token) is TOLD what happened
+        // instead of landing on a bare contact page with their input gone.
+        return wantsHtml ? redirect("/contact#form-couldnt-verify") : json({ ok: false, error: "bot" }, 400);
       }
     }
 
@@ -68,7 +71,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // 4. Reject obviously incomplete submissions.
     for (const key of REQUIRED_AUDIT) {
-      if (!lead[key]) return wantsHtml ? redirect("/contact") : json({ ok: false, error: "missing" }, 400);
+      if (!lead[key]) return wantsHtml ? redirect("/contact#form-missing-details") : json({ ok: false, error: "missing" }, 400);
     }
 
     lead.source = "website";

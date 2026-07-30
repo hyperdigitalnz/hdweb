@@ -10,16 +10,22 @@
 //    (animation is pure CSS; the global reduced-motion clamp zeroes durations+delays).
 //  - `order` staggers arrivals out of row order so it reads like bookings landing,
 //    not rows painting in.
-type Job = { t: string; m: string; order: number; isNew?: boolean };
-// Locations kept anonymous on purpose (Matt, 30/07/2026): no suburbs, so the example
-// week never reads as a real client's diary or pins the business to one region.
-const week: { day: string; jobs: Job[] }[] = [
-  { day: "Mon", jobs: [{ t: "Kitchen re-pipe", m: "9:00am", order: 0 }, { t: "Leaking mixer", m: "1:30pm", order: 3 }] },
-  { day: "Tue", jobs: [{ t: "Hot water cylinder", m: "8:00am", order: 1 }, { t: "Bathroom rough-in", m: "12:00pm", order: 6 }] },
-  { day: "Wed", jobs: [{ t: "Blocked drain", m: "8:30am", order: 4 }, { t: "Gas hob install", m: "2:00pm", order: 8 }] },
-  { day: "Thu", jobs: [{ t: "Burst pipe", m: "7:30am", order: 2 }, { t: "New build quote", m: "3:00pm", order: 9, isNew: true }] },
-  { day: "Fri", jobs: [{ t: "Re-pipe, day two", m: "8:00am", order: 5 }, { t: "Cylinder swap", m: "1:00pm", order: 7 }] },
-  { day: "Sat", jobs: [{ t: "Emergency callout", m: "9:00am", order: 10 }] },
+//  - Job titles come from TRADE_JOBS (src/data/bookedWeek.ts) and follow the H1's
+//    rotating trade: the rotator script in index.astro swaps [data-bw-title] text
+//    keyed by slot index `i`. SSR renders DEFAULT_TRADE, matching the H1's SSR word,
+//    so no-JS/reduced-motion visitors see one consistent trade.
+//  - Locations kept anonymous on purpose (Matt, 30/07/2026): no suburbs, so the
+//    example week never reads as a real client's diary or pins us to one region.
+import { TRADE_JOBS, DEFAULT_TRADE } from "../data/bookedWeek";
+const titles = TRADE_JOBS[DEFAULT_TRADE];
+type Slot = { i: number; m: string; order: number; isNew?: boolean };
+const week: { day: string; jobs: Slot[] }[] = [
+  { day: "Mon", jobs: [{ i: 0, m: "9:00am", order: 0 }, { i: 1, m: "1:30pm", order: 3 }] },
+  { day: "Tue", jobs: [{ i: 2, m: "8:00am", order: 1 }, { i: 3, m: "12:00pm", order: 6 }] },
+  { day: "Wed", jobs: [{ i: 4, m: "8:30am", order: 4 }, { i: 5, m: "2:00pm", order: 8 }] },
+  { day: "Thu", jobs: [{ i: 6, m: "7:30am", order: 2 }, { i: 7, m: "3:00pm", order: 9, isNew: true }] },
+  { day: "Fri", jobs: [{ i: 8, m: "8:00am", order: 5 }, { i: 9, m: "1:00pm", order: 7 }] },
+  { day: "Sat", jobs: [{ i: 10, m: "9:00am", order: 10 }] },
 ];
 const delay = (order: number) => (0.35 + order * 0.28).toFixed(2) + "s";
 ---
@@ -38,14 +44,14 @@ const delay = (order: number) => (0.35 + order * 0.28).toFixed(2) + "s";
       </div>
 
       <!-- week rows: the row/slot hairlines are the workshop grid doing a literal job -->
-      <div class="rounded-xl bg-black/30 p-2.5">
+      <div class="rounded-xl bg-black/30 p-2.5 transition-opacity duration-300" data-bw-rows>
         {week.map((d) => (
           <div class="flex items-stretch gap-2 border-t border-white/10 py-2 first:border-t-0 first:pt-0 last:pb-0">
             <span class="w-9 shrink-0 pt-1.5 font-display text-xs font-bold uppercase tracking-wider text-neutral-content/50">{d.day}</span>
             <div class="grid min-w-0 flex-1 grid-cols-2 gap-2">
               {d.jobs.map((j) => (
                 <div class:list={["bw-job min-w-0 rounded-lg bg-primary px-2.5 py-1.5 text-primary-content", j.isNew && "bw-new"]} style={`--d: ${delay(j.order)}`}>
-                  <p class="text-xs font-bold leading-tight">{j.t}</p>
+                  <p class="text-xs font-bold leading-tight" data-bw-title={j.i}>{titles[j.i]}</p>
                   <p class="mt-0.5 text-xs leading-tight opacity-70">{j.m}</p>
                 </div>
               ))}
