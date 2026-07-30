@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T12:00:00+12:00",
+  "title": "Design System: Hyper Digital",
+  "extensions": {
+    "colorMeta": {
+      "worksite-gold": {
+        "role": "primary",
+        "displayName": "Worksite Gold",
+        "canonical": "#cea46f",
+        "tonalRamp": ["#2a2012", "#4a3820", "#6b512c", "#8a6432", "#a8854f", "#cea46f", "#e6b97a", "#f7e6c8"]
+      },
+      "gold-ink": {
+        "role": "primary",
+        "displayName": "Gold Ink",
+        "canonical": "#8a6432",
+        "tonalRamp": ["#2a2012", "#4a3820", "#6b512c", "#8a6432", "#a8854f", "#cea46f", "#e6b97a", "#f7e6c8"]
+      },
+      "deep-gold": {
+        "role": "primary",
+        "displayName": "Deep Gold",
+        "canonical": "#b88a52",
+        "tonalRamp": ["#2a2012", "#4a3820", "#6b512c", "#8a6432", "#b88a52", "#cea46f", "#e6b97a", "#f7e6c8"]
+      },
+      "light-gold": {
+        "role": "primary",
+        "displayName": "Light Gold",
+        "canonical": "#e6b97a",
+        "tonalRamp": ["#2a2012", "#4a3820", "#6b512c", "#8a6432", "#a8854f", "#cea46f", "#e6b97a", "#f7e6c8"]
+      },
+      "midnight-black": {
+        "role": "neutral",
+        "displayName": "Midnight Black",
+        "canonical": "#0c0b0a",
+        "tonalRamp": ["#0c0b0a", "#141210", "#1c1916", "#2e2a25", "#4a443c", "#77705f", "#b3ab9c", "#e6e1d9"]
+      },
+      "midnight-lifted": {
+        "role": "neutral",
+        "displayName": "Midnight Lifted",
+        "canonical": "#141210",
+        "tonalRamp": ["#0c0b0a", "#141210", "#1c1916", "#2e2a25", "#4a443c", "#77705f", "#b3ab9c", "#e6e1d9"]
+      },
+      "midnight-raised": {
+        "role": "neutral",
+        "displayName": "Midnight Raised",
+        "canonical": "#1c1916",
+        "tonalRamp": ["#0c0b0a", "#141210", "#1c1916", "#2e2a25", "#4a443c", "#77705f", "#b3ab9c", "#e6e1d9"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#1c1916", "#4a443c", "#77705f", "#a39a8a", "#c4bcae", "#e6e1d9", "#f4f2ef", "#ffffff"]
+      },
+      "warm-stone": {
+        "role": "neutral",
+        "displayName": "Warm Stone",
+        "canonical": "#f4f2ef",
+        "tonalRamp": ["#1c1916", "#4a443c", "#77705f", "#a39a8a", "#c4bcae", "#e6e1d9", "#f4f2ef", "#ffffff"]
+      },
+      "sand": {
+        "role": "neutral",
+        "displayName": "Sand",
+        "canonical": "#e6e1d9",
+        "tonalRamp": ["#1c1916", "#4a443c", "#77705f", "#a39a8a", "#c4bcae", "#e6e1d9", "#f4f2ef", "#ffffff"]
+      },
+      "off-white": {
+        "role": "neutral",
+        "displayName": "Off-White",
+        "canonical": "#faf8f5",
+        "tonalRamp": ["#1c1916", "#4a443c", "#77705f", "#a39a8a", "#c4bcae", "#e6e1d9", "#faf8f5", "#ffffff"]
+      },
+      "success-green": {
+        "role": "functional",
+        "displayName": "Success Green",
+        "canonical": "#22c55e",
+        "tonalRamp": ["#052e16", "#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#bbf7d0"]
+      },
+      "error-red": {
+        "role": "functional",
+        "displayName": "Error Red",
+        "canonical": "#ef4444",
+        "tonalRamp": ["#450a0a", "#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#f87171", "#fecaca"]
+      },
+      "info-blue": {
+        "role": "functional",
+        "displayName": "Info Blue",
+        "canonical": "#3b82f6",
+        "tonalRamp": ["#172554", "#1e3a8a", "#1d4ed8", "#2563eb", "#3b82f6", "#60a5fa", "#93c5fd", "#dbeafe"]
+      },
+      "warning-amber": {
+        "role": "functional",
+        "displayName": "Warning Amber",
+        "canonical": "#f59e0b",
+        "tonalRamp": ["#1c1207", "#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page hero H1 only; steps 2.25rem -> 3.75rem (sm) -> 4.5rem (xl). One marked gold phrase per hero." },
+      "headline": { "displayName": "Headline", "purpose": "Section H2s, preceded by an eyebrow; steps 1.875rem -> 3rem (sm)." },
+      "title": { "displayName": "Title", "purpose": "Card titles, stat values, CTA labels (with tracking-wide 0.025em override on buttons)." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy; secondary copy at ~70% opacity of the surface content colour." },
+      "label": { "displayName": "Label / Eyebrow", "purpose": "UPPERCASE section kicker in gold ink; also category chips at 0.7rem." }
+    },
+    "shadows": [
+      { "name": "card-hover-glow", "value": "0 18px 44px color-mix(in srgb, #cea46f 22%, transparent)", "purpose": "The .card-glow hover: paired with translateY(-6px) and a gold border. Success cards swap gold for #22c55e." },
+      { "name": "cta-presence", "value": "0 10px 15px -3px rgba(206, 164, 111, 0.3), 0 4px 6px -4px rgba(206, 164, 111, 0.3)", "purpose": "Resting gold underglow on hero-level primary CTAs (shadow-lg shadow-primary/30)." },
+      { "name": "tab-active", "value": "0 6px 18px color-mix(in srgb, #cea46f 30%, transparent)", "purpose": "Selected segmented tab." },
+      { "name": "hero-media", "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)", "purpose": "Plain dark shadow under real screenshots/photos (shadow-2xl); one of the few grey shadows." }
+    ],
+    "motion": [
+      { "name": "ease-spring", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The one easing for entrances, reveals, chart draws and the mobile panel." },
+      { "name": "reveal", "value": "0.6s ease-spring, 14-16px rise", "purpose": "Scroll and first-paint entrances via the Reveal component; instant variant starts at opacity 0.5 to protect LCP." },
+      { "name": "btn-shine", "value": "3.4s ease-in-out infinite", "purpose": "White gleam sweep across the primary conversion CTA only." },
+      { "name": "marquee", "value": "34s linear infinite (horizontal), 22s (vertical feed)", "purpose": "Client logo strip and LeadFeed ticker; both pause on hover, both edge-masked." },
+      { "name": "ambient-loops", "value": "float 7s, seal spin 16s, flow-pulse 7s", "purpose": "Slow idle life on hero mockups, the guarantee seal and automation nodes; resting state is the finished design." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Worksite Gold conversion button; hero-level instances add the shine sweep and gold underglow.",
+      "html": "<button class=\"ds-btn-primary\">Get my free game plan</button>",
+      "css": ".ds-btn-primary { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: #cea46f; color: #0c0b0a; border: none; border-radius: 0.5rem; height: 3.5rem; padding: 0 1.75rem; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; font-weight: 800; letter-spacing: 0.025em; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(206,164,111,0.3), 0 4px 6px -4px rgba(206,164,111,0.3); transition: background 0.2s ease, transform 0.2s ease; } .ds-btn-primary:hover { background: #bd9159; transform: scale(1.03); } .ds-btn-primary:focus-visible { outline: 2px solid #8a6432; outline-offset: 2px; } .ds-btn-primary::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-20deg); animation: ds-btn-shine 3.4s ease-in-out infinite; pointer-events: none; } @keyframes ds-btn-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }"
+    },
+    {
+      "name": "Outline Button (light surface)",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Quiet secondary action: gold border, gold-ink text, inverts to a gold fill on hover.",
+      "html": "<button class=\"ds-btn-outline\">See how it works</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; color: #8a6432; border: 1px solid #cea46f; border-radius: 0.5rem; height: 3.5rem; padding: 0 1.75rem; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; font-weight: 800; letter-spacing: 0.025em; cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; } .ds-btn-outline:hover { background: #cea46f; color: #0c0b0a; } .ds-btn-outline:focus-visible { outline: 2px solid #8a6432; outline-offset: 2px; }"
+    },
+    {
+      "name": "Light Card (glow hover)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White card on Warm Stone with a sand hairline; interactive cards lift and glow gold on hover.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-title\">Google Ads that book jobs</p><p class=\"ds-card-body\">Campaigns built for trade searches, tracked to the booked job, not the click.</p></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #e6e1d9; border-radius: 0.875rem; padding: 1.75rem; max-width: 22rem; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; } .ds-card:hover { transform: translateY(-6px); border-color: #cea46f; box-shadow: 0 18px 44px color-mix(in srgb, #cea46f 22%, transparent); } .ds-card-title { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 1.125rem; line-height: 0.95; letter-spacing: -0.015em; color: #0c0b0a; margin: 0 0 0.6rem; } .ds-card-body { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-size: 1rem; line-height: 1.5; color: rgba(12, 11, 10, 0.7); margin: 0; }"
+    },
+    {
+      "name": "Dark Section Card",
+      "kind": "card",
+      "refersTo": "card-dark",
+      "description": "Midnight Lifted surface with a white/10 hairline, sitting inside the glowing dark band.",
+      "html": "<div class=\"ds-card-dark\"><p class=\"ds-eyebrow-demo\">The system</p><p class=\"ds-card-dark-title\">One system. Three jobs. <span class=\"ds-marker\">All handled.</span></p><p class=\"ds-card-dark-body\">Website, ads and follow-up working as one machine.</p></div>",
+      "css": ".ds-card-dark { background: #141210; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.875rem; padding: 1.75rem; max-width: 24rem; } .ds-card-dark-title { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 1.5rem; line-height: 0.95; letter-spacing: -0.015em; color: #faf8f5; margin: 0 0 0.6rem; } .ds-card-dark-body { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-size: 1rem; line-height: 1.5; color: rgba(250,248,245,0.7); margin: 0; } .ds-card-dark .ds-marker { color: #cea46f; } .ds-eyebrow-demo { display: inline-block; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: #cea46f; margin: 0 0 0.75rem; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "daisyUI bordered input as used in the lead form: white fill, sand border, 0.5rem radius.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Your name</span><input class=\"ds-input\" type=\"text\" placeholder=\"Dave the plumber\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.4rem; max-width: 20rem; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; } .ds-field-label { font-size: 0.875rem; font-weight: 600; color: #0c0b0a; } .ds-input { background: #ffffff; color: #0c0b0a; border: 1px solid #e6e1d9; border-radius: 0.5rem; height: 2.75rem; padding: 0 1rem; font-family: inherit; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input::placeholder { color: rgba(12,11,10,0.4); } .ds-input:focus-visible { outline: none; border-color: #cea46f; box-shadow: 0 0 0 3px color-mix(in srgb, #cea46f 25%, transparent); }"
+    },
+    {
+      "name": "Eyebrow",
+      "kind": "custom",
+      "refersTo": "eyebrow",
+      "description": "Uppercase gold-ink section kicker; the system's most consistent opener, always above a Heavy Head headline.",
+      "html": "<div><span class=\"ds-eyebrow\">Real results</span><h2 class=\"ds-headline\">Real Kiwi businesses. Real numbers.</h2></div>",
+      "css": ".ds-eyebrow { display: inline-block; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8a6432; } .ds-headline { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 1.875rem; line-height: 0.95; letter-spacing: -0.015em; color: #0c0b0a; margin: 0.75rem 0 0; }"
+    },
+    {
+      "name": "Category Chip",
+      "kind": "chip",
+      "refersTo": "chip-trade",
+      "description": "LeadFeed category pill: tinted at 16% of its category colour with a leading dot; colour set per-row via --chip.",
+      "html": "<span class=\"ds-cat-chip\" style=\"--chip:#cea46f\">New lead</span> <span class=\"ds-cat-chip\" style=\"--chip:#22c55e\">Job booked</span>",
+      "css": ".ds-cat-chip { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 9999px; padding: 0.15rem 0.6rem; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--chip, #cea46f); background: color-mix(in srgb, var(--chip, #cea46f) 16%, transparent); border: 1px solid color-mix(in srgb, var(--chip, #cea46f) 32%, transparent); } .ds-cat-chip::before { content: ''; width: 0.4rem; height: 0.4rem; border-radius: 9999px; background: var(--chip, #cea46f); }"
+    },
+    {
+      "name": "Header Nav Link",
+      "kind": "nav",
+      "refersTo": "button-primary",
+      "description": "Sticky dark header link: 80% white, hovers to gold with an underline growing left-to-right.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-logo\">HYPER<em>DIGITAL</em></span><a class=\"ds-nav-link\" href=\"#\">Websites</a><a class=\"ds-nav-link\" href=\"#\">Results</a><a class=\"ds-nav-link\" href=\"#\">About</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 1.5rem; background: rgba(12,11,10,0.95); padding: 1.1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); border-radius: 0.5rem; } .ds-nav-logo { font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 900; font-style: italic; letter-spacing: -2px; font-size: 1.4rem; color: #ffffff; margin-right: auto; } .ds-nav-logo em { font-style: italic; color: #cea46f; } .ds-nav-link { position: relative; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; color: rgba(250,248,245,0.8); text-decoration: none; transition: color 0.2s ease; } .ds-nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; height: 2px; width: 0; background: #cea46f; transition: width 0.25s ease; } .ds-nav-link:hover, .ds-nav-link:focus-visible { color: #cea46f; } .ds-nav-link:hover::after, .ds-nav-link:focus-visible::after { width: 100%; }"
+    },
+    {
+      "name": "Segmented Tab",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Case-study step tabs: uppercase display font, active tab fills gold with a gold glow.",
+      "html": "<div><button class=\"ds-tab is-active\"><span class=\"ds-step-num\">1</span> The problem</button><button class=\"ds-tab\"><span class=\"ds-step-num\">2</span> The fix</button></div>",
+      "css": ".ds-tab { display: inline-flex; align-items: center; gap: 0.5rem; border: none; background: transparent; border-radius: 0.625rem; padding: 0.6rem 1.15rem; font-family: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; font-size: 0.9rem; color: rgba(12,11,10,0.55); transition: color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease; cursor: pointer; } .ds-tab:hover { color: #0c0b0a; } .ds-tab.is-active { background: #cea46f; color: #0c0b0a; box-shadow: 0 6px 18px color-mix(in srgb, #cea46f 30%, transparent); } .ds-step-num { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; font-size: 0.8rem; background: color-mix(in srgb, #cea46f 15%, transparent); color: #8a6432; transition: background-color 0.25s ease, color 0.25s ease; } .ds-tab.is-active .ds-step-num { background: rgba(12,11,10,0.16); color: #0c0b0a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Sign-Written Ute",
+    "overview": "A flagship black ute with proud gold signwriting: a working tradie's mobile billboard. Everything on this site behaves like lettering on that ute. Headlines are heavy, tight and legible at speed (Outfit at weight 800, line-height 0.95); the palette is one black, one family of golds, and warm paper neutrals; the message is readable in two seconds from across the street. Dark sections are the ute's paintwork: near-black surfaces catching a warm gold glow, with a faint 64px workshop grid behind them. Light sections are the quote on warm paper: white and stone surfaces, hairline sand borders, gold used sparingly as ink.\n\nThe system sells work, not aesthetics. Motion exists to prove the product is alive (the lead feed ticks, the CTA shines, charts draw themselves) and every animation's resting state is the finished design. It is confident and hard-working, never precious: no tech-startup gradient washes, no lime, no corporate stock-photo polish, and no cartoon tradie clichés.",
+    "keyCharacteristics": [
+      "One accent hue: the gold family (Worksite Gold, Deep Gold, Light Gold, Gold Ink). No second accent.",
+      "Ultra-heavy, ultra-tight display type at every heading level; hierarchy comes from size, not weight changes.",
+      "Alternating dark (glowing, gridded) and light (flat, papery) sections give pages their rhythm.",
+      "Depth is glow, not shadow: gold light and tonal layering carry elevation.",
+      "Conversion furniture (CTA, form, lead feed) is the most vivid thing on any screen."
+    ],
+    "rules": [
+      { "name": "The Gold Ink Rule", "body": "Gold text on a light background is always Gold Ink (#8a6432); bright Worksite Gold text is only legal on dark surfaces. Fills, borders, buttons and glows stay #cea46f everywhere. The --gold-ink custom property enforces this; never hard-code a gold text colour.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Gold is the only accent hue. New accents come from the gold family or the functional colours doing their literal job; never introduce a second brand hue (and never lime).", "section": "colors" },
+      { "name": "The Heavy Head Rule", "body": "Every heading is Outfit 800, -0.015em, line-height 0.95. Hierarchy is expressed through size steps only; there are no light or medium headings.", "section": "typography" },
+      { "name": "The Marked Word Rule", "body": "A hero headline earns exactly one emphasised phrase (.marker or .highlight), kept short for punch. Marked phrases wrap normally; never prevent line breaks to protect one.", "section": "typography" },
+      { "name": "The Glow Over Shadow Rule", "body": "Depth on this site is light, not weight. Dark sections get depth from radial gold glows plus tonal surface steps and a faint 64px grid; light sections are flat with hairline sand borders. Grey drop shadows are rare and mostly state-driven.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do open sections with an eyebrow (uppercase, 0.14em, gold ink) above a Heavy Head headline; it is the system's most consistent pattern.",
+      "Do use .marker for gold keyword emphasis in headings; the --gold-ink token handles light/dark legibility for you.",
+      "Do alternate dark glowing bands and light paper bands down a page, and keep the lead form (AuditForm) as the destination of the scroll.",
+      "Do give interactive cards .card-glow, and reserve .btn-shine for the primary conversion CTA (the game-plan button), roughly one per viewport.",
+      "Do design every animation's resting state as the finished layout, so prefers-reduced-motion (globally clamped to 0.01ms) shows a complete page.",
+      "Do wrap scroll-entrance content in the Reveal component (spring curve, 14-16px rise) rather than writing new entrance animations."
+    ],
+    "donts": [
+      "Don't use tech-startup gradient washes (blue/purple SaaS gradients). The only legal gradients are the gold glows, the gold text ramp, and gold-family fills.",
+      "Don't introduce lime, neon, or any second accent hue; the gold family is the entire accent vocabulary.",
+      "Don't chase corporate-agency polish: no stock-photo handshakes, thin grey type, or sterile white minimalism. It should feel like the trades, not a consultancy.",
+      "Don't use cartoon tradie clichés: clip-art hard hats, hi-vis mascots, caution-tape borders.",
+      "Don't fix anything to the bottom of the mobile viewport; the chat widget owns that area.",
+      "Don't set bright Worksite Gold (#cea46f) text on a light background; it fails contrast (2.29:1). That is what Gold Ink is for.",
+      "Don't reintroduce the retired hyper-alt theme (Hi-Vis orange/navy, deleted from global.css 30/07/2026) or any multi-theme fallback machinery; hyper is the only theme that ships."
+    ]
+  }
+}

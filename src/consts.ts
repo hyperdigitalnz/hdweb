@@ -67,7 +67,9 @@ export const STATS = [
   { value: "$1m+", label: "ad spend managed" },
   { value: "$4m+", label: "tracked client revenue" },
   { value: "4x", label: "return on ad spend*" },
-  { value: `★ ${REVIEWS.rating}`, label: `from ${REVIEWS.count} Google reviews` },
+  // Number first (matches the other stats' rhythm) + non-breaking space so the
+  // star can never wrap onto its own line in any of the trust bars.
+  { value: `${REVIEWS.rating} ★`, label: `from ${REVIEWS.count} Google reviews` },
 ];
 
 // Current client count, body-copy use only (see note above). Confirmed 25/07/2026.

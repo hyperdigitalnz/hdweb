@@ -69,7 +69,7 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
            is one tap away inside the panel's action pair instead. -->
       <!-- CTA label steps with available width -->
       <a href="/contact#audit" class="btn btn-primary btn-sm font-display text-base tracking-wide">
-        <span class="sm:hidden">Free plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
+        <span class="sm:hidden">Game plan</span><span class="hidden sm:inline xl:hidden">Free game plan</span><span class="hidden xl:inline">Get my free game plan</span>
       </a>
 
       <!-- mobile panel trigger -->
@@ -109,8 +109,10 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
         <a href={SITE.phoneHref} class="btn btn-outline border-white/40 font-display text-base tracking-wide text-neutral-content hover:border-white hover:bg-white hover:text-neutral">
           <Icon name="phone" class="h-4 w-4" /> {SITE.phone}
         </a>
+        <!-- "Game plan" (not "Free game plan"): the longer label wraps to two lines
+             inside this half-width pill at 390px. Matches the header CTA label. -->
         <a href="/contact#audit" class="btn btn-primary btn-shine font-display text-base tracking-wide">
-          Free game plan <Icon name="arrow-right" class="h-4 w-4" />
+          Game plan <Icon name="arrow-right" class="h-4 w-4" />
         </a>
       </div>
 
@@ -191,7 +193,8 @@ const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.hr
     color: inherit;
   }
   .hd-nav::backdrop {
-    background: rgb(0 0 0 / 0.55);
+    /* Midnight Black (#0c0b0a) at 55% — the palette's black, not pure #000. */
+    background: rgb(12 11 10 / 0.55);
     backdrop-filter: blur(3px);
   }
   .hd-nav[open] {

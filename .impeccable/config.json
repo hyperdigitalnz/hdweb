@@ -1,0 +1,50 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-07-30T02:22:28.528Z",
+        "reason": "64px workshop grid is the documented dark-band brand texture (DESIGN.md); Matt confirmed 30/07/2026"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#4285f4",
+        "createdAt": "2026-07-30T02:22:28.598Z",
+        "reason": "Google brand colour in the SERP ad mockup; Matt confirmed 30/07/2026"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#ea4335",
+        "createdAt": "2026-07-30T02:22:28.675Z",
+        "reason": "Google brand colour in the SERP ad mockup; Matt confirmed 30/07/2026"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#fbbc05",
+        "createdAt": "2026-07-30T02:22:28.742Z",
+        "reason": "Google brand colour in the SERP ad mockup; Matt confirmed 30/07/2026"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#34a853",
+        "createdAt": "2026-07-30T02:22:28.808Z",
+        "reason": "Google brand colour in the SERP ad mockup; Matt confirmed 30/07/2026"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "20px",
+        "files": [
+          "src/pages/results/no-drips.astro"
+        ],
+        "createdAt": "2026-07-30T02:22:28.883Z",
+        "reason": "SERP ad mockup mimics Google's own ad type sizes; Matt confirmed 30/07/2026"
+      }
+    ]
+  }
+}

@@ -168,8 +168,12 @@ const showChat = !hideChat && !noChatPaths.includes(currentPath);
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXHVKNQ"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <!-- Skip link: invisible until keyboard-focused, then a gold button top-left. -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] btn btn-primary btn-sm font-display tracking-wide">
+      Skip to content
+    </a>
     {!hideHeader && <Header />}
-    <main>
+    <main id="main">
       <slot />
     </main>
     {!hideFooter && <Footer />}

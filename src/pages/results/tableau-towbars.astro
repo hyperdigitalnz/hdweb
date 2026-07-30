@@ -339,7 +339,7 @@ const reviewSchema = {
             b.classList.toggle("is-active", active);
             b.setAttribute("aria-selected", active ? "true" : "false");
           });
-          if (fill) fill.style.width = Math.min(100, (val / max) * 100) + "%";
+          if (fill) fill.style.transform = "scaleX(" + Math.min(1, val / max) + ")";
           if (out) out.textContent = btn.dataset.display || "";
         };
         buttons.forEach((b) => b.addEventListener("click", () => apply(b)));

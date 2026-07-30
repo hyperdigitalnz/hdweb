@@ -6,7 +6,7 @@ import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
-import LeadFeed from "../components/LeadFeed.astro";
+import BookedWeek from "../components/BookedWeek.astro";
 import ChatDemo from "../components/ChatDemo.astro";
 import JobCalculator from "../components/JobCalculator.astro";
 import { SITE, STATS } from "../consts";
@@ -31,8 +31,11 @@ const missed = [
   { icon: "phone-missed", title: "Missed call", meta: "While you were quoting · 11:52am", tilt: "-rotate-1" },
 ];
 
+// Rows pair 1:1 with `withUs` (the two cards read as a comparison), so each row
+// must answer the SAME subject as its opposite number, and row 1 must never imply
+// we answer phone calls automatically (lead-response rules in CLAUDE.md).
 const alone = [
-  "Calls go to voicemail while you're on the tools.",
+  "Enquiries sit unanswered while you're on the tools.",
   "Quotes you meant to chase, but never did.",
   "Ad money spent with nothing to show for it.",
   "Happy customers who never leave a review.",
@@ -42,9 +45,9 @@ const alone = [
 const withUs = [
   "Every website enquiry gets an instant reply, day or night.",
   "Leads followed up automatically until they book or say no.",
-  "Every dollar tracked, reported and accounted for.",
+  "Every ad dollar tracked, reported and accounted for.",
   "Reviews requested after every job, on autopilot.",
-  "One system, fully managed, while you stay on the tools.",
+  "Real numbers reported every month, so you know what's working.",
 ];
 
 type SystemCard = {
@@ -87,7 +90,7 @@ const steps = [
   {
     n: "1",
     title: "The free game plan",
-    body: "20 minutes. We look at your trade, your area and your competition, then give you real numbers on what's possible. No jargon, no pressure.",
+    body: "We look at your trade, your area and your competition, then give you real numbers on what's possible. No jargon, no pressure.",
   },
   {
     n: "2",
@@ -136,7 +139,10 @@ const faqs = [
           </span>
         </Reveal>
         <Reveal instant delay={0.05} class="mt-6">
-          <h1 class="text-4xl sm:text-6xl xl:text-7xl">
+          <!-- aria-label: the visual text runs together in the accessible name (block
+               spans add no spaces) and the rotator rewrites it every 3s. Screen readers
+               get one stable, generic sentence instead. -->
+          <h1 class="text-4xl sm:text-6xl xl:text-7xl" aria-label="The system that keeps tradies booked solid.">
             <span class="block text-[0.66em]">The system that keeps</span>
             <span class="block"><span class="marker rotator" data-rotate>Electricians</span></span>
             <span class="block">booked solid.</span>
@@ -149,7 +155,14 @@ const faqs = [
             system leaves off.
           </p>
         </Reveal>
-        <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+        <!-- SocialProof sits ABOVE the CTA pair: on a phone, whatever ends the hero
+             lands in the bottom-right of the first viewport, where the GHL chat bubble
+             floats. The review/client proof was being covered there (critique 30/07);
+             the full-width CTAs and the small centred SpeedBadge tolerate the overlap. -->
+        <Reveal instant delay={0.15} class="mt-7 flex justify-center lg:justify-start">
+          <SocialProof />
+        </Reveal>
+        <Reveal instant delay={0.2} class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
             Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
@@ -157,42 +170,45 @@ const faqs = [
             See how it works
           </a>
         </Reveal>
-        <Reveal instant delay={0.2} class="mt-6 flex justify-center lg:justify-start">
+        <Reveal instant delay={0.26} class="mt-6 flex justify-center lg:justify-start">
           <SpeedBadge tone="dark" />
-        </Reveal>
-        <Reveal instant delay={0.26} class="mt-8 flex justify-center lg:justify-start">
-          <SocialProof />
         </Reveal>
       </div>
 
       <Reveal instant delay={0.2} class="relative min-w-0">
         <div class="glow-blob"></div>
         <div class="float-slow relative">
-          <LeadFeed />
+          <BookedWeek />
         </div>
       </Reveal>
     </div>
-  </section>
 
-  <!-- ===== TRUST BAR ===== -->
-  <!-- Mobile: 2-up grid (5 full-width stacked rows was ~500px of scrolling, Matt 26/07). -->
-  <div class="border-y border-base-300 bg-base-200">
-    <div class="mx-auto flex max-w-[1160px] flex-wrap justify-center gap-x-4 gap-y-5 px-5 py-6 lg:flex-nowrap lg:justify-between">
-      {STATS.map((s) => (
-        <div class="flex w-[45%] flex-col items-center gap-0.5 text-center md:w-[30%] md:flex-row md:items-baseline md:justify-center md:gap-2 lg:w-auto">
-          <span class="font-display text-3xl text-base-content">{s.value}</span>
-          <span class="text-sm text-base-content/60">{s.label}</span>
-        </div>
-      ))}
+    <!-- Slim stat row closes the hero band (the old light trust-bar band is folded in
+         here). "107" and "5.0" stay out of this row: both already render in the
+         SocialProof block above, and 107/49 must never share a section anyway. -->
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-[1160px] flex-wrap items-baseline justify-center gap-x-10 gap-y-3 px-5 py-5">
+        {STATS.slice(1, 4).map((s) => (
+          <div class="flex flex-col items-center gap-0.5 text-center sm:flex-row sm:items-baseline sm:gap-2">
+            <span class="font-display text-2xl text-neutral-content sm:text-3xl">{s.value}</span>
+            <span class="text-sm text-neutral-content/60">{s.label}</span>
+          </div>
+        ))}
+      </div>
+      {/* The 4x asterisk resolves in the footer's STATS_NOTE line, the site's
+          standing pattern; repeating the full sentence here doubled it up. */}
     </div>
-  </div>
+  </section>
 
   <!-- ===== TRADES MARQUEE ===== -->
   <div class="border-b border-base-300 bg-neutral py-4 text-neutral-content">
-    <div class="marquee-wrap">
+    <!-- Static list for screen readers; the moving strip below duplicates every
+         trade for the loop and would be read twice. -->
+    <p class="sr-only">Trades we work with: {trades.map((t) => t.name).join(", ")}.</p>
+    <div class="marquee-wrap" aria-hidden="true">
       <div class="marquee">
         {[...trades, ...trades].map((t) => (
-          <span class="mx-7 inline-flex items-center gap-2.5 font-display text-lg font-semibold uppercase tracking-wide text-neutral-content/60">
+          <span class="mx-4 inline-flex items-center gap-2.5 font-display text-base font-semibold uppercase tracking-wide text-neutral-content/60 sm:mx-7 sm:text-lg">
             <Icon name={t.icon} class="h-5 w-5 text-primary" /> {t.name}
           </span>
         ))}
@@ -215,10 +231,7 @@ const faqs = [
           </p>
         </Reveal>
         <Reveal delay={0.15} class="mx-auto max-w-xl lg:mx-0">
-          <p class="mt-4 text-lg text-base-content/70">It's not your fault. You're busy doing the actual work.</p>
-        </Reveal>
-        <Reveal delay={0.2} class="mx-auto max-w-xl lg:mx-0">
-          <p class="mt-4 text-lg font-bold text-base-content">But it's quietly costing you real, winnable jobs every single week.</p>
+          <p class="mt-4 text-lg font-bold text-base-content">It's quietly costing you real, winnable jobs every single week.</p>
         </Reveal>
       </div>
 
@@ -243,16 +256,41 @@ const faqs = [
         </Reveal>
       </div>
     </div>
-  </section>
 
-  <!-- ===== THE DIFFERENCE ===== -->
-  <section class="bg-base-200 py-16 sm:py-24">
+    <!-- The fix reads directly under the pain it answers (was its own "difference"
+         band with a "Two ways to run a trade business" header; merged 30/07/2026). -->
     <div class="mx-auto max-w-[1000px] px-5">
-      <Reveal class="text-center">
-        <span class="eyebrow">The difference</span>
-        <h2 class="mt-3 text-3xl sm:text-5xl">Two ways to run a trade business.</h2>
+      {/* Mobile: the two cards stacked put pain and fix ~2 screens apart, so the
+          comparison never fired (critique 30/07). Interleave each pain with its fix
+          so the contrast happens inside one thumb-scroll. Desktop keeps the cards. */}
+      <Reveal class="mt-12 md:hidden">
+        <div class="card border border-base-300 bg-base-100">
+          <div class="card-body">
+            <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm font-semibold">
+              <span class="inline-flex items-center gap-1.5 text-base-content/60">
+                <Icon name="x" class="h-4 w-4 text-error" /> Doing it all yourself
+              </span>
+              <span class="inline-flex items-center gap-1.5">
+                <Icon name="check" class="h-4 w-4 text-primary" /> Running our system
+              </span>
+            </div>
+            <ul class="mt-2 divide-y divide-base-300">
+              {alone.map((pain, i) => (
+                <li class="py-4 last:pb-0">
+                  <p class="flex items-start gap-3 text-base-content/60">
+                    <Icon name="x" class="mt-1 h-4 w-4 shrink-0 text-error" /> {pain}
+                  </p>
+                  <p class="mt-2 flex items-start gap-3 font-semibold">
+                    <Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-primary" /> {withUs[i]}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </Reveal>
-      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+
+      <div class="mt-12 hidden grid-cols-1 gap-6 md:grid md:grid-cols-2">
         <Reveal>
           <div class="card h-full border border-base-300 bg-base-100">
             <div class="card-body">
@@ -291,70 +329,47 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ===== THE SYSTEM ===== -->
-  <section id="how" class="bg-brand-dark scroll-mt-20 text-neutral-content">
-    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-24">
-      <Reveal class="mx-auto max-w-2xl text-center">
-        <span class="eyebrow">The system</span>
-        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">One system. Three jobs. All handled.</h2>
-        <p class="mt-4 text-neutral-content/70">
-          Most agencies sell you one piece of the puzzle and leave you to figure out the rest.
-          We build and run the whole machine.
+  <!-- ===== BURNED BEFORE (objection: "I've paid an agency and got nothing").
+       Position 3 in the arc (moved up from post-proof, 30/07/2026): the confession is
+       the hinge of the page and earns display-scale type - one of only two H2s
+       allowed to step up to the hero's scale. ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto max-w-[1000px] px-5 py-16 sm:py-24">
+      <Reveal class="text-center">
+        <span class="eyebrow">Been burned before?</span>
+        <h2 class="mt-3 text-4xl text-neutral-content sm:text-6xl">
+          If your last agency left a bad taste, <span class="marker">read this</span>.
+        </h2>
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-content/80">
+          Most tradies we talk to have already paid an agency and got nothing back. Usually the
+          same story: a monthly report full of clicks and impressions, no way to tell if a single
+          job came from it, and a contract you can't get out of. Here's how we're different, and
+          you can check every line of it.
         </p>
       </Reveal>
-      <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {system.map((c, i) => (
-          <Reveal delay={i * 0.08}>
-            <div class="card-glow relative h-full overflow-hidden rounded-box border border-white/10 surface-2 p-7">
-              <span class="num-ghost absolute -top-3 right-4 text-8xl" aria-hidden="true">{c.n}</span>
-              <span class="icon-chip relative">
-                <Icon name={c.icon} class="h-6 w-6" />
-              </span>
-              <h3 class="relative mt-5 text-2xl text-neutral-content">{c.title}</h3>
-              <p class="relative mt-2.5 text-neutral-content/70">{c.body}</p>
-              {c.link && (
-                <a href={c.link.href} class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-accent">
-                  {c.link.label} <Icon name="arrow-right" class="h-4 w-4" />
-                </a>
-              )}
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {[
+          { title: "Everything we build for you is yours.", body: "The Google Ads campaigns, the Meta campaigns, the landing pages, the conversion tracking. If you ever leave, all of it transfers to you in full." },
+          { title: "Your ad budget is never marked up.", body: "Ad spend goes straight to Google or Meta at cost. You always know exactly what's our fee and what's your ads, down to the dollar." },
+          { title: "We report leads, not clicks.", body: "Clear monthly reports on real calls and quote requests, and what each one cost. No impressions, no engagement, no fog." },
+          { title: "No lock-in.", body: "One month's notice, and that month is about your money, not ours: it lets us clear any ad spend that's rolled over or catching up, so your account leaves clean." },
+        ].map((c, i) => (
+          <Reveal delay={i * 0.06} class="h-full">
+            <div class="h-full rounded-box border border-white/10 surface-2 p-6">
+              <p class="flex items-start gap-3 font-display text-xl text-neutral-content">
+                <Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-primary" /> {c.title}
+              </p>
+              <p class="mt-2 pl-8 text-neutral-content/70">{c.body}</p>
             </div>
           </Reveal>
         ))}
       </div>
-      <Reveal class="mt-12 text-center">
-        <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
-          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
-        </a>
-      </Reveal>
-    </div>
-  </section>
-
-  <!-- ===== SPEED WINS ===== -->
-  <section class="py-16 sm:py-24">
-    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
-      <div class="text-center lg:text-left">
-        <Reveal><span class="eyebrow">Speed wins</span></Reveal>
-        <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours is <span class="marker">instant</span>.</h2>
-        </Reveal>
-        <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
-          <p class="mt-6 text-lg text-base-content/70">
-            Most enquiries sit ignored for hours. Yours get replied to before the customer has
-            finished their cuppa, with the job details captured and an on-site visit or call back
-            booked in. Day or night, weekends and public holidays, while you're on the tools or
-            off the clock.
-          </p>
-        </Reveal>
-        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
-          <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">Get my free game plan</a>
-          <a href="/ai-automation" class="btn btn-outline btn-lg border-base-content/30 font-display text-lg tracking-wide hover:border-base-content hover:bg-base-content hover:text-base-100">
-            See the automation
-          </a>
-        </Reveal>
-      </div>
-      <Reveal delay={0.1} class="relative">
-        <div class="glow-blob opacity-60"></div>
-        <div class="relative"><ChatDemo /></div>
+      <Reveal delay={0.2} class="mx-auto mt-8 max-w-2xl text-center">
+        <p class="text-neutral-content/80">
+          When we took over <a href="/results/no-drips" class="link text-primary">No Drips' account</a>,
+          the first thing we did was find close to $3,000 the previous agency had spent on clicks
+          that were never going to book a job. Then we cut it.
+        </p>
       </Reveal>
     </div>
   </section>
@@ -367,40 +382,37 @@ const faqs = [
         <h2 class="mt-3 text-3xl sm:text-5xl">Real Kiwi businesses. Real numbers.</h2>
       </Reveal>
 
-      <!-- Featured case study -->
+      <!-- Featured case study: No Drips (trade-matched proof for a tradie audience).
+           Stat-led, not quote-led: No Drips has no verified quote yet (slot is ready in
+           their case-study page). Numbers come straight from /results/no-drips and are
+           verifiable in the client's own account. -->
       <Reveal class="mt-12">
         <div class="card overflow-hidden border border-base-300 bg-base-100 shadow-md">
           <div class="card-body gap-8 p-7 sm:p-9 lg:flex-row lg:items-center">
             <!-- flex-wrap + smaller mobile numerals: two text-5xl stats side by side
-                 overflowed the card on a 390px phone and clipped the 500%. -->
+                 overflowed the card on a 390px phone. -->
             <div class="flex shrink-0 flex-wrap gap-6 sm:gap-10 lg:flex-col lg:gap-8">
               <div>
-                <div class="font-display text-4xl text-primary sm:text-6xl"><span data-count="2500">2,500</span>%</div>
-                <div class="mt-1 text-sm text-base-content/60">more enquiries, year one</div>
+                <div class="font-display text-4xl text-primary sm:text-6xl">$<span data-count="14">14</span></div>
+                <div class="mt-1 text-sm text-base-content/60">a lead on their best keywords</div>
               </div>
               <div>
-                <div class="font-display text-4xl text-primary sm:text-6xl"><span data-count="500">500</span>%</div>
-                <div class="mt-1 text-sm text-base-content/60">revenue growth, year one*</div>
+                <div class="font-display text-4xl text-base-content/80 sm:text-6xl">$<span data-count="45">45</span></div>
+                <div class="mt-1 text-sm text-base-content/60">their cost-per-lead target</div>
               </div>
             </div>
             <div class="min-w-0">
-              <Icon name="quote" class="h-8 w-8 text-primary/40" />
-              <p class="mt-3 text-xl leading-relaxed text-base-content/80 italic">
-                "Month after month, year after year Ryan, Matt and their team at Hyper Digital have
-                allowed us the very fortunate position of having new customers booked months in
-                advance for our Pools and Spas."
+              <span class="badge badge-primary font-display">Case study · Plumbing &amp; Gas</span>
+              <p class="mt-3 font-display text-2xl">No Drips, Hawke's Bay plumbers and gasfitters.</p>
+              <p class="mt-3 text-lg leading-relaxed text-base-content/80">
+                We took over their Google Ads from another agency, found close to $3,000 spent on
+                clicks that were never going to book a job, and cut it. Their best keywords now
+                bring in leads for as little as $14 against a $45 target, and every lead we report
+                is a real call or enquiry they can check in their own account.
               </p>
-              <div class="mt-5 flex items-center gap-3">
-                <img src="/img/denise-bermuda-lifestyle-avatar.webp" alt="Denise Howell" width="96" height="96" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
-                <div>
-                  <div class="font-display text-lg">Denise Howell</div>
-                  <div class="text-sm text-base-content/60">Bermuda Lifestyle, Pools &amp; Spas</div>
-                </div>
-              </div>
-              <p class="mt-4 text-xs text-base-content/50">*Revenue growth is client-reported.</p>
             </div>
             <div class="shrink-0 lg:self-center">
-              <a href="/results/bermuda-lifestyle" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+              <a href="/results/no-drips" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
                 Read the full story <Icon name="arrow-right" class="h-4 w-4" />
               </a>
             </div>
@@ -408,23 +420,27 @@ const faqs = [
         </div>
       </Reveal>
 
+      {/* Tableau Towbars removed 30/07/2026: its "up 69%" headline has no source data yet
+          (CLAUDE.md TODO: "69%/+122% source data"). Restore once Matt produces the source. */}
       <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Reveal>
           <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
             <div class="card-body">
-              <div class="flex items-start justify-between">
-                <div class="text-primary">★★★★★</div>
+              <div class="flex items-start justify-end">
                 <Icon name="quote" class="h-6 w-6 text-primary/30" />
               </div>
-              <p class="text-xl font-bold">Phone enquiries up 69% year-on-year.</p>
+              <p class="text-xl font-bold">New customers booked months in advance.</p>
               <p class="text-base-content/70 italic">
-                "Ryan from Hyper Digital walked through the door and sat with me. He had already
-                taken time to learn all about us and what we do. Since then they have got us found
-                on Google with Ads to showcase our products all over NZ."
+                "Month after month, year after year Ryan, Matt and their team at Hyper Digital have
+                allowed us the very fortunate position of having new customers booked months in
+                advance for our Pools and Spas."
               </p>
               <div class="mt-2 flex items-center gap-3">
-                <img src="/img/tableau-towbars-avatar.webp" alt="Tableau Towbars" width="96" height="96" loading="lazy" decoding="async" class="h-11 w-11 rounded-full bg-neutral object-cover" />
-                <div class="font-display text-lg">Donna Godfrey, Tableau Towbars</div>
+                <img src="/img/denise-bermuda-lifestyle-avatar.webp" alt="Denise Howell" width="96" height="96" loading="lazy" decoding="async" class="h-11 w-11 rounded-full object-cover" />
+                <div>
+                  <div class="font-display text-lg">Denise Howell</div>
+                  <div class="text-sm text-base-content/60">Bermuda Lifestyle, Pools &amp; Spas</div>
+                </div>
               </div>
             </div>
           </div>
@@ -465,55 +481,89 @@ const faqs = [
             )
           )}
         </div>
-        <a href="/results" class="btn btn-ghost mt-8 text-primary">See all case studies <Icon name="arrow-right" class="h-4 w-4" /></a>
+        <div class="mt-10">
+          <a href="#calculator" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
+            See what your jobs cost <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+        </div>
+        <a href="/results" class="btn btn-ghost mt-3 text-primary">See all case studies <Icon name="arrow-right" class="h-4 w-4" /></a>
       </Reveal>
     </div>
   </section>
 
-  <!-- ===== BURNED BEFORE (objection: "I've paid an agency and got nothing") ===== -->
-  <section class="bg-brand-dark text-neutral-content">
-    <div class="mx-auto max-w-[1000px] px-5 py-16 sm:py-24">
-      <Reveal class="text-center">
-        <span class="eyebrow">Been burned before?</span>
-        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          If your last agency left a bad taste, <span class="marker">read this</span>.
-        </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-content/80">
-          Most tradies we talk to have already paid an agency and got nothing back. Usually the
-          same story: a monthly report full of clicks and impressions, no way to tell if a single
-          job came from it, and a contract you can't get out of. Here's how we're different, and
-          you can check every line of it.
+  <!-- ===== THE SYSTEM ===== -->
+  <section id="how" class="bg-brand-dark scroll-mt-20 text-neutral-content">
+    <div class="mx-auto max-w-[1160px] px-5 py-16 sm:py-24">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">The system</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">One system. Three jobs. All handled.</h2>
+        <p class="mt-4 text-neutral-content/70">
+          Most agencies sell you one piece of the puzzle and leave you to figure out the rest.
+          We build and run the whole machine.
         </p>
       </Reveal>
-      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {[
-          { title: "Everything we build for you is yours.", body: "The Google Ads campaigns, the Meta campaigns, the landing pages, the conversion tracking. If you ever leave, all of it transfers to you in full." },
-          { title: "Your ad budget is never marked up.", body: "Ad spend goes straight to Google or Meta at cost. You always know exactly what's our fee and what's your ads, down to the dollar." },
-          { title: "We report leads, not clicks.", body: "Clear monthly reports on real calls and quote requests, and what each one cost. No impressions, no engagement, no fog." },
-          { title: "No lock-in.", body: "One month's notice, and that month is about your money, not ours: it lets us clear any ad spend that's rolled over or catching up, so your account leaves clean." },
-        ].map((c, i) => (
-          <Reveal delay={i * 0.06} class="h-full">
-            <div class="h-full rounded-box border border-white/10 surface-2 p-6">
-              <p class="flex items-start gap-3 font-display text-xl text-neutral-content">
-                <Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-primary" /> {c.title}
-              </p>
-              <p class="mt-2 pl-8 text-neutral-content/70">{c.body}</p>
+      <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {system.map((c, i) => (
+          <Reveal delay={i * 0.08}>
+            {/* flex-col + mt-auto wrapper: the three out-links bottom-align across the
+                row instead of floating at each card's text height. */}
+            <div class="card-glow relative flex h-full flex-col overflow-hidden rounded-box border border-white/10 surface-2 p-7">
+              <span class="num-ghost absolute -top-3 right-4 text-8xl" aria-hidden="true">{c.n}</span>
+              <span class="icon-chip relative">
+                <Icon name={c.icon} class="h-6 w-6" />
+              </span>
+              <h3 class="relative mt-5 text-2xl text-neutral-content">{c.title}</h3>
+              <p class="relative mt-2.5 text-neutral-content/70">{c.body}</p>
+              {/* py-3/-my-3 grows the link tap area to ~44px without shifting layout. */}
+              {c.link && (
+                <div class="relative mt-auto pt-4">
+                  <a href={c.link.href} class="inline-flex items-center gap-1 py-3 -my-3 text-sm font-semibold text-primary transition-colors hover:text-accent">
+                    {c.link.label} <Icon name="arrow-right" class="h-4 w-4" />
+                  </a>
+                </div>
+              )}
             </div>
           </Reveal>
         ))}
       </div>
-      <Reveal delay={0.2} class="mx-auto mt-8 max-w-2xl text-center">
-        <p class="text-neutral-content/80">
-          When we took over <a href="/results/no-drips" class="link text-primary">No Drips' account</a>,
-          the first thing we did was find close to $3,000 the previous agency had spent on clicks
-          that were never going to book a job. Then we cut it.
-        </p>
+    </div>
+  </section>
+
+  <!-- ===== SPEED WINS ===== -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto grid max-w-[1160px] items-center gap-12 px-5 lg:grid-cols-2">
+      <div class="text-center lg:text-left">
+        <Reveal><span class="eyebrow">Speed wins</span></Reveal>
+        <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+          <h2 class="mt-3 text-3xl sm:text-5xl">The fastest reply wins the job. Yours is <span class="marker">instant</span>.</h2>
+        </Reveal>
+        <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
+          <p class="mt-6 text-lg text-base-content/70">
+            Most enquiries sit ignored for hours. Yours get replied to before the customer has
+            finished their cuppa, with the job details captured and an on-site visit or call back
+            booked in. Day or night, weekends and public holidays, while you're on the tools or
+            off the clock.
+          </p>
+        </Reveal>
+        {/* CTA discipline (30/07/2026): this band's gold CTA retired; the outline
+            link into /ai-automation is the honest next step here. */}
+        <Reveal delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="/ai-automation" class="btn btn-outline btn-lg border-base-content/30 font-display text-lg tracking-wide hover:border-base-content hover:bg-base-content hover:text-base-100">
+            See the automation
+          </a>
+        </Reveal>
+      </div>
+      <Reveal delay={0.1} class="relative">
+        <div class="glow-blob opacity-60"></div>
+        <div class="relative"><ChatDemo /></div>
       </Reveal>
     </div>
   </section>
 
-  <!-- ===== FOUNDERS ===== -->
-  <section class="py-16 sm:py-24">
+  <!-- ===== FOUNDERS ===== (dark since the 30/07/2026 re-sequence, keeping the
+       dark/light alternation after the band merges; the gold offset frame and real
+       photo carry well on the paintwork) -->
+  <section class="bg-brand-dark py-16 text-neutral-content sm:py-24">
     <div class="mx-auto grid max-w-[1160px] items-center gap-14 px-5 lg:grid-cols-2">
       <Reveal class="relative mx-auto w-full max-w-lg">
         <div class="absolute -top-4 -left-4 h-full w-full rounded-box border-2 border-primary/40" aria-hidden="true"></div>
@@ -533,10 +583,10 @@ const faqs = [
       <div class="text-center lg:text-left">
         <Reveal><span class="eyebrow">Who you're dealing with</span></Reveal>
         <Reveal delay={0.05} class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-          <h2 class="mt-3 text-3xl sm:text-5xl">Two blokes who answer their own phone.</h2>
+          <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">Two blokes who answer their own phone.</h2>
         </Reveal>
         <Reveal delay={0.1} class="mx-auto max-w-xl lg:mx-0">
-          <p class="mt-6 text-lg text-base-content/70">
+          <p class="mt-6 text-lg text-neutral-content/70">
             Hyper Digital is Matt and Ryan. Two hardworking Kiwis who've been running this agency
             since 2019. We look after 49 Kiwi businesses right now, and we keep it deliberately
             small: no account managers, no offshore call centre, no runaround. When you ring, you
@@ -544,9 +594,9 @@ const faqs = [
           </p>
         </Reveal>
         <Reveal delay={0.15} class="mt-6 flex flex-wrap justify-center gap-2.5 lg:justify-start">
-          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="pin" class="h-4 w-4 text-primary" /> Hawke's Bay based, NZ-wide</span>
-          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="clock" class="h-4 w-4 text-primary" /> Since 2019</span>
-          <span class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-3.5 py-1.5 text-sm font-semibold"><Icon name="phone" class="h-4 w-4 text-primary" /> You call, we answer</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-sm font-semibold"><Icon name="pin" class="h-4 w-4 text-primary" /> Hawke's Bay based, NZ-wide</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-sm font-semibold"><Icon name="clock" class="h-4 w-4 text-primary" /> Since 2019</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-sm font-semibold"><Icon name="phone" class="h-4 w-4 text-primary" /> You call, we answer</span>
         </Reveal>
         <Reveal delay={0.2}>
           <a href="/about" class="btn btn-outline mt-7 border-primary font-display text-lg tracking-wide text-primary hover:bg-primary hover:text-primary-content">
@@ -557,11 +607,52 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ===== HOW IT WORKS ===== -->
+  <!-- ===== PRICING ===== -->
+  <section class="bg-base-200 py-16 sm:py-24">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="text-center">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="mt-3 text-3xl sm:text-5xl">Simple plans. No surprises.</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg text-base-content/70">
+          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup builds your
+          system. Then one monthly plan covers your website, ad management and automation. Your ad
+          budget is separate and set to suit your goals.
+        </p>
+      </Reveal>
+
+      <div class="mt-12">
+        <PricingTiers />
+      </div>
+
+      <Reveal class="mt-8 text-center">
+        <p class="text-sm text-base-content/70">
+          Every plan is backed by the 60-day guarantee: hit the lead goal we agree, or we work for free.
+        </p>
+      </Reveal>
+
+      <Reveal class="mt-8 text-center">
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
+          to suit. On your free game plan we'll work out the right plan and the ad budget that fits your
+          trade and your goals.
+        </p>
+        <a href="#audit" class="btn btn-primary btn-lg mt-7 font-display text-lg tracking-wide">
+          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== JOB VALUE CALCULATOR ===== -->
+  <JobCalculator />
+
+  <!-- ===== WHAT HAPPENS NEXT (steps + time cost + guarantee, merged from three
+       bands 30/07/2026): process, effort and safety land together, one band before
+       the ask. -->
   <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-24">
     <div class="mx-auto max-w-[1160px] px-5">
       <Reveal class="text-center">
-        <span class="eyebrow">Getting started</span>
+        <span class="eyebrow">What happens next</span>
         <h2 class="mt-3 text-3xl sm:text-5xl">From first look to full calendar.</h2>
       </Reveal>
       <div class="relative mt-14">
@@ -591,78 +682,30 @@ const faqs = [
           <p class="mt-5 text-center text-sm text-base-content/60">We build it, we run it, you stay on the tools.</p>
         </div>
       </Reveal>
-    </div>
-  </section>
 
-  <!-- ===== PRICING ===== -->
-  <section class="bg-base-200 py-16 sm:py-24">
-    <div class="mx-auto max-w-[1160px] px-5">
-      <Reveal class="text-center">
-        <span class="eyebrow">Pricing</span>
-        <h2 class="mt-3 text-3xl sm:text-5xl">Simple plans. No lock-in. No surprises.</h2>
-        <p class="mx-auto mt-5 max-w-2xl text-lg text-base-content/70">
-          A one-off <span class="font-bold text-base-content">{SETUP_FEE} +GST</span> setup builds your
-          system. Then one monthly plan covers your website, ad management and automation. Your ad
-          budget is separate and set to suit your goals.
-        </p>
-      </Reveal>
-
-      <div class="mt-12">
-        <PricingTiers />
-      </div>
-
-      <Reveal class="mt-10 text-center">
-        <p class="mx-auto max-w-2xl text-base-content/70">
-          Bigger account or multiple regions? We'll build a <span class="font-bold text-base-content">Custom</span> plan
-          to suit. On your free game plan we'll work out the right plan and the ad budget that fits your
-          trade and your goals.
-        </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-7 font-display text-lg tracking-wide">
-          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
-        </a>
-      </Reveal>
-
-      <!-- Regional exclusivity (real scarcity; promoted from the trade LPs 25/07/2026) -->
-      <Reveal delay={0.1} class="mx-auto mt-12 max-w-3xl">
-        <div class="flex flex-col items-center gap-4 rounded-box border-2 border-primary/40 bg-base-100 p-6 text-center sm:flex-row sm:text-left">
-          <span class="icon-chip h-14 w-14 shrink-0"><Icon name="pin" class="h-7 w-7" /></span>
+      <!-- The 60-day guarantee folds in here (was its own full band): safety beside
+           process and effort. Wording matches the confirmed guarantee terms. -->
+      <Reveal delay={0.25} class="mx-auto mt-8 max-w-3xl">
+        <div class="flex flex-col items-center gap-5 rounded-box border-2 border-primary/40 bg-base-100 p-6 text-center sm:flex-row sm:text-left sm:p-7">
+          <div class="relative mx-auto flex h-16 w-16 shrink-0 items-center justify-center sm:mx-0">
+            <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
+            <span class="icon-chip h-11 w-11 rounded-full"><Icon name="shield-check" class="h-6 w-6" /></span>
+          </div>
           <div>
-            <p class="font-display text-xl">We only take one of each trade per patch.</p>
-            <p class="mt-1 text-base-content/70">
-              If we're already running ads for a roofer in Napier, we won't take a second one. It's
-              the only way both of you get a fair go, and it's why we can only take on a handful of
-              new clients a month. If your trade and area are free, they're yours.
+            <p class="font-display text-xl">Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.</p>
+            <p class="mt-1.5 text-base-content/70">
+              We agree a monthly lead target before we start, based on your trade, your area and
+              your budget. Miss it and we waive our management fee until we deliver. You cover
+              your ad spend; you don't pay us another cent until then.
             </p>
           </div>
         </div>
       </Reveal>
-    </div>
-  </section>
 
-  <!-- ===== JOB VALUE CALCULATOR ===== -->
-  <JobCalculator />
-
-  <!-- ===== GUARANTEE ===== -->
-  <section class="bg-brand-dark-2 text-neutral-content">
-    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-24">
-      <Reveal>
-        <div class="relative mx-auto flex h-24 w-24 items-center justify-center">
-          <div class="spin-slow absolute inset-0 rounded-full border-2 border-dashed border-primary/50" aria-hidden="true"></div>
-          <div class="flex h-[4.3rem] w-[4.3rem] items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
-            <Icon name="shield-check" class="h-9 w-9" />
-          </div>
-        </div>
-        <span class="mt-6 inline-block font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">Our 60-day guarantee</span>
-        <h2 class="mt-3 text-3xl text-neutral-content sm:text-5xl">
-          Hit your lead goal in 60 days, or we work for <span class="marker">free</span> until you do.
-        </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-neutral-content/80">
-          Before we start, we agree a monthly lead target with you, based on your trade, your area
-          and your budget. If we don't hit it in the first 60 days, we keep working and waive our
-          management fee until we do. You still cover your ad spend, but you won't pay us another
-          cent until we deliver what we promised.
-        </p>
-        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
+      <Reveal delay={0.3} class="mt-10 text-center">
+        <a href="#audit" class="btn btn-primary btn-lg font-display text-lg tracking-wide">
+          Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
       </Reveal>
     </div>
   </section>
@@ -693,13 +736,14 @@ const faqs = [
   <section class="bg-brand-dark text-neutral-content">
     <div class="mx-auto max-w-[900px] px-5 py-20 text-center sm:py-28">
       <Reveal>
-        <h2 class="text-4xl text-neutral-content sm:text-6xl">
+        {/* The largest type on the page: the peak-end ask is the second of only two
+            H2s allowed to reach the hero's display scale (30/07/2026). */}
+        <h2 class="text-4xl text-neutral-content sm:text-6xl xl:text-7xl">
           The work's out there. Let's make it <span class="marker">ring your phone</span>.
         </h2>
         <p class="mx-auto mt-6 max-w-xl text-lg text-neutral-content/80">
-          Get your free 20-minute game plan. We'll show you exactly where your next jobs are coming
-          from and what they'll cost. Worst case, you walk away knowing your local market better
-          than your competition does.
+          We'll show you exactly where your next jobs are coming from and what they'll cost.
+          Worst case, you walk away knowing your local market better than your competition does.
         </p>
         <div class="mt-9 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
           <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">

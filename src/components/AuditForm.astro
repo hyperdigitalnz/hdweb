@@ -22,8 +22,15 @@ const {
 import SpeedBadge from "./SpeedBadge.astro";
 import Turnstile from "./Turnstile.astro";
 ---
-<div class="rounded-box border-t-4 border-primary bg-base-100 p-6 text-base-content shadow-xl sm:p-7">
-  <h2 class="text-2xl text-base-content">{title}</h2>
+<!-- Featured-card treatment per DESIGN.md (2px gold at 60%, like the highlighted pricing
+     tier) — replaced the old 4px top accent, which broke the documented border vocabulary. -->
+<!-- pb-24 below lg: the GHL chat launcher floats over the bottom-right of the mobile
+     viewport, so when the card's end is scrolled to rest it was sitting on the submit
+     button and Turnstile. The extra tail means the launcher covers padding, not controls. -->
+<div class="rounded-box border-2 border-primary/60 bg-base-100 p-6 pb-24 text-base-content shadow-xl sm:p-7 sm:pb-24 lg:pb-7">
+  <!-- text-3xl: this was the smallest h2 on the homepage; the ask should never be
+     the quietest heading on the page. -->
+<h2 class="text-3xl text-base-content">{title}</h2>
   <p class="mt-2 text-sm text-base-content/70">{lead}</p>
   <div class="mt-3"><SpeedBadge tone="light" /></div>
 
@@ -54,10 +61,10 @@ import Turnstile from "./Turnstile.astro";
     <div class="grid gap-1">
       <!-- Optional on purpose: plenty of good prospects have no website (or only a
            Facebook/Instagram page) and must never be blocked from submitting. A blank
-           value reads as "no website yet", which is exactly what the audit needs to know. -->
+           value reads as "no website yet", which is exactly what the game plan needs to know. -->
       <label class="text-xs font-bold" for="af-website">Website or Facebook/Instagram page <span class="font-normal text-base-content/50">(optional)</span></label>
       <input id="af-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.co.nz or facebook.com/yourbusiness" class="input input-bordered w-full min-w-0" />
-      <p class="text-xs text-base-content/50">No website yet? Leave it blank and we'll cover that in your audit.</p>
+      <p class="text-xs text-base-content/50">No website yet? Leave it blank and we'll cover that on your game plan call.</p>
     </div>
     {tradePrefill ? (
       <input type="hidden" name="trade" value={tradePrefill} />
@@ -101,6 +108,8 @@ import Turnstile from "./Turnstile.astro";
 </div>
 
 <script>
+  import { SITE } from "../consts";
+
   function wireForms() {
     document.querySelectorAll<HTMLFormElement>(".audit-form").forEach((form) => {
       if (form.dataset.wired) return;
@@ -139,7 +148,12 @@ import Turnstile from "./Turnstile.astro";
             throw new Error(data.error || "failed");
           }
         } catch (err) {
-          if (msg) { msg.textContent = "Something went wrong. Please call us on 027 666 1973."; msg.classList.add("text-error"); }
+          // Static markup only (no user input) so innerHTML is safe; the phone number
+          // must be a tappable tel: link, this is a phone-first audience.
+          if (msg) {
+            msg.innerHTML = `That didn't send. Give it another go, or call Matt or Ryan on <a class="link font-semibold whitespace-nowrap" href="${SITE.phoneHref}">${SITE.phone}</a>.`;
+            msg.classList.add("text-error");
+          }
           if (btn) { btn.disabled = false; btn.textContent = "Get my free game plan →"; }
           // The widget token is single-use; reset it so an immediate retry can pass siteverify.
           const widget = form.querySelector<HTMLElement>(".cf-turnstile");

@@ -22,14 +22,20 @@ const feed = [
       </span>
     </div>
 
-    <div class="vmarquee-wrap h-[360px] rounded-2xl bg-black/30 p-3">
+    <!-- aria-hidden: illustrative demo content, duplicated for the loop; screen
+         readers would hear all 5 example leads twice as if real. The visible
+         "Example of a working day. Not live data." caption below stays readable. -->
+    <div class="vmarquee-wrap h-[360px] rounded-2xl bg-black/30 p-3" aria-hidden="true">
       <div class="vmarquee gap-3">
         {[...feed, ...feed].map((f) => (
           <div class="flex items-start gap-3 rounded-xl border border-white/10 surface-3 p-3" style={`--chip: var(--color-${f.chip})`}>
             <span class="icon-chip cat-ico h-9 w-9 shrink-0"><Icon name={f.icon} class="h-4 w-4" /></span>
             <div class="min-w-0">
               <span class="cat-chip">{f.tag}</span>
-              <p class="mt-1 truncate font-semibold text-neutral-content">{f.text}</p>
+              {/* line-clamp, not truncate: rows were cutting mid-word at 390px
+                  ("Auto email reply, then a nur…"). Both marquee halves grow
+                  identically, so the -50% loop stays seamless. */}
+              <p class="mt-1 line-clamp-2 font-semibold text-neutral-content">{f.text}</p>
               <p class="text-xs text-neutral-content/50">{f.meta}</p>
             </div>
           </div>

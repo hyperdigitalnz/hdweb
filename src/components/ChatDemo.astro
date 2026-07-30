@@ -32,7 +32,7 @@ const messages = [
           >
             {m.text}
           </div>
-          <div class={`mt-1 flex items-center gap-2 text-[0.65rem] text-neutral-content/50 ${m.from === "us" ? "flex-row-reverse" : ""}`}>
+          <div class={`mt-1 flex items-center gap-2 text-xs text-neutral-content/60 ${m.from === "us" ? "flex-row-reverse" : ""}`}>
             <span>{m.time}</span>
             {m.badge && <span class="cat-chip">{m.badge}</span>}
           </div>
@@ -73,7 +73,9 @@ const messages = [
                 "translate(0px, 0px) scale(1)",
               ],
             },
-            { duration: 0.55, delay: 0.2 + i * 0.7, ease: [0.16, 1, 0.3, 1] }
+            // 0.35s stagger (was 0.7s): the full conversation lands in ~2.3s instead
+            // of 4.25s, so scrollers actually reach "Job booked while you slept".
+            { duration: 0.55, delay: 0.2 + i * 0.35, ease: [0.16, 1, 0.3, 1] }
           );
         });
       },

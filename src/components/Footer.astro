@@ -12,17 +12,19 @@ import { SITE, STATS_NOTE, NAV_SERVICES, NAV_COMPANY, REVIEWS } from "../consts"
 
       <!-- Both columns render from the shared NAV_* lists in consts.ts, the same source
            as the header and mobile panel, so the nav surfaces can't drift apart. -->
+      <!-- py-1.5/-my-1.5 fattens each link's tap area (~32px) without changing the
+           visual rhythm; the zones meet but never cross into the neighbouring link. -->
       <nav class="flex flex-col gap-2 text-sm">
         <span class="font-display text-sm uppercase tracking-wide text-neutral-content">Services</span>
         {NAV_SERVICES.map((l) => (
-          <a href={l.href} class="transition-colors hover:text-primary">{l.label}</a>
+          <a href={l.href} class="py-1.5 -my-1.5 transition-colors hover:text-primary">{l.label}</a>
         ))}
       </nav>
 
       <nav class="flex flex-col gap-2 text-sm">
         <span class="font-display text-sm uppercase tracking-wide text-neutral-content">Company</span>
         {NAV_COMPANY.map((l) => (
-          <a href={l.href} class="transition-colors hover:text-primary">{l.label}</a>
+          <a href={l.href} class="py-1.5 -my-1.5 transition-colors hover:text-primary">{l.label}</a>
         ))}
       </nav>
 

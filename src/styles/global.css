@@ -3,9 +3,8 @@
 /* Article body styles for /insights markdown posts (prose classes). */
 @plugin "@tailwindcss/typography";
 
-/* Built-in themes OFF: only the two custom themes below ship. `themes: all` existed for
-   an A/B theme picker that no longer exists and was costing ~150 KB of CSS (37 themes)
-   on every page. Re-enable a built-in here temporarily if you ever need to preview one. */
+/* Built-in themes OFF: only the hyper theme below ships. `themes: all` was costing
+   ~150 KB of CSS (37 themes) on every page. */
 @plugin "daisyui" {
   themes: false;
 }
@@ -52,65 +51,12 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ALT SCHEME (A/B) — "Hi-Vis Professional": Steel Navy + Safety Orange on
-   Galvanized Grey. Activate with the on-screen picker, ?theme=hyper-alt, or
-   data-theme="hyper-alt".
+   Bespoke brand tokens for the dark sections.
    ──────────────────────────────────────────────────────────────────────────── */
-@plugin "daisyui/theme" {
-  name: "hyper-alt";
-  default: false;
-  prefersdark: false;
-  color-scheme: light;
-
-  --color-base-100: #ffffff;       /* white — cards/surfaces that sit on grey */
-  --color-base-200: #f3f4f6;       /* galvanized grey — section + card backgrounds */
-  --color-base-300: #d8dce2;       /* cool grey — borders/dividers */
-  --color-base-content: #222222;   /* asphalt black — primary text */
-
-  --color-primary: #ff5e00;        /* safety orange — action/accent (CTAs, icons, highlights) */
-  --color-primary-content: #222222;/* asphalt on orange — high-contrast hi-vis look */
-  --color-secondary: #1b2a47;      /* steel navy — structural accent */
-  --color-secondary-content: #f3f4f6;
-  --color-accent: #ff7a2e;         /* lighter orange — highlights */
-  --color-accent-content: #222222;
-
-  --color-neutral: #1b2a47;        /* steel navy — dark sections, headers, footers */
-  --color-neutral-content: #f3f4f6;
-
-  --color-info: #3b82f6;
-  --color-info-content: #ffffff;
-  --color-success: #22c55e;
-  --color-success-content: #052e16;
-  --color-warning: #f59e0b;
-  --color-warning-content: #1c1207;
-  --color-error: #ef4444;
-  --color-error-content: #ffffff;
-
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.875rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   Bespoke brand tokens for the dark sections. Our custom themes set these
-   explicitly; for any other theme (incl. daisyUI built-ins) the utilities below
-   fall back to that theme's --color-neutral, and all gold/orange accent tints are
-   derived from --color-primary via color-mix — so every theme renders correctly.
-   ──────────────────────────────────────────────────────────────────────────── */
-[data-theme="hyper"] {
+:root {
   --brand-dark: #0c0b0a;     /* primary dark-section background */
   --brand-dark-2: #141210;   /* slightly lifted dark surface (chart cards) */
   --brand-dark-3: #1c1916;   /* dark surface for list items / chips on dark */
-}
-[data-theme="hyper-alt"] {
-  --brand-dark: #1b2a47;     /* steel navy */
-  --brand-dark-2: #22335a;   /* lifted navy — chart cards */
-  --brand-dark-3: #2b3f6b;   /* lighter navy — list items / chips on dark */
 }
 
 /* ── Gold that reads on light backgrounds (WCAG fix, approved by Matt 25/07/2026) ──
@@ -118,8 +64,7 @@
    variant #8a6432 measures 5.32:1. The token defaults to the ink value and flips back
    to bright gold inside dark surfaces, so `.marker`, `.eyebrow` and `text-primary`
    TEXT is always readable while gold fills/borders/buttons stay #cea46f everywhere. */
-:root, [data-theme="hyper"] { --gold-ink: #8a6432; }
-[data-theme="hyper-alt"] { --gold-ink: #b23f00; }  /* deep safety orange, 5.4:1 on white */
+:root { --gold-ink: #8a6432; }
 /* The attribute selector catches opacity variants like bg-neutral/95 (the header),
    which are different class tokens and would otherwise miss the flip — leaving the
    logo and nav hovers in dark ink gold on a near-black background. */
@@ -130,13 +75,8 @@
    and daisyUI components (btn-primary etc.) keep the bright brand gold. Layered so
    pseudo-class utilities (hover:text-accent etc.) still win on interaction. */
 @layer utilities {
-  .text-primary { color: var(--gold-ink, var(--color-primary)); }
+  .text-primary { color: var(--gold-ink); }
 }
-
-/* Hi-Vis blueprint: keep colour flat and solid (no tech-startup gradients) — alt theme only */
-[data-theme="hyper-alt"] .bg-brand-dark,
-[data-theme="hyper-alt"] .bg-brand-dark-2 { background-image: none; }
-[data-theme="hyper-alt"] .cmp-fill { background: var(--color-primary); }
 
 /* Outfit everywhere (body + display). Headings = heavy weight.
    Self-hosted via @fontsource-variable (imported in Layout.astro); the variable
@@ -171,14 +111,14 @@
   letter-spacing: -2px;
 }
 
-/* Dark surfaces (tokenised; fall back to the theme's neutral for built-in themes) */
-.surface-2 { background-color: var(--brand-dark-2, var(--color-neutral)); }
-.surface-3 { background-color: var(--brand-dark-3, var(--color-neutral)); }
+/* Dark surfaces (tokenised) */
+.surface-2 { background-color: var(--brand-dark-2); }
+.surface-3 { background-color: var(--brand-dark-3); }
 
 /* Dark hero/section: layered accent glow + faint grid */
 .bg-brand-dark {
   position: relative;
-  background-color: var(--brand-dark, var(--color-neutral));
+  background-color: var(--brand-dark);
   background-image:
     radial-gradient(900px 520px at 80% -10%, color-mix(in srgb, var(--color-primary) 26%, transparent), transparent 60%),
     radial-gradient(600px 400px at 8% 120%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 60%);
@@ -195,7 +135,7 @@
   pointer-events: none;
 }
 .bg-brand-dark-2 {
-  background-color: var(--brand-dark, var(--color-neutral));
+  background-color: var(--brand-dark);
   background-image: radial-gradient(700px 420px at 15% 110%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 60%);
 }
 
@@ -203,7 +143,7 @@
    Wraps normally — a long marked phrase breaks across lines rather than overflowing the H1.
    Uses the context-aware gold token: readable deep gold on light, bright gold on dark. */
 .marker {
-  color: var(--gold-ink, var(--color-primary));
+  color: var(--gold-ink);
 }
 /* Highlighter swipe: gold background behind a word, like a marker pen. */
 .highlight {
@@ -254,7 +194,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold-ink, var(--color-primary));
+  color: var(--gold-ink);
 }
 
 /* Gradient accent text */
@@ -263,6 +203,30 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Keyboard focus: one visible ring for everything. Gold Ink flips to bright gold
+   inside dark surfaces automatically (the --gold-ink token), so the ring holds 3:1+
+   contrast on both paper and paint. daisyUI buttons keep their own outline. */
+:focus-visible {
+  outline: 2px solid var(--gold-ink);
+  outline-offset: 2px;
+}
+/* The FAQ collapse control is an invisible checkbox (opacity 0), so the pill itself
+   must show the focus its input receives. */
+.collapse:has(input:focus-visible) {
+  outline: 2px solid var(--gold-ink);
+  outline-offset: 2px;
+}
+
+/* Touch ergonomics: 44px minimum tap height on coarse pointers ("built for a phone
+   in a ute"). daisyUI sizes .btn via --size (btn 40px, btn-sm 32px); bumping the var
+   keeps padding/radius/typography intact. Fine pointers (mouse) are unchanged.
+   btn-lg (48px) already clears the floor. */
+@media (pointer: coarse) {
+  .btn:not(.btn-lg) {
+    --size: 2.75rem;
+  }
 }
 
 /* Scrolling marquee strip */
@@ -306,7 +270,9 @@
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 
 /* Client logo wall: muted until hover */
-.logo-strip img { opacity: .55; filter: grayscale(1); transition: opacity .3s ease, filter .3s ease; }
+/* .8 + a touch of contrast, not .55: hover never fires on the primary device, so the
+   resting state has to be the legible one. Hover still lifts to full colour on desktop. */
+.logo-strip img { opacity: .8; filter: grayscale(1) contrast(1.15); transition: opacity .3s ease, filter .3s ease; }
 .logo-strip img:hover { opacity: 1; filter: grayscale(0); }
 
 /* Recurring shine sweep across primary CTAs */
@@ -375,7 +341,7 @@
 .media-ph.is-dark {
   background:
     radial-gradient(120% 120% at 50% 0%, color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 60%),
-    var(--brand-dark-2, var(--color-neutral));
+    var(--brand-dark-2);
   color: var(--color-neutral-content);
   border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
@@ -439,7 +405,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 0.625rem;
+  /* Field radius token: tabs are field-like controls; 0.625rem was a one-off
+     between the documented field (0.5rem) and box (0.875rem) steps. */
+  border-radius: var(--radius-field);
   padding: 0.6rem 1.15rem;
   font-family: var(--font-display);
   font-weight: 800;
@@ -473,13 +441,16 @@
   color: var(--color-primary-content);
 }
 
-/* Interactive comparison bar (CTR vs industry) — fill animates its width */
+/* Interactive comparison bar (CTR vs industry) — fill grows via scaleX (compositor-only;
+   animating width relayouts every frame). Scripts set style.transform = scaleX(0..1). */
 .cmp-fill {
   height: 100%;
-  width: 0;
+  width: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
-  transition: width 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Partnership timeline: an accent pulse travels along the connector line, on a loop */
@@ -519,7 +490,9 @@
   .marquee, .vmarquee, .flow-pulse { animation: none !important; }
   * , *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
 }

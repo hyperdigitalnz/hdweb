@@ -19,6 +19,9 @@ export const PRICING: PricingTier[] = [
     price: "497",
     who: "Getting found in your local area, one core service.",
     popular: false,
+    // leadIn keeps the three tiers' feature lists starting at the same height
+    // (Growth/Scale carry one; without it Starter's list floated ~100px higher).
+    leadIn: "What you get:",
     features: [
       "Smart website with instant lead replies (SEO & AEO optimised)",
       "Google Ads management (one core service)",
@@ -38,7 +41,9 @@ export const PRICING: PricingTier[] = [
     features: [
       "Meta (Facebook & Instagram) Ads management",
       "Retargeting campaigns",
-      "Multiple services and a wider catchment",
+      // Not "Multiple services and a wider catchment": that duplicated the tier's
+      // `who` line word for word. Same inclusion, said as the deliverable.
+      "Google Ads across multiple services and areas",
       "Email nurture & reactivation workflows",
       "Live analytics dashboard",
     ],

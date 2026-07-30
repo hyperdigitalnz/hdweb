@@ -1,0 +1,93 @@
+---
+// BookedWeek: the hero demo. A tradie's week planner filling with gold job blocks,
+// one booking at a time, until the week reads booked solid. Replaces LeadFeed in the
+// homepage hero (Matt, 30/07/2026); LeadFeed still runs on /websites.
+//
+// Rules baked in:
+//  - Illustrative only, labelled "Example week. Not live data." like LeadFeed was.
+//  - aria-hidden: decorative demo; the visible caption carries the meaning for AT.
+//  - Resting state IS the finished design: reduced motion / no-JS shows the full week
+//    (animation is pure CSS; the global reduced-motion clamp zeroes durations+delays).
+//  - `order` staggers arrivals out of row order so it reads like bookings landing,
+//    not rows painting in.
+type Job = { t: string; m: string; order: number; isNew?: boolean };
+// Locations kept anonymous on purpose (Matt, 30/07/2026): no suburbs, so the example
+// week never reads as a real client's diary or pins the business to one region.
+const week: { day: string; jobs: Job[] }[] = [
+  { day: "Mon", jobs: [{ t: "Kitchen re-pipe", m: "9:00am", order: 0 }, { t: "Leaking mixer", m: "1:30pm", order: 3 }] },
+  { day: "Tue", jobs: [{ t: "Hot water cylinder", m: "8:00am", order: 1 }, { t: "Bathroom rough-in", m: "12:00pm", order: 6 }] },
+  { day: "Wed", jobs: [{ t: "Blocked drain", m: "8:30am", order: 4 }, { t: "Gas hob install", m: "2:00pm", order: 8 }] },
+  { day: "Thu", jobs: [{ t: "Burst pipe", m: "7:30am", order: 2 }, { t: "New build quote", m: "3:00pm", order: 9, isNew: true }] },
+  { day: "Fri", jobs: [{ t: "Re-pipe, day two", m: "8:00am", order: 5 }, { t: "Cylinder swap", m: "1:00pm", order: 7 }] },
+  { day: "Sat", jobs: [{ t: "Emergency callout", m: "9:00am", order: 10 }] },
+];
+const delay = (order: number) => (0.35 + order * 0.28).toFixed(2) + "s";
+---
+<div class="mx-auto w-full max-w-md">
+  <!-- Offset gold frame + slight lean: the page's one deliberate grid-break. -->
+  <div class="relative -rotate-1 lg:scale-105" aria-hidden="true">
+    <div class="absolute -top-4 -left-4 h-full w-full rounded-box border-2 border-primary/40" aria-hidden="true"></div>
+    <div class="relative rounded-box border border-white/10 surface-2 p-4 shadow-2xl sm:p-5">
+      <!-- header -->
+      <div class="flex items-center justify-between pb-3">
+        <span class="text-xs font-bold uppercase tracking-wide text-neutral-content/60">Your week</span>
+        <span class="bw-badge inline-flex items-center gap-1.5 rounded-full bg-primary px-2.5 py-1 font-display text-xs font-bold uppercase tracking-wide text-primary-content">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          Booked solid
+        </span>
+      </div>
+
+      <!-- week rows: the row/slot hairlines are the workshop grid doing a literal job -->
+      <div class="rounded-xl bg-black/30 p-2.5">
+        {week.map((d) => (
+          <div class="flex items-stretch gap-2 border-t border-white/10 py-2 first:border-t-0 first:pt-0 last:pb-0">
+            <span class="w-9 shrink-0 pt-1.5 font-display text-xs font-bold uppercase tracking-wider text-neutral-content/50">{d.day}</span>
+            <div class="grid min-w-0 flex-1 grid-cols-2 gap-2">
+              {d.jobs.map((j) => (
+                <div class:list={["bw-job min-w-0 rounded-lg bg-primary px-2.5 py-1.5 text-primary-content", j.isNew && "bw-new"]} style={`--d: ${delay(j.order)}`}>
+                  <p class="text-xs font-bold leading-tight">{j.t}</p>
+                  <p class="mt-0.5 text-xs leading-tight opacity-70">{j.m}</p>
+                </div>
+              ))}
+              {d.jobs.length < 2 && <div class="rounded-lg border border-dashed border-white/15"></div>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <p class="mt-4 text-center text-xs text-neutral-content/50 lg:mt-5">Example of a working week. Not live data.</p>
+</div>
+
+<style>
+  /* Bookings land one by one on the shared spring curve; fill-mode both keeps the
+     layout box occupied from first paint, so nothing shifts. */
+  .bw-job {
+    animation: bwPop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--d, 0s);
+  }
+  /* The seal on the week: lands after the last booking. */
+  .bw-badge {
+    animation: bwPop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 3.6s;
+  }
+  @keyframes bwPop {
+    from { opacity: 0; transform: translateY(-10px) scale(0.9); }
+    to { opacity: 1; transform: none; }
+  }
+  /* After the fill, one booking pulses occasionally: the week is alive, not looping. */
+  .bw-new {
+    animation:
+      bwPop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both var(--d, 0s),
+      bwGlow 9s ease-in-out 5s infinite;
+  }
+  @keyframes bwGlow {
+    0%, 92%, 100% { box-shadow: none; }
+    96% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-primary) 35%, transparent); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bw-job, .bw-badge, .bw-new {
+      animation: none;
+    }
+  }
+</style>
