@@ -1,8 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
+import AuthorBio from "../../components/AuthorBio.astro";
 import { getCollection, render } from "astro:content";
-import { SITE } from "../../consts";
+import { SITE, AUTHOR } from "../../consts";
 
 // Article template: every markdown file in src/content/insights/ publishes
 // through this page at /insights/<filename>. Drafts are excluded at build.
@@ -26,7 +27,14 @@ const articleSchema = {
   description,
   datePublished: pubDate.toISOString(),
   ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
-  author: { "@type": "Organization", name: author, url: "https://hyperdigital.nz" },
+  author: {
+    "@type": "Person",
+    name: AUTHOR.name,
+    url: AUTHOR.website,
+    sameAs: [AUTHOR.linkedin, AUTHOR.website],
+    jobTitle: "Co-founder",
+    worksFor: { "@type": "Organization", name: "Hyper Digital", url: "https://hyperdigital.nz" },
+  },
   publisher: { "@type": "Organization", name: "Hyper Digital", url: "https://hyperdigital.nz" },
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
   ...(heroImage ? { image: new URL(heroImage, Astro.site).href } : {}),
@@ -75,6 +83,9 @@ const breadcrumbSchema = {
       )}
       <div class="prose prose-lg max-w-none prose-headings:font-display prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-base-content prose-blockquote:border-primary">
         <Content />
+      </div>
+      <div class="mt-12">
+        <AuthorBio />
       </div>
     </div>
   </article>

@@ -18,6 +18,17 @@ export const REVIEWS = {
   url: "https://www.google.com/search?q=Hyper+Digital+Hawke%27s+Bay+reviews",
 };
 
+// Author identity for insights articles: byline, bio card (AuthorBio.astro) and the
+// BlogPosting Person schema. Real external profiles, confirmed by Matt 02/08/2026.
+export const AUTHOR = {
+  name: "Matt McAuliffe",
+  role: "Co-founder, Hyper Digital",
+  photo: "/img/matt-profile-new.png",
+  linkedin: "https://www.linkedin.com/in/mdamcauliffe/",
+  website: "https://mattmcauliffe.co.nz",
+  bio: "Co-founder of Hyper Digital. Matt has been building Google Ads campaigns, websites and marketing systems for NZ trade and local businesses since 2019, and writes from what's working across the agency's client accounts.",
+};
+
 /**
  * Navigation, single source for the header (desktop + mobile panel) and footer.
  * `children` on a primary item renders as a dropdown on desktop and a link group

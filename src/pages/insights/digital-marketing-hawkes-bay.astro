@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Reveal from "../../components/Reveal.astro";
 import AuditForm from "../../components/AuditForm.astro";
+import AuthorBio from "../../components/AuthorBio.astro";
 import SocialProof from "../../components/SocialProof.astro";
 import Icon from "../../components/Icon.astro";
 import { SITE, STATS } from "../../consts";
@@ -261,6 +262,11 @@ const localBusinessSchema = {
         <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get my free game plan</a>
       </Reveal>
     </div>
+  </section>
+
+  <!-- ===== AUTHOR ===== -->
+  <section class="pb-16">
+    <div class="mx-auto max-w-[820px] px-5"><AuthorBio /></div>
   </section>
 
   <!-- ===== FAQ + AUDIT FORM ===== -->

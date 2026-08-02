@@ -16,7 +16,7 @@ const insights = defineCollection({
     description: z.string().max(160, "Meta description: keep under 160 chars"),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    author: z.string().default("Hyper Digital"),
+    author: z.string().default("Matt McAuliffe"),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     // Optional hero image path under public/, e.g. "/img/insights/my-post.jpg".
