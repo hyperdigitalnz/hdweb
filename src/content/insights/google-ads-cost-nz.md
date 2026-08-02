@@ -3,7 +3,6 @@ title: "How Much Does Google Ads Cost in NZ? Real 2026 Numbers"
 description: "What Google Ads actually costs in NZ: real cost-per-click ranges by trade from the accounts we manage, what a sensible budget looks like, and when it pays."
 pubDate: 2026-08-03
 tags: ["Google Ads", "Pricing"]
-draft: true
 ---
 
 Ask Google what its ads cost and you'll get a calculator. Ask an agency and you'll often
