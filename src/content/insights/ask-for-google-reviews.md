@@ -6,9 +6,12 @@ tags: ["Free template", "Reviews"]
 draft: true
 ---
 
-When a homeowner googles your trade, the map results with the most and best reviews get
-the calls. Most tradies know this, do brilliant work all week, and still never ask. Not
-because it's hard, but because it's awkward and there's no system.
+When a homeowner googles your trade and scans the map pack, the business with the most
+reviews starts with a serious advantage. To the customer, a deep bank of reviews reads
+as trust, authority and social proof. And Google uses reviews as one of the ranking
+factors that decide who sits first, second and third in that pack to begin with. Most
+tradies know this, do brilliant work all week, and still never ask. Not because it's
+hard, but because it's awkward and there's no system.
 
 This is the no-system system: your review link, a QR code, and three copy-paste messages.
 Ten minutes to set up, then it's just a habit.
