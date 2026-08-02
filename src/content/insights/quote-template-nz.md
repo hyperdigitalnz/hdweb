@@ -146,6 +146,15 @@ out tyre-kickers. Say which it is up front.
 Thirty days is standard. Shorter (14 days) if material prices are moving on you, and say
 so in the quote: it's a genuine reason and a gentle nudge to decide.
 
+### Is a quote legally binding in NZ?
+
+Generally, a quote is an offer: once the customer accepts it, you've usually formed a
+contract to do that scope for that price, which is exactly why the validity window,
+the exclusions and the written-variations line above matter so much. An estimate is
+different: it's a non-binding ballpark, so label it clearly as one. Quotes also need to
+be genuine under the Fair Trading Act, so never quote low intending to charge high. For
+anything big or unusual, run it past your lawyer; this is general information only.
+
 The template sorts the paperwork. If the problem is not enough quote requests coming in
 to begin with, that's the part we fix. [Get a free game plan](/contact): 20 minutes, real
 numbers for your trade and area, no obligation.
