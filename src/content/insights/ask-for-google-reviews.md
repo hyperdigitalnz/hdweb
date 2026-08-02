@@ -43,6 +43,12 @@ the code, and put it where the job ends:
   the job? A Google review helps heaps." (Using our [free invoice
   template](/insights/invoice-template-nz)? Drop it in the footer.)
 - **On a job-done card** you leave behind, or the quote folder.
+- **Laminated, in every worker's ute.** Print a handful, laminate them, and give one to
+  each of your crew. The routine: before packing up, ask the client if they're happy
+  with the job, and if they are, hand over the card and ask if they'd mind leaving a
+  review. A happy customer scanning a QR code while you load the van beats any email
+  you'll ever send, and it makes asking part of finishing the job rather than an
+  awkward extra.
 - **On the van**, if you're feeling committed. It works at traffic lights.
 
 ## Step 3: The copy-paste messages
