@@ -107,7 +107,7 @@ Different trades, different demand. The short version, with the deeper dive for 
 - **Painters:** planned work, quote-shopped hard; fast follow-up wins more than cheap
   clicks. [Painter lead generation](/painters-lead-generation).
 - **Heat pump and HVAC:** strongly seasonal and planned; search plus Meta ahead of the
-  season. [Heat pump lead generation](/heat-pumps-lead-generation).
+  season. [Heat pump lead generation](/heat-pump-lead-generation).
 
 ## The sensible order (if you're starting from scratch)
 
