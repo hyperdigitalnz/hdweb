@@ -41,7 +41,7 @@ the code, and put it where the job ends:
 
 - **On your invoices.** Right next to the payment details, with one line: "Happy with
   the job? A Google review helps heaps." (Using our [free invoice
-  template](/insights/invoice-template-nz)? Drop it in the footer.)
+  template](/insights/invoice-template-nz/)? Drop it in the footer.)
 - **On a job-done card** you leave behind, or the quote folder.
 - **Laminated, in every worker's ute.** Print a handful, laminate them, and give one to
   each of your crew. The routine: before packing up, ask the client if they're happy
@@ -135,7 +135,7 @@ you're busy, and busy is exactly when the reviews should be flowing. For our cli
 wire the review request to fire automatically after every completed job, with the nudge
 built in, so the asking happens whether or not anyone remembers. It's part of the same
 system that [replies to every enquiry instantly and follows up every
-quote](/ai-automation).
+quote](/ai-automation/).
 
 ## Google review FAQ
 
@@ -167,5 +167,5 @@ More than the competitors who show up beside you for your trade in your area. Ch
 they have, then make the ask a habit until you're clearly ahead, and keep going.
 
 Want the asking, the follow-up and the rest of the pipeline running without anyone
-having to remember? [Get a free game plan](/contact): 20 minutes, real numbers, no
+having to remember? [Get a free game plan](/contact/): 20 minutes, real numbers, no
 obligation.

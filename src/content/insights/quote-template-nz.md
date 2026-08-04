@@ -99,12 +99,12 @@ If following up feels like nagging, put it on rails: a short email a few days af
 quote, another before the validity window closes. That's exactly the kind of thing we
 wire up to run automatically for our clients, every quote, every time, until there's a
 yes or a no. It's a big part of [how we help trade businesses win more
-work](/ai-automation) without anyone having to remember anything.
+work](/ai-automation/) without anyone having to remember anything.
 
 ## Won the job? Turn the quote into an invoice
 
 The quote's line items become the invoice's line items, so don't retype them. We've got a
-matching [free NZ invoice template](/insights/invoice-template-nz) with the same layout,
+matching [free NZ invoice template](/insights/invoice-template-nz/) with the same layout,
 GST handled correctly and its own guide to getting paid faster. Quote, deliver, invoice,
 all in the same format: it reads as one professional operation, because it is.
 
@@ -156,5 +156,5 @@ be genuine under the Fair Trading Act, so never quote low intending to charge hi
 anything big or unusual, run it past your lawyer; this is general information only.
 
 The template sorts the paperwork. If the problem is not enough quote requests coming in
-to begin with, that's the part we fix. [Get a free game plan](/contact): 20 minutes, real
+to begin with, that's the part we fix. [Get a free game plan](/contact/): 20 minutes, real
 numbers for your trade and area, no obligation.

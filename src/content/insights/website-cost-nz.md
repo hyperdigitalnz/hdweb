@@ -94,8 +94,8 @@ the pattern was impossible to ignore. A website on its own doesn't make the phon
 The businesses that grow are the ones where the site, the advertising and the follow-up
 work as one system, and where somebody is accountable for the whole thing. So that's the
 only way we sell it. You can see how the websites side works on [our websites
-page](/websites), and how we think about ads versus organic traffic in [Google Ads vs
-SEO](/insights/google-ads-vs-seo-for-tradies).
+page](/websites/), and how we think about ads versus organic traffic in [Google Ads vs
+SEO](/insights/google-ads-vs-seo-for-tradies/).
 
 If you just need a brochure site and you'll bring your own visitors, we're the expensive
 option and a good freelancer will serve you better. If you need the phone to ring, the
@@ -158,5 +158,5 @@ ads. That's fine for testing an idea, but it looks like what it is, and you can'
 serious marketing on it. For a trading business, the free option is the dearest one.
 
 Want a straight answer on what your business actually needs, with numbers for your trade
-and area? [Get a free game plan](/contact). Twenty minutes, no obligation, and you'll know
+and area? [Get a free game plan](/contact/). Twenty minutes, no obligation, and you'll know
 what to pay for and what to skip.

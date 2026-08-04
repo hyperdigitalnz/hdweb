@@ -41,8 +41,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results" },
-    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/tableau-towbars" },
+    { "@type": "ListItem", position: 1, name: "Results", item: "https://hyperdigital.nz/results/" },
+    { "@type": "ListItem", position: 2, name: `${client} case study`, item: "https://hyperdigital.nz/results/tableau-towbars/" },
   ],
 };
 const articleSchema = {
@@ -70,7 +70,7 @@ const reviewSchema = {
     <div class="mx-auto max-w-[1160px] px-5 py-14 sm:py-20">
       <Reveal instant>
         <nav class="text-sm text-neutral-content/60" aria-label="Breadcrumb">
-          <a href="/results" class="transition-colors hover:text-primary">Results</a>
+          <a href="/results/" class="transition-colors hover:text-primary">Results</a>
           <span class="px-2">/</span>
           <span class="text-neutral-content/90">{client}</span>
         </nav>
@@ -92,12 +92,12 @@ const reviewSchema = {
             <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
               Ryan walked in and sat down with Donna. She had a great business but wasn't sure where to
               start online. We got Tableau Towbars found on Google, built an instant towbar quote funnel,
-              set up their Google Business Profile, and have run profitable <a href="/google-ads" class="link text-primary">Google Ads</a> since 2021. Today
+              set up their Google Business Profile, and have run profitable <a href="/google-ads/" class="link text-primary">Google Ads</a> since 2021. Today
               they serve local towbar work and customers right across New Zealand.
             </p>
           </Reveal>
           <Reveal instant delay={0.2} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
-            <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free game plan</a>
+            <a href="/contact/" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">Get my free game plan</a>
             <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
           </Reveal>
         </div>
@@ -311,8 +311,8 @@ const reviewSchema = {
           game plan and we'll show you what your leads should cost.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
-          <a href="/results" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
+          <a href="/contact/" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
+          <a href="/results/" class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">See more results</a>
         </div>
       </Reveal>
     </div>

@@ -72,7 +72,7 @@ there strengthens the asset that charges you rent.
 
 Running your own pipeline, a click from someone searching your trade in your area costs
 roughly $2 to $6 for most trades in NZ (we publish the real ranges in [what Google Ads
-costs in NZ](/insights/google-ads-cost-nz)). That visitor lands on your website, and if
+costs in NZ](/insights/google-ads-cost-nz/)). That visitor lands on your website, and if
 they enquire, the lead is exclusively yours: no race, no tokens, and the review, the
 Google ranking and the asset belong to you. It costs more to set up and takes more
 commitment, but the cost per won job usually beats shared leads once your win rate on
@@ -131,4 +131,4 @@ And no, you don't have to pick one on day one; the sensible path is often both, 
 weaning off the rented one.
 
 Want to know what your own pipeline would cost against what you're paying per won job
-now? [Get a free game plan](/contact): 20 minutes, your numbers, no obligation.
+now? [Get a free game plan](/contact/): 20 minutes, your numbers, no obligation.

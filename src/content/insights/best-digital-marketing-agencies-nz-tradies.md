@@ -21,7 +21,7 @@ laid out the evidence so you can judge for yourself.
 
 **Based in:** Hawke's Bay, working with tradies NZ-wide
 **Best for:** Plumbing, roofing, spouting, electrical, building, house relocation, pumps
-**Services:** [Google Ads](/google-ads), websites, local SEO, AI-powered lead follow-up
+**Services:** [Google Ads](/google-ads/), websites, local SEO, AI-powered lead follow-up
 **In business since:** 2019
 
 Hyper Digital (that's us) works exclusively with trade and local service businesses. We
@@ -38,33 +38,33 @@ Here is a snapshot of what our campaigns have delivered across different trades:
 
 - **Continuous Spouting (Spouting, Hawke's Bay):** $5.87 cost per lead, 15.5% click-through
   rate, 2,945 tracked leads over a 4.5-year partnership.
-  [Read the full case study →](/results/continuous-spouting)
+  [Read the full case study →](/results/continuous-spouting/)
 
 - **No Drips (Plumbing, Hawke's Bay):** $14 cost per lead on the best keywords (target was
   $45), 9.4% CTR (roughly double the industry average), close to $3,000 in wasted spend
   from the previous agency found and cut.
-  [Read the full case study →](/results/no-drips)
+  [Read the full case study →](/results/no-drips/)
 
 - **Houses on the Move (House relocation, nationwide):** Cost per lead cut by more than
   half ($32 down to $16), 10%+ CTR, 43,000+ clicks across 4.5 years. The client has more
   than doubled their monthly investment because it keeps working.
-  [Read the full case study →](/results/houses-on-the-move)
+  [Read the full case study →](/results/houses-on-the-move/)
 
 - **Harris Pumps (Pumps and filtration):** Cost per lead nearly halved from $31 to $17,
   phone enquiries up 35% year-on-year, a client since day one.
-  [Read the full case study →](/results/harris-pumps)
+  [Read the full case study →](/results/harris-pumps/)
 
 - **Hawke's Bay Roofer (Roofing):** $351 in ad spend turned into a $45,000 re-roof job.
   18 leads tracked as conversions in a single month at roughly $20 each.
-  [Read the full case study →](/results/hawkes-bay-roofer)
+  [Read the full case study →](/results/hawkes-bay-roofer/)
 
 - **Tableau Towbars (Automotive):** Roughly 7x return on ad spend, conversion rate climbing
   from 9% in 2021 to 12% in 2026, profitable since day one across a five-year partnership.
-  [Read the full case study →](/results/tableau-towbars)
+  [Read the full case study →](/results/tableau-towbars/)
 
 - **Bermuda Lifestyle (Pools and spas):** Enquiries up 2,500% and revenue up 500% in year
   one after a website rebuild plus Google, Facebook and Instagram ads.
-  [Read the full case study →](/results/bermuda-lifestyle)
+  [Read the full case study →](/results/bermuda-lifestyle/)
 
 Across all managed accounts, we've delivered $4m+ in tracked client revenue on around $1m
 in ad spend, a blended return of roughly 4x (conservative average; individual campaigns
@@ -78,7 +78,7 @@ vary).
 - AI-powered email follow-up that replies to every website enquiry instantly, 24/7
 - A free game plan before you spend a cent
 
-📞 [Get a free game plan](/contact) or call 027 666 1973.
+📞 [Get a free game plan](/contact/) or call 027 666 1973.
 
 ---
 
@@ -137,7 +137,7 @@ rankings, SEO-first agencies can build a strong foundation. Good content strateg
 customers who are researching before they buy.
 
 **Watch out for:** SEO takes months to show results. If you need the phone ringing next
-week, SEO alone won't do it (we wrote a [whole article on the ads-vs-SEO question](/insights/google-ads-vs-seo-for-tradies)). Make sure the agency is transparent
+week, SEO alone won't do it (we wrote a [whole article on the ads-vs-SEO question](/insights/google-ads-vs-seo-for-tradies/)). Make sure the agency is transparent
 about timelines and doesn't promise page-one rankings by a specific date.
 
 ---
@@ -185,9 +185,9 @@ Regardless of who you pick, here's what to ask before signing anything:
 
 We built Hyper Digital specifically because tradies were getting a raw deal from generalist
 agencies. We only work with trades. Every dollar of ad spend we report is verifiable in the
-client's own account. And every case study on our [results page](/results) links to the
+client's own account. And every case study on our [results page](/results/) links to the
 real numbers.
 
-If you want to see what we could do for your trade, [book a free game plan](/contact). We'll
+If you want to see what we could do for your trade, [book a free game plan](/contact/). We'll
 show you where your next jobs are coming from, and what they'll cost. No jargon, no
 obligation.

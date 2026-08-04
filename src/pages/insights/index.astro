@@ -17,12 +17,12 @@ const posts = (await getCollection("insights", ({ data }) => !data.draft)).sort(
 // URLs on 11/07/2026; old paths 301 in public/_redirects.
 const localGuides = [
   {
-    href: "/insights/digital-marketing-hawkes-bay",
+    href: "/insights/digital-marketing-hawkes-bay/",
     title: "Digital Marketing Hawke's Bay",
     description: "What we do for Napier and Hastings businesses: Google Ads, smart websites, local SEO and AI follow-up, run in-house.",
   },
   {
-    href: "/insights/seo-hawkes-bay",
+    href: "/insights/seo-hawkes-bay/",
     title: "SEO Hawke's Bay",
     description: "How local businesses get found in the map pack, local searches and AI answers across Napier, Hastings and Havelock North.",
   },
@@ -47,7 +47,7 @@ const fmt = (d: Date) =>
       </Reveal>
       <Reveal instant delay={0.1} class="mt-5">
         <p class="mx-auto max-w-2xl text-lg text-neutral-content/80">
-          What we've learned running <a href="/google-ads" class="link text-primary">Google Ads</a>, websites and SEO for Kiwi trade and local
+          What we've learned running <a href="/google-ads/" class="link text-primary">Google Ads</a>, websites and SEO for Kiwi trade and local
           businesses since 2019. Written so you can actually use it, whether you hire us or not.
         </p>
       </Reveal>
@@ -63,7 +63,7 @@ const fmt = (d: Date) =>
         <div class="grid grid-cols-1 gap-6">
           {posts.map((post, i) => (
             <Reveal delay={Math.min(i, 4) * 0.06}>
-              <a href={`/insights/${post.id}`} class="card card-glow border border-base-300 bg-base-100 shadow-sm transition-colors hover:border-primary/50">
+              <a href={`/insights/${post.id}/`} class="card card-glow border border-base-300 bg-base-100 shadow-sm transition-colors hover:border-primary/50">
                 <div class="card-body">
                   <div class="flex flex-wrap items-center gap-3 text-sm text-base-content/60">
                     <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
@@ -120,7 +120,7 @@ const fmt = (d: Date) =>
           they'll cost.
         </p>
         <div class="mt-6 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide sm:w-auto">
+          <a href="/contact/" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide sm:w-auto">
             Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
           </a>
           <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>

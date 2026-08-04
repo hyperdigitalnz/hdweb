@@ -11,64 +11,64 @@
 # which cost us the ads-management intent: GSC showed the old URL still ranking while
 # the destination page talked about tradie lead gen. Do NOT re-add a rule for it here,
 # a _redirects entry would shadow the page.
-/paid-ads                  /google-ads        301
-/paid-ads/                 /google-ads        301
-/digital-marketing         /lead-generation   301
-/digital-marketing/        /lead-generation   301
-/targeted-marketing        /lead-generation   301
-/targeted-marketing/       /lead-generation   301
-/seo                       /lead-generation   301
-/seo/                      /lead-generation   301
+/paid-ads                  /google-ads/        301
+/paid-ads/                 /google-ads/        301
+/digital-marketing         /lead-generation/   301
+/digital-marketing/        /lead-generation/   301
+/targeted-marketing        /lead-generation/   301
+/targeted-marketing/       /lead-generation/   301
+/seo                       /lead-generation/   301
+/seo/                      /lead-generation/   301
 # /social-media repointed 21/07/2026: /facebook-ads is now the real social-ads page,
 # the same fix /paid-ads got when /google-ads was rebuilt.
-/social-media              /facebook-ads      301
-/social-media/             /facebook-ads      301
-/websites-and-e-commerce   /websites          301
-/websites-and-e-commerce/  /websites          301
-/ai                        /ai-automation     301
-/ai/                       /ai-automation     301
+/social-media              /facebook-ads/      301
+/social-media/             /facebook-ads/      301
+/websites-and-e-commerce   /websites/          301
+/websites-and-e-commerce/  /websites/          301
+/ai                        /ai-automation/     301
+/ai/                       /ai-automation/     301
 /services                  /                  301
 /services/                 /                  301
 /training                  /                  301
 /training/                 /                  301
 
 # Hawke's Bay local pages moved under /insights (11/07/2026)
-/seo-hawkes-bay                 /insights/seo-hawkes-bay                 301
-/seo-hawkes-bay/                /insights/seo-hawkes-bay                 301
-/digital-marketing-hawkes-bay   /insights/digital-marketing-hawkes-bay   301
-/digital-marketing-hawkes-bay/  /insights/digital-marketing-hawkes-bay   301
+/seo-hawkes-bay                 /insights/seo-hawkes-bay/                 301
+/seo-hawkes-bay/                /insights/seo-hawkes-bay/                 301
+/digital-marketing-hawkes-bay   /insights/digital-marketing-hawkes-bay/   301
+/digital-marketing-hawkes-bay/  /insights/digital-marketing-hawkes-bay/   301
 
 # Conversion / contact pages (/thank-you is a real page — form success lands there)
 # /callback: retired 11/07/2026; old links (ads, signatures, GHL automations) go to /contact
-/callback                  /contact           301
-/callback/                 /contact           301
-/book-an-appointment       /contact           301
-/book-an-appointment/      /contact           301
-/free-consultation         /contact           301
-/free-consultation/        /contact           301
+/callback                  /contact/           301
+/callback/                 /contact/           301
+/book-an-appointment       /contact/           301
+/book-an-appointment/      /contact/           301
+/free-consultation         /contact/           301
+/free-consultation/        /contact/           301
 
 # Links-in-bio page lives at /links-in-bio (the URL in the social bios).
 # Catch the common slug variants (11/07/2026).
-/links                     /links-in-bio      301
-/links/                    /links-in-bio      301
-/bio                       /links-in-bio      301
-/bio/                      /links-in-bio      301
-/linkinbio                 /links-in-bio      301
-/linkinbio/                /links-in-bio      301
-/link-in-bio               /links-in-bio      301
-/link-in-bio/              /links-in-bio      301
-/social                    /links-in-bio      301
-/social/                   /links-in-bio      301
-/socials                   /links-in-bio      301
-/socials/                  /links-in-bio      301
+/links                     /links-in-bio/      301
+/links/                    /links-in-bio/      301
+/bio                       /links-in-bio/      301
+/bio/                      /links-in-bio/      301
+/linkinbio                 /links-in-bio/      301
+/linkinbio/                /links-in-bio/      301
+/link-in-bio               /links-in-bio/      301
+/link-in-bio/              /links-in-bio/      301
+/social                    /links-in-bio/      301
+/social/                   /links-in-bio/      301
+/socials                   /links-in-bio/      301
+/socials/                  /links-in-bio/      301
 
 # Legal + about
-/terms-and-conditions      /terms             301
-/terms-and-conditions/     /terms             301
-/privacy-policy            /privacy           301
-/privacy-policy/           /privacy           301
-/about-us                  /about             301
-/about-us/                 /about             301
+/terms-and-conditions      /terms/             301
+/terms-and-conditions/     /terms/             301
+/privacy-policy            /privacy/           301
+/privacy-policy/           /privacy/           301
+/about-us                  /about/             301
+/about-us/                 /about/             301
 
 # Old WordPress glossary + category archives (20/07/2026).
 # These were still returning hard 404s while pulling impressions in Search Console
@@ -77,9 +77,9 @@
 # these splats just park the remaining link equity on /insights.
 # Splats live at the END of the file: Wrangler warns that any exact rule sitting
 # below a splat is matched less efficiently.
-/glossary                  /insights          301
-/glossary/                 /insights          301
-/category                  /insights          301
-/category/                 /insights          301
-/glossary/*                /insights          301
-/category/*                /insights          301
+/glossary                  /insights/          301
+/glossary/                 /insights/          301
+/category                  /insights/          301
+/category/                 /insights/          301
+/glossary/*                /insights/          301
+/category/*                /insights/          301

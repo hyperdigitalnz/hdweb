@@ -131,7 +131,7 @@ Work backwards from a job, not forwards from a click:
 
 Paying $30 to win $400 of pipeline is the whole business case, and it's why trades with
 solid job values rarely regret well-run search ads. Run your own numbers with your own
-job value; if the gap is thin, [Google Ads vs SEO](/insights/google-ads-vs-seo-for-tradies)
+job value; if the gap is thin, [Google Ads vs SEO](/insights/google-ads-vs-seo-for-tradies/)
 covers when a slower, cheaper channel makes more sense first.
 
 ## Google Ads cost FAQ
@@ -167,4 +167,4 @@ No. Your media budget goes straight to Google, and you can verify every dollar i
 own account. Management is the only thing we charge for, and we publish those prices.
 
 Want the numbers run for your trade, your area and your job values instead of averages?
-[Get a free game plan](/contact): 20 minutes, real figures, no obligation.
+[Get a free game plan](/contact/): 20 minutes, real figures, no obligation.

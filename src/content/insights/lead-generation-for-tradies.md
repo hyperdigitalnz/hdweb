@@ -39,14 +39,14 @@ Homeowners post jobs, tradies pay to connect and quote, usually against several 
 Fastest way to real quoting opportunities from a standing start, and the racing keeps
 your pricing sharp. The catch is the maths of shared leads: you pay per connection, not
 per win. We've pulled the model apart in [our Builderscrack
-review](/insights/is-builderscrack-worth-it). Rented.
+review](/insights/is-builderscrack-worth-it/). Rented.
 
 ### Ratings directories (NoCowboys and similar)
 
 A flat yearly fee for a prominent, reviewed profile where homeowners go to check up on
 tradies. Closer to a reputation billboard than a lead machine, and occasionally worth
 it when their category page outranks anything you could build soon. The breakdown:
-[is NoCowboys worth it?](/insights/is-nocowboys-worth-it). Rented.
+[is NoCowboys worth it?](/insights/is-nocowboys-worth-it/). Rented.
 
 ### Lead resellers
 
@@ -62,7 +62,7 @@ can't see.
 The fastest owned channel: your ad, your website, your exclusive enquiry, live within
 days. For most NZ trades a click costs roughly $2 to $6.50 regionally, more in the main
 centres; we publish the full table in [what Google Ads costs in
-NZ](/insights/google-ads-cost-nz). It only works as well as the website behind it, and
+NZ](/insights/google-ads-cost-nz/). It only works as well as the website behind it, and
 badly-run accounts burn money on junk searches, which is where the horror stories come
 from. Owned (provided the account is in your name, which you should insist on).
 
@@ -72,7 +72,7 @@ The free channel almost every tradie under-uses. Your Google Business Profile *i
 map-pack listing, and review count and quality are among the factors deciding who shows
 up in those top three spots, as well as being the social proof that wins the click. The
 asking costs nothing and takes ten minutes to set up: [copy-paste templates
-here](/insights/ask-for-google-reviews). Website-side local SEO compounds on top over
+here](/insights/ask-for-google-reviews/). Website-side local SEO compounds on top over
 months. Slowest to build, cheapest per lead once it's running. Owned, permanently.
 
 ### Facebook and Instagram
@@ -81,14 +81,14 @@ Search catches people who already need you; Meta creates demand among people who
 don't yet. It suits work people plan ahead for (renovations, heat pumps, decks,
 painting) and is weak for urgent call-outs, because nobody with a burst pipe is
 scrolling. Usually the second paid channel, not the first. [How we run
-it](/facebook-ads). Owned.
+it](/facebook-ads/). Owned.
 
 ### Referrals, repeat work and follow-up
 
 Still the best leads in the business, and the most mismanaged. Three habits do most of
 the work: reply to every enquiry fast (the fastest reply usually wins the job), chase
 every quote until it's a yes or a no ([template and reasons
-here](/insights/quote-template-nz)), and ask every happy customer for a review. None of
+here](/insights/quote-template-nz/)), and ask every happy customer for a review. None of
 it costs a marketing dollar; all of it compounds. Owned.
 
 ## Which channel first, by trade
@@ -96,18 +96,18 @@ it costs a marketing dollar; all of it compounds. Owned.
 Different trades, different demand. The short version, with the deeper dive for each:
 
 - **Plumbers and gasfitters:** urgent search demand all year. Google Ads plus a fast
-  site first; reviews compound hard. [Plumber lead generation](/plumbers-lead-generation).
+  site first; reviews compound hard. [Plumber lead generation](/plumbers-lead-generation/).
 - **Electricians:** mixed urgent and planned work; search first, and the map pack
-  matters in every town. [Electrician lead generation](/electricians-lead-generation).
+  matters in every town. [Electrician lead generation](/electricians-lead-generation/).
 - **Builders:** big-ticket, planned, heavily researched. Search plus proof (reviews,
   photos, case studies) beats volume; Meta works for renovation demand.
-  [Builder lead generation](/builders-lead-generation).
+  [Builder lead generation](/builders-lead-generation/).
 - **Roofers:** seasonal spikes and insurance-driven urgency; search first, and get the
-  before/after photos working. [Roofer lead generation](/roofers-lead-generation).
+  before/after photos working. [Roofer lead generation](/roofers-lead-generation/).
 - **Painters:** planned work, quote-shopped hard; fast follow-up wins more than cheap
-  clicks. [Painter lead generation](/painters-lead-generation).
+  clicks. [Painter lead generation](/painters-lead-generation/).
 - **Heat pump and HVAC:** strongly seasonal and planned; search plus Meta ahead of the
-  season. [Heat pump lead generation](/heat-pump-lead-generation).
+  season. [Heat pump lead generation](/heat-pump-lead-generation/).
 
 ## The sensible order (if you're starting from scratch)
 
@@ -115,7 +115,7 @@ Different trades, different demand. The short version, with the deeper dive for 
    Free, and it improves every other channel's conversion.
 2. **Get a website that converts**: fast on a phone, one page per service, tap-to-call,
    a short quote form, an instant reply to every enquiry. ([What that should
-   cost.](/insights/website-cost-nz))
+   cost.](/insights/website-cost-nz/))
 3. **Turn on Google Ads** for your best services and areas. Speed while everything else
    grows, and real data on which searches turn into jobs.
 4. **Let SEO and reviews compound** on the pages and profile you now have.
@@ -127,7 +127,7 @@ Different trades, different demand. The short version, with the deeper dive for 
 Whatever the channel, the leads go to whoever answers. An enquiry replied to instantly,
 a quote chased until it's decided, a review requested after every job: these turn the
 same lead flow into more booked work without buying another click. It's why we wire
-[automatic replies and follow-up](/ai-automation) into every system we build, and it's
+[automatic replies and follow-up](/ai-automation/) into every system we build, and it's
 the first thing to fix before spending more on any channel above.
 
 ## Tradie lead generation FAQ
@@ -162,5 +162,5 @@ their Google Business Profile and building reviews, because it's free and lifts
 everything else.
 
 Want this mapped onto your trade, your area and your current setup, with real numbers?
-[Get a free game plan](/contact): 20 minutes with the people who wrote this guide, no
+[Get a free game plan](/contact/): 20 minutes with the people who wrote this guide, no
 obligation.

@@ -12,15 +12,15 @@ const dropdown = NAV.filter((i) => i.children);
 // The homepage carries the AuditForm one anchor away; a full navigation to
 // /contact#audit from there was the most expensive route to a form already on
 // the page (and discarded scroll context). Other pages keep the contact route.
-const ctaHref = Astro.url.pathname === "/" ? "#audit" : "/contact#audit";
+const ctaHref = Astro.url.pathname === "/" ? "#audit" : "/contact/#audit";
 const tradeChips = Object.values(tradeLeadGen).map((t) => ({
   label: t.tradePlural.charAt(0).toUpperCase() + t.tradePlural.slice(1),
-  href: `/${t.slug}`,
+  href: `/${t.slug}/`,
 }));
 
 // Mobile panel groups, from the same NAV source as desktop + footer.
 const getWork = NAV.find((i) => i.children)?.children ?? [];
-const theSystem = NAV.filter((i) => !i.children && i.href !== "/results" && i.href !== "/about");
+const theSystem = NAV.filter((i) => !i.children && i.href !== "/results/" && i.href !== "/about/");
 ---
 <header class="sticky top-0 z-50 border-b border-white/10 bg-neutral/95 text-neutral-content backdrop-blur">
   <div class="mx-auto flex h-[70px] max-w-[1160px] items-center justify-between gap-2 px-5">

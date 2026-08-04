@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         if (raw != null && String(raw).trim()) suspect[key] = String(raw).trim().slice(0, MAX_FIELD_LEN);
       }
       console.log(JSON.stringify({ evt: "honeypot_tripped", lead: suspect }));
-      return wantsHtml ? redirect("/thank-you") : json({ ok: true });
+      return wantsHtml ? redirect("/thank-you/") : json({ ok: true });
     }
 
     // 2. Bot check (skipped if no secret configured yet)
@@ -56,7 +56,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         // The fragment targets a CSS :target notice on /contact, so even a no-JS
         // visitor (who can never mint a Turnstile token) is TOLD what happened
         // instead of landing on a bare contact page with their input gone.
-        return wantsHtml ? redirect("/contact#form-couldnt-verify") : json({ ok: false, error: "bot" }, 400);
+        return wantsHtml ? redirect("/contact/#form-couldnt-verify") : json({ ok: false, error: "bot" }, 400);
       }
     }
 
@@ -71,7 +71,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // 4. Reject obviously incomplete submissions.
     for (const key of REQUIRED_AUDIT) {
-      if (!lead[key]) return wantsHtml ? redirect("/contact#form-missing-details") : json({ ok: false, error: "missing" }, 400);
+      if (!lead[key]) return wantsHtml ? redirect("/contact/#form-missing-details") : json({ ok: false, error: "missing" }, 400);
     }
 
     lead.source = "website";
@@ -88,7 +88,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       console.log(JSON.stringify({ evt: "lead_received_no_webhook", lead }));
     }
 
-    return wantsHtml ? redirect("/thank-you") : json({ ok: true });
+    return wantsHtml ? redirect("/thank-you/") : json({ ok: true });
   } catch (err) {
     console.error("[lead] error", err);
     return json({ ok: false, error: "server" }, 500);

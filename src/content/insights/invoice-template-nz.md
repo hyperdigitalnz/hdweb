@@ -23,7 +23,7 @@ correctly and a worked example already filled in so you can see exactly how to u
 
 No sign-up, no email required. Fill in your business details once, save it as your master
 copy, and you're set. Quoting the job rather than billing it? There's a matching
-[free NZ quote template](/insights/quote-template-nz) too.
+[free NZ quote template](/insights/quote-template-nz/) too.
 
 ## What legally has to be on an NZ invoice
 
@@ -117,10 +117,10 @@ and don't take a cut; they're simply what works.
 
 Here's the thing though: for most trade businesses, invoicing isn't the admin that's
 actually costing money. The expensive admin is the enquiry that sat unanswered while you
-were on the tools, and the [quote that never got a follow-up](/insights/quote-template-nz). Those are jobs you didn't
-win, not payments arriving late. That's the part we fix: [smart websites](/websites) that
+were on the tools, and the [quote that never got a follow-up](/insights/quote-template-nz/). Those are jobs you didn't
+win, not payments arriving late. That's the part we fix: [smart websites](/websites/) that
 reply to every enquiry instantly by email, 24/7, and follow up automatically until you get
-an answer. You can read how it works on our [AI automation page](/ai-automation).
+an answer. You can read how it works on our [AI automation page](/ai-automation/).
 
 ## Invoice template FAQ
 
@@ -159,5 +159,5 @@ The PDF. It can't be accidentally (or deliberately) edited, so there's never a q
 about what was billed. Keep the Word file as your master copy.
 
 Got the invoicing sorted but not enough jobs to invoice? That's the better problem to fix.
-[Get a free game plan](/contact) and we'll show you where your next jobs are coming from,
+[Get a free game plan](/contact/) and we'll show you where your next jobs are coming from,
 with real numbers for your trade and area.

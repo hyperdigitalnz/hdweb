@@ -42,7 +42,7 @@ The comparison tradies actually search for, so here it is straight:
 - **Builderscrack** sells access to jobs: homeowners post work, you pay (in tokens) to
   connect, and you're usually quoting against several others. Money flows per
   opportunity. We've broken that model down in [our Builderscrack
-  review](/insights/is-builderscrack-worth-it).
+  review](/insights/is-builderscrack-worth-it/).
 - **NoCowboys** sells presence: a flat yearly fee for a more prominent, better-dressed
   profile that customers find when they go looking. Money flows per year, regardless
   of what work results.
@@ -64,7 +64,7 @@ renting a spot on page one.
 
 The case against: the same $83 a month, pointed at your own marketing, buys roughly 15
 to 30 Google Ads clicks at typical trade rates (our published [NZ cost-per-click
-data](/insights/google-ads-cost-nz) has the ranges), landing on a website you own, with
+data](/insights/google-ads-cost-nz/) has the ranges), landing on a website you own, with
 enquiries that are exclusively yours. And every review you earn on NoCowboys builds
 *their* domain's authority, not your own map-pack presence.
 
@@ -80,7 +80,7 @@ searcher sees you first, and review count and quality are among the factors Goog
 to decide who shows up in those top three spots at all.
 
 So if your customers have one review in them, spend it on Google. We've published a
-[complete guide with copy-paste templates](/insights/ask-for-google-reviews) for doing
+[complete guide with copy-paste templates](/insights/ask-for-google-reviews/) for doing
 exactly that. NoCowboys ratings are a fine second ask for your happiest customers, and
 if you do pay for registration, their invite tools make that easy.
 
@@ -128,7 +128,7 @@ steady habit of asking happy customers to rate you, the same habit that works on
 Different tools. Builderscrack sells connections to posted jobs (pay per opportunity,
 compete on quotes); NoCowboys sells a prominent, reviewed presence (flat yearly fee).
 Gap-filling versus reputation. Our [Builderscrack
-breakdown](/insights/is-builderscrack-worth-it) covers the other half of the question.
+breakdown](/insights/is-builderscrack-worth-it/) covers the other half of the question.
 
 ### Do NoCowboys reviews help my Google ranking?
 
@@ -137,4 +137,4 @@ Google Business Profile are the ones that feed your own map-pack visibility, whi
 why we tell every client to ask for Google reviews first.
 
 Not sure whether your $999 would do more on NoCowboys or in your own pipeline? [Get a
-free game plan](/contact): 20 minutes, your actual numbers, no obligation.
+free game plan](/contact/): 20 minutes, your actual numbers, no obligation.

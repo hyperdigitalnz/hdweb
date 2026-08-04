@@ -6,7 +6,7 @@ tags: ["Google Ads", "SEO"]
 ---
 
 Every week a tradie asks us some version of the same question: should I pay for
-[Google Ads](/google-ads), or put that money into SEO and get "free" traffic instead?
+[Google Ads](/google-ads/), or put that money into SEO and get "free" traffic instead?
 
 The straight answer is that they do different jobs, and the right order depends on one thing:
 how soon you need the phone to ring.
@@ -49,5 +49,5 @@ the meantime costs more than it looks, and you have no data about which searches
 first isn't us upselling you; it's the fastest way to find out what works before you invest
 in ranking for it.
 
-If you want a straight answer for your own trade and area, [get a free game plan](/contact) and
+If you want a straight answer for your own trade and area, [get a free game plan](/contact/) and
 we'll show you the numbers.

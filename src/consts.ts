@@ -40,33 +40,33 @@ export type NavItem = NavLink & { children?: NavLink[] };
 export const NAV: NavItem[] = [
   {
     label: "Get more work",
-    href: "/lead-generation",
+    href: "/lead-generation/",
     children: [
-      { label: "Google Ads", href: "/google-ads" },
-      { label: "Facebook Ads", href: "/facebook-ads" },
-      { label: "Lead Generation", href: "/lead-generation" },
-      // { label: "SEO & Local", href: "/seo" }, // lands with the /seo page build
+      { label: "Google Ads", href: "/google-ads/" },
+      { label: "Facebook Ads", href: "/facebook-ads/" },
+      { label: "Lead Generation", href: "/lead-generation/" },
+      // { label: "SEO & Local", href: "/seo/" }, // lands with the /seo page build
     ],
   },
-  { label: "Websites", href: "/websites" },
-  { label: "Automation", href: "/ai-automation" },
-  { label: "Results", href: "/results" },
-  { label: "About", href: "/about" },
+  { label: "Websites", href: "/websites/" },
+  { label: "Automation", href: "/ai-automation/" },
+  { label: "Results", href: "/results/" },
+  { label: "About", href: "/about/" },
 ];
 
 // Footer columns + the mobile panel's "Proof & company" group.
 export const NAV_SERVICES: NavLink[] = [
-  { label: "Google Ads", href: "/google-ads" },
-  { label: "Facebook Ads", href: "/facebook-ads" },
-  { label: "Lead Generation", href: "/lead-generation" },
-  { label: "Websites", href: "/websites" },
-  { label: "AI Automation", href: "/ai-automation" },
+  { label: "Google Ads", href: "/google-ads/" },
+  { label: "Facebook Ads", href: "/facebook-ads/" },
+  { label: "Lead Generation", href: "/lead-generation/" },
+  { label: "Websites", href: "/websites/" },
+  { label: "AI Automation", href: "/ai-automation/" },
 ];
 export const NAV_COMPANY: NavLink[] = [
-  { label: "Results", href: "/results" },
-  { label: "Insights", href: "/insights" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Results", href: "/results/" },
+  { label: "Insights", href: "/insights/" },
+  { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
 ];
 
 // Trust stats. 107/49 confirmed by Matt 25/07/2026 ("40+" retired; check quarterly).

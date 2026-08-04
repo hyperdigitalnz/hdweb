@@ -263,8 +263,8 @@ import { SITE } from "../consts";
         page: location.pathname,
       });
       try {
-        navigator.sendBeacon?.("/api/tool-event", new Blob([body], { type: "application/json" })) ||
-          fetch("/api/tool-event", { method: "POST", body, headers: { "Content-Type": "application/json" }, keepalive: true });
+        navigator.sendBeacon?.("/api/tool-event/", new Blob([body], { type: "application/json" })) ||
+          fetch("/api/tool-event/", { method: "POST", body, headers: { "Content-Type": "application/json" }, keepalive: true });
       } catch { /* logging must never break the tool */ }
     }
 

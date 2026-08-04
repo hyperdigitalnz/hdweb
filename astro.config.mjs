@@ -11,6 +11,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://hyperdigital.nz',
 
+  // Canonical URLs use trailing slashes (matches Cloudflare Pages' directory
+  // serving). 'always' makes the dev server 404 any slash-less internal link,
+  // so inconsistent hrefs get caught before they ship. On-demand routes
+  // (/api/*) only match WITH the trailing slash under this setting — keep
+  // fetch/action URLs in sync.
+  trailingSlash: 'always',
+
   integrations: [
     sitemap({
       // Keep noindex utility pages out of the sitemap: /thank-you fires the Google

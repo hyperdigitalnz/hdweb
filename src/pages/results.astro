@@ -17,7 +17,7 @@ const caseStudies = [
     name: "Bermuda Lifestyle",
     trade: "Pools & Spas",
     featured: true,
-    slug: "/results/bermuda-lifestyle",
+    slug: "/results/bermuda-lifestyle/",
     headline: "2,500% more enquiries and 500% revenue growth in their first year.",
     body: "They came to us with a basic 5-page website that barely ranked and brought in next to no leads. We rebuilt their site and have run Google Ads, Facebook and Instagram ever since. Now they've got customers booked months in advance.",
     metrics: [
@@ -35,7 +35,7 @@ const caseStudies = [
     name: "Tableau Towbars",
     trade: "Automotive / Towing",
     featured: false,
-    slug: "/results/tableau-towbars",
+    slug: "/results/tableau-towbars/",
     headline: "Beating its target every year since 2021, on a lean budget.",
     body: "We got Tableau Towbars found on Google, built an instant towbar quote funnel, and have run profitable Google Ads since 2021. A lean online channel that punches well above its small budget.",
     metrics: [
@@ -52,7 +52,7 @@ const caseStudies = [
     name: "Harris Pumps & Filtration",
     trade: "Trade supply / Pumps",
     featured: false,
-    slug: "/results/harris-pumps",
+    slug: "/results/harris-pumps/",
     headline: "Cost per lead cut from $31 to around $17, and 29% more leads.",
     body: "One of our very first clients. Year after year we've grown their online advertising and made it more efficient. 2026 is their most efficient year yet.",
     metrics: [
@@ -69,7 +69,7 @@ const caseStudies = [
     name: "Houses On The Move",
     trade: "House Relocations",
     featured: false,
-    slug: "/results/houses-on-the-move",
+    slug: "/results/houses-on-the-move/",
     // Card stats deliberately match what the case-study page substantiates (↓52% CPL).
     // The +122% YoY leads and 43k clicks figures come back once they're sourced on the
     // page itself (SITE-REVIEW-2026-07-25.md, Part 5 #9).
@@ -88,7 +88,7 @@ const caseStudies = [
     name: "Hawke's Bay Roofer",
     trade: "Roofing",
     featured: false,
-    slug: "/results/hawkes-bay-roofer",
+    slug: "/results/hawkes-bay-roofer/",
     headline: "One month, $351 in ads, and a $45,000 roofing job.",
     body: "A Hawke's Bay roofer. We run brand and high-intent Search campaigns that put them in front of locals searching for re-roofs, repairs and guttering. In a single month, $351 of ad spend brought in 18 enquiries, and one became a $45,000 re-roof.",
     metrics: [
@@ -104,7 +104,7 @@ const caseStudies = [
     name: "No Drips",
     trade: "Plumbing & Gas",
     featured: false,
-    slug: "/results/no-drips",
+    slug: "/results/no-drips/",
     headline: "Plumbing leads from as little as $14, well under their $45 target.",
     body: "Hawke's Bay plumbers and gasfitters. We took over their Google Ads from another agency, cut close to $3,000 of wasted spend, and restructured the account around the work that books, with click-through rates around double the industry average.",
     metrics: [
@@ -120,7 +120,7 @@ const caseStudies = [
     name: "Napier Plumber",
     trade: "Plumbing, Gas & Drainage",
     featured: false,
-    slug: "/results/napier-plumber",
+    slug: "/results/napier-plumber/",
     headline: "543 tracked enquiries in a year, with ads leads at about $13 each.",
     body: "A Napier plumbing, gasfitting and drainage business. We built their website four years ago with conversion and SEO in mind: it now sits on page 1 of Google for searches like plumbers napier, and a small tightly managed ads budget adds hundreds of leads a year on top.",
     metrics: [
@@ -136,7 +136,7 @@ const caseStudies = [
     name: "Continuous Spouting",
     trade: "Spouting & Guttering",
     featured: false,
-    slug: "/results/continuous-spouting",
+    slug: "/results/continuous-spouting/",
     headline: "Nearly 3,000 enquiries at under $6 each. A 4.5-year partnership and counting.",
     body: "One tightly managed Google Ads Search campaign, targeting Hawke's Bay homeowners and builders searching for spouting and guttering. No complicated setup. Just consistent, efficient results month after month.",
     metrics: [
@@ -304,7 +304,7 @@ const reviewSchema = caseStudies.filter((c) => c.quote).map((c) => ({
           for free until you do.
         </p>
         <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
-          <a href="/contact" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
+          <a href="/contact/" class="btn btn-primary btn-lg w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 sm:w-auto">Get my free game plan</a>
           <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
         </div>
         <Reveal delay={0.1} class="mt-9"><SocialProof /></Reveal>
