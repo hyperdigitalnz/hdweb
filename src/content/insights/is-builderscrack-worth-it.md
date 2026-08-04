@@ -3,7 +3,6 @@ title: "Is Builderscrack Worth It for Tradies? Fees and the Real Maths"
 description: "How Builderscrack works for tradies, what the tokens and fees really cost, what tradies say about it, and when paying for shared leads makes sense."
 pubDate: 2026-08-05
 tags: ["Lead generation", "Reviews"]
-draft: true
 ---
 
 Builderscrack is the biggest name in NZ trade job platforms, and if you run a trade
