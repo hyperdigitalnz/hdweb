@@ -3,7 +3,6 @@ title: "How to Ask for Google Reviews: Copy-Paste Templates for Tradies"
 description: "Copy-paste review request templates for tradies, plus how to find your Google review link, make a QR code and where to put it so reviews keep coming."
 pubDate: 2026-08-07
 tags: ["Free template", "Reviews"]
-draft: true
 ---
 
 When a homeowner googles your trade and scans the map pack, the business with the most
