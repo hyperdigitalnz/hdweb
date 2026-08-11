@@ -135,5 +135,9 @@ Not directly. They live on NoCowboys' domain and build their authority. Reviews 
 Google Business Profile are the ones that feed your own map-pack visibility, which is
 why we tell every client to ask for Google reviews first.
 
+For where directories sit against every other way tradies get work, our [complete guide
+to lead generation for tradies](/insights/lead-generation-for-tradies/) lays the whole
+landscape out.
+
 Not sure whether your $999 would do more on NoCowboys or in your own pipeline? [Get a
 free game plan](/contact/): 20 minutes, your actual numbers, no obligation.

@@ -108,6 +108,10 @@ The asks above do the heavy lifting, but the link should also live permanently i
   think").
 - **Your website**, near your testimonials.
 
+Reviews are one channel in a bigger machine; our [complete guide to lead generation for
+tradies](/insights/lead-generation-for-tradies/) shows where they fit alongside ads,
+your Google profile and the rest.
+
 ## The rules (so your reviews never get wiped)
 
 Google's policy is short and they do enforce it, and review removal hurts more than

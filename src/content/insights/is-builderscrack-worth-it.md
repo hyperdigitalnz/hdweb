@@ -80,7 +80,8 @@ one race in five.
 
 The two aren't mutually exclusive. Plenty of solid businesses use directory leads to
 smooth the quiet weeks while their own pipeline grows, then quietly stop needing the
-directory.
+directory. For how the whole picture fits together, every channel side by side, see our
+[complete guide to lead generation for tradies](/insights/lead-generation-for-tradies/).
 
 ## When Builderscrack is genuinely worth it
 

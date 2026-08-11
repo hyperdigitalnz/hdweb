@@ -132,7 +132,9 @@ Work backwards from a job, not forwards from a click:
 Paying $30 to win $400 of pipeline is the whole business case, and it's why trades with
 solid job values rarely regret well-run search ads. Run your own numbers with your own
 job value; if the gap is thin, [Google Ads vs SEO](/insights/google-ads-vs-seo-for-tradies/)
-covers when a slower, cheaper channel makes more sense first.
+covers when a slower, cheaper channel makes more sense first, and our [complete guide to
+lead generation for tradies](/insights/lead-generation-for-tradies/) puts ads alongside
+every other channel.
 
 ## Google Ads cost FAQ
 
