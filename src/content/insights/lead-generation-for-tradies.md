@@ -3,7 +3,6 @@ title: "Lead Generation for Tradies in NZ: The Complete 2026 Guide"
 description: "Every way NZ tradies get leads in 2026, compared: directories, Google Ads, SEO, reviews, Facebook and referrals, with real costs and what to do first."
 pubDate: 2026-08-12
 tags: ["Lead generation", "Guides"]
-draft: true
 ---
 
 Every tradie in New Zealand gets pitched leads from somewhere: directories, lead
