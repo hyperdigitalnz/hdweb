@@ -3,7 +3,6 @@ title: "AI Search for Tradies: How to Get Recommended by ChatGPT"
 description: "More Kiwis are asking ChatGPT and Google AI to find them a tradie. Here's how AI picks who to recommend, and the seven steps to make sure it's you."
 pubDate: 2026-08-14
 tags: ["AI search", "SEO"]
-draft: true
 ---
 
 A homeowner in Hastings used to google "plumber hastings" and scroll the results. Now a
