@@ -30,3 +30,7 @@ pnpm-debug.log*
 # local working docs (kept on disk, not committed)
 /CLAUDE.md
 /LOGS.md
+
+# raw founder-video master (42MB, over the 25MiB Workers asset limit; the web
+# encode is public/videos/ryan-founder.mp4)
+/public/videos/Ryan-founder-video.mp4

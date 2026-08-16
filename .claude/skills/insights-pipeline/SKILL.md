@@ -22,6 +22,11 @@ agreed queue, and the copy rules. Update it whenever the pipeline moves.
    Push auto-deploys.
 4. Then continue the queue per `CONTENT-PIPELINE.md` (evidence pull → draft:true →
    Matt-gate if it names a company → schedule 09:07, spaced every ~2 days).
+5. **Social (manual mode since 13/08/2026)**: every article gets an X post drafted
+   in-session and handed to Matt as a copy-paste block; **he posts it himself** on
+   publish day after the URL is live. No em dashes, URL = 23 chars, 280 limit.
+   The `_tools/x/` API pipeline is mothballed (X API is pay-per-use now, ~US$0.20
+   per link post; Matt declined credits). Details: CONTENT-PIPELINE.md "Social" section.
 
 ## Hard rules
 

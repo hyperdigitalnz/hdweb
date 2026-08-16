@@ -18,6 +18,9 @@
 /img/*
   Cache-Control: public, max-age=604800
 
+/videos/*
+  Cache-Control: public, max-age=604800
+
 # Feed: served as a static asset, so set the feed MIME type explicitly
 # (X-Content-Type-Options: nosniff means readers get no second guess).
 /rss.xml

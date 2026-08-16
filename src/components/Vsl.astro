@@ -5,9 +5,11 @@ interface Props {
   src: string;
   poster?: string;
   caption?: string;
+  /** URL of a WebVTT captions file (off by default; viewer toggles it in the player). */
+  captions?: string;
   class?: string;
 }
-const { src, poster, caption, class: cls = "" } = Astro.props;
+const { src, poster, caption, captions, class: cls = "" } = Astro.props;
 ---
 <figure class={`m-0 ${cls}`}>
   <div class="overflow-hidden rounded-box border border-primary/30 shadow-2xl shadow-primary/20">
@@ -19,6 +21,7 @@ const { src, poster, caption, class: cls = "" } = Astro.props;
       poster={poster}
     >
       <source src={src} type="video/mp4" />
+      {captions && <track kind="captions" src={captions} srclang="en" label="English" />}
       Your browser does not support the video tag.
       <a href={src}>Watch the video</a>.
     </video>

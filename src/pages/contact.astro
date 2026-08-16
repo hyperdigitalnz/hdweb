@@ -4,6 +4,7 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
+import Vsl from "../components/Vsl.astro";
 import { SITE } from "../consts";
 
 const title = "Contact Hyper Digital | Get Your Free Game Plan";
@@ -82,6 +83,15 @@ const localBusinessSchema = {
               </span>
             </li>
           </ul>
+        </Reveal>
+
+        <Reveal instant delay={0.2} class="mx-auto mt-8 max-w-md lg:mx-0">
+          <Vsl
+            src="/videos/ryan-founder.mp4"
+            poster="/img/ryan-founder-poster.jpg"
+            captions="/videos/ryan-founder.vtt"
+            caption="Ryan, one of the two owners you'll be talking to (30 seconds)."
+          />
         </Reveal>
 
         <Reveal instant delay={0.22} class="mt-8">

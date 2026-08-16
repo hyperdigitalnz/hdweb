@@ -9,6 +9,7 @@ import SpeedBadge from "../components/SpeedBadge.astro";
 import BookedWeek from "../components/BookedWeek.astro";
 import ChatDemo from "../components/ChatDemo.astro";
 import JobCalculator from "../components/JobCalculator.astro";
+import Vsl from "../components/Vsl.astro";
 import { SITE, STATS } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
 
@@ -565,20 +566,16 @@ const faqs = [
        photo carry well on the paintwork) -->
   <section class="bg-brand-dark py-16 text-neutral-content sm:py-24">
     <div class="mx-auto grid max-w-[1160px] items-center gap-14 px-5 lg:grid-cols-2">
-      <Reveal class="relative mx-auto w-full max-w-lg">
-        <div class="absolute -top-4 -left-4 h-full w-full rounded-box border-2 border-primary/40" aria-hidden="true"></div>
-        <img
-          src="/img/HD-Founders.jpg"
-          alt="Matt and Ryan, founders of Hyper Digital"
-          width="882"
-          height="663"
-          loading="lazy"
-          decoding="async"
-          class="relative w-full rounded-box object-cover shadow-2xl"
+      {/* Founder video (07/08/2026) replaced the HD-Founders.jpg photo here: Ryan
+          introducing the agency beats a static shot in the "who you're dealing with"
+          band. Vsl brings its own gold border + glow, so the offset frame went too. */}
+      <Reveal class="mx-auto w-full max-w-lg">
+        <Vsl
+          src="/videos/ryan-founder.mp4"
+          poster="/img/ryan-founder-poster.jpg"
+          captions="/videos/ryan-founder.vtt"
+          caption="Ryan, co-founder, in his own words (30 seconds)."
         />
-        <span class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-neutral/90 px-4 py-1.5 text-sm font-semibold text-neutral-content backdrop-blur">
-          <span class="inline-block h-2 w-2 rounded-full bg-primary"></span> Matt &amp; Ryan · Founders
-        </span>
       </Reveal>
       <div class="text-center lg:text-left">
         <Reveal><span class="eyebrow">Who you're dealing with</span></Reveal>
