@@ -128,9 +128,15 @@ want to know which jobs actually made money, that is Fergus's pitch and it is th
 people move to it. If you charge time and materials and mostly need scheduling, quoting
 and invoicing to stop falling over, you are paying for depth you won't use.
 
+**What phones your crew carry.** This one catches people out. ServiceM8's full app is
+built for iPhone and iPad. Android users get **ServiceM8 Lite**, a deliberately cut-down
+app for field techs that covers the jobs assigned to them but not the management side. If
+your crew is on Android and you want them doing more than viewing their own jobs, check
+that limitation during the trial rather than after you have migrated. The others are
+cross-platform.
+
 **Who has to use it.** The best system is the one your team will actually open on a
-Tuesday afternoon in a roof cavity. ServiceM8 is iOS only on mobile, which is a hard stop
-if half your crew is on Android. Every product here has a free trial (14 days for
+Tuesday afternoon in a roof cavity. Every product here has a free trial (14 days for
 Tradify, ServiceM8 and Fergus, 10 days for NextMinute). Put your two least tech-keen
 staff on the trial, not yourself.
 
