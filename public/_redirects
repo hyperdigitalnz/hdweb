@@ -17,8 +17,9 @@
 /digital-marketing/        /lead-generation/   301
 /targeted-marketing        /lead-generation/   301
 /targeted-marketing/       /lead-generation/   301
-/seo                       /lead-generation/   301
-/seo/                      /lead-generation/   301
+# /seo was a legacy URL parked on /lead-generation while no SEO page existed.
+# Removed 17/08/2026: /seo is now a real service page, and the redirect was
+# shadowing it (the deployed page 301'd away before it could ever be served).
 # /social-media repointed 21/07/2026: /facebook-ads is now the real social-ads page,
 # the same fix /paid-ads got when /google-ads was rebuilt.
 /social-media              /facebook-ads/      301
