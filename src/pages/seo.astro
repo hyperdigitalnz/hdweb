@@ -1,0 +1,386 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import { SITE, CURRENT_CLIENTS } from "../consts";
+
+// National /seo service page. Built 17/08/2026 off the mid-August SEO check
+// (seo/SEO-CHECK-2026-08-17.md): 97 SEO-intent queries drew 1,108 impressions and
+// zero clicks in the 31 days to 14/08, all landing on the homepage because no SEO
+// service page existed. Keyword targets from
+// keyword-research/seo-city-pages-brief-2026-07-25.md (seo nz 1,000/mo, seo company
+// nz 590, seo services nz 480, local seo services 140 KD 0).
+// City pages hang off this one: /seo-christchurch, /insights/seo-hawkes-bay.
+
+const title = "SEO NZ | SEO Company for Trade & Local Business | Hyper Digital";
+const description =
+  "SEO services for New Zealand trade and local businesses. Rank in the map pack, organic results and AI answers. Free SEO game plan, no lock-in contracts.";
+
+const places = [
+  { icon: "pin", title: "The map pack", body: "The three map results under the search bar take the biggest share of local clicks. Your Google Business Profile, reviews and local signals decide whether you're in them." },
+  { icon: "search", title: "The organic results", body: "The classic blue links. Pages built around the exact jobs you do and the places you do them, on a fast site Google trusts, climb here and stay there." },
+  { icon: "sparkles", title: "AI answers", body: "More people now ask Google's AI overview or ChatGPT who to call. We structure your site so those answers can read it, quote it and recommend you. Most NZ businesses haven't caught up yet." },
+];
+
+const work = [
+  { icon: "search", title: "Keyword and demand research", body: "We pull real search volumes for your services and towns from Google's own data, not guesses. If nobody is searching for it, we tell you before you pay for it." },
+  { icon: "layout", title: "Service and location pages", body: "A proper page for each service you sell and each area you cover, written around how people actually search. No thin, copy-paste town pages that Google ignores." },
+  { icon: "pin", title: "Google Business Profile", body: "Set up, verified and optimised: services, photos, posts and the details Google cross-checks. For local businesses this is the single biggest ranking lever." },
+  { icon: "star", title: "Reviews that keep coming", body: "Happy customers rarely review unprompted. We build the ask into your follow-up so your rating and review count keep climbing month after month." },
+  { icon: "bolt", title: "Technical and site speed", body: "Speed, mobile experience, crawlability and clean structure. Every site we build passes Google's checks from day one, and we can fix yours if it doesn't." },
+  { icon: "trend", title: "Reporting without the spin", body: "Rankings and traffic, but mostly the calls and enquiries search actually produced. If something isn't moving, we say so rather than burying it in a dashboard." },
+];
+
+const faqs = [
+  { q: "How long does SEO take to work?", a: "Local SEO usually shows movement in 2 to 3 months and meaningful results in 6 to 12. That is the straight answer any agency should give you. If you need leads this month, Google Ads is the right tool while your SEO builds underneath, and we run both." },
+  { q: "What does SEO cost in New Zealand?", a: "It depends on how competitive your services and towns are, which is exactly what your free game plan works out. For most local businesses we bundle SEO into monthly plans from $497 +GST alongside your website and ads, rather than selling it as a standalone line item. Standalone SEO retainers in NZ typically run from a few hundred to several thousand a month." },
+  { q: "Can you guarantee a number one ranking?", a: "No, and nobody genuinely can, because Google does not sell rankings to anyone. What we can show you is exactly what we are doing, what is moving, and what it is costing per enquiry, every month, with no lock-in contract if we are not delivering." },
+  { q: "What is the difference between SEO and local SEO?", a: "Local SEO targets searches tied to a place, where the map pack and your Google Business Profile decide most of the outcome. Broader SEO targets searches without a location attached and is won mostly on pages and authority. Trade and local businesses live on the first one, so that is where we start." },
+  { q: "Do you only work with tradies?", a: "Trades and home services are our specialty, but the same system works for any New Zealand business that lives on local search, from health to hospitality. If we do not think we are the right fit, we will say so on the game plan call." },
+  { q: "I already run Google Ads. Why bother with SEO?", a: "Ads stop the moment you stop paying. SEO compounds: the same searches that cost you per click start arriving free, and businesses showing in the map pack, the organic results and the ads at once win a disproportionate share of the calls." },
+  { q: "Do I need to be in Hawke's Bay to work with you?", a: "No. We are based in Hawke's Bay and a good share of our clients are local, but we work with businesses right across New Zealand. Search work does not require us to be in the same town as you." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "SEO Services New Zealand",
+  serviceType: "Search engine optimisation",
+  areaServed: { "@type": "Country", name: "New Zealand" },
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Hyper Digital",
+    url: "https://hyperdigital.nz",
+    telephone: "+64276661973",
+    address: { "@type": "PostalAddress", addressRegion: "Hawke's Bay", addressCountry: "NZ" },
+  },
+};
+
+// City pages. Hawke's Bay lives under /insights/ (Matt's call, 11/07/2026);
+// Christchurch is a top-level landing page. Auckland is briefed but not built.
+const cities = [
+  { name: "Hawke's Bay", href: "/insights/seo-hawkes-bay/", body: "Napier, Hastings and Havelock North. Our home patch since 2019." },
+  { name: "Christchurch", href: "/seo-christchurch/", body: "SEO, Google Ads and websites for Canterbury trade businesses." },
+];
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal instant>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="search" class="h-4 w-4" /> SEO, New Zealand wide
+          </span>
+        </Reveal>
+        <Reveal instant delay={0.05} class="mt-5">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            SEO for New Zealand trade and <span class="marker">local businesses</span>.
+          </h1>
+        </Reveal>
+        <Reveal instant delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            When someone searches for what you do, you are either on the first page or you are
+            invisible. We get New Zealand businesses into the search results that produce work,
+            and we measure it in calls and quote requests, not traffic charts.
+          </p>
+        </Reveal>
+        <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free SEO game plan <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal instant delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+
+      <Reveal instant delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative rounded-box border border-white/10 surface-2 p-5 shadow-xl sm:p-6">
+          <div class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-content/70">
+            <Icon name="search" class="h-4 w-4 shrink-0 text-primary" />
+            <span>your trade <span class="text-neutral-content">near me</span></span>
+          </div>
+          <div class="mt-4 space-y-3">
+            <div class="rounded-box border border-primary/60 bg-primary/10 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <span class="font-display text-lg">Your Business Name</span>
+                <span class="badge badge-primary badge-sm font-display shrink-0">You</span>
+              </div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.9 (87 reviews)</span>
+              </div>
+              <p class="mt-1 text-sm text-neutral-content/60">Open now</p>
+            </div>
+            <div class="rounded-box border border-white/10 bg-white/5 p-4">
+              <div class="font-display text-lg">Competitor One Ltd</div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.4 (31 reviews)</span>
+              </div>
+            </div>
+            <div class="rounded-box border border-white/10 bg-white/5 p-4">
+              <div class="font-display text-lg">Another Local Co</div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.1 (19 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-neutral-content/50">Example search results. Not live data.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== THREE PLACES ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow">Why SEO</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Three places customers find you. We work on all of them.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Most SEO only chases the blue links. Customers actually pick from the map pack, the
+          organic results and, increasingly, AI answers. Showing up in all three is how one
+          business ends up with a full calendar while the next one wonders where the calls went.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+        {places.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={p.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-2xl">{p.title}</h3>
+                <p class="mt-2 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE DO ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What our SEO services actually include</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">No dark arts. Just the work, done properly.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          SEO is not a secret trick. It is a set of jobs most businesses never get around to. We
+          do them, keep doing them, and show you what changed each month.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {work.map((w, i) => (
+          <Reveal delay={i * 0.06}>
+            <div class="flex h-full gap-4 rounded-box border border-base-300 bg-base-100 p-5 transition-colors hover:border-primary/40">
+              <span class="icon-chip shrink-0"><Icon name={w.icon} class="h-6 w-6" /></span>
+              <div>
+                <h3 class="font-display text-lg">{w.title}</h3>
+                <p class="mt-1 text-sm text-base-content/70">{w.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOCAL SEO ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">Local SEO</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">If your customers are within an hour's drive, local SEO is the whole game.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          A plumber in Napier does not need to rank in Invercargill. What matters is the map pack
+          when someone two suburbs away searches at 7am with a burst pipe. That is a different job
+          from national SEO, and it is won on different things.
+        </p>
+        <ul class="mt-6 space-y-3">
+          {[
+            "A Google Business Profile that is actually filled in, not half set up in 2019",
+            "Reviews arriving steadily, because recency counts as well as rating",
+            "Real pages for the towns you serve, not one page with the town name swapped",
+            "Consistent name, address and phone across the directories Google cross-checks",
+          ].map((line) => (
+            <li class="flex gap-3">
+              <Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-primary" />
+              <span class="text-base-content/80">{line}</span>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+          <h3 class="font-display text-2xl">SEO in your city</h3>
+          <p class="mt-2 text-base-content/70">
+            We work New Zealand wide. These pages go deeper on the local search picture where we
+            have the most clients on the ground.
+          </p>
+          <div class="mt-6 space-y-3">
+            {cities.map((c) => (
+              <a href={c.href} class="flex items-start gap-3 rounded-box border border-base-300 p-4 transition-colors hover:border-primary/50">
+                <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-primary" />
+                <span>
+                  <span class="font-display text-lg">SEO {c.name}</span>
+                  <span class="block text-sm text-base-content/70">{c.body}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== PROOF ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow">Proof</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Businesses we have made easier to find.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Numbers our clients can verify in their own accounts. No invented case studies.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <Reveal>
+          <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <div class="font-display text-4xl text-primary">9% → 12%</div>
+              <div class="text-sm uppercase tracking-wide text-base-content/60">conversion rate since 2021</div>
+              <div class="mt-3 font-display text-xl">Tableau Towbars</div>
+              <p class="mt-1 text-base-content/70">
+                We set up and optimised their Google Business Profile so they rank in the local map
+                results, built their online quote funnel, and have run their Google presence since
+                2021. Found by customers searching nearby, profitable every year.
+              </p>
+              <a href="/results/tableau-towbars/" class="link mt-2 text-primary">Read the case study</a>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+            <div class="card-body">
+              <div class="font-display text-4xl text-primary">+2,500%</div>
+              <div class="text-sm uppercase tracking-wide text-base-content/60">enquiries in year one</div>
+              <div class="mt-3 font-display text-xl">Bermuda Lifestyle</div>
+              <p class="mt-1 text-base-content/70">
+                They came to us with a five page site that barely ranked and brought in next to no
+                leads. We rebuilt it search-ready and ran Google, Facebook and Instagram alongside.
+                Now customers book months in advance.
+              </p>
+              <a href="/results/bermuda-lifestyle/" class="link mt-2 text-primary">Read the case study</a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal class="mt-10 text-center">
+        <a href="/results/" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+          See more results <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== STRAIGHT ANSWER ===== -->
+  <section class="bg-brand-dark-2 text-neutral-content">
+    <div class="mx-auto max-w-[900px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <span class="eyebrow">The straight answer</span>
+        <h2 class="mt-3 text-3xl text-neutral-content sm:text-4xl">
+          SEO is the long game. If you need leads <span class="marker">this month</span>, say so.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-neutral-content/80">
+          Plenty of agencies will happily sell you SEO alone because it is slow to judge and easy
+          to invoice. We will not. SEO compounds and pays off for years, but it takes months to
+          build. If your phone needs to ring now, we will tell you to put the first dollars into
+          <a href="/google-ads/" class="link text-primary">Google Ads</a> and let SEO build
+          underneath it. Both together is how the businesses that own page one got there.
+        </p>
+        <a href="#audit" class="btn btn-primary btn-lg mt-8 font-display text-lg tracking-wide">Get the right plan for you</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">How we work</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">A small team, deliberately.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          We look after {CURRENT_CLIENTS} businesses at the moment and we keep it that way on
+          purpose, because search work goes backwards the second it becomes a template. No lock-in
+          contracts, one month's notice, and every asset we build stays yours if you leave.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + FORM ===== -->
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Straight answers on SEO.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
+              <input type="checkbox" aria-label={f.q} />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <AuditForm
+          title="Get your free SEO game plan"
+          lead="We'll show you where you rank right now, what's holding you back, and what it would take to own the searches that bring you work."
+        />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Own the searches that bring you work.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free SEO game plan. We'll show you exactly where you sit in search today, and
+          what it takes to move up. No jargon, no obligation.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free SEO game plan <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <p class="mt-7 text-sm text-primary-content/70">Free game plan · NZ team · No lock-in contracts</p>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+</Layout>

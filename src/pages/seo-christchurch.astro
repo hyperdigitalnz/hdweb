@@ -1,0 +1,349 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Reveal from "../components/Reveal.astro";
+import AuditForm from "../components/AuditForm.astro";
+import SocialProof from "../components/SocialProof.astro";
+import Icon from "../components/Icon.astro";
+import { SITE } from "../consts";
+
+// Christchurch city page. Built 17/08/2026 alongside /seo.
+// Per keyword-research/seo-city-pages-brief-2026-07-25.md this is the fastest ranking
+// win of the three briefed cities: the whole Canterbury cluster is KD 0-16 with ~2,000
+// searches/mo and almost no competing content (seo christchurch 720/mo KD 2, seo agency
+// christchurch 390 KD 0, website design christchurch 880 KD 16, google ads christchurch
+// 140 KD 0). Unlike Auckland, the web design terms are winnable, so websites gets a full
+// section rather than a mention.
+//
+// HONESTY NOTE: we have no Canterbury clients and no Christchurch office (checked
+// _context/CLIENTS.md, 17/08/2026). This page must never imply either. The "we are not
+// from here" section is deliberate and is the differentiator against the fake-local
+// city pages that fill this SERP. Do not remove it to make the page sell harder.
+
+const title = "SEO Christchurch | SEO Agency & Web Design for Trades";
+const description =
+  "SEO, Google Ads and websites for Christchurch trade and local businesses. Rank in Canterbury search results and turn them into calls. Free game plan, no lock-in.";
+
+const places = [
+  { icon: "pin", title: "The map pack", body: "The three map results under the search bar take the biggest share of local clicks in Christchurch. Your Google Business Profile, reviews and local signals decide whether you appear." },
+  { icon: "search", title: "The organic results", body: "Pages built around the exact jobs you do and the Christchurch suburbs you cover, on a fast site Google trusts. Canterbury SERPs are unusually thin, so good pages climb quickly here." },
+  { icon: "sparkles", title: "AI answers", body: "More people ask Google's AI overview or ChatGPT who to call in Christchurch. We structure your site so those answers can read it and recommend you." },
+];
+
+const websiteWork = [
+  { icon: "bolt", title: "Fast by default", body: "Built on modern static tooling, not a page builder stacked with plugins. Speed is a ranking factor and a conversion factor, and most Christchurch trade sites fail on both." },
+  { icon: "mobile", title: "Built for phones first", body: "Most trade enquiries arrive on a phone, often one-handed in a driveway. If your quote form is awkward on mobile you are losing work you already paid to attract." },
+  { icon: "target", title: "Written to convert", body: "Clear services, real photos, obvious next step. A pretty site that does not ask for the job is a brochure, and brochures do not ring the phone." },
+  { icon: "layout", title: "A page per service and suburb", body: "Structured so Google can tell exactly what you do and where. This is what actually wins the Canterbury searches, and it is what most local sites skip." },
+];
+
+const faqs = [
+  { q: "Are you based in Christchurch?", a: "No. We are based in Hawke's Bay and we work with businesses across New Zealand. We say so plainly because plenty of the agencies on this page are not in Christchurch either and imply otherwise. Search work does not require us to be in your city, but pretending to be local when we are not is a bad way to start." },
+  { q: "How competitive is SEO in Christchurch?", a: "Less than most people expect. When we researched the Canterbury market in July 2026, almost every search term in the SEO and web design cluster had very little strong competing content, which is unusual for a city that size. Auckland is a much harder fight for the same terms." },
+  { q: "How long does SEO take to work in Christchurch?", a: "Local SEO usually shows movement in 2 to 3 months and meaningful results in 6 to 12. Because the Canterbury results are thinner than Auckland or Wellington, well-built pages often move faster here, but nobody can promise a timeline and we will not." },
+  { q: "What does it cost?", a: "For most local businesses we bundle SEO, the website and ads into monthly plans from $497 +GST, rather than selling SEO as a standalone line item. What you actually need depends on your services and competition, which is what the free game plan works out." },
+  { q: "Can you guarantee a number one ranking in Christchurch?", a: "No, and nobody genuinely can, because Google does not sell rankings. What we can show you is what we are doing, what is moving, and what it is costing per enquiry, every month, with no lock-in contract." },
+  { q: "Do you do Google Ads in Christchurch as well?", a: "Yes, and for most businesses it is where the first dollars should go. Ads produce enquiries in days while SEO builds underneath over months. Running both is how businesses end up occupying the ads, the map pack and the organic results at once." },
+  { q: "Do you only work with tradies?", a: "Trades and home services are our specialty, but the same system works for any Christchurch business that lives on local search. If we do not think we are the right fit, we will tell you on the call." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "SEO Christchurch",
+  serviceType: "Search engine optimisation",
+  areaServed: ["Christchurch", "Canterbury", "Rolleston", "Rangiora", "Lincoln", "Kaiapoi"],
+  provider: {
+    "@type": "Organization",
+    name: "Hyper Digital",
+    url: "https://hyperdigital.nz",
+    telephone: "+64276661973",
+    address: { "@type": "PostalAddress", addressRegion: "Hawke's Bay", addressCountry: "NZ" },
+  },
+};
+
+const areas = ["Christchurch Central", "Riccarton", "Papanui", "Hornby", "Sydenham", "Rolleston", "Rangiora", "Kaiapoi", "Lincoln", "Selwyn"];
+---
+<Layout title={title} description={description}>
+  <!-- ===== HERO ===== -->
+  <section class="bg-brand-dark text-neutral-content">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="text-center lg:text-left">
+        <Reveal instant>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            <Icon name="pin" class="h-4 w-4" /> Christchurch & Canterbury
+          </span>
+        </Reveal>
+        <Reveal instant delay={0.05} class="mt-5">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl">
+            SEO, Google Ads and websites for <span class="marker">Christchurch trades</span>.
+          </h1>
+        </Reveal>
+        <Reveal instant delay={0.1} class="mt-6">
+          <p class="mx-auto max-w-xl text-lg text-neutral-content/80 lg:mx-0">
+            Canterbury search results are thinner than almost anywhere else in New Zealand. That
+            is an opening, and it will not stay open. We build the pages, the profile and the ads
+            that put Christchurch businesses in front of people ready to book.
+          </p>
+        </Reveal>
+        <Reveal instant delay={0.15} class="mt-8 flex flex-col flex-wrap justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href="#audit" class="btn btn-primary btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg shadow-primary/30 transition-transform hover:scale-[1.03] sm:w-auto">
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-outline btn-lg w-full border-primary text-primary hover:bg-primary hover:text-primary-content font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </Reveal>
+        <Reveal instant delay={0.22} class="mt-9">
+          <SocialProof />
+        </Reveal>
+      </div>
+
+      <Reveal instant delay={0.15} class="relative">
+        <div class="glow-blob"></div>
+        <div class="float-slow relative rounded-box border border-white/10 surface-2 p-5 shadow-xl sm:p-6">
+          <div class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-content/70">
+            <Icon name="search" class="h-4 w-4 shrink-0 text-primary" />
+            <span>your trade <span class="text-neutral-content">christchurch</span></span>
+          </div>
+          <div class="mt-4 space-y-3">
+            <div class="rounded-box border border-primary/60 bg-primary/10 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <span class="font-display text-lg">Your Business Name</span>
+                <span class="badge badge-primary badge-sm font-display shrink-0">You</span>
+              </div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.9 (87 reviews)</span>
+              </div>
+              <p class="mt-1 text-sm text-neutral-content/60">Open · Christchurch</p>
+            </div>
+            <div class="rounded-box border border-white/10 bg-white/5 p-4">
+              <div class="font-display text-lg">Competitor One Ltd</div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.4 (31 reviews)</span>
+              </div>
+              <p class="mt-1 text-sm text-neutral-content/60">Open · Riccarton</p>
+            </div>
+            <div class="rounded-box border border-white/10 bg-white/5 p-4">
+              <div class="font-display text-lg">Another Local Co</div>
+              <div class="mt-1 flex items-center gap-2 text-sm text-neutral-content/70">
+                <Icon name="star" class="h-4 w-4 text-primary" />
+                <span>4.1 (19 reviews)</span>
+              </div>
+              <p class="mt-1 text-sm text-neutral-content/60">Opens 8am · Papanui</p>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-neutral-content/50">Example local results. Not live data.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== WE ARE NOT FROM HERE ===== -->
+  <section class="border-b border-base-300 py-14 sm:py-16">
+    <div class="mx-auto max-w-[820px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">Before you read on</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">We're not a Christchurch agency.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          We're based in Hawke's Bay. We don't have an office on Victoria Street and we're not
+          going to pretend otherwise, because a fair few of the pages competing with this one are
+          doing exactly that. Search work does not need us to be in your city. Knowing what we
+          actually are matters more than a pin on a map, so here it is up front: a small New
+          Zealand team that has run search and ads for local trade businesses since 2019, taking
+          on Canterbury clients because the opportunity there is genuinely better than most places.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== THREE PLACES ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-3xl text-center">
+        <span class="eyebrow">SEO Christchurch</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Three places Canterbury customers find you.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Most SEO only chases the blue links. Local customers pick from the map pack, the organic
+          results and, increasingly, AI answers. We work on all three.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+        {places.map((p, i) => (
+          <Reveal delay={i * 0.08} class="h-full">
+            <div class="card card-glow h-full border border-base-300 bg-base-100 shadow-sm">
+              <div class="card-body">
+                <span class="icon-chip"><Icon name={p.icon} class="h-6 w-6" /></span>
+                <h3 class="mt-3 font-display text-2xl">{p.title}</h3>
+                <p class="mt-2 text-base-content/70">{p.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WEB DESIGN CHRISTCHURCH ===== -->
+  <section class="bg-grid-soft border-y border-base-300 py-16 sm:py-20">
+    <div class="mx-auto max-w-[1160px] px-5">
+      <Reveal class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">Web design Christchurch</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">The site is where the ranking turns into work.</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          Getting found is half of it. A slow, confusing website turns hard-won Christchurch
+          traffic into nothing. We build sites that load fast, read clearly on a phone and ask
+          for the job.
+        </p>
+      </Reveal>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {websiteWork.map((w, i) => (
+          <Reveal delay={i * 0.06}>
+            <div class="flex h-full gap-4 rounded-box border border-base-300 bg-base-100 p-5 transition-colors hover:border-primary/40">
+              <span class="icon-chip shrink-0"><Icon name={w.icon} class="h-6 w-6" /></span>
+              <div>
+                <h3 class="font-display text-lg">{w.title}</h3>
+                <p class="mt-1 text-sm text-base-content/70">{w.body}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal class="mt-10 text-center">
+        <a href="/websites/" class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">
+          See how we build websites <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== GOOGLE ADS CHRISTCHURCH ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto grid max-w-[1160px] grid-cols-1 items-center gap-12 px-5 lg:grid-cols-2">
+      <Reveal>
+        <span class="eyebrow">Google Ads Christchurch</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Need the phone ringing before SEO lands?</h2>
+        <p class="mt-4 text-lg text-base-content/70">
+          SEO takes months. Google Ads takes days. For most Christchurch businesses the sensible
+          order is ads first to get work coming in, with SEO built underneath so that in a year
+          the same enquiries start arriving without the click cost.
+        </p>
+        <ul class="mt-6 space-y-3">
+          {[
+            "Campaigns targeted to Christchurch and the Canterbury towns you actually serve",
+            "Negative keywords that stop your budget going on job hunters and DIYers",
+            "Conversion tracking wired up properly, so you know which clicks became calls",
+            "Monthly reporting on cost per enquiry, not impressions",
+          ].map((line) => (
+            <li class="flex gap-3">
+              <Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-primary" />
+              <span class="text-base-content/80">{line}</span>
+            </li>
+          ))}
+        </ul>
+        <a href="/google-ads/" class="btn btn-outline mt-8 border-primary text-primary hover:bg-primary hover:text-primary-content">
+          How we run Google Ads <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm sm:p-8">
+          <div class="font-display text-4xl text-primary">+2,500%</div>
+          <div class="text-sm uppercase tracking-wide text-base-content/60">enquiries in year one</div>
+          <div class="mt-3 font-display text-xl">Bermuda Lifestyle</div>
+          <p class="mt-2 text-base-content/70">
+            A five page site that barely ranked and brought in next to no leads. We rebuilt it
+            search-ready and ran Google, Facebook and Instagram alongside it. Customers now book
+            months in advance. A Hawke's Bay business, not a Christchurch one, and the numbers are
+            theirs to verify.
+          </p>
+          <a href="/results/bermuda-lifestyle/" class="link mt-3 inline-block text-primary">Read the case study</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== AREAS ===== -->
+  <section class="bg-base-200 py-16 sm:py-20">
+    <div class="mx-auto max-w-[900px] px-5 text-center">
+      <Reveal>
+        <span class="eyebrow">Where we work</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl">Christchurch and across Canterbury.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
+          Christchurch searches behave differently suburb to suburb, and the Selwyn and Waimakariri
+          growth areas behave differently again. Your pages and your ads should treat them as
+          separate places, because your customers do.
+        </p>
+      </Reveal>
+      <Reveal class="mt-8">
+        <div class="flex flex-wrap justify-center gap-3">
+          {areas.map((a) => (
+            <span class="badge badge-outline badge-lg border-primary/40 font-display text-primary">
+              <Icon name="pin" class="mr-1 h-4 w-4" /> {a}
+            </span>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FAQ + FORM ===== -->
+  <section class="bg-grid-soft border-t border-base-300 py-16 sm:py-20">
+    <div class="mx-auto grid grid-cols-1 max-w-[1160px] gap-12 px-5 lg:grid-cols-2 lg:items-start">
+      <Reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Straight answers.</h2>
+        <div class="mt-6 space-y-3">
+          {faqs.map((f) => (
+            <div class="collapse collapse-arrow rounded-box border border-base-300 bg-base-100 transition-colors hover:border-primary/40">
+              <input type="checkbox" aria-label={f.q} />
+              <div class="collapse-title font-display text-xl">{f.q}</div>
+              <div class="collapse-content text-base-content/70"><p>{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-base-content/60">
+          Looking for our home patch instead? See <a href="/insights/seo-hawkes-bay/" class="link text-primary">SEO Hawke's Bay</a>,
+          or our <a href="/seo/" class="link text-primary">SEO services</a> across New Zealand.
+        </p>
+      </Reveal>
+      <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
+        <AuditForm
+          title="Get your free Christchurch game plan"
+          lead="We'll show you where you rank in Christchurch right now, who's beating you and what it would take to pass them."
+        />
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="bg-primary text-primary-content">
+    <div class="mx-auto max-w-[820px] px-5 py-16 text-center sm:py-20">
+      <Reveal>
+        <h2 class="text-4xl text-primary-content sm:text-5xl">Canterbury is wide open. For now.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-primary-content/80">
+          Get your free game plan. We'll show you exactly where you sit in Christchurch search
+          results today, and what it takes to move up. No jargon, no obligation.
+        </p>
+        <div class="mt-7 flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+          <a href="#audit" class="btn btn-neutral btn-lg btn-shine w-full font-display text-lg tracking-wide shadow-lg sm:w-auto">
+            Get my free game plan <Icon name="arrow-right" class="h-5 w-5" />
+          </a>
+          <a href={SITE.phoneHref} class="btn btn-ghost btn-lg w-full font-display text-lg tracking-wide sm:w-auto">Or call {SITE.phone}</a>
+        </div>
+        <p class="mt-7 text-sm text-primary-content/70">Free game plan · NZ team · No lock-in contracts</p>
+      </Reveal>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+</Layout>
