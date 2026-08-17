@@ -3,7 +3,6 @@ title: "Job Management Software NZ: Tradify vs ServiceM8 vs Fergus"
 description: "Real NZ prices for Tradify, ServiceM8, Fergus and NextMinute, why per-user and per-job pricing flip the answer, and how to pick for your team size."
 pubDate: 2026-08-17
 tags: ["Tools", "Reviews"]
-draft: true
 ---
 
 Every tradie who has ever run a job off a notebook and a phone gets told the same thing:
