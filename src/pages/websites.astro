@@ -20,9 +20,15 @@ const portfolio = [
   { src: "/img/websites/adrenalinr-website.webp", name: "Adrenalin R", trade: "Automotive / Performance", url: "https://adrenalinr.com", display: "adrenalinr.com" },
 ];
 
-const title = "Website Design for Tradies NZ | Sites That Win Jobs | Hyper Digital";
+// Title targets "small business website design nz" (140/mo + 140/mo on the Auckland
+// variant, LOW competition). The trade-qualified phrasing it replaced had effectively no
+// search volume: every trade+service combo measured 10/mo or zero across three separate
+// pulls (25/07, 27/07 and the 18/08 check against our own Ads search terms). The tradie
+// positioning still does the conversion work in the H1 and body copy, where it belongs.
+// See ../../keyword-research/tradie-terms-research-2026-08-17.md.
+const title = "Small Business Website Design NZ for Trades | Hyper Digital";
 const description =
-  `We build tradies smart websites that reply instantly, qualify the job and book it in or tee up the quote, 24/7. From ${SETUP_FEE} setup + $497/mo. Free game plan.`;
+  `Small business website design for New Zealand trades and local businesses. Sites that reply instantly, qualify the job and book it in. From ${SETUP_FEE} setup + $497/mo.`;
 
 const doesSteps = [
   { n: "01", icon: "bolt", title: "Replies instantly", body: "Every enquiry through your site gets an instant reply, day or night, so the lead never goes cold." },
@@ -49,6 +55,9 @@ const faqs = [
   { q: "How long does it take to build?", a: "Most smart sites are live within a couple of weeks of your game plan call, depending on your content and how much you've got ready to go. We'll give you a clear timeline up front." },
   { q: "Will it work on mobile?", a: "Always. Most of your customers find you on their phone, so every site is built mobile-first and to load fast." },
   { q: "Do I have to pay upfront?", a: "Yes. We take the build before we start, then it's a simple monthly fee. We back it with the 60-day guarantee so the risk is on us, not you." },
+  { q: "How much does a small business website cost in NZ?", a: `Ours is ${SETUP_FEE} +GST to build, then from $497 +GST a month covering hosting, the ad management and the automation. Across the New Zealand market you'll see anything from a few hundred dollars for a template you build yourself up to $15,000 or more for a large custom build. We break the whole range down in our guide to what a website costs in NZ.` },
+  { q: "Do you only work with businesses in Hawke's Bay?", a: "No. We're based in Hawke's Bay and a good share of our clients are local, but we build for small businesses right across New Zealand including Auckland, Christchurch and Wellington. Building a website doesn't require us to be in the same town as you." },
+  { q: "Can I just use a website builder instead?", a: "You can, and for some businesses that's the right call. Wix, Squarespace and Rocketspark will all get you a tidy site for very little money if you have the time to build and maintain it. What they won't do is the follow-up: replying to every enquiry, qualifying it and getting it into your calendar. That's the part that turns a website into work." },
 ];
 
 const faqSchema = {
@@ -332,6 +341,12 @@ const faqSchema = {
             </div>
           ))}
         </div>
+        <p class="mt-6 text-sm text-base-content/60">
+          {/* TODO: add the /insights/website-builders-nz/ link here once that draft publishes. */}
+          Working out the budget first? Our guide to <a href="/insights/website-cost-nz/" class="link text-primary">what a website costs in NZ</a>
+          breaks down every price band. For getting found once it's live, see
+          <a href="/seo/" class="link text-primary">our SEO services</a>.
+        </p>
       </Reveal>
       <Reveal id="audit" delay={0.1} class="scroll-mt-24 lg:sticky lg:top-24">
         <AuditForm title="Get your free game plan" lead="In 20 minutes we'll show you what a smart website could do for your trade, and what it should cost." />
