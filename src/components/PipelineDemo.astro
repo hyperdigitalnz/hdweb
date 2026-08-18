@@ -56,11 +56,11 @@ const stages = [
         <div class="min-w-0" style={`--chip: var(--color-${s.chip})`}>
           <!-- stage header -->
           <div class="px-1">
-            <div class="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-wide text-neutral-content/70">
+            <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-neutral-content/70">
               <span class="h-2 w-2 shrink-0 rounded-full" style="background: var(--chip)"></span>
               <span class="truncate">{s.name}</span>
             </div>
-            <div class="mt-0.5 truncate text-[0.62rem] text-neutral-content/45">{s.count} · {s.total}</div>
+            <div class="mt-0.5 truncate text-xs text-neutral-content/45">{s.count} · {s.total}</div>
           </div>
           <!-- opportunity cards -->
           <div class="mt-2 space-y-2">
@@ -71,8 +71,8 @@ const stages = [
                 data-pcard
                 data-delay={(col * 0.4 + row * 0.16).toFixed(2)}
               >
-                <p class="truncate text-[0.72rem] font-semibold leading-snug text-neutral-content sm:text-xs">{c.title}</p>
-                <p class="mt-0.5 truncate text-[0.6rem] text-neutral-content/50">{c.meta}</p>
+                <p class="truncate text-xs font-semibold leading-snug text-neutral-content">{c.title}</p>
+                <p class="mt-0.5 truncate text-xs text-neutral-content/50">{c.meta}</p>
                 <span class="cat-chip mt-1.5">{c.value}</span>
               </div>
             ))}

@@ -131,7 +131,7 @@
     linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(70% 60% at 50% 40%, #0c0b0a 0%, transparent 100%);
   pointer-events: none;
 }
 .bg-brand-dark-2 {
@@ -166,7 +166,7 @@
   padding: 0.15rem 0.6rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.75rem; /* typography.micro */
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--chip, var(--color-primary));
@@ -197,14 +197,6 @@
   color: var(--gold-ink);
 }
 
-/* Gradient accent text */
-.text-gold-gradient {
-  background: linear-gradient(100deg, var(--color-accent) 0%, var(--color-primary) 45%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* Keyboard focus: one visible ring for everything. Gold Ink flips to bright gold
    inside dark surfaces automatically (the --gold-ink token), so the ring holds 3:1+
    contrast on both paper and paint. daisyUI buttons keep their own outline. */
@@ -230,7 +222,7 @@
 }
 
 /* Scrolling marquee strip */
-.marquee-wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #0c0b0a 8%, #0c0b0a 92%, transparent); mask-image: linear-gradient(90deg, transparent, #0c0b0a 8%, #0c0b0a 92%, transparent); }
 .marquee { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .marquee-wrap:hover .marquee { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -318,7 +310,7 @@
   justify-content: center;
   height: 3rem;
   width: 3rem;
-  border-radius: 0.75rem;
+  border-radius: 0.875rem; /* rounded.box */
   color: var(--color-primary);
   background: color-mix(in srgb, var(--color-primary) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
@@ -349,8 +341,8 @@
 /* Vertical auto-scroll feed (live leads/bookings ticker, stalkr-style). Seamless via doubled list. */
 .vmarquee-wrap {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
-  mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #0c0b0a 14%, #0c0b0a 86%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #0c0b0a 14%, #0c0b0a 86%, transparent);
 }
 .vmarquee {
   display: flex;

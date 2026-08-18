@@ -46,10 +46,16 @@ typography:
     fontSize: "0.8rem"
     fontWeight: 700
     letterSpacing: "0.14em"
+  micro:
+    fontFamily: "Outfit Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 400
+    lineHeight: 1.4
 rounded:
   field: "0.5rem"
   box: "0.875rem"
   pill: "9999px"
+  inline: "0.15em"
 spacing:
   gutter: "1.25rem"
   card: "1.75rem"
