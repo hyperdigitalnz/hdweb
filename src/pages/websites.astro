@@ -5,6 +5,7 @@ import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
 import Icon from "../components/Icon.astro";
+import TradeLinks from "../components/TradeLinks.astro";
 import LeadFeed from "../components/LeadFeed.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import PaymentsBlock from "../components/PaymentsBlock.astro";
@@ -353,6 +354,14 @@ const faqSchema = {
       </Reveal>
     </div>
   </section>
+
+  <!-- ===== BY TRADE (internal links to the trade LPs) ===== -->
+  <TradeLinks
+    class="bg-base-200"
+    eyebrow="By trade"
+    heading="See what this looks like for your trade."
+    blurb="The site is one piece of it. These pages show the whole system working for your trade, from the searches through to the booked job."
+  />
 
   <!-- ===== FINAL CTA ===== -->
   <section class="bg-primary text-primary-content">

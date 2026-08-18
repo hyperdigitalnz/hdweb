@@ -10,22 +10,8 @@ import JobCalculator from "../components/JobCalculator.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
-import { tradeLeadGen } from "../data/tradeLeadGen";
+import TradeLinks from "../components/TradeLinks.astro";
 
-// Trade-specific landing pages, linked from the "by trade" row below.
-const tradeIcons: Record<string, string> = {
-  "plumbers-lead-generation": "droplet",
-  "electricians-lead-generation": "bolt",
-  "roofers-lead-generation": "home",
-  "builders-lead-generation": "hammer",
-  "painters-lead-generation": "paint",
-  "heat-pump-lead-generation": "flame",
-};
-const tradePages = Object.values(tradeLeadGen).map((t) => ({
-  href: `/${t.slug}/`,
-  label: t.tradePlural.replace(/^./, (c) => c.toUpperCase()),
-  icon: tradeIcons[t.slug] ?? "wrench",
-}));
 
 const title = "Lead Generation for Tradies | More Calls & Booked Jobs | Hyper Digital";
 const description =
@@ -383,27 +369,7 @@ const faqSchema = {
   </section>
 
   <!-- ===== LEAD GENERATION BY TRADE ===== -->
-  <section class="bg-base-200 py-16 sm:py-20">
-    <div class="mx-auto max-w-[1000px] px-5 text-center">
-      <Reveal>
-        <span class="eyebrow">By trade</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl">Built for your trade.</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">
-          Every trade gets found differently. See how the system works for yours, with the searches,
-          jobs and numbers specific to your work.
-        </p>
-      </Reveal>
-      <Reveal class="mt-8">
-        <div class="flex flex-wrap justify-center gap-3">
-          {tradePages.map((t) => (
-            <a href={t.href} class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content font-display">
-              <Icon name={t.icon} class="h-4 w-4" /> {t.label} <Icon name="arrow-right" class="h-4 w-4" />
-            </a>
-          ))}
-        </div>
-      </Reveal>
-    </div>
-  </section>
+  <TradeLinks class="bg-base-200" />
 
   <!-- ===== FINAL CTA ===== -->
   <section class="bg-primary text-primary-content">

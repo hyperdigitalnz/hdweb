@@ -157,6 +157,11 @@ Sort of. Free tiers of the DIY builders put your business on their subdomain wit
 ads. That's fine for testing an idea, but it looks like what it is, and you can't run
 serious marketing on it. For a trading business, the free option is the dearest one.
 
+If you want to see what the site plus the marketing looks like as one system for your
+trade, we have pages for [builders](/builders-lead-generation/) and
+[painters](/painters-lead-generation/) among others, with the searches and job values
+specific to each.
+
 Want a straight answer on what your business actually needs, with numbers for your trade
 and area? [Get a free game plan](/contact/). Twenty minutes, no obligation, and you'll know
 what to pay for and what to skip.

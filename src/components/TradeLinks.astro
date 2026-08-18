@@ -1,0 +1,69 @@
+---
+// Shared "by trade" link row pointing at the six trade landing pages.
+//
+// Extracted from lead-generation.astro on 18/08/2026. The trade LPs were close to
+// orphaned: only /lead-generation and the lead-gen pillar article linked to them, which
+// is a fair part of why they sat at 511 organic impressions and 3 clicks. This component
+// exists so the row can be dropped onto the service pages without copy-pasting the icon
+// map into every one of them.
+//
+// Note: the LPs render with `hideHeader` (CRO decision for paid traffic) but they DO keep
+// the footer, so they are not short of links out. Links in were the gap.
+//
+// Footer linking is deliberately NOT done here: "link trade LPs from Footer.astro?" is
+// still an open question awaiting Matt's sign-off in CLAUDE.md. Don't add it without him.
+import Icon from "./Icon.astro";
+import Reveal from "./Reveal.astro";
+import { tradeLeadGen } from "../data/tradeLeadGen";
+
+interface Props {
+  /** Small label above the heading. */
+  eyebrow?: string;
+  /** Section heading. */
+  heading?: string;
+  /** Supporting line under the heading. Pass "" to drop it. */
+  blurb?: string;
+  /** Extra classes on the wrapping section. */
+  class?: string;
+}
+
+const {
+  eyebrow = "By trade",
+  heading = "Built for your trade.",
+  blurb = "Every trade gets found differently. See how the system works for yours, with the searches, jobs and numbers specific to your work.",
+  class: className = "",
+} = Astro.props;
+
+const tradeIcons: Record<string, string> = {
+  "plumbers-lead-generation": "droplet",
+  "electricians-lead-generation": "bolt",
+  "roofers-lead-generation": "home",
+  "builders-lead-generation": "hammer",
+  "painters-lead-generation": "paint",
+  "heat-pump-lead-generation": "flame",
+};
+
+const tradePages = Object.values(tradeLeadGen).map((t) => ({
+  href: `/${t.slug}/`,
+  label: t.tradePlural.replace(/^./, (c) => c.toUpperCase()),
+  icon: tradeIcons[t.slug] ?? "wrench",
+}));
+---
+<section class={`py-16 sm:py-20 ${className}`}>
+  <div class="mx-auto max-w-[1160px] px-5 text-center">
+    <Reveal>
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 class="mt-2 text-3xl sm:text-4xl">{heading}</h2>
+      {blurb && <p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/70">{blurb}</p>}
+    </Reveal>
+    <Reveal class="mt-8">
+      <div class="flex flex-wrap justify-center gap-3">
+        {tradePages.map((t) => (
+          <a href={t.href} class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content font-display">
+            <Icon name={t.icon} class="h-4 w-4" /> {t.label} <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        ))}
+      </div>
+    </Reveal>
+  </div>
+</section>

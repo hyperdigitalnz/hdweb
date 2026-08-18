@@ -168,5 +168,11 @@ fixable.
 No. Your media budget goes straight to Google, and you can verify every dollar in your
 own account. Management is the only thing we charge for, and we publish those prices.
 
+Click prices and job values vary enough between trades that averages only get you so far.
+We break the numbers down trade by trade for
+[plumbers](/plumbers-lead-generation/), [electricians](/electricians-lead-generation/),
+[roofers](/roofers-lead-generation/), [builders](/builders-lead-generation/),
+[painters](/painters-lead-generation/) and [heat pump installers](/heat-pump-lead-generation/).
+
 Want the numbers run for your trade, your area and your job values instead of averages?
 [Get a free game plan](/contact/): 20 minutes, real figures, no obligation.

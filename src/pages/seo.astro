@@ -4,6 +4,7 @@ import Reveal from "../components/Reveal.astro";
 import AuditForm from "../components/AuditForm.astro";
 import SocialProof from "../components/SocialProof.astro";
 import Icon from "../components/Icon.astro";
+import TradeLinks from "../components/TradeLinks.astro";
 import { SITE, CURRENT_CLIENTS } from "../consts";
 
 // National /seo service page. Built 17/08/2026 off the mid-August SEO check
@@ -360,6 +361,13 @@ const cities = [
       </Reveal>
     </div>
   </section>
+
+  <!-- ===== BY TRADE (internal links to the trade LPs) ===== -->
+  <TradeLinks
+    eyebrow="By trade"
+    heading="Search looks different for every trade."
+    blurb="What people type, and what they are worth when they call, changes a lot by trade. These pages go into the detail for each one."
+  />
 
   <!-- ===== FINAL CTA ===== -->
   <section class="bg-primary text-primary-content">

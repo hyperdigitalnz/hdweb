@@ -6,6 +6,7 @@ import SocialProof from "../components/SocialProof.astro";
 import SpeedBadge from "../components/SpeedBadge.astro";
 import PricingTiers from "../components/PricingTiers.astro";
 import Icon from "../components/Icon.astro";
+import TradeLinks from "../components/TradeLinks.astro";
 import { SITE, STATS } from "../consts";
 import { SETUP_FEE } from "../data/pricing";
 
@@ -606,6 +607,14 @@ const serviceSchema = {
       </Reveal>
     </div>
   </section>
+
+  <!-- ===== BY TRADE (internal links to the trade LPs) ===== -->
+  <TradeLinks
+    class="bg-base-200"
+    eyebrow="By trade"
+    heading="See the campaign built for your trade."
+    blurb="Every trade searches differently and pays a different click price. These pages break down the searches, the jobs and the numbers for each one."
+  />
 
   <!-- ===== FINAL CTA ===== -->
   <section class="bg-primary text-primary-content">
