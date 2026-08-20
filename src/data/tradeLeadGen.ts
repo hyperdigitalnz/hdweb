@@ -293,6 +293,60 @@ export const tradeLeadGen: Record<string, TradeLP> = {
     ],
   },
 
+  construction: {
+    slug: "construction-lead-generation",
+    trade: "construction",
+    tradePlural: "construction companies",
+    tradeSingular: "construction company",
+
+    seoTitle: "Construction Marketing That Wins Work | Google Ads & Smart Sites | Hyper Digital",
+    seoDescription:
+      "Construction marketing that fills the pipeline. Google Ads that reach people actively planning work, a site that replies instantly, follow-up that wins the job. Free game plan.",
+
+    heroEyebrow: "For construction companies in NZ",
+    heroHeadlineLead: "Construction marketing that",
+    heroHeadlineMark: "fills your pipeline.",
+    heroSub:
+      "We build you a complete lead-to-job system: ads that reach people actively planning construction work, a website that replies straight away, and follow-up that turns enquiries into signed jobs. Real calls and quote requests, not vanity clicks.",
+
+    painLine: "Word of mouth is great until the pipeline runs dry and there is nothing lined up.",
+
+    mistakes: [
+      {
+        title: "Your pipeline lives on referrals alone.",
+        body: "When the current jobs finish, so does the work. Nothing is feeding the top of the pipeline, so every quiet patch turns into a scramble to find the next project.",
+        stat: "Referrals are the cheapest leads you will ever get, and the least predictable.",
+      },
+      {
+        title: "You forget to follow up.",
+        body: "A quote goes out on a big job, the client goes quiet, and you are too flat out running site to chase it. The project quietly goes to whoever kept in touch.",
+        stat: "Around 79% of sales need 5 or more follow-ups. Most contractors stop after one.",
+      },
+      {
+        title: "Nobody can find you when they are ready to build.",
+        body: "People planning a build search Google first, then shortlist the two or three companies that show up and look credible. If you are not there, you are not on the list.",
+        stat: "Most construction enquiries start with a search, not a phone book.",
+      },
+    ],
+
+    searchTerms: [
+      "construction company near me",
+      "commercial builder [your town]",
+      "construction project quote",
+    ],
+
+    faqExtra: [
+      {
+        q: "We do commercial work, not homes. Does this still apply?",
+        a: "Yes. The channel mix changes: commercial and civil work usually needs fewer, higher-value enquiries, so we target tighter search terms and lean harder on the website and follow-up doing the selling. The system is the same, the targeting is not.",
+      },
+      {
+        q: "Is this different from your builders page?",
+        a: "The builders page is aimed at residential building and renovation work. This one is for construction companies running larger or commercial projects, where jobs are fewer, bigger and take longer to win. If you do both, we cover both in one plan.",
+      },
+    ],
+  },
+
   painters: {
     slug: "painters-lead-generation",
     trade: "painting",

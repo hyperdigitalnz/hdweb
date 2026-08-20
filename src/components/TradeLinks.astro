@@ -1,5 +1,5 @@
 ---
-// Shared "by trade" link row pointing at the six trade landing pages.
+// Shared "by trade" link row pointing at the trade landing pages.
 //
 // Extracted from lead-generation.astro on 18/08/2026. The trade LPs were close to
 // orphaned: only /lead-generation and the lead-gen pillar article linked to them, which
@@ -41,6 +41,7 @@ const tradeIcons: Record<string, string> = {
   "builders-lead-generation": "hammer",
   "painters-lead-generation": "paint",
   "heat-pump-lead-generation": "flame",
+  "construction-lead-generation": "blocks",
 };
 
 const tradePages = Object.values(tradeLeadGen).map((t) => ({
