@@ -62,6 +62,13 @@ src/
 webhook → redirect to `/thank-you` (fires the Google Ads conversion). Includes a honeypot,
 field allow-listing, and a no-JS fallback (303 redirect). See `CLAUDE.md` for detail.
 
+**Web presence.** The form asks "do you have a website?" as a required choice
+(`web_presence` = `website` | `facebook` | `none`). Only the website branch takes a
+validated address, and `src/lib/web-presence.ts` holds the one implementation of that
+validation, imported by both the form (browser) and `/api/lead` (server, final say). GHL
+still receives a single `website` field, plus the new `web_presence` key, which it ignores
+until you map it to a custom field.
+
 ### Environment variables
 
 | Var | Purpose | Type |

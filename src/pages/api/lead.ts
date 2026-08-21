@@ -1,16 +1,24 @@
 import type { APIRoute } from "astro";
 // Astro 6 removed Astro.locals.runtime.env — Worker secrets/vars now come from cloudflare:workers.
 import { env as cfEnv } from "cloudflare:workers";
+// Same validators the form runs in the browser, so a value the visitor got past the
+// client check can never be rejected here (or vice versa).
+import { isWebPresence, normaliseWebsite, normaliseSocial } from "../../lib/web-presence";
 
 // On-demand endpoint (not prerendered): verifies Cloudflare Turnstile, then forwards to GHL webhook.
 export const prerender = false;
 
 // Only these fields are ever forwarded to GHL. Anything else a bot tries to
-// inject is dropped. Values are capped to keep the payload sane. (`type` was
-// removed with the callback form, retired 11/07/2026.)
-const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message", "page"] as const;
+// inject is dropped. Values are capped to keep the payload sane.
+// (`type` was removed with the callback form, retired 11/07/2026. `web_presence` was
+// added 11/08/2026 with the website/Facebook/none choice; it's a new key in the GHL
+// payload and is simply ignored there until it's mapped to a field.) The form's `social`
+// box is read separately in step 4b and folded into `website`, so GHL keeps receiving
+// exactly one link field, as it did before.
+const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "message", "page", "web_presence"] as const;
 // `website` is deliberately NOT required: no-website tradies are prime prospects,
-// and a blank value tells the audit "no website yet".
+// and a blank value tells the audit "no website yet". What IS required, once
+// `web_presence` says "website", is that the address actually parses (step 4b).
 const REQUIRED_AUDIT = ["name", "email", "phone"] as const;
 const MAX_FIELD_LEN = 500;
 
@@ -72,6 +80,32 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     // 4. Reject obviously incomplete submissions.
     for (const key of REQUIRED_AUDIT) {
       if (!lead[key]) return wantsHtml ? redirect("/contact/#form-missing-details") : json({ ok: false, error: "missing" }, 400);
+    }
+
+    // 4b. Resolve the web presence answer down to a single clean `website` value.
+    //     Older cached pages post the pre-11/08/2026 form, which had one free-text box
+    //     and no `web_presence`; those skip this entirely and behave exactly as before,
+    //     so a stale tab never loses a lead. With JS off nothing is disabled either, so
+    //     both boxes can arrive filled: the chosen branch is the only one that counts.
+    const presence = lead.web_presence ?? "";
+    if (isWebPresence(presence)) {
+      const typedWebsite = lead.website ?? "";
+      const typedSocial = String(form.get("social") ?? "").trim().slice(0, MAX_FIELD_LEN);
+      delete lead.website;
+
+      if (presence === "website") {
+        const result = normaliseWebsite(typedWebsite);
+        if (!result.ok) {
+          return wantsHtml ? redirect("/contact/#form-website") : json({ ok: false, error: "website" }, 400);
+        }
+        lead.website = result.value;
+      } else if (presence === "facebook") {
+        // Optional, so junk is dropped rather than rejected: picking the option already
+        // answered the question that matters, and blocking here would cost a real lead.
+        const result = normaliseSocial(typedSocial);
+        if (result.ok && result.value) lead.website = result.value;
+      }
+      // "none" falls through with no website, which is what the audit wants to know.
     }
 
     lead.source = "website";

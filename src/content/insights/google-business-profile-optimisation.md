@@ -1,9 +1,8 @@
 ---
 title: "Google Business Profile Optimisation: A Tradie's Checklist"
 description: "How to set up and optimise your Google Business Profile so you show in the map pack, with a step by step checklist for NZ trade businesses."
-pubDate: 2026-08-24
+pubDate: 2026-08-21
 tags: ["SEO", "Local"]
-draft: true
 ---
 
 For a local trade business, your Google Business Profile is worth more than your website.
@@ -91,7 +90,8 @@ two years beats thirty reviews that all arrived in one week in 2023.
 
 Build the ask into your job completion so it happens without you remembering. Our guide on
 [how to ask for Google reviews](/insights/ask-for-google-reviews/) covers the wording that
-actually works.
+actually works, and [getting reviews without begging](/insights/get-more-google-reviews/)
+covers the timing and the system behind it.
 
 Reply to every review, including the bad ones, calmly. Prospects read the replies.
 
@@ -140,6 +140,10 @@ do the work. Our [SEO services](/seo/) page covers the wider picture.
 But for the searches that matter most to a local trade, the ones with "near me" or a town
 name attached, this is the highest-return afternoon you will spend on marketing all year.
 It is free, and most of your competitors have not bothered.
+
+Once the profile is complete and you are still not in the top three, the next question is a
+different one: what decides the order. That is covered in [how to rank in the map
+pack](/insights/rank-in-google-map-pack/).
 
 ## Google Business Profile FAQ
 

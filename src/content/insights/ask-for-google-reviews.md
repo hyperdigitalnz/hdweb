@@ -13,7 +13,9 @@ tradies know this, do brilliant work all week, and still never ask. Not because 
 hard, but because it's awkward and there's no system.
 
 This is the no-system system: your review link, a QR code, and three copy-paste messages.
-Ten minutes to set up, then it's just a habit.
+Ten minutes to set up, then it's just a habit. If it's the asking itself you find awkward
+rather than the wording, start with [how to get more reviews without
+begging](/insights/get-more-google-reviews/) instead.
 
 ## Step 1: Find your Google review link
 
@@ -167,7 +169,9 @@ no harm at all.
 ### How many reviews do I need?
 
 More than the competitors who show up beside you for your trade in your area. Check what
-they have, then make the ask a habit until you're clearly ahead, and keep going.
+they have, then make the ask a habit until you're clearly ahead, and keep going. Our guide
+to [ranking in the map pack](/insights/rank-in-google-map-pack/) covers how reviews feed
+into who Google puts in the top three.
 
 Want the asking, the follow-up and the rest of the pipeline running without anyone
 having to remember? [Get a free game plan](/contact/): 20 minutes, real numbers, no

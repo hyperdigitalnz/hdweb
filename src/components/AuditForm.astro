@@ -58,14 +58,44 @@ import Turnstile from "./Turnstile.astro";
       <label class="text-xs font-bold" for="af-phone">Phone number</label>
       <input id="af-phone" name="phone" type="tel" required autocomplete="tel" placeholder="027 123 4567" class="input input-bordered w-full min-w-0" />
     </div>
-    <div class="grid gap-1">
-      <!-- Optional on purpose: plenty of good prospects have no website (or only a
-           Facebook/Instagram page) and must never be blocked from submitting. A blank
-           value reads as "no website yet", which is exactly what the game plan needs to know. -->
-      <label class="text-xs font-bold" for="af-website">Website or Facebook/Instagram page <span class="font-normal text-base-content/50">(optional)</span></label>
-      <input id="af-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.co.nz or facebook.com/yourbusiness" class="input input-bordered w-full min-w-0" />
-      <p class="text-xs text-base-content/50">No website yet? Leave it blank and we'll cover that on your game plan call.</p>
+    <!-- Web presence. Was a single free-text "website or Facebook page" box until
+         11/08/2026; it collected too much junk to be useful on a game plan call, so the
+         answer is now a forced choice and only the website branch takes a validated URL.
+         The Facebook box stays optional: picking the option is already the qualifying
+         answer, and a tradie who can't find their page URL must never be blocked. -->
+    <fieldset class="grid gap-1">
+      <legend class="text-xs font-bold">Do you have a website?</legend>
+      <div class="mt-1 grid gap-2 sm:grid-cols-3">
+        <label class="af-choice">
+          <input type="radio" name="web_presence" value="website" required class="radio radio-sm radio-primary" />
+          <span>Yes, a website</span>
+        </label>
+        <label class="af-choice">
+          <input type="radio" name="web_presence" value="facebook" class="radio radio-sm radio-primary" />
+          <span>Facebook page only</span>
+        </label>
+        <label class="af-choice">
+          <input type="radio" name="web_presence" value="none" class="radio radio-sm radio-primary" />
+          <span>No website yet</span>
+        </label>
+      </div>
+    </fieldset>
+    <!-- Revealed by the CSS below (:has on the checked radio), so the right box appears
+         even with JavaScript off. `required` is toggled in script: a hidden required
+         field makes the browser refuse to submit with nothing focusable to point at. -->
+    <div class="af-branch grid gap-1" data-branch="website">
+      <label class="text-xs font-bold" for="af-website">Your website address</label>
+      <input id="af-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.co.nz" class="input input-bordered w-full min-w-0" />
+      <p class="text-xs text-base-content/50">Just the address is fine, we'll find the rest.</p>
     </div>
+    <div class="af-branch grid gap-1" data-branch="facebook">
+      <label class="text-xs font-bold" for="af-social">Your Facebook or Instagram page <span class="font-normal text-base-content/50">(optional)</span></label>
+      <input id="af-social" name="social" type="text" inputmode="url" placeholder="facebook.com/yourbusiness" class="input input-bordered w-full min-w-0" />
+      <p class="text-xs text-base-content/50">Paste the link to your page, or leave it blank and we'll find it.</p>
+    </div>
+    <p class="af-branch text-xs text-base-content/50" data-branch="none">
+      No problem, plenty of our clients started there. We'll cover it on your game plan call.
+    </p>
     {tradePrefill ? (
       <input type="hidden" name="trade" value={tradePrefill} />
     ) : trade && (
@@ -107,13 +137,89 @@ import Turnstile from "./Turnstile.astro";
   </form>
 </div>
 
+<style>
+  /* Choice tiles. Plain labels with a border so the whole tile is a tap target,
+     which matters more than looks on a phone-first form. */
+  .af-choice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border-radius: var(--radius-field);
+    border: 1px solid var(--color-base-300);
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .af-choice:hover { border-color: var(--color-primary); }
+  .af-choice:has(input:checked) {
+    border-color: var(--color-primary);
+    background-color: color-mix(in oklab, var(--color-primary) 8%, transparent);
+    font-weight: 600;
+  }
+  .af-choice:has(input:focus-visible) { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+  /* CSS-only branch reveal, so the correct follow-up shows with JavaScript off too.
+     Not the `hidden` attribute: Tailwind preflight styles [hidden] with !important. */
+  .af-branch { display: none; }
+  .audit-form:has(input[name="web_presence"][value="website"]:checked) .af-branch[data-branch="website"] { display: grid; }
+  .audit-form:has(input[name="web_presence"][value="facebook"]:checked) .af-branch[data-branch="facebook"] { display: grid; }
+  .audit-form:has(input[name="web_presence"][value="none"]:checked) .af-branch[data-branch="none"] { display: block; }
+</style>
+
 <script>
   import { SITE } from "../consts";
+  import { normaliseWebsite, normaliseSocial, WEBSITE_MESSAGES, SOCIAL_MESSAGE } from "../lib/web-presence";
 
   function wireForms() {
     document.querySelectorAll<HTMLFormElement>(".audit-form").forEach((form) => {
       if (form.dataset.wired) return;
       form.dataset.wired = "1";
+
+      // Web presence branches. The stylesheet does the showing and hiding (so it works
+      // with JS off); this adds the parts CSS can't express: making the website box
+      // genuinely required, disabling the boxes that aren't in play so a value typed and
+      // then abandoned never rides along, and checking the format with the same rules
+      // the server re-applies in /api/lead.
+      const presence = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="web_presence"]'));
+      const websiteInput = form.querySelector<HTMLInputElement>('input[name="website"]');
+      const socialInput = form.querySelector<HTMLInputElement>('input[name="social"]');
+
+      const checkWebsite = () => {
+        if (!websiteInput || websiteInput.disabled) return;
+        const raw = websiteInput.value.trim();
+        if (!raw) return websiteInput.setCustomValidity(WEBSITE_MESSAGES.empty);
+        const result = normaliseWebsite(raw);
+        websiteInput.setCustomValidity(result.ok ? "" : WEBSITE_MESSAGES[result.reason]);
+      };
+
+      const checkSocial = () => {
+        if (!socialInput || socialInput.disabled) return;
+        // Blank is valid here on purpose, so this only ever fires on a real typo.
+        socialInput.setCustomValidity(normaliseSocial(socialInput.value).ok ? "" : SOCIAL_MESSAGE);
+      };
+
+      const applyBranch = () => {
+        const picked = presence.find((r) => r.checked)?.value ?? "";
+        for (const [input, branch] of [[websiteInput, "website"], [socialInput, "facebook"]] as const) {
+          if (!input) continue;
+          const live = picked === branch;
+          // Disabled controls are left out of FormData and skipped by validation, which
+          // is exactly what a hidden branch should be.
+          input.disabled = !live;
+          if (!live) input.setCustomValidity("");
+        }
+        if (websiteInput) websiteInput.required = picked === "website";
+        checkWebsite();
+        checkSocial();
+      };
+
+      presence.forEach((radio) => radio.addEventListener("change", applyBranch));
+      websiteInput?.addEventListener("input", checkWebsite);
+      socialInput?.addEventListener("input", checkSocial);
+      // Runs now as well as on change: bfcache and Firefox's form restore can hand us a
+      // radio that's already checked without ever firing an event.
+      applyBranch();
 
       // Gate submit on Turnstile readiness: the api.js loader is deferred, so a fast
       // submitter on a slow connection could otherwise post without a token and get a

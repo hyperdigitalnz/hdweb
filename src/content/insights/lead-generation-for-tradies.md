@@ -71,8 +71,11 @@ The free channel almost every tradie under-uses. Your Google Business Profile *i
 map-pack listing, and review count and quality are among the factors deciding who shows
 up in those top three spots, as well as being the social proof that wins the click. The
 asking costs nothing and takes ten minutes to set up: [copy-paste templates
-here](/insights/ask-for-google-reviews/). Website-side local SEO compounds on top over
-months. Slowest to build, cheapest per lead once it's running. Owned, permanently.
+here](/insights/ask-for-google-reviews/), and [how to keep them
+coming](/insights/get-more-google-reviews/) if the asking is the bit you find awkward.
+[Ranking in the map pack](/insights/rank-in-google-map-pack/) covers what decides the order
+once your profile is complete. Website-side local SEO compounds on top over months.
+Slowest to build, cheapest per lead once it's running. Owned, permanently.
 
 ### Facebook and Instagram
 
