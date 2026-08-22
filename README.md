@@ -76,6 +76,8 @@ until you map it to a custom field.
 | `PUBLIC_TURNSTILE_SITE_KEY` | Turnstile widget (build-time, public) | build var |
 | `TURNSTILE_SECRET_KEY` | Turnstile server verification | secret |
 | `GHL_WEBHOOK_URL` | GoHighLevel inbound webhook | secret |
+| `RESEND_API_KEY` | Internal "new enquiry" notification email | secret |
+| `LEAD_NOTIFY_FROM` / `LEAD_NOTIFY_TO` | Optional sender/recipient overrides | var |
 
 - **Local:** put them in `.dev.vars` (or `.env`). Template: `public/.env.example`.
 - **Production:** `npx wrangler secret put <NAME>` (or the Worker dashboard). `PUBLIC_*` must be

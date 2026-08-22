@@ -4,6 +4,7 @@ import { env as cfEnv } from "cloudflare:workers";
 // Same validators the form runs in the browser, so a value the visitor got past the
 // client check can never be rejected here (or vice versa).
 import { isWebPresence, normaliseWebsite, normaliseSocial } from "../../lib/web-presence";
+import { sendLeadNotification } from "../../lib/lead-email";
 
 // On-demand endpoint (not prerendered): verifies Cloudflare Turnstile, then forwards to GHL webhook.
 export const prerender = false;
@@ -22,7 +23,7 @@ const ALLOWED_FIELDS = ["name", "email", "phone", "trade", "website", "goal", "m
 const REQUIRED_AUDIT = ["name", "email", "phone"] as const;
 const MAX_FIELD_LEN = 500;
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+export const POST: APIRoute = async ({ request, clientAddress, locals, site }) => {
   try {
     const form = await request.formData();
 
@@ -120,6 +121,31 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       console.log(JSON.stringify({ evt: delivered ? "lead_delivered" : "LEAD_DELIVERY_FAILED", lead }));
     } else {
       console.log(JSON.stringify({ evt: "lead_received_no_webhook", lead }));
+    }
+
+    // 6. Our own internal notification, carrying every field the form collected.
+    //    Separate from GHL's workflow email on purpose: GHL's public API can't edit a
+    //    workflow (list only), so that email's fields are a manual UI job, and it drifts
+    //    every time we add a field. This one reads the payload, so it can't drift.
+    //    Strictly additive: it runs last, never throws, and never changes what the
+    //    visitor gets back. Sent in the background where the runtime allows it, so the
+    //    redirect isn't held up by an email.
+    //    The try/catch is the enforcement, not the intention: `locals.runtime.ctx` is a
+    //    THROWING getter in Astro 6+ (it tells you to use `locals.cfContext`), so simply
+    //    reading the wrong property is enough to 500 a lead that already reached GHL.
+    //    Found in testing. Nothing in here may escape.
+    try {
+      const notify = sendLeadNotification(env, lead, site?.origin ?? "https://hyperdigital.nz")
+        .then((result) => {
+          if (!result.sent && result.reason !== "no_api_key") {
+            console.error(JSON.stringify({ evt: "LEAD_NOTIFY_FAILED", reason: result.reason, email: lead.email }));
+          }
+        });
+      const cfCtx = (locals as { cfContext?: { waitUntil?: (p: Promise<unknown>) => void } }).cfContext;
+      if (cfCtx?.waitUntil) cfCtx.waitUntil(notify);
+      else await notify;
+    } catch (err) {
+      console.error("[lead] notification failed", err);
     }
 
     return wantsHtml ? redirect("/thank-you/") : json({ ok: true });
